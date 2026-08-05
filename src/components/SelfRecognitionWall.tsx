@@ -15,62 +15,62 @@ interface Phrase {
 
 const PHRASES: Phrase[] = [
   {
-    text: "Заявки теряются, клиенты ждут дольше, чем хотелось бы",
-    top: 32,
-    left: 6,
-    size: 34,
-    rotate: -3,
-    revealAt: 0.12,
-  },
-  {
-    text: "Excel и таблицы заменяют систему",
-    top: 60,
-    left: 4,
-    size: 30,
-    rotate: 2,
-    revealAt: 0.24,
-  },
-  {
     text: "Всё держится на вас — без вас ничего не происходит",
-    top: 5,
-    left: 30,
+    top: 10,
+    left: 20,
     size: 42,
     rotate: 2,
     revealAt: 0.36,
   },
   {
-    text: "Сотрудники делают одно и то же вручную",
-    top: 64,
-    left: 46,
-    size: 28,
-    rotate: 3,
-    revealAt: 0.48,
+    text: "Заявки теряются, клиенты ждут дольше, чем хотелось бы",
+    top: 32,
+    left: 5,
+    size: 34,
+    rotate: -3,
+    revealAt: 0.12,
   },
   {
     text: "Информация разбросана по пяти местам",
-    top: 18,
-    left: 72,
+    top: 24,
+    left: 70,
     size: 26,
     rotate: 4,
     revealAt: 0.6,
     fadeOut: true,
   },
   {
-    text: "Сайт или сервис устарел, но непонятно, что делать в первую очередь",
-    top: 85,
-    left: 28,
-    size: 24,
-    rotate: 2,
-    revealAt: 0.72,
-  },
-  {
     text: "Раньше уже пробовали с подрядчиком — не сработало",
-    top: 36,
-    left: 56,
+    top: 46,
+    left: 54,
     size: 28,
     rotate: -4,
     revealAt: 0.84,
     fadeOut: true,
+  },
+  {
+    text: "Excel и таблицы заменяют систему",
+    top: 62,
+    left: 4,
+    size: 30,
+    rotate: 2,
+    revealAt: 0.24,
+  },
+  {
+    text: "Сотрудники делают одно и то же вручную",
+    top: 70,
+    left: 44,
+    size: 28,
+    rotate: 3,
+    revealAt: 0.48,
+  },
+  {
+    text: "Сайт или сервис устарел, но непонятно, что делать в первую очередь",
+    top: 88,
+    left: 26,
+    size: 24,
+    rotate: 2,
+    revealAt: 0.72,
   },
 ];
 
@@ -93,10 +93,25 @@ function phraseOpacity(t: number, p: Phrase) {
   return base * (1 - fall * 0.85); // sinks back to ~0.15
 }
 
+// Fluid type size instead of a fixed px + scale-transform-the-whole-canvas
+// trick: that approach kept phrases from overlapping on narrow screens, but
+// scaling the canvas down shrank its height too, so everything collapsed
+// into a short strip centered in the middle of the section. Sizing text
+// with clamp() keeps it legible on phones (never smaller than ~78% of the
+// desktop size) while letting positions use the section's real, full
+// height — so phrases spread top to bottom instead of bunching up.
+function fluidSize(px: number) {
+  const min = Math.round(px * 0.78);
+  const vw = (px / 1180) * 100;
+  return `clamp(${min}px, ${vw.toFixed(2)}vw, ${px}px)`;
+}
+
+const phraseWidthClass = "max-w-[78%] sm:max-w-[60%] lg:max-w-[46%]";
+
 function StaticWall() {
   return (
     <div
-      className="relative mx-auto h-[70vh] w-full max-w-5xl px-6"
+      className="relative h-[78vh] w-full overflow-hidden"
       style={{
         background:
           "linear-gradient(to bottom, var(--color-bg) 0%, var(--color-bg) 25%, color-mix(in srgb, var(--color-accent) 50%, var(--color-bg) 50%) 100%)",
@@ -106,11 +121,11 @@ function StaticWall() {
       {PHRASES.map((p, i) => (
         <span
           key={i}
-          className="absolute max-w-[46%] font-medium leading-[1.15] tracking-tight text-ink"
+          className={`absolute font-medium leading-[1.15] tracking-tight text-ink ${phraseWidthClass}`}
           style={{
             top: `${p.top}%`,
             left: `${p.left}%`,
-            fontSize: p.size * 0.62,
+            fontSize: fluidSize(p.size),
             transform: `rotate(${p.rotate}deg)`,
             opacity: 0.75,
           }}
@@ -170,16 +185,22 @@ export function SelfRecognitionWall() {
               "linear-gradient(to bottom, var(--color-bg) 0%, var(--color-bg) 25%, color-mix(in srgb, var(--color-accent) 20%, var(--color-bg) 50%) 100%)",
           }}
         >
-          <div className="sticky top-0 flex h-dvh w-full items-center overflow-hidden">
-            <div className="relative h-[70vh] w-full scale-[0.62] sm:scale-[0.82] lg:scale-100">
+          <div className="sticky top-0 h-dvh w-full overflow-hidden">
+            {/* top:0% for the phrases below resolves to the viewport's
+                actual top edge once this section is pinned mid-scroll —
+                same spot the fixed header sits at (z-50). Padding on this
+                wrapper wouldn't help (absolutely positioned children measure
+                against the padding box, not the content box), so the
+                header clearance has to be a real inset instead. */}
+            <div className="absolute inset-x-0 top-28 bottom-0 sm:top-32">
               {PHRASES.map((p, i) => (
                 <span
                   key={i}
-                  className="absolute max-w-[46%] font-medium leading-[1.15] tracking-tight text-ink"
+                  className={`absolute font-medium leading-[1.15] tracking-tight text-ink ${phraseWidthClass}`}
                   style={{
                     top: `${p.top}%`,
                     left: `${p.left}%`,
-                    fontSize: p.size,
+                    fontSize: fluidSize(p.size),
                     transform: `rotate(${p.rotate}deg)`,
                     opacity: phraseOpacity(t, p),
                   }}
