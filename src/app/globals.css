@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+:root {
+  /* Surface — warm, quiet white */
+  --color-bg: #FAFAF8;
+  --color-card: #FFFFFF;
+
+  /* Text */
+  --color-ink: #171717;
+  --color-ink-soft: #717171;
+  --color-ink-faint: #A6A6A6;
+
+  /* Structure */
+  --color-border: #ECECEC;
+  --color-line: #C6C2B8;
+  --color-glyph: #96927F;
+  --color-glyph-soft: #C7C2B0;
+
+  /* Accent — Soft Sky */
+  --color-accent: #6CCFFF;
+  --color-accent-hover: #45C2FF;
+  --color-accent-alt: #9FE6FF;
+  --color-accent-line: #6CCFFF;
+  --color-accent-tint: #EAF8FF;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@theme inline {
+  --color-bg: var(--color-bg);
+  --color-card: var(--color-card);
+  --color-ink: var(--color-ink);
+  --color-ink-soft: var(--color-ink-soft);
+  --color-ink-faint: var(--color-ink-faint);
+  --color-border: var(--color-border);
+  --color-line: var(--color-line);
+  --color-accent: var(--color-accent);
+  --color-accent-hover: var(--color-accent-hover);
+  --color-accent-alt: var(--color-accent-alt);
+  --color-accent-line: var(--color-accent-line);
+  --color-accent-tint: var(--color-accent-tint);
+
+  --font-sans: "Satoshi";
+
+  --breakpoint-xs: 30rem;
+}
+
+html {
+  background: var(--color-bg);
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  font-feature-settings: "ss01" 1;
+}
+
+::selection {
+  background: var(--color-accent-tint);
+  color: var(--color-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent-hover);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.pulse-line {
+  animation: pulse-line 2.6s ease-in-out infinite;
+}
+
+@keyframes pulse-line {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 1; }
+}
