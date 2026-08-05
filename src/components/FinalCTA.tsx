@@ -22,7 +22,7 @@ export function FinalCTA() {
       id="contact"
       className="relative flex min-h-dvh w-full items-center overflow-hidden px-6 py-36 sm:px-10 lg:px-16"
     >
-      <div className="pointer-events-none absolute inset-0 opacity-[0.55] sm:opacity-70" aria-hidden="true">
+      {/* <div className="pointer-events-none absolute inset-0 opacity-[0.55] sm:opacity-70" aria-hidden="true">
         <svg className="absolute inset-0 h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none">
           {connections.map((c, i) => (
             <path
@@ -109,7 +109,7 @@ export function FinalCTA() {
             </motion.div>
           </div>
         )}
-      </div>
+      </div> */}
 
       <motion.div
         animate={assembled ? { scale: [1, 1.012, 1] } : {}}
