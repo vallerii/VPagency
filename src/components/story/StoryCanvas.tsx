@@ -147,8 +147,8 @@ export function StoryCanvas() {
           })}
         </div>
 
-        <div className="pointer-events-none absolute inset-0 flex items-start px-6 pt-32 sm:px-10 sm:pt-36 lg:px-16 lg:pt-[40vh]">
-          <div className="relative w-full max-w-3xl">
+        <div className="pointer-events-none absolute inset-0 flex items-start px-6 pt-32 sm:px-10 sm:pt-36 lg:px-16 lg:pt-[40vh] ">
+          <div className="relative mx-auto w-full max-w-[1440px]">
             {CAPTIONS.map((cap, i) => {
               const { opacity, translateY } = captionFrame(t, i, CAPTIONS.length);
               return (
