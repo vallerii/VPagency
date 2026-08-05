@@ -95,7 +95,7 @@ const base =
   "relative isolate inline-flex items-center justify-center gap-2 overflow-hidden rounded-full font-medium transition-colors";
 const variants = {
   primary:
-    "bg-[radial-gradient(ellipse_at_center,#FFFFFF_0%,var(--color-accent)_85%)] text-ink shadow-[0_0_0_1px_rgba(108,207,255,0.55),0_0_28px_-4px_rgba(132,216,255,0.65)] hover:bg-[radial-gradient(ellipse_at_center,#FFFFFF_0%,var(--color-accent-hover)_85%)] hover:shadow-[0_0_0_1px_rgba(108,207,255,0.75),0_0_36px_-2px_rgba(132,216,255,0.8)]",
+    "bg-accent text-ink shadow-[0_0_0_1px_rgba(108,207,255,0.55),0_0_28px_-4px_rgba(132,216,255,0.65)] hover:bg-accent-hover hover:shadow-[0_0_0_1px_rgba(108,207,255,0.75),0_0_36px_-2px_rgba(132,216,255,0.8)]",
   secondary:
     "border border-accent-hover text-ink shadow-[0_0_18px_-6px_rgba(69,194,255,0.6)] hover:border-accent hover:shadow-[0_0_26px_-4px_rgba(69,194,255,0.8)]",
 };
