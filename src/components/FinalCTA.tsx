@@ -114,7 +114,7 @@ export function FinalCTA() {
       <motion.div
         animate={assembled ? { scale: [1, 1.012, 1] } : {}}
         transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
-        className="relative mx-auto w-full max-w-3xl"
+        className="relative mx-auto w-full max-w-[1152px] "
       >
         <div className="mb-16 text-center">
           <motion.h2
@@ -132,7 +132,7 @@ export function FinalCTA() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.6 }}
             transition={{ duration: 0.7, delay: 0.15 }}
-            className="mx-auto mt-8 max-w-[560px] text-[16px] leading-[1.5] text-ink-soft sm:text-[19px] lg:text-[22px] xl:text-[26px]"
+            className="mx-auto mt-8 max-w-3xl text-[16px] leading-[1.5] text-ink-soft sm:text-[19px] lg:text-[22px] xl:text-[26px]"
           >
             Расскажите о задаче — мы поможем разобраться, что нужно бизнесу, и
             покажем, с чего начать.
@@ -144,7 +144,7 @@ export function FinalCTA() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="rounded-[28px] border border-border bg-card p-8 sm:p-12"
+          className="rounded-[28px] max-w-3xl mx-auto border border-border bg-card p-8 sm:p-12"
         >
           <ContactForm onSuccess={() => setAssembled(true)} />
         </motion.div>

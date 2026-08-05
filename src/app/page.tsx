@@ -3,6 +3,8 @@ import { Hero } from "@/components/Hero";
 import { SelfRecognitionWall } from "@/components/SelfRecognitionWall";
 import { RationaleBlock } from "@/components/RationaleBlock";
 import { StoryCanvas } from "@/components/story/StoryCanvas";
+import { SuccessCriteria } from "@/components/SuccessCriteria";
+import { PortfolioSection } from "@/components/PortfolioSection";
 import { FinalCTA } from "@/components/FinalCTA";
 import { Footer } from "@/components/Footer";
 
@@ -22,6 +24,8 @@ export default function Home() {
         </section>
 
         <StoryCanvas />
+        <SuccessCriteria />
+        <PortfolioSection />
         <FinalCTA />
       </main>
       <Footer />
