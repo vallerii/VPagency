@@ -1,5 +1,6 @@
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
+import { TechMarquee } from "@/components/TechMarquee";
 import { SelfRecognitionWall } from "@/components/SelfRecognitionWall";
 import { RationaleBlock } from "@/components/RationaleBlock";
 import { StoryCanvas } from "@/components/story/StoryCanvas";
@@ -14,6 +15,7 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
+        <TechMarquee />
         <SelfRecognitionWall />
         <RationaleBlock />
 

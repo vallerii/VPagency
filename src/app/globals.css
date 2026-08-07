@@ -88,3 +88,16 @@ body {
   0%, 100% { opacity: 0.55; }
   50% { opacity: 1; }
 }
+
+.animate-marquee {
+  animation: marquee 60s linear infinite;
+}
+
+.animate-marquee-reverse {
+  animation: marquee 60s linear infinite reverse;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
