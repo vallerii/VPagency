@@ -16,12 +16,12 @@ export function ServiceBeforeAfter({ rows }: ServiceBeforeAfterProps) {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.5 }}
         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-        className="mx-auto max-w-3xl text-balance text-center text-[7.2vw] font-medium leading-[1.1] tracking-tighter text-ink sm:text-[4.7vw] lg:text-[3.4vw] xl:text-[76px]"
+        className="mx-auto w-full max-w-[1440px] text-balance text-center text-[7.2vw] font-medium leading-[1.1] tracking-tighter text-ink sm:text-[4.7vw] lg:text-[3.4vw] xl:text-[88px]"
       >
         Что вы получите
       </motion.h2>
 
-      <div className="mx-auto mt-16 max-w-4xl">
+      <div className="mx-auto mt-16 mx-auto w-full max-w-[1440px] ">
         <div className="mb-8 grid grid-cols-2 gap-6 sm:gap-12">
           <span className="text-[13px] font-medium uppercase tracking-wide text-ink-faint sm:text-right sm:text-[14px]">
             До

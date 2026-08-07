@@ -27,7 +27,7 @@ export function RelatedCases({ category }: RelatedCasesProps) {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.5 }}
         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-        className="mx-auto max-w-3xl text-balance text-center text-[7.2vw] font-medium leading-[1.1] tracking-tighter text-ink sm:text-[4.7vw] lg:text-[3.4vw] xl:text-[76px]"
+        className="mx-auto w-full max-w-[1440px]  text-balance text-center text-[7.2vw] font-medium leading-[1.1] tracking-tighter text-ink sm:text-[4.7vw] lg:text-[3.4vw] xl:text-[88px]"
       >
         Похожие проекты
       </motion.h2>
@@ -37,7 +37,7 @@ export function RelatedCases({ category }: RelatedCasesProps) {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.6 }}
-        className="mx-auto mt-16 flex max-w-5xl flex-col gap-4 lg:h-80 lg:flex-row"
+        className="mt-16 flex mx-auto w-full max-w-[1440px]  flex-col gap-4 lg:h-80 lg:flex-row"
       >
         {related.map((c, i) => (
           <motion.div

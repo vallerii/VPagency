@@ -61,12 +61,12 @@ export function PortfolioSection() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.5 }}
         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-        className="mx-auto max-w-3xl text-balance text-center text-[7.2vw] font-medium leading-[1.1] tracking-tighter text-ink sm:text-[4.7vw] lg:text-[3.4vw] xl:text-[88px]"
+        className="mx-auto w-full max-w-[1440px] text-balance text-center text-[7.2vw] font-medium leading-[1.1] tracking-tighter text-ink sm:text-[4.7vw] lg:text-[3.4vw] xl:text-[88px]"
       >
         Наши продукты
       </motion.h2>
 
-      <div className="mx-auto mt-16 flex max-w-6xl flex-col gap-4">
+      <div className="mx-auto mt-16 flex w-full max-w-[1440px] flex-col gap-4">
         {ROWS.map((row, i) => (
           <PortfolioRow key={i} row={row} rowIndex={i} />
         ))}

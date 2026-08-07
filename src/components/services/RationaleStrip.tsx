@@ -42,10 +42,11 @@ function RationaleVisual({ slug }: { slug: string }) {
   const Icon = THEME_ICON[slug] ?? Globe;
 
   return (
-    <div className="relative mx-auto aspect-square w-full max-w-[440px]">
-      <div className="absolute inset-[-10%] rounded-full border border-accent-hover/42" />
-      <div className="absolute inset-[8%] rounded-full border border-accent-hover/52" />
-      <div className="absolute inset-[24%] rounded-full border border-accent-hover/62" />
+    <div className="relative mx-auto aspect-square w-full max-w-[440px] ">
+      <div className="absolute inset-[-70%] rounded-full border border-accent-hover/62" />
+      <div className="absolute inset-[-30%] rounded-full border border-accent-hover/72" />
+      <div className="absolute inset-[5%] rounded-full border border-accent-hover/82" />
+      <div className="absolute inset-[24%] rounded-full border border-accent-hover/92" />
 
       {RING_DOTS.map((pos, i) => (
         <span
@@ -54,7 +55,6 @@ function RationaleVisual({ slug }: { slug: string }) {
         />
       ))}
 
-      <span className="absolute -bottom-2 -left-8 h-20 w-16 rounded-bl-2xl border-b border-l border-dashed border-accent/30 sm:-left-10" />
 
       <motion.div
         initial={{ opacity: 0, scale: 0.85 }}
@@ -63,7 +63,7 @@ function RationaleVisual({ slug }: { slug: string }) {
         transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
         className="absolute inset-0 m-auto flex h-24 w-24 items-center justify-center rounded-3xl bg-accent-tint sm:h-28 sm:w-28"
       >
-        <Icon className="h-10 w-10 text-accent-hover" strokeWidth={1.5} />
+        <Icon className="h-12 w-12 text-accent-hover" strokeWidth={1.5} />
       </motion.div>
 
       {BADGES.map(({ icon: Icon, label, top, left, delay }) => (
@@ -74,9 +74,9 @@ function RationaleVisual({ slug }: { slug: string }) {
           viewport={{ once: true, amount: 0.6 }}
           transition={{ duration: 0.6, delay, ease: [0.16, 1, 0.3, 1] }}
           style={{ top, left }}
-          className="absolute inline-flex items-center gap-1.5 rounded-full border border-border bg-card px-3.5 py-2 text-[13px] font-medium text-ink shadow-[0_4px_16px_-6px_rgba(23,23,23,0.12)] sm:text-[14px]"
+          className="absolute inline-flex items-center gap-1.5 rounded-full border border-border bg-card px-3.5 py-2 text-[13px] font-medium text-ink shadow-[0_4px_16px_-6px_rgba(23,23,23,0.12)] sm:text-[14px] lg:text-[18px]"
         >
-          <Icon className="h-3.5 w-3.5 text-accent-hover" strokeWidth={2} />
+          <Icon className="h-6 w-6 text-accent-hover" strokeWidth={2} />
           {label}
         </motion.div>
       ))}
@@ -86,7 +86,7 @@ function RationaleVisual({ slug }: { slug: string }) {
 
 export function RationaleStrip({ slug, title, lines }: RationaleStripProps) {
   return (
-    <section className="w-full bg-card px-6 py-24 sm:px-10 lg:px-16 lg:py-32">
+    <section className="w-full bg-card px-6 py-24 sm:px-10 lg:px-16 lg:py-32 min-h-[85dvh] overflow-hidden ">
       <div className="mx-auto grid w-full max-w-[1440px] items-center gap-16 lg:grid-cols-2 lg:gap-20">
         <div>
           <motion.h2
@@ -94,7 +94,7 @@ export function RationaleStrip({ slug, title, lines }: RationaleStripProps) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.6 }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="text-balance text-[9vw] font-medium leading-[1.08] tracking-tighter text-ink  sm:text-[4.7vw] lg:text-[3.4vw] xl:text-[76px]"
+            className="text-balance text-[7.2vw] font-medium leading-[1.08] tracking-tighter text-ink sm:text-[4.7vw] lg:text-[3.4vw] xl:text-[88px]"
           >
             {title.map((line, i) => (
               <span key={i} className="block">

@@ -15,10 +15,10 @@ export function ServiceCTA({ label }: ServiceCTAProps) {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.5 }}
         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-        className="mx-auto w-full max-w-3xl"
+        className="mx-auto w-full max-w-4xl"
       >
         <div className="mb-14 text-center">
-          <h2 className="text-balance text-[8vw] font-medium leading-[1.1] tracking-tighter text-ink sm:text-[5vw] lg:text-[3vw] xl:text-[60px]">
+          <h2 className="text-balance text-[7.2vw] font-medium leading-[1.1] tracking-tighter text-ink sm:text-[4.7vw] lg:text-[3.4vw] xl:text-[88px]">
             Расскажите о задаче
           </h2>
           <p className="mx-auto mt-6 max-w-[520px] text-[16px] leading-[1.5] text-ink-soft sm:text-[18px]">
