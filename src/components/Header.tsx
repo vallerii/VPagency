@@ -1,11 +1,14 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { HoverLink } from "./ui/hover-button";
 import { SERVICES } from "@/data/services";
 
 export function Header() {
+  const [hovered, setHovered] = useState<string | null>(null);
+
   return (
     <motion.header
       initial={{ opacity: 0, y: -10 }}
@@ -17,14 +20,25 @@ export function Header() {
         VP&nbsp;Digital
       </Link>
 
-      <div className="flex items-center gap-8">
-        <nav className="hidden items-center gap-6 lg:flex">
+      <div className="flex items-center gap-6">
+        <nav
+          onMouseLeave={() => setHovered(null)}
+          className="hidden items-center gap-1 rounded-full border border-border bg-card/80 p-1.5 backdrop-blur-sm lg:flex"
+        >
           {SERVICES.map((s) => (
             <Link
               key={s.slug}
               href={`/${s.slug}`}
-              className="text-[14px] font-medium text-ink-soft transition-colors hover:text-ink"
+              onMouseEnter={() => setHovered(s.slug)}
+              className="relative isolate rounded-full px-4 py-2 text-[16px] font-medium text-ink-soft transition-colors hover:text-ink"
             >
+              {hovered === s.slug && (
+                <motion.span
+                  layoutId="header-nav-pill"
+                  className="absolute inset-0 -z-10 rounded-full bg-accent-tint"
+                  transition={{ type: "spring", stiffness: 380, damping: 32 }}
+                />
+              )}
               {s.label}
             </Link>
           ))}
