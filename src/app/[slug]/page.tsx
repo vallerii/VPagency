@@ -37,7 +37,11 @@ export default async function ServicePage({
         />
         <TechMarquee />
         <SymptomList title="Узнаёте?" items={service.symptoms} />
-        <RationaleStrip title={service.rationaleTitle} lines={service.rationaleLines} />
+        <RationaleStrip
+          slug={service.slug}
+          title={service.rationaleTitle}
+          lines={service.rationaleLines}
+        />
         <ScopeTiers
           included={service.included}
           addon={service.addon}

@@ -1,42 +1,135 @@
 "use client";
 
 import { motion } from "framer-motion";
+import {
+  Globe,
+  ShoppingCart,
+  SlidersHorizontal,
+  Workflow,
+  LifeBuoy,
+  User,
+  Search,
+  Star,
+  BadgeCheck,
+  type LucideIcon,
+} from "lucide-react";
+import { HoverLink } from "@/components/ui/hover-button";
 
 interface RationaleStripProps {
+  slug: string;
   title: string[];
   lines: string[];
 }
 
-export function RationaleStrip({ title, lines }: RationaleStripProps) {
+const THEME_ICON: Record<string, LucideIcon> = {
+  websites: Globe,
+  ecommerce: ShoppingCart,
+  "custom-software": SlidersHorizontal,
+  automation: Workflow,
+  support: LifeBuoy,
+};
+
+const BADGES: { icon: LucideIcon; label: string; top: string; left: string; delay: number }[] = [
+  { icon: User, label: "Клиент", top: "4%", left: "0%", delay: 0.5 },
+  { icon: Search, label: "Задача", top: "10%", left: "64%", delay: 0.6 },
+  { icon: BadgeCheck, label: "Результат", top: "66%", left: "60%", delay: 0.7 },
+  { icon: Star, label: "Решение", top: "78%", left: "2%", delay: 0.8 },
+];
+
+const RING_DOTS = ["top-0 left-1/2", "top-1/2 left-full", "top-full left-[62%]"];
+
+function RationaleVisual({ slug }: { slug: string }) {
+  const Icon = THEME_ICON[slug] ?? Globe;
+
   return (
-    <section className="w-full bg-card px-6 py-24 text-center sm:px-10 lg:px-16 lg:py-32">
-      <motion.h2
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.6 }}
-        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-        className="mx-auto max-w-3xl text-balance text-[9vw] font-medium leading-[1.1] tracking-tighter text-ink sm:text-[6vw] lg:text-[3.6vw] xl:text-[72px]"
-      >
-        {title.map((line, i) => (
-          <span key={i} className="block">
-            {line}
-          </span>
-        ))}
-      </motion.h2>
+    <div className="relative mx-auto aspect-square w-full max-w-[440px]">
+      <div className="absolute inset-[-10%] rounded-full border border-accent-hover/42" />
+      <div className="absolute inset-[8%] rounded-full border border-accent-hover/52" />
+      <div className="absolute inset-[24%] rounded-full border border-accent-hover/62" />
+
+      {RING_DOTS.map((pos, i) => (
+        <span
+          key={i}
+          className={`absolute ${pos} h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent`}
+        />
+      ))}
+
+      <span className="absolute -bottom-2 -left-8 h-20 w-16 rounded-bl-2xl border-b border-l border-dashed border-accent/30 sm:-left-10" />
 
       <motion.div
-        initial={{ opacity: 0, y: 16 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, scale: 0.85 }}
+        whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true, amount: 0.6 }}
-        transition={{ duration: 0.7, delay: 0.15 }}
-        className="mx-auto mt-12 flex max-w-3xl flex-col gap-4 text-[16px] leading-[1.5] text-ink-soft sm:flex-row sm:justify-center sm:gap-8 sm:text-[17px]"
+        transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+        className="absolute inset-0 m-auto flex h-24 w-24 items-center justify-center rounded-3xl bg-accent-tint sm:h-28 sm:w-28"
       >
-        {lines.map((line, i) => (
-          <p key={i} className="sm:max-w-[220px]">
-            {line}
-          </p>
-        ))}
+        <Icon className="h-10 w-10 text-accent-hover" strokeWidth={1.5} />
       </motion.div>
+
+      {BADGES.map(({ icon: Icon, label, top, left, delay }) => (
+        <motion.div
+          key={label}
+          initial={{ opacity: 0, y: 8 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.6 }}
+          transition={{ duration: 0.6, delay, ease: [0.16, 1, 0.3, 1] }}
+          style={{ top, left }}
+          className="absolute inline-flex items-center gap-1.5 rounded-full border border-border bg-card px-3.5 py-2 text-[13px] font-medium text-ink shadow-[0_4px_16px_-6px_rgba(23,23,23,0.12)] sm:text-[14px]"
+        >
+          <Icon className="h-3.5 w-3.5 text-accent-hover" strokeWidth={2} />
+          {label}
+        </motion.div>
+      ))}
+    </div>
+  );
+}
+
+export function RationaleStrip({ slug, title, lines }: RationaleStripProps) {
+  return (
+    <section className="w-full bg-card px-6 py-24 sm:px-10 lg:px-16 lg:py-32">
+      <div className="mx-auto grid w-full max-w-[1440px] items-center gap-16 lg:grid-cols-2 lg:gap-20">
+        <div>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.6 }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            className="text-balance text-[9vw] font-medium leading-[1.08] tracking-tighter text-ink  sm:text-[4.7vw] lg:text-[3.4vw] xl:text-[76px]"
+          >
+            {title.map((line, i) => (
+              <span key={i} className="block">
+                {line}
+              </span>
+            ))}
+          </motion.h2>
+
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.6 }}
+            transition={{ duration: 0.7, delay: 0.15 }}
+            className="mt-8 flex max-w-[460px] flex-col gap-3 text-[16px] leading-[1.6] text-ink-soft sm:text-[17px]"
+          >
+            {lines.map((line, i) => (
+              <p key={i}>{line}</p>
+            ))}
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.6 }}
+            transition={{ duration: 0.7, delay: 0.28 }}
+            className="mt-9"
+          >
+            <HoverLink href="#contact" variant="primary" className="px-8 py-4 text-[18px]">
+              Обсудить проект
+            </HoverLink>
+          </motion.div>
+        </div>
+
+        <RationaleVisual slug={slug} />
+      </div>
     </section>
   );
 }
