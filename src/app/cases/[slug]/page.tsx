@@ -46,6 +46,11 @@ export default async function CasePage({
             {item.name}
           </h1>
 
+          <div
+            className="mt-10 aspect-[16/9] w-full rounded-[20px] bg-cover bg-center"
+            style={{ backgroundImage: `url(${item.image})` }}
+          />
+
           <div className="mt-16 flex flex-col gap-14">
             <section>
               <span className="text-[13px] font-medium uppercase tracking-wide text-ink-faint">

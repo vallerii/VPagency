@@ -10,7 +10,10 @@ interface RelatedCasesProps {
 }
 
 export function RelatedCases({ category }: RelatedCasesProps) {
-  const related = CASES.filter((c) => c.category === category).slice(0, 3);
+  const matching = CASES.filter((c) => c.category === category);
+  const hasMatching = matching.length > 0;
+  const related = (hasMatching ? matching : CASES).slice(0, 3);
+  const title = hasMatching ? "Похожие проекты" : "Наши проекты";
   const [hovered, setHovered] = useState<number | null>(null);
 
   if (related.length === 0) return null;
@@ -29,7 +32,7 @@ export function RelatedCases({ category }: RelatedCasesProps) {
         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         className="mx-auto w-full max-w-[1440px]  text-balance text-center text-[7.2vw] font-medium leading-[1.1] tracking-tighter text-ink sm:text-[4.7vw] lg:text-[3.4vw] xl:text-[88px]"
       >
-        Похожие проекты
+        {title}
       </motion.h2>
 
       <motion.div
@@ -50,10 +53,22 @@ export function RelatedCases({ category }: RelatedCasesProps) {
           >
             <Link
               href={`/cases/${c.slug}`}
-              className="group flex h-full min-h-[220px] flex-col justify-between overflow-hidden rounded-[20px] border border-border bg-card p-8 shadow-[0_1px_2px_rgba(23,23,23,0.03)] transition-colors hover:border-accent-hover/60 hover:bg-accent-tint"
+              className="group relative flex h-full min-h-[220px] flex-col justify-between overflow-hidden rounded-[20px] border border-border shadow-[0_1px_2px_rgba(23,23,23,0.03)] transition-colors hover:border-accent-hover/60"
             >
-              <span className="text-[22px] font-medium tracking-tight text-ink">{c.name}</span>
-              <p className="mt-4 text-[15px] leading-[1.5] text-ink-soft opacity-0 transition-opacity duration-300 group-hover:opacity-100 line-clamp-3">
+              <div
+                aria-hidden
+                className="absolute inset-0 bg-cover bg-center transition-transform duration-500 ease-out group-hover:scale-105"
+                style={{ backgroundImage: `url(${c.image})` }}
+              />
+              <div aria-hidden className="absolute inset-0 bg-black/40" />
+              <div
+                aria-hidden
+                className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-black/35 transition-opacity duration-300 group-hover:from-black/90 group-hover:via-black/40"
+              />
+              <span className="relative z-10 p-8 text-[22px] font-medium tracking-tight text-white">
+                {c.name}
+              </span>
+              <p className="relative z-10 px-8 pb-8 text-[15px] leading-[1.5] text-white/85 opacity-0 transition-opacity duration-300 group-hover:opacity-100 line-clamp-3">
                 {c.problem}
               </p>
             </Link>
