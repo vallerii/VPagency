@@ -8,7 +8,7 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative flex min-h-dvh w-full items-center overflow-hidden px-6 pt-32 sm:px-10 lg:px-16"
+      className="relative flex min-h-dvh w-full items-center overflow-hidden px-6 pt-30 sm:px-10 lg:px-16"
     >
       <div className="mx-auto grid w-full max-w-[1440px] grid-cols-1 items-center gap-16 lg:grid-cols-[1.5fr_1fr] lg:gap-10 relative">
         <div className="">
@@ -16,20 +16,19 @@ export function Hero() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="text-balance text-[11vw] font-medium leading-[1.08] tracking-tighter text-ink sm:text-[7vw] lg:text-[5vw] xl:text-[112px]"
+            className="text-balance text-[11vw] font-medium leading-[1.08] tracking-tighter text-ink sm:text-[7vw] lg:text-[5vw] xl:text-[100px]"
           >
-            Не знаете, что нужно бизнесу? Мы разберёмся.
+            Не знаете, что нужно бизнесу? Мы разберёмся
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.25 }}
-            className="mt-10 max-w-[560px] text-[16px] leading-[1.5] text-ink-soft sm:text-[19px] lg:text-[22px] xl:text-[26px]"
+            className="mt-10 max-w-[800px] text-[16px] leading-[1.5] text-ink-soft sm:text-[19px] lg:text-[22px] xl:text-[26px]"
           >
             Разбираемся в проблеме бизнеса и предлагаем решение, которое
-            действительно работает. Без привязки к конкретной технологии —
-            сначала бизнес, потом инструменты.
+            действительно работает
           </motion.p>
 
           <motion.div

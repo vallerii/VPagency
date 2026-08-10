@@ -67,7 +67,7 @@ function PortfolioRow({ row, rowIndex }: { row: CaseStudy[]; rowIndex: number })
 
 export function PortfolioSection() {
   return (
-    <section id="portfolio" className="w-full px-6 py-32 sm:px-10 lg:px-16 lg:py-40">
+    <section id="portfolio" className="w-full px-6 sm:px-10 lg:px-16 ">
       <motion.h2
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}

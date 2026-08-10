@@ -27,7 +27,7 @@ function ReducedStory() {
               <span className="font-semibold text-ink">{cap.index}</span>
               {cap.eyebrow}
             </span>
-            <h2 className="text-balance text-[7.2vw] font-medium leading-[1.1] tracking-tighter text-ink sm:text-[4.7vw] lg:text-[3.4vw] xl:text-[88px]">
+            <h2 className="text-balance text-[10vw] font-medium leading-[1.1] tracking-tighter text-ink sm:text-[6vw] lg:text-[4vw] xl:text-[76px]">
               {cap.title.join(" ")}
             </h2>
             <p className="mt-8 max-w-[560px] text-[16px] leading-[1.5] text-ink-soft sm:text-[19px] lg:text-[22px] xl:text-[26px]">
@@ -164,7 +164,7 @@ export function StoryCanvas() {
                     <span className="font-semibold text-ink">{cap.index}</span>
                     {cap.eyebrow}
                   </span>
-                  <h2 className="text-balance text-[7.2vw] font-medium leading-[1.08] tracking-tighter text-ink sm:text-[4.7vw] lg:text-[3.4vw] xl:text-[88px]">
+                  <h2 className="text-balance text-[10vw] font-medium leading-[1.1] tracking-tighter text-ink sm:text-[6vw] lg:text-[4vw] xl:text-[76px]">
                     {cap.title.map((line, li) => (
                       <span key={li} className="block">
                         {line}

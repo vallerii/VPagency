@@ -20,7 +20,7 @@ export function FinalCTA() {
   return (
     <section
       id="contact"
-      className="relative flex min-h-dvh w-full items-center overflow-hidden px-6 py-36 sm:px-10 lg:px-16"
+      className="relative flex min-h-dvh w-full items-center overflow-hidden px-6 py-32 lg:py-44 sm:px-10 lg:px-16"
     >
       {/* <div className="pointer-events-none absolute inset-0 opacity-[0.55] sm:opacity-70" aria-hidden="true">
         <svg className="absolute inset-0 h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none">
@@ -114,15 +114,15 @@ export function FinalCTA() {
       <motion.div
         animate={assembled ? { scale: [1, 1.012, 1] } : {}}
         transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
-        className="relative mx-auto w-full max-w-[1152px] "
+        className="relative mx-auto w-full max-w-[1440px] grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-10 lg:gap-20"
       >
-        <div className="mb-16 text-center">
+        <div className="mb-16 ">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.6 }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="text-balance text-[7.2vw] font-medium leading-[1.1] tracking-tighter text-ink sm:text-[4.7vw] lg:text-[3.4vw] xl:text-[88px]"
+            className="text-balance text-[10vw] font-medium leading-[1.1] tracking-tighter text-ink sm:text-[6vw] lg:text-[4vw] xl:text-[76px]"
           >
             Построим систему,
             <br />в которой всё имеет смысл
@@ -132,7 +132,7 @@ export function FinalCTA() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.6 }}
             transition={{ duration: 0.7, delay: 0.15 }}
-            className="mx-auto mt-8 max-w-3xl text-[16px] leading-[1.5] text-ink-soft sm:text-[19px] lg:text-[22px] xl:text-[26px]"
+            className="mt-8 max-w-3xl text-[16px] leading-[1.5] text-ink-soft sm:text-[19px] lg:text-[22px] xl:text-[26px]"
           >
             Расскажите о задаче — мы поможем разобраться, что нужно бизнесу, и
             покажем, с чего начать.
@@ -144,7 +144,7 @@ export function FinalCTA() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="rounded-[28px] max-w-3xl mx-auto border border-border bg-card p-8 sm:p-12"
+          className="rounded-[28px] border border-border bg-card p-8 sm:p-12"
         >
           <ContactForm onSuccess={() => setAssembled(true)} />
         </motion.div>

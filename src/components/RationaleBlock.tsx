@@ -1,9 +1,10 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { HoverLink } from "./ui/hover-button";
+import { motion, useReducedMotion } from "framer-motion";
 
 export function RationaleBlock() {
+  const prefersReduced = useReducedMotion();
+
   return (
     <section className="w-full px-6 py-32 text-center sm:px-10 lg:px-16 lg:py-44">
       <motion.h2
@@ -11,7 +12,7 @@ export function RationaleBlock() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.6 }}
         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-        className="mx-auto  text-balance text-[10vw] font-medium leading-[1.08] tracking-tighter text-ink sm:text-[7vw] lg:text-[5vw] xl:text-[104px]"
+        className="mx-auto  text-balance text-[10vw] font-medium leading-[1.1] tracking-tighter text-ink sm:text-[6vw] lg:text-[4vw] xl:text-[76px]"
       >
         Это происходит
         <br />
@@ -44,17 +45,30 @@ export function RationaleBlock() {
         </p>
       </motion.div>
 
-      <div className="relative mx-auto mt-16 flex w-full max-w-4xl items-center justify-between" aria-hidden="true">
-        <span className="absolute left-0 right-0 top-1/2 h-px -translate-y-1/2 bg-accent/35" />
+      <div
+        className="relative mx-auto mt-20 flex w-full max-w-4xl items-center justify-between"
+        aria-hidden="true"
+      >
+        <span className="absolute left-0 right-0 top-1/2 h-[3px] -translate-y-1/2 overflow-hidden rounded-full bg-border">
+          <motion.span
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true, amount: 0.6 }}
+            transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
+            style={{ transformOrigin: "left" }}
+            className={`block h-full w-full bg-accent-hover ${!prefersReduced ? "pulse-line" : ""}`}
+          />
+        </span>
         {[0, 1, 2].map((i) => (
-          <span key={i} className="relative h-2.5 w-2.5 rounded-full bg-accent-hover" />
+          <motion.span
+            key={i}
+            initial={{ scale: 0, opacity: 0 }}
+            whileInView={{ scale: 1, opacity: 1 }}
+            viewport={{ once: true, amount: 0.6 }}
+            transition={{ duration: 0.45, delay: 0.35 + i * 0.25, ease: [0.16, 1, 0.3, 1] }}
+            className="relative h-3.5 w-3.5 rounded-full bg-accent-hover shadow-[0_0_0_5px_var(--color-accent-tint)]"
+          />
         ))}
-      </div>
-
-      <div className="mt-14">
-        <HoverLink href="#contact" variant="secondary" className="px-8 py-4 text-[16px]">
-          Нужна помощь?
-        </HoverLink>
       </div>
     </section>
   );

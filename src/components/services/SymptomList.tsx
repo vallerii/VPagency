@@ -54,7 +54,7 @@ export function SymptomList({ title, items }: SymptomListProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.6 }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="text-balance text-[7.2vw] font-medium leading-[1.1] tracking-tighter text-ink sm:text-[4.7vw] lg:text-[3.4vw] xl:text-[88px] lg:sticky lg:top-[50%] lg:self-start lg:pt-8"
+          className="text-balance text-[10vw] font-medium leading-[1.1] tracking-tighter text-ink sm:text-[6vw] lg:text-[4vw] xl:text-[76px] lg:sticky lg:top-[50%] lg:self-start lg:pt-8"
         >
           {title}
         </motion.h2>

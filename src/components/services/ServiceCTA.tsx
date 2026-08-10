@@ -18,7 +18,7 @@ export function ServiceCTA({ label }: ServiceCTAProps) {
         className="mx-auto w-full max-w-4xl"
       >
         <div className="mb-14 text-center">
-          <h2 className="text-balance text-[7.2vw] font-medium leading-[1.1] tracking-tighter text-ink sm:text-[4.7vw] lg:text-[3.4vw] xl:text-[88px]">
+          <h2 className="text-balance text-[10vw] font-medium leading-[1.1] tracking-tighter text-ink sm:text-[6vw] lg:text-[4vw] xl:text-[76px]">
             Расскажите о задаче
           </h2>
           <p className="mx-auto mt-6 max-w-[520px] text-[16px] leading-[1.5] text-ink-soft sm:text-[18px]">
