@@ -35,7 +35,7 @@ export default function Home() {
         <PortfolioSection />
         <About />
 
-        <SuccessCriteria />
+        {/* <SuccessCriteria /> */}
         
         <FinalCTA />
       </main>

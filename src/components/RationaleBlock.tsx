@@ -14,11 +14,11 @@ export function RationaleBlock() {
         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         className="mx-auto  text-balance text-[10vw] font-medium leading-[1.1] tracking-tighter text-ink sm:text-[6vw] lg:text-[4vw] xl:text-[76px]"
       >
-        Die meisten Anbieter
+        Ein Team, das
         <br />
-        lösen nur
+        Strategie, Design und Technik
         <br />
-        ihre eigene Aufgabe
+        zusammen denkt
       </motion.h2>
 
       <motion.div
@@ -29,19 +29,19 @@ export function RationaleBlock() {
         className="mx-auto mt-16 flex max-w-4xl grid-cols-1 lg:grid-cols-[1fr_1fr_1fr] gap-8 text-[16px] leading-[1.5] text-ink-soft sm:text-[19px] lg:text-[22px]"
       >
         <p className="w-full">
-          Der Designer liefert Design,
+          Kein Flickwerk aus
           <br />
-          der Entwickler nur Code
+          Design, Entwicklung und Strategie
         </p>
         <p className="w-full">
-          Niemand denkt
+          Wir verstehen Ihr Geschäft
           <br />
-          das Projekt als Ganzes mit
+          genauso gut wie die Technik
         </p>
         <p className="w-full">
-          Wir übernehmen
+          So entstehen Lösungen,
           <br />
-          Strategie, Design und Technik zusammen
+          die wirklich zusammenpassen
         </p>
       </motion.div>
 
