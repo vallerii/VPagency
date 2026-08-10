@@ -13,7 +13,7 @@ export function RelatedCases({ category }: RelatedCasesProps) {
   const matching = CASES.filter((c) => c.category === category);
   const hasMatching = matching.length > 0;
   const related = (hasMatching ? matching : CASES).slice(0, 3);
-  const title = hasMatching ? "Похожие проекты" : "Наши проекты";
+  const title = hasMatching ? "Ähnliche Projekte" : "Unsere Projekte";
   const [hovered, setHovered] = useState<number | null>(null);
 
   if (related.length === 0) return null;

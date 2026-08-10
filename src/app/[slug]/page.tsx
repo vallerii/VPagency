@@ -36,7 +36,7 @@ export default async function ServicePage({
           subtitle={service.heroSubtitle}
         />
         <TechMarquee />
-        <SymptomList title="Узнаёте?" items={service.symptoms} />
+        <SymptomList title="Kommt Ihnen bekannt vor?" items={service.symptoms} />
         <RationaleStrip
           slug={service.slug}
           title={service.rationaleTitle}

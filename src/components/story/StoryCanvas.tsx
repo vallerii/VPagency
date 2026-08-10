@@ -184,7 +184,7 @@ export function StoryCanvas() {
           style={{ opacity: t < 0.03 ? 1 : Math.max(0, 1 - t * 20) }}
           className="pointer-events-none absolute bottom-8 left-1/2 -translate-x-1/2 text-xs font-medium tracking-wide text-ink-faint"
         >
-          Скролльте
+          Scrollen
         </motion.div>
       </div>
     </div>

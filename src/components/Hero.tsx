@@ -18,7 +18,7 @@ export function Hero() {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="text-balance text-[11vw] font-medium leading-[1.08] tracking-tighter text-ink sm:text-[7vw] lg:text-[5vw] xl:text-[100px]"
           >
-            Не знаете, что нужно бизнесу? Мы разберёмся
+            Digitale Lösungen für Ihr Unternehmen
           </motion.h1>
 
           <motion.p
@@ -27,8 +27,9 @@ export function Hero() {
             transition={{ duration: 0.7, delay: 0.25 }}
             className="mt-10 max-w-[800px] text-[16px] leading-[1.5] text-ink-soft sm:text-[19px] lg:text-[22px] xl:text-[26px]"
           >
-            Разбираемся в проблеме бизнеса и предлагаем решение, которое
-            действительно работает
+            Wir gestalten und entwickeln Websites, Online-Shops und
+            individuelle Webanwendungen — von der ersten Idee bis zur
+            fertigen Lösung
           </motion.p>
 
           <motion.div
@@ -38,7 +39,7 @@ export function Hero() {
             className="mt-12"
           >
             <HoverLink href="#contact" variant="primary" className="px-8 py-4 text-[18px] w-full sm:w-auto">
-              Рассказать о задаче
+              Projekt besprechen
             </HoverLink>
           </motion.div>
         </div>

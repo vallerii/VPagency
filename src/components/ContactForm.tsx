@@ -38,10 +38,10 @@ export function ContactForm({ onSuccess }: ContactFormProps) {
   const [status, setStatus] = useState<Status>("idle");
 
   const errors: Partial<Record<keyof FormState, string>> = {};
-  if (!values.name.trim()) errors.name = "Укажите, как к вам обращаться";
-  if (!values.email.trim()) errors.email = "Укажите email";
-  else if (!validateEmail(values.email)) errors.email = "Проверьте формат email";
-  if (!values.message.trim()) errors.message = "Расскажите пару слов о задаче";
+  if (!values.name.trim()) errors.name = "Bitte geben Sie Ihren Namen an";
+  if (!values.email.trim()) errors.email = "Bitte geben Sie Ihre E-Mail-Adresse an";
+  else if (!validateEmail(values.email)) errors.email = "Bitte überprüfen Sie das E-Mail-Format";
+  if (!values.message.trim()) errors.message = "Beschreiben Sie kurz Ihr Anliegen";
 
   const hasErrors = Object.keys(errors).length > 0;
 
@@ -61,6 +61,7 @@ export function ContactForm({ onSuccess }: ContactFormProps) {
   }
 
   if (status === "success") {
+    const firstName = values.name.split(" ")[0];
     return (
       <motion.div
         initial={{ opacity: 0, y: 8 }}
@@ -72,10 +73,10 @@ export function ContactForm({ onSuccess }: ContactFormProps) {
         <span className="flex h-11 w-11 items-center justify-center rounded-full bg-accent-tint">
           <Check size={20} strokeWidth={2} className="text-ink" />
         </span>
-        <p className="text-xl font-bold text-ink">Заявка отправлена</p>
+        <p className="text-xl font-bold text-ink">Anfrage gesendet</p>
         <p className="max-w-xs text-[15px] leading-relaxed text-ink-soft">
-          Спасибо, {values.name.split(" ")[0] || "мы на связи"}. Мы свяжемся с вами
-          в течение одного рабочего дня.
+          {firstName ? `Danke, ${firstName}.` : "Danke für Ihre Anfrage."} Wir
+          melden uns innerhalb eines Werktages bei Ihnen.
         </p>
       </motion.div>
     );
@@ -86,7 +87,7 @@ export function ContactForm({ onSuccess }: ContactFormProps) {
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
         <Field
           id="name"
-          label="Имя"
+          label="Name"
           required
           value={values.name}
           onChange={(v) => update("name", v)}
@@ -96,14 +97,14 @@ export function ContactForm({ onSuccess }: ContactFormProps) {
         />
         <Field
           id="company"
-          label="Компания"
+          label="Unternehmen"
           value={values.company}
           onChange={(v) => update("company", v)}
           autoComplete="organization"
         />
         <Field
           id="email"
-          label="Email"
+          label="E-Mail"
           required
           type="email"
           value={values.email}
@@ -114,7 +115,7 @@ export function ContactForm({ onSuccess }: ContactFormProps) {
         />
         <Field
           id="phone"
-          label="Телефон"
+          label="Telefon"
           type="tel"
           value={values.phone}
           onChange={(v) => update("phone", v)}
@@ -124,7 +125,7 @@ export function ContactForm({ onSuccess }: ContactFormProps) {
 
       <div>
         <label htmlFor="message" className="mb-1.5 block text-sm font-medium text-ink">
-          О вашей задаче <span className="text-ink-soft">*</span>
+          Ihr Anliegen <span className="text-ink-soft">*</span>
         </label>
         <textarea
           id="message"
@@ -133,7 +134,7 @@ export function ContactForm({ onSuccess }: ContactFormProps) {
           value={values.message}
           onChange={(e) => update("message", e.target.value)}
           onBlur={() => setTouched((t) => ({ ...t, message: true }))}
-          placeholder="Что сейчас тормозит бизнес и что хотелось бы изменить"
+          placeholder="Was bremst Ihr Geschäft aktuell, und was möchten Sie ändern?"
           aria-invalid={touched.message && !!errors.message}
           aria-describedby={touched.message && errors.message ? "message-error" : undefined}
           className={cn(
@@ -159,11 +160,12 @@ export function ContactForm({ onSuccess }: ContactFormProps) {
         )}
       >
         {status === "submitting" && <Loader2 className="animate-spin" size={18} />}
-        {status === "submitting" ? "Отправляем…" : "Отправить заявку"}
+        {status === "submitting" ? "Wird gesendet…" : "Anfrage senden"}
       </HoverButton>
 
       <p className="text-xs leading-relaxed text-ink-faint">
-        Отправляя форму, вы соглашаетесь на обработку данных для связи с вами.
+        Mit dem Absenden stimmen Sie der Verarbeitung Ihrer Daten zur
+        Kontaktaufnahme zu.
       </p>
     </form>
   );

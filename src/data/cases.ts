@@ -16,11 +16,11 @@ export const CASES: CaseStudy[] = [
     image:
       "https://wecubex-staging.seiten.co/wp-content/webp-express/webp-images/uploads/2026/06/Frame-384.jpg.webp",
     problem:
-      "Металлообрабатывающая группа с шестью заводами в четырёх странах годами держалась на сайте старого поколения: сложная структура, тяжело найти нужную отрасль или технологию, а обновить страницу могла только IT-команда через устаревшую систему управления.",
+      "Eine Metallverarbeitungsgruppe mit sechs Werken in vier Ländern hielt sich jahrelang mit einer Website alter Generation über Wasser: komplexe Struktur, schwer auffindbare Branchen und Technologien, und Seiten konnte nur das IT-Team über ein veraltetes CMS aktualisieren.",
     solution:
-      "Пересобрали сайт с нуля на современной платформе: новая структура по отраслям и технологиям, понятная навигация и админка, которой пользуется сам отдел маркетинга без разработчиков.",
+      "Wir haben die Website auf einer modernen Plattform komplett neu aufgebaut: neue Struktur nach Branchen und Technologien, klare Navigation und ein Admin-Bereich, den das Marketing-Team selbst nutzt — ohne Entwickler.",
     result:
-      "Новый сайт готов и проходит финальную проверку перед запуском — WECUBEX получит современное цифровое представительство сразу для шести производственных площадок, без потери фирменного стиля.",
+      "Die neue Website ist fertig und durchläuft die finale Prüfung vor dem Launch — WECUBEX erhält einen modernen digitalen Auftritt für alle sechs Produktionsstandorte, ohne den bestehenden Markenauftritt zu verlieren.",
   },
   {
     slug: "proctec",
@@ -29,11 +29,11 @@ export const CASES: CaseStudy[] = [
     image:
       "https://www.proctec.de/wp-content/uploads/2026/03/93d5bfa37581bec8120b9d9295b3525ba099b058-scaled.jpg",
     problem:
-      "proCtec поставляет комплексные решения по автоматизации производств для десятка отраслей, но старый сайт не показывал ни масштаб экспертизы, ни реальные кейсы — посетителям было сложно понять, какое решение подходит именно их производству.",
+      "proCtec liefert umfassende Lösungen für die Produktionsautomatisierung in einem Dutzend Branchen, doch die alte Website zeigte weder das Ausmaß der Expertise noch reale Projekte — Besucher konnten kaum erkennen, welche Lösung zu ihrer Produktion passt.",
     solution:
-      "Выстроили новую структуру вокруг продуктовых линеек и отраслей, добавили раздел кейсов и отзывов клиентов, сделали сайт быстрым и удобным для самостоятельного ведения блога и новостей.",
+      "Wir haben die neue Struktur um Produktlinien und Branchen herum aufgebaut, einen Bereich für Referenzen und Kundenstimmen ergänzt und die Website schnell sowie einfach für die eigenständige Pflege von Blog und News gemacht.",
     result:
-      "proCtec получил сайт, который явно доносит 25+ лет экспертизы в промышленной автоматизации и помогает клиентам из разных отраслей быстрее находить нужное решение.",
+      "proCtec hat eine Website, die über 25 Jahre Erfahrung in der industriellen Automatisierung klar vermittelt und Kunden aus verschiedenen Branchen hilft, schneller die passende Lösung zu finden.",
   },
   {
     slug: "erfi",
@@ -41,11 +41,11 @@ export const CASES: CaseStudy[] = [
     category: "websites",
     image: "https://www.erfi.de/wp-content/uploads/2025/05/og-image.png",
     problem:
-      "Производитель лабораторной мебели и измерительных систем с 70-летней историей продавал через сайт, где были смешаны совсем разные аудитории — учебные заведения, промышленные лаборатории и производство — и найти нужный продукт было сложно.",
+      "Ein Hersteller von Labormöbeln und Messsystemen mit 70-jähriger Geschichte verkaufte über eine Website, auf der ganz unterschiedliche Zielgruppen vermischt waren — Bildungseinrichtungen, Industrielabore und Produktion —, sodass das passende Produkt schwer zu finden war.",
     solution:
-      "Перестроили каталог по сферам применения (лаборатории, обучение, монтаж), добавили карточки применения и упростили доступ к каталогам и техническим материалам.",
+      "Wir haben den Katalog nach Einsatzbereichen neu strukturiert (Labore, Ausbildung, Montage), Anwendungsübersichten ergänzt und den Zugriff auf Kataloge und technische Unterlagen vereinfacht.",
     result:
-      "erfi получил современный сайт-каталог, где клиенты из разных сегментов быстрее находят подходящую линейку оборудования, а команда сама обновляет продукты и новости.",
+      "erfi hat einen modernen Katalog-Auftritt, auf dem Kunden aus verschiedenen Segmenten schneller die passende Produktlinie finden, während das Team Produkte und News selbst aktuell hält.",
   },
   {
     slug: "gbs",
@@ -53,11 +53,11 @@ export const CASES: CaseStudy[] = [
     category: "websites",
     image: "https://gbs-metrology.com/wp-content/uploads/2025/08/bwF5UIu1x8.png",
     problem:
-      "Производитель высокоточных оптических измерительных систем нуждался в сайте, который говорит на языке инженеров из разных отраслей — от полупроводников до медтехники — а не тонет в сплошном техническом описании.",
+      "Ein Hersteller hochpräziser optischer Messsysteme brauchte eine Website, die die Sprache von Ingenieuren aus verschiedenen Branchen spricht — von Halbleitern bis Medizintechnik — statt in reinen technischen Beschreibungen unterzugehen.",
     solution:
-      "Спроектировали сайт вокруг сценариев применения по отраслям и типам сенсоров, добавили блок с измеримыми результатами внедрений и формы для запроса технической документации.",
+      "Wir haben die Website um Anwendungsszenarien nach Branchen und Sensortypen herum konzipiert, einen Bereich mit messbaren Ergebnissen aus Projekten ergänzt und Formulare für technische Unterlagen eingebunden.",
     result:
-      "GBS metrology получила сайт, который ведёт посетителя от своей отрасли к конкретному продукту и наглядно показывает эффект от внедрения измерительных систем.",
+      "GBS metrology hat eine Website, die Besucher von ihrer Branche zum passenden Produkt führt und den Effekt der Messsysteme anschaulich zeigt.",
   },
   {
     slug: "wetropa",
@@ -66,11 +66,11 @@ export const CASES: CaseStudy[] = [
     image:
       "https://www.wetropa.de/wp-content/uploads/2024/03/wetropa-schaumstoff-scaled-v1.png",
     problem:
-      "Системному поставщику упаковочных решений с производством в Германии и Швейцарии нужен был сайт, который одинаково хорошо продаёт и материал, и услугу полного цикла — от разработки до испытаний, — а также подчёркивает фокус компании на устойчивость.",
+      "Ein Systemanbieter für Verpackungslösungen mit Produktion in Deutschland und der Schweiz brauchte eine Website, die sowohl Material als auch die Full-Service-Leistung — von Entwicklung bis Prüfung — gleichermaßen gut verkauft und den Nachhaltigkeitsfokus des Unternehmens betont.",
     solution:
-      "Разделили сайт на понятные линейки продуктов и отрасли применения, выделили отдельный раздел про устойчивое развитие и собственную лабораторию испытаний, добавили блог и мультиязычность для международных клиентов.",
+      "Wir haben die Website in klare Produktlinien und Einsatzbranchen gegliedert, einen eigenen Bereich für Nachhaltigkeit und das hauseigene Prüflabor geschaffen und Blog sowie Mehrsprachigkeit für internationale Kunden ergänzt.",
     result:
-      "Wetropa получила сайт-систему, которая доносит позиционирование «больше, чем упаковка» и помогает клиентам из разных отраслей быстрее подобрать решение.",
+      "Wetropa hat einen Website-Auftritt, der die Positionierung „mehr als Verpackung“ vermittelt und Kunden aus verschiedenen Branchen hilft, schneller die passende Lösung zu finden.",
   },
   {
     slug: "lemming",
@@ -79,11 +79,11 @@ export const CASES: CaseStudy[] = [
     image:
       "https://lemming-rammtechnik.de/wp-content/uploads/2023/07/Traegerbohlwand-11_web-jpg.webp",
     problem:
-      "Строительная компания, специализирующаяся на свайных и шпунтовых работах, конкурировала за заказы со старым сайтом, который не объяснял сложные строительные услуги простым языком и не помогал быстро оставить заявку по конкретному объекту.",
+      "Ein auf Ramm- und Spundwandarbeiten spezialisiertes Bauunternehmen konkurrierte um Aufträge mit einer alten Website, die komplexe Bauleistungen nicht einfach erklärte und keine schnelle Anfrage zu einem konkreten Bauvorhaben ermöglichte.",
     solution:
-      "Сделали сайт с понятной структурой услуг — шпунтовые стены, свайные работы, поиск боеприпасов и другие, — с формой заявки и обещанием ответа в течение 48 часов, и вынесли цифры компании прямо на главную.",
+      "Wir haben eine Website mit klarer Leistungsstruktur gebaut — Spundwände, Rammarbeiten, Kampfmittelsondierung und mehr —, mit Anfrageformular und der Zusage einer Antwort innerhalb von 48 Stunden, und die Unternehmenszahlen direkt auf die Startseite gestellt.",
     result:
-      "LEMMING получила сайт, который переводит сложные строительные термины на понятный заказчику язык и ускоряет обработку заявок с объектов.",
+      "LEMMING hat eine Website, die komplexe Baufachbegriffe in eine für Auftraggeber verständliche Sprache übersetzt und die Bearbeitung von Anfragen zu Bauvorhaben beschleunigt.",
   },
   {
     slug: "cnag",
@@ -91,11 +91,11 @@ export const CASES: CaseStudy[] = [
     category: "websites",
     image: "https://cnag.de/wp-content/uploads/2025/06/20250426_110306_0377-1140x760.jpg",
     problem:
-      "IT-партнёр с 30-летним опытом в стратегическом IT-консалтинге и кибербезопасности нуждался в сайте, который отражает экспертизу тринадцати узкоспециализированных команд, а не выглядит как типовой сайт IT-аутсорсера.",
+      "Ein IT-Partner mit 30 Jahren Erfahrung in strategischer IT-Beratung und Cybersicherheit brauchte eine Website, die die Expertise von dreizehn hochspezialisierten Teams zeigt — statt wie ein austauschbarer IT-Dienstleister zu wirken.",
     solution:
-      "Выстроили структуру вокруг трёх опор стратегии клиента — IT-видение, IT-стратегия, IT-безопасность, — добавили центр компетенций со статьями для IT-директоров и специалистов и удобный поиск по темам.",
+      "Wir haben die Struktur um die drei Säulen der Kundenstrategie herum aufgebaut — IT-Vision, IT-Strategie, IT-Sicherheit —, ein Kompetenzzentrum mit Fachartikeln für IT-Leiter und Spezialisten ergänzt und eine komfortable Themensuche eingebaut.",
     result:
-      "connecT Systemhaus получила сайт, который позиционирует компанию как стратегического партнёра по IT, а не рядового подрядчика, и помогает читателям быстро находить экспертный контент по своей роли.",
+      "connecT Systemhaus hat eine Website, die das Unternehmen als strategischen IT-Partner positioniert statt als gewöhnlichen Dienstleister, und Lesern hilft, passende Fachinhalte für ihre Rolle schnell zu finden.",
   },
   {
     slug: "teupen",
@@ -104,11 +104,11 @@ export const CASES: CaseStudy[] = [
     image:
       "https://teupen.com/wp-content/uploads/2022/12/LEO30Tplus_23_06_23-3-e1688024258988.png",
     problem:
-      "Производитель компактных гусеничных подъёмников продавал широкую линейку моделей через сайт, который не помогал быстро подобрать нужную рабочую высоту и модификацию под конкретную задачу.",
+      "Ein Hersteller kompakter Raupenarbeitsbühnen verkaufte eine breite Modellpalette über eine Website, die nicht dabei half, schnell die passende Arbeitshöhe und Ausführung für eine konkrete Aufgabe zu finden.",
     solution:
-      "Свели все модели в одну понятную линейку с фильтрацией по высоте, вынесли рабочую высоту и ключевые параметры на карточку продукта и упростили запрос коммерческого предложения.",
+      "Wir haben alle Modelle in eine klare Übersicht mit Filterung nach Arbeitshöhe zusammengeführt, Arbeitshöhe und Kennwerte direkt auf die Produktseite gestellt und die Anfrage eines Angebots vereinfacht.",
     result:
-      "TEUPEN получил сайт, который ускоряет подбор подъёмника под задачу клиента и упрощает обращение в отдел продаж.",
+      "TEUPEN hat eine Website, die die Auswahl der passenden Arbeitsbühne beschleunigt und die Kontaktaufnahme mit dem Vertrieb vereinfacht.",
   },
   {
     slug: "vob",
@@ -116,10 +116,10 @@ export const CASES: CaseStudy[] = [
     category: "websites",
     image: "https://www.vob.de/wp-content/uploads/2024/07/vob.jpeg",
     problem:
-      "Издателям профильного медиа для строительной отрасли — про VOB, строительное и закупочное право — требовалась современная платформа для публикаций: удобная для чтения и дающая редакции возможность самостоятельно управлять контентом.",
+      "Der Verlag eines Fachmediums für die Baubranche — rund um VOB, Bau- und Vergaberecht — brauchte eine moderne Publishing-Plattform: gut lesbar und mit der Möglichkeit für die Redaktion, Inhalte selbst zu verwalten.",
     solution:
-      "Разработали индивидуальный дизайн онлайн-журнала, отражающий стиль и позиционирование издания, и продумали структуру и навигацию для быстрого доступа к статьям по категориям.",
+      "Wir haben ein individuelles Design für das Online-Magazin entwickelt, das Stil und Positionierung des Mediums widerspiegelt, und Struktur sowie Navigation für den schnellen Zugriff auf Artikel nach Kategorien durchdacht.",
     result:
-      "Клиент получил готовый современный дизайн онлайн-журнала с масштабируемой структурой, которую редакция развивает дальше самостоятельно.",
+      "Der Kunde erhielt ein fertiges, modernes Design für das Online-Magazin mit einer skalierbaren Struktur, die die Redaktion selbstständig weiterentwickelt.",
   },
 ];

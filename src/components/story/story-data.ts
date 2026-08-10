@@ -22,18 +22,18 @@ export const BEAT_STOPS = [0, 0.2, 0.4, 0.6, 0.8, 1];
 export const NODES: StoryNodeDef[] = [
   { id: "crm", label: "CRM", kind: "text", hub: true, size: 100, final: { x: 50, y: 16 }, chaos: { x: 50, y: 48, rotate: -4 } },
 
-  { id: "site", label: "Сайт", kind: "wireframe", size: 84, final: { x: 36, y: 40 }, chaos: { x: 66, y: 12, rotate: -9 } },
-  { id: "clients", label: "Клиенты", kind: "node", size: 84, final: { x: 64, y: 40 }, chaos: { x: 12, y: 30, rotate: 7 } },
+  { id: "site", label: "Website", kind: "wireframe", size: 84, final: { x: 36, y: 40 }, chaos: { x: 66, y: 12, rotate: -9 } },
+  { id: "clients", label: "Kunden", kind: "node", size: 84, final: { x: 64, y: 40 }, chaos: { x: 12, y: 30, rotate: 7 } },
 
-  { id: "email", label: "Почта", kind: "lines", size: 70, final: { x: 14, y: 34 }, chaos: { x: 88, y: 32, rotate: 12 } },
-  { id: "phone", label: "Телефон", kind: "phone", size: 70, final: { x: 86, y: 34 }, chaos: { x: 8, y: 66, rotate: -11 } },
+  { id: "email", label: "E-Mail", kind: "lines", size: 70, final: { x: 14, y: 34 }, chaos: { x: 88, y: 32, rotate: 12 } },
+  { id: "phone", label: "Telefon", kind: "phone", size: 70, final: { x: 86, y: 34 }, chaos: { x: 8, y: 66, rotate: -11 } },
 
-  { id: "chat", label: "Чат", kind: "pill", size: 70, final: { x: 78, y: 58 }, chaos: { x: 90, y: 82, rotate: 9 } },
-  { id: "sales", label: "Продажи", kind: "chart", size: 84, final: { x: 50, y: 60 }, chaos: { x: 46, y: 8, rotate: -7 } },
-  { id: "people", label: "Люди", kind: "people", size: 70, final: { x: 22, y: 58 }, chaos: { x: 10, y: 90, rotate: 13 } },
+  { id: "chat", label: "Chat", kind: "pill", size: 70, final: { x: 78, y: 58 }, chaos: { x: 90, y: 82, rotate: 9 } },
+  { id: "sales", label: "Verkauf", kind: "chart", size: 84, final: { x: 50, y: 60 }, chaos: { x: 46, y: 8, rotate: -7 } },
+  { id: "people", label: "Team", kind: "people", size: 70, final: { x: 22, y: 58 }, chaos: { x: 10, y: 90, rotate: 13 } },
 
-  { id: "documents", label: "Документы", kind: "stack", size: 70, final: { x: 30, y: 82 }, chaos: { x: 70, y: 88, rotate: -13 } },
-  { id: "tables", label: "Таблицы", kind: "bars", size: 70, final: { x: 50, y: 84 }, chaos: { x: 30, y: 10, rotate: 8 } },
+  { id: "documents", label: "Dokumente", kind: "stack", size: 70, final: { x: 30, y: 82 }, chaos: { x: 70, y: 88, rotate: -13 } },
+  { id: "tables", label: "Tabellen", kind: "bars", size: 70, final: { x: 50, y: 84 }, chaos: { x: 30, y: 10, rotate: 8 } },
   { id: "excel", label: "Excel", kind: "text", size: 70, final: { x: 70, y: 82 }, chaos: { x: 92, y: 58, rotate: -6 } },
 ];
 
@@ -67,38 +67,38 @@ export const CAPTIONS: Caption[] = [
   {
     index: "00",
     eyebrow: "VP Digital",
-    title: ["От хаоса —", "к системе"],
-    text: "Мы наводим порядок в бизнесе прежде, чем выбирать технологии.",
+    title: ["Von der Idee", "zur fertigen Lösung"],
+    text: "So arbeiten wir — jeder Schritt macht die Lösung konkreter.",
   },
   {
     index: "01",
-    eyebrow: "Понимание",
-    title: ["Каждый бизнес", "устроен иначе"],
-    text: "Мы не начинаем с готовых решений. Сначала разбираемся, как работает именно ваш бизнес.",
+    eyebrow: "Understand",
+    title: ["Wir verstehen", "Ihr Unternehmen"],
+    text: "Wir sprechen mit Ihnen, prüfen bestehende Daten und Anforderungen, bevor wir über Lösungen sprechen.",
   },
   {
     index: "02",
-    eyebrow: "Анализ",
-    title: ["Смотрим на бизнес,", "а не на технологии"],
-    text: "Изучаем процессы и команду, чтобы увидеть, где теряются время, деньги и клиенты.",
+    eyebrow: "Define",
+    title: ["Klare Ziele,", "klarer Umfang"],
+    text: "Aus den Erkenntnissen wird ein realistischer Projektumfang — mit klaren Prioritäten von Anfang an.",
   },
   {
     index: "03",
-    eyebrow: "Решение",
-    title: ["Собираем то,", "что имеет смысл"],
-    text: "Каждая связь появляется не случайно — только там, где она действительно нужна бизнесу.",
+    eyebrow: "Design",
+    title: ["Die Lösung", "wird sichtbar"],
+    text: "Struktur, User Experience und Design entstehen Schritt für Schritt, bis alles zusammenpasst.",
   },
   {
     index: "04",
-    eyebrow: "Реализация",
-    title: ["Всё начинает", "работать вместе"],
-    text: "Сайт, заявки, документы и команда становятся частью одной понятной системы.",
+    eyebrow: "Build",
+    title: ["Alles kommt", "zusammen"],
+    text: "Design und Technik verschmelzen. Wir entwickeln, testen und begleiten den Launch.",
   },
   {
     index: "05",
-    eyebrow: "Рост",
-    title: ["Система растёт", "вместе с вами"],
-    text: "Мы остаёмся рядом, наблюдаем и развиваем то, что уже приносит результат.",
+    eyebrow: "Improve",
+    title: ["Der Launch ist", "erst der Anfang"],
+    text: "Wir bleiben an Ihrer Seite und entwickeln die Lösung anhand echter Daten weiter.",
   },
 ];
 

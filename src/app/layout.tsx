@@ -2,16 +2,16 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "VP Digital — от хаоса к понятной системе",
+  title: "VP Digital — vom Chaos zum System",
   description:
-    "VP Digital помогает бизнесу разобраться, какое цифровое решение ему на самом деле нужно, и строит систему, которая работает на результат.",
+    "VP Digital hilft Unternehmen zu verstehen, welche digitale Lösung sie wirklich brauchen, und baut ein System, das messbare Ergebnisse liefert.",
 };
 
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="ru">
+    <html lang="de">
       <head>
         <link rel="preconnect" href="https://api.fontshare.com" />
         <link

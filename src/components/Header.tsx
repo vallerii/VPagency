@@ -49,7 +49,7 @@ export function Header() {
           variant="secondary"
           className="hidden px-5 py-2.5 text-sm sm:inline-flex"
         >
-          Обсудить проект
+          Projekt besprechen
         </HoverLink>
       </div>
     </motion.header>

@@ -27,11 +27,11 @@ const CHIPS: Chip[] = [
   { label: "Excel", icon: Table2, rotate: 3, offset: 10 },
   { label: "Email", icon: Mail, rotate: -2, offset: -6 },
   { label: "WhatsApp", icon: MessageCircle, rotate: 4, offset: 6 },
-  { label: "Документ", icon: FileText, rotate: -3, offset: -8 },
-  { label: "Заявка", icon: Inbox, rotate: 2, offset: 8 },
-  { label: "Календарь", icon: Calendar, rotate: -2, offset: -4 },
-  { label: "Сайт", icon: Globe, rotate: 3, offset: 4 },
-  { label: "Чат", icon: MessageSquare, rotate: -3, offset: -10 },
+  { label: "Dokument", icon: FileText, rotate: -3, offset: -8 },
+  { label: "Anfrage", icon: Inbox, rotate: 2, offset: 8 },
+  { label: "Kalender", icon: Calendar, rotate: -2, offset: -4 },
+  { label: "Website", icon: Globe, rotate: 3, offset: 4 },
+  { label: "Chat", icon: MessageSquare, rotate: -3, offset: -10 },
 ];
 
 export function About() {
@@ -45,29 +45,31 @@ export function About() {
             viewport={{ once: true, amount: 0.6 }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           >
+            <span className="mb-4 block text-[13px] font-medium uppercase tracking-wide text-ink-faint">
+              About
+            </span>
             <h2 className="text-balance text-[10vw] font-medium leading-[1.1] tracking-tighter text-ink sm:text-[6vw] lg:text-[4vw] xl:text-[76px]">
-              Технологии и бизнес
+              Technologie und Business
               <br />
-              не должны жить отдельно
+              gehören zusammen
             </h2>
             <span className="mt-6 block h-px w-10 bg-accent-hover" aria-hidden="true" />
             <p className="mt-6  text-[16px] leading-[1.5] text-ink-soft sm:text-[19px] lg:text-[22px]">
-              Каждый проект для нас — продукт, который продолжает жить и
-              после запуска. Мы смотрим на сайты, магазины и сервисы целиком:
-              бизнес, пользователи, дизайн и технологии — вместе, а не по
-              очереди.
+              Jedes Projekt ist für uns ein Produkt, das sich weiterentwickelt.
+              Wir denken Websites, Shops und Webanwendungen ganzheitlich — mit
+              Blick auf Business, Nutzer, Design und Technologie
             </p>
             <p className="mt-4  text-[16px] leading-[1.5] text-ink-soft sm:text-[19px] lg:text-[22px]">
-              Разработка, дизайн и понимание бизнеса живут в одной команде —
-              поэтому не приходится объяснять задачу трижды разным
-              подрядчикам. Так рождаются решения, которые не просто хорошо
-              выглядят и работают технически, а приносят измеримую пользу и
-              растут вместе с бизнесом.
+              Entwicklung, Design und Geschäftsverständnis sitzen bei uns in
+              einem Team — deshalb müssen Sie Ihre Aufgabe nicht drei
+              verschiedenen Dienstleistern erklären. So entstehen Lösungen,
+              die messbaren Mehrwert schaffen und mit dem Unternehmen
+              wachsen
             </p>
 
             <div className="mt-10">
               <HoverLink href="#contact" variant="primary" className="px-8 py-4 text-[18px]">
-                Рассказать о задаче
+                Projekt besprechen
               </HoverLink>
             </div>
           </motion.div>

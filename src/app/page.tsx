@@ -20,14 +20,14 @@ export default function Home() {
       <main>
         <Hero />
         <TechMarquee />
-        <SelfRecognitionWall />
+        {/* <SelfRecognitionWall /> */}
         <RationaleBlock />
         <WhatWeBuild />
         <TechnicalExpertise />
         <ProductThinking />
         <section className="px-6 pt-32 lg:pt-44 pb-16 sm:px-10 lg:px-16">
           <h2 className="mx-auto max-w-[1440px] text-balance text-[10vw] font-medium leading-[1.1] tracking-tighter text-ink sm:text-[6vw] lg:text-[4vw] xl:text-[76px]">
-            Как это работаем?
+            So arbeiten wir
           </h2>
         </section>
 

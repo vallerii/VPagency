@@ -30,7 +30,7 @@ export function ScopeTiers({ included, addon, outOfScope }: ScopeTiersProps) {
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           className="mx-auto max-w-3xl text-balance text-center text-[10vw] font-medium leading-[1.1] tracking-tighter text-ink sm:text-[6vw] lg:text-[4vw] xl:text-[76px]"
         >
-          Что входит
+          Was ist enthalten
         </motion.h2>
 
         <div className="mt-20 grid grid-cols-1 gap-14 sm:grid-cols-3 sm:gap-12">
@@ -42,7 +42,7 @@ export function ScopeTiers({ included, addon, outOfScope }: ScopeTiersProps) {
           >
             <ColumnIcon icon={Check} />
             <span className="text-[22px] font-medium leading-[1.3] tracking-tight text-ink">
-              Входит
+              Enthalten
             </span>
             <ul className="mt-6 flex flex-col gap-4">
               {included.map((item, i) => (
@@ -64,7 +64,7 @@ export function ScopeTiers({ included, addon, outOfScope }: ScopeTiersProps) {
           >
             <ColumnIcon icon={Plus} />
             <span className="text-[22px] font-medium leading-[1.3] tracking-tight text-ink">
-              Дополнительно по запросу
+              Optional erhältlich
             </span>
             <ul className="mt-6 flex flex-col gap-4">
               {addon.map((item, i) => (
@@ -86,7 +86,7 @@ export function ScopeTiers({ included, addon, outOfScope }: ScopeTiersProps) {
           >
             <ColumnIcon icon={X} />
             <span className="text-[22px] font-medium leading-[1.3] tracking-tight text-ink">
-              Не входит
+              Nicht enthalten
             </span>
             <ul className="mt-6 flex flex-col gap-4">
               {outOfScope.map((item, i) => (
@@ -119,7 +119,7 @@ export function ScopeTiers({ included, addon, outOfScope }: ScopeTiersProps) {
         >
           <span className="hidden h-px flex-1 bg-accent-hover sm:block" />
           <span className="whitespace-nowrap rounded-full bg-accent-tint px-6 py-2.5 text-center text-[15px] font-medium text-accent-hover">
-            Без шаблонов и лишнего — только то, что нужно вашему бизнесу.
+            Keine Schablonen, kein Ballast — nur das, was Ihr Unternehmen wirklich braucht
           </span>
           <span className="hidden h-px flex-1 bg-accent-hover sm:block" />
         </motion.div>

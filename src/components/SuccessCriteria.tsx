@@ -9,26 +9,26 @@ interface Row {
 }
 
 const ROWS: Row[] = [
-  { before: "Заявки теряются", after: "Заявки и клиенты больше не теряются" },
+  { before: "Anfragen gehen verloren", after: "Anfragen und Kunden gehen nicht mehr verloren" },
   {
-    before: "Сотрудники повторяют одно и то же вручную",
-    after: "Меньше ручной, повторяющейся работы у сотрудников",
+    before: "Mitarbeiter wiederholen dieselben Aufgaben manuell",
+    after: "Weniger manuelle, sich wiederholende Arbeit im Team",
   },
   {
-    before: "Всё держится на одном человеке",
-    after: "Бизнес меньше зависит от одного человека (в том числе от вас)",
+    before: "Alles hängt an einer Person",
+    after: "Das Geschäft hängt weniger von einer Person ab (auch von Ihnen)",
   },
   {
-    before: "Непонятно, что реально происходит в компании",
-    after: "Руководитель видит, что реально происходит в компании",
+    before: "Unklar, was im Unternehmen wirklich passiert",
+    after: "Die Geschäftsführung sieht, was im Unternehmen wirklich passiert",
   },
   {
-    before: "Рост ломает процессы",
-    after: "Процессы выдерживают рост, а не ломаются от него",
+    before: "Wachstum bringt Prozesse zum Einsturz",
+    after: "Prozesse halten dem Wachstum stand, statt daran zu scheitern",
   },
   {
-    before: "Набор разрозненных подрядчиков",
-    after: "Понятный партнёр вместо набора разрозненных подрядчиков",
+    before: "Ein Sammelsurium einzelner Dienstleister",
+    after: "Ein klarer Partner statt vieler einzelner Dienstleister",
   },
 ];
 
@@ -42,7 +42,7 @@ export function SuccessCriteria() {
         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         className="mx-auto max-w-4xl text-balance text-center text-[10vw] font-medium leading-[1.1] tracking-tighter text-ink sm:text-[6vw] lg:text-[4vw] xl:text-[76px]"
       >
-        Что вы получите
+        Das Ergebnis für Sie
       </motion.h2>
 
       <div className="mx-auto mt-20  w-full max-w-[1440px]">

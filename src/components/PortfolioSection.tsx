@@ -75,7 +75,7 @@ export function PortfolioSection() {
         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         className="mx-auto w-full max-w-[1440px] text-balance text-center text-[7.2vw] font-medium leading-[1.1] tracking-tighter text-ink sm:text-[4.7vw] lg:text-[3.4vw] xl:text-[88px]"
       >
-        Наши продукты
+        Unsere Projekte
       </motion.h2>
 
       <div className="mx-auto mt-16 flex w-full max-w-[1440px] flex-col gap-4">

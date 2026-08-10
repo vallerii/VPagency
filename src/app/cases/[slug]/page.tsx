@@ -29,7 +29,7 @@ export default async function CasePage({
           href="/#contact"
           className="text-[15px] font-medium text-ink-soft transition-colors hover:text-ink"
         >
-          Обсудить проект
+          Projekt besprechen
         </Link>
       </header>
 
@@ -39,7 +39,7 @@ export default async function CasePage({
             href="/#portfolio"
             className="mb-10 inline-flex items-center gap-1.5 text-[15px] font-medium text-ink-faint transition-colors hover:text-ink"
           >
-            ← Все проекты
+            ← Alle Projekte
           </Link>
 
           <h1 className="text-balance text-[12vw] font-medium leading-[1.05] tracking-tighter text-ink sm:text-[7vw] lg:text-[4.5vw] xl:text-[76px]">
@@ -54,7 +54,7 @@ export default async function CasePage({
           <div className="mt-16 flex flex-col gap-14">
             <section>
               <span className="text-[13px] font-medium uppercase tracking-wide text-ink-faint">
-                Проблема
+                Herausforderung
               </span>
               <p className="mt-4 text-[19px] leading-[1.6] text-ink sm:text-[22px]">
                 {item.problem}
@@ -63,7 +63,7 @@ export default async function CasePage({
 
             <section>
               <span className="text-[13px] font-medium uppercase tracking-wide text-ink-faint">
-                Решение
+                Lösung
               </span>
               <p className="mt-4 text-[19px] leading-[1.6] text-ink sm:text-[22px]">
                 {item.solution}
@@ -72,7 +72,7 @@ export default async function CasePage({
 
             <section>
               <span className="text-[13px] font-medium uppercase tracking-wide text-accent-hover">
-                Результат
+                Ergebnis
               </span>
               <p className="mt-4 text-[19px] leading-[1.6] text-ink sm:text-[22px]">
                 {item.result}

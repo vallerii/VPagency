@@ -15,7 +15,7 @@ interface Phrase {
 
 const PHRASES: Phrase[] = [
   {
-    text: "Всё держится на вас — без вас ничего не происходит",
+    text: "Sie wissen genau, was Sie brauchen — eine neue Website, einen Shop, eine eigene Lösung",
     top: 10,
     left: 20,
     size: 42,
@@ -23,7 +23,7 @@ const PHRASES: Phrase[] = [
     revealAt: 0.36,
   },
   {
-    text: "Заявки теряются, клиенты ждут дольше, чем хотелось бы",
+    text: "Nur nicht, wer es sauber und zuverlässig umsetzt",
     top: 32,
     left: 5,
     size: 34,
@@ -31,7 +31,7 @@ const PHRASES: Phrase[] = [
     revealAt: 0.12,
   },
   {
-    text: "Информация разбросана по пяти местам",
+    text: "Der letzte Dienstleister hat die Technik nie wirklich verstanden",
     top: 24,
     left: 70,
     size: 26,
@@ -40,7 +40,7 @@ const PHRASES: Phrase[] = [
     fadeOut: true,
   },
   {
-    text: "Раньше уже пробовали с подрядчиком — не сработало",
+    text: "Sie brauchen kein langes Beratungsgespräch, sondern ein Team, das liefert",
     top: 46,
     left: 54,
     size: 28,
@@ -49,7 +49,7 @@ const PHRASES: Phrase[] = [
     fadeOut: true,
   },
   {
-    text: "Excel и таблицы заменяют систему",
+    text: "Die Anforderungen sind klar — die Umsetzung soll es auch sein",
     top: 62,
     left: 4,
     size: 30,
@@ -57,7 +57,7 @@ const PHRASES: Phrase[] = [
     revealAt: 0.24,
   },
   {
-    text: "Сотрудники делают одно и то же вручную",
+    text: "Sie suchen einen Partner mit echter technischer Tiefe, nicht nur mit Design",
     top: 70,
     left: 44,
     size: 28,
@@ -65,7 +65,7 @@ const PHRASES: Phrase[] = [
     revealAt: 0.48,
   },
   {
-    text: "Сайт или сервис устарел, но непонятно, что делать в первую очередь",
+    text: "Ein Angebot, das nicht nur gut klingt, sondern auch hält",
     top: 88,
     left: 26,
     size: 24,
@@ -163,7 +163,7 @@ export function SelfRecognitionWall() {
     <section className="relative w-full bg-bg">
       <div className="px-6 pt-32 pb-10 sm:px-10 sm:pt-36 lg:px-16 lg:pt-40 ">
         <h2 className=" mx-auto w-full max-w-[1440px] text-balance text-[10vw] font-medium leading-[1.1] tracking-tighter text-ink sm:text-[6vw] lg:text-[4vw] xl:text-[76px]">
-          Вам знакомо?
+          Klingt nach Ihrem Projekt?
         </h2>
       </div>
 

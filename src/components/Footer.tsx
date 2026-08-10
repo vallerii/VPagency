@@ -8,14 +8,14 @@ export function Footer() {
         <div>
           <span className="text-[15px] font-semibold text-ink">VP Digital</span>
           <p className="mt-2 max-w-[280px] text-sm text-ink-faint">
-            Разбираемся в проблеме бизнеса и предлагаем решение, которое
-            действительно работает.
+            Wir verstehen Ihr Geschäftsproblem und entwickeln eine Lösung,
+            die wirklich funktioniert
           </p>
         </div>
 
-        <nav aria-label="Услуги" className="flex flex-col gap-2.5">
+        <nav aria-label="Leistungen" className="flex flex-col gap-2.5">
           <span className="text-[13px] font-medium uppercase tracking-wide text-ink-faint">
-            Услуги
+            Leistungen
           </span>
           {SERVICES.map((s) => (
             <Link
@@ -30,7 +30,7 @@ export function Footer() {
       </div>
 
       <div className="mx-auto mt-10 flex w-full max-w-7xl flex-col items-center justify-between gap-3 border-t border-border pt-6 text-sm text-ink-faint sm:flex-row">
-        <span>© {new Date().getFullYear()} VP Digital. Все права защищены.</span>
+        <span>© {new Date().getFullYear()} VP Digital. Alle Rechte vorbehalten.</span>
         <a href="mailto:hello@vpdigital.agency" className="transition-colors hover:text-ink">
           hello@vpdigital.agency
         </a>

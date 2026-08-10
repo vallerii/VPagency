@@ -25,7 +25,7 @@ export function ServiceHero({ title, subtitle }: ServiceHeroProps) {
           transition={{ duration: 0.6 }}
           className="mb-8 inline-flex items-center gap-1.5 text-[15px] font-medium text-ink-faint transition-colors hover:text-ink"
         >
-          ← На главную
+          ← Zur Startseite
         </motion.a>
 
         <div className="flex max-w-4xl flex-col items-center">
@@ -58,7 +58,7 @@ export function ServiceHero({ title, subtitle }: ServiceHeroProps) {
             className="mt-10"
           >
             <HoverLink href="#contact" variant="primary" className="px-8 py-4 text-[18px]">
-              Обсудить проект
+              Projekt besprechen
             </HoverLink>
           </motion.div>
         </div>

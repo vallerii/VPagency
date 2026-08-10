@@ -1,9 +1,9 @@
 const SERVICES = [
-  "Веб-сайты",
-  "Интернет-магазины",
-  "Индивидуальные решения",
-  "Автоматизация и цифровизация",
-  "Развитие и поддержка",
+  "Websites",
+  "E-Commerce",
+  "Custom Solutions",
+  "Automation",
+  "Support",
 ];
 
 const TECH = ["Shopify", "WooCommerce", "Laravel", "PHP", "AI"];

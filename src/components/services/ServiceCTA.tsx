@@ -19,11 +19,12 @@ export function ServiceCTA({ label }: ServiceCTAProps) {
       >
         <div className="mb-14 text-center">
           <h2 className="text-balance text-[10vw] font-medium leading-[1.1] tracking-tighter text-ink sm:text-[6vw] lg:text-[4vw] xl:text-[76px]">
-            Расскажите о задаче
+            Erzählen Sie uns von Ihrer Aufgabe
           </h2>
           <p className="mx-auto mt-6 max-w-[520px] text-[16px] leading-[1.5] text-ink-soft sm:text-[18px]">
-            Направление — «{label}». Опишите, что происходит в бизнесе сейчас,
-            и мы поможем разобраться, что делать в первую очередь.
+            Bereich – „{label}". Beschreiben Sie, was in Ihrem Unternehmen
+            gerade passiert — wir helfen Ihnen herauszufinden, womit Sie am
+            besten anfangen
           </p>
         </div>
 

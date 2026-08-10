@@ -19,7 +19,7 @@ const TECHS: TechItem[] = [
     icon: SiWordpress,
     color: "#21759B",
     description:
-      "Для сайтов, где важно самостоятельно управлять контентом: корпоративные сайты, многостраничные структуры, регулярные обновления силами команды, без разработчика на каждую правку.",
+      "Für Unternehmenswebsites und Content-Plattformen, bei denen Inhalte regelmäßig gepflegt und von internen Teams selbst verwaltet werden sollen — ohne Entwickler bei jeder Änderung.",
   },
   {
     id: "shopify",
@@ -27,7 +27,7 @@ const TECHS: TechItem[] = [
     icon: SiShopify,
     color: "#95BF47",
     description:
-      "Для интернет-магазинов, где важны стабильный процесс оформления заказа, простое управление и запас прочности под рост ассортимента.",
+      "Für E-Commerce-Projekte, bei denen ein stabiler Checkout-Prozess, eine einfache Verwaltung und eine gute Grundlage für weiteres Wachstum entscheidend sind.",
   },
   {
     id: "laravel",
@@ -35,7 +35,7 @@ const TECHS: TechItem[] = [
     icon: SiLaravel,
     color: "#FF2D20",
     description:
-      "Когда бизнес-логика не укладывается в готовый сайт или магазин: клиентские порталы, системы бронирования, внутренние инструменты — решения, которые можно расширять, а не переделывать заново при каждом изменении.",
+      "Wenn die Geschäftslogik nicht in eine fertige Website oder einen Shop passt: Kundenportale, Buchungssysteme, interne Tools — Lösungen, die sich erweitern statt bei jeder Änderung neu bauen lassen.",
   },
 ];
 
@@ -84,15 +84,19 @@ export function TechnicalExpertise() {
             viewport={{ once: true, amount: 0.6 }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           >
+            <span className="mb-4 block text-[13px] font-medium uppercase tracking-wide text-ink-faint">
+              Technical expertise
+            </span>
             <h2 className="text-balance text-[8vw] font-medium leading-[1.15] tracking-tighter text-ink sm:text-[4vw] lg:text-[2.4vw] xl:text-[48px]">
-              Каждый инструмент
+              Jedes Werkzeug löst
               <br />
-              решает конкретную задачу.
+              eine klare Aufgabe
             </h2>
             <span className="mt-6 block h-px w-10 bg-accent-hover" aria-hidden="true" />
             <p className="mt-6 text-[16px] leading-[1.5] text-ink-soft sm:text-[19px] lg:text-[22px]">
-              Технологию мы выбираем не по моде, а по задаче — вот три
-              инструмента, с которыми работаем чаще всего.
+              Wir wählen Technologie nicht nach Trends, sondern nach der
+              Aufgabe — das sind die drei Werkzeuge, mit denen wir am
+              häufigsten arbeiten
             </p>
           </motion.div>
         </div>

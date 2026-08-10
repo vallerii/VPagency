@@ -30,10 +30,10 @@ const THEME_ICON: Record<string, LucideIcon> = {
 };
 
 const BADGES: { icon: LucideIcon; label: string; top: string; left: string; delay: number }[] = [
-  { icon: User, label: "Клиент", top: "4%", left: "0%", delay: 0.5 },
-  { icon: Search, label: "Задача", top: "10%", left: "64%", delay: 0.6 },
-  { icon: BadgeCheck, label: "Результат", top: "66%", left: "60%", delay: 0.7 },
-  { icon: Star, label: "Решение", top: "78%", left: "2%", delay: 0.8 },
+  { icon: User, label: "Kunde", top: "4%", left: "0%", delay: 0.5 },
+  { icon: Search, label: "Aufgabe", top: "10%", left: "64%", delay: 0.6 },
+  { icon: BadgeCheck, label: "Ergebnis", top: "66%", left: "60%", delay: 0.7 },
+  { icon: Star, label: "Lösung", top: "78%", left: "2%", delay: 0.8 },
 ];
 
 const RING_DOTS = ["top-0 left-1/2", "top-1/2 left-full", "top-full left-[62%]"];
@@ -123,7 +123,7 @@ export function RationaleStrip({ slug, title, lines }: RationaleStripProps) {
             className="mt-9"
           >
             <HoverLink href="#contact" variant="primary" className="px-8 py-4 text-[18px]">
-              Обсудить проект
+              Projekt besprechen
             </HoverLink>
           </motion.div>
         </div>

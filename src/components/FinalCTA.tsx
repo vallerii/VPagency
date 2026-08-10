@@ -124,8 +124,8 @@ export function FinalCTA() {
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             className="text-balance text-[10vw] font-medium leading-[1.1] tracking-tighter text-ink sm:text-[6vw] lg:text-[4vw] xl:text-[76px]"
           >
-            Построим систему,
-            <br />в которой всё имеет смысл
+            Lassen Sie uns ein System bauen,
+            <br />das wirklich Sinn ergibt
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 16 }}
@@ -134,8 +134,8 @@ export function FinalCTA() {
             transition={{ duration: 0.7, delay: 0.15 }}
             className="mt-8 max-w-3xl text-[16px] leading-[1.5] text-ink-soft sm:text-[19px] lg:text-[22px] xl:text-[26px]"
           >
-            Расскажите о задаче — мы поможем разобраться, что нужно бизнесу, и
-            покажем, с чего начать.
+            Erzählen Sie uns von Ihrem Projekt — wir zeigen Ihnen, wie wir es
+            gemeinsam umsetzen
           </motion.p>
         </div>
 
