@@ -87,7 +87,7 @@ export function TechnicalExpertise() {
             <span className="mb-4 block text-[13px] font-medium uppercase tracking-wide text-ink-faint">
               Technical expertise
             </span>
-            <h2 className="text-balance text-[8vw] font-medium leading-[1.15] tracking-tighter text-ink sm:text-[4vw] lg:text-[2.4vw] xl:text-[48px]">
+            <h2 className="text-balance text-[8vw] font-heading font-semibold leading-[1.15] tracking-tighter text-ink sm:text-[4vw] lg:text-[2.4vw] xl:text-[48px]">
               Jedes Werkzeug löst
               <br />
               eine klare Aufgabe

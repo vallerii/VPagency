@@ -52,7 +52,7 @@ export function About() {
             <span className="mb-4 block text-[13px] font-medium uppercase tracking-wide text-ink-faint">
               About
             </span>
-            <h2 className="text-balance text-[10vw] font-medium leading-[1.1] tracking-tighter text-ink sm:text-[6vw] lg:text-[4vw] xl:text-[76px]">
+            <h2 className="text-balance text-[10vw] font-heading font-semibold leading-[1.1] tracking-tighter text-ink sm:text-[6vw] lg:text-[4vw] xl:text-[76px]">
               Technologie und Business
               <br />
               gehören zusammen
@@ -90,7 +90,7 @@ export function About() {
                 style={{ transform: `rotate(${c.rotate}deg) translateY(${c.offset}px)` }}
                 className="inline-flex items-center gap-2 rounded-2xl border border-border bg-card px-4 py-2.5 shadow-[0_1px_2px_rgba(23,23,23,0.03)]"
               >
-                <c.icon className="h-4 w-4 text-accent-deep" strokeWidth={1.8} />
+                <c.icon className="h-4 w-4 text-accent-hover" strokeWidth={1.8} />
                 <span className="whitespace-nowrap text-[13px] font-medium text-ink-soft sm:text-[14px]">
                   {c.label}
                 </span>
@@ -114,7 +114,7 @@ export function About() {
                 }}
                 className="absolute inline-flex items-center gap-2.5 rounded-2xl border border-border bg-card px-6 py-4 shadow-[0_4px_16px_rgba(23,23,23,0.06)]"
               >
-                <c.icon className="h-6 w-6 text-accent-deep" strokeWidth={1.7} />
+                <c.icon className="h-6 w-6 text-accent-hover" strokeWidth={1.7} />
                 <span className="whitespace-nowrap text-[17px] font-medium text-ink-soft">
                   {c.label}
                 </span>

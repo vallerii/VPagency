@@ -65,7 +65,7 @@ function ModuleGlyph({
         <span
           className={cn(
             "text-[15px] font-semibold tracking-tight",
-            accent ? "text-accent-deep" : "text-ink-soft"
+            accent ? "text-accent-hover" : "text-ink-soft"
           )}
         >
           {label}

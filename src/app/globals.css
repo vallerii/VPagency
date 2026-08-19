@@ -1,5 +1,73 @@
 @import "tailwindcss";
 
+/* Manrope — body text (400 regular / 500 medium) */
+@font-face {
+  font-family: "Manrope";
+  src: url("/fonts/manrope/manrope-400.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Manrope";
+  src: url("/fonts/manrope/manrope-400-ext.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Manrope";
+  src: url("/fonts/manrope/manrope-500.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Manrope";
+  src: url("/fonts/manrope/manrope-500-ext.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* Raleway — headlines (600 semibold / 700 bold) */
+@font-face {
+  font-family: "Raleway";
+  src: url("/fonts/raleway/raleway-600.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Raleway";
+  src: url("/fonts/raleway/raleway-600-ext.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Raleway";
+  src: url("/fonts/raleway/raleway-700.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Raleway";
+  src: url("/fonts/raleway/raleway-700-ext.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
 :root {
   /* Surface — warm, quiet white */
   --color-bg: #FAFAF8;
@@ -17,17 +85,16 @@
   --color-glyph-soft: #C7C2B0;
 
   /* Accent — Soft Sky (decorative: icons, rings, borders, backgrounds) */
-  --color-accent: #0079b5b2;
-  --color-accent-hover: #007ab5
+  --color-accent: #21bbb6ce;
+  --color-accent-hover: #15837f
 ;
-  --color-accent-alt: #9FE6FF;
-  --color-accent-line: #6CCFFF;
-  --color-accent-tint: #EAF8FF;
+  --color-accent-alt: #9ed1cf;
+  --color-accent-line: #30b1ac;
+  --color-accent-tint: #9ed1cf;
   /* Accessible-contrast shade of the sky accent, for text/icons that need
      to actually read against a light background (links, icon glyphs). The
      lighter accent/accent-hover stay reserved for decorative surfaces
      (rings, borders, background tints) where WCAG text contrast doesn't apply. */
-  --color-accent-deep: #007AB5;
 
   /* Accent 2 — warm signal color, used for buttons and highlighted words.
      One color for both, chosen to stay accessible even at small button-text
@@ -51,11 +118,11 @@
   --color-accent-alt: var(--color-accent-alt);
   --color-accent-line: var(--color-accent-line);
   --color-accent-tint: var(--color-accent-tint);
-  --color-accent-deep: var(--color-accent-deep);
   --color-accent-2: var(--color-accent-2);
   --color-accent-2-hover: var(--color-accent-2-hover);
 
-  --font-sans: "Satoshi";
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-heading: "Raleway", "Manrope", ui-sans-serif, system-ui, sans-serif;
 
   --breakpoint-xs: 30rem;
 }
@@ -67,8 +134,7 @@ html {
 body {
   background: var(--color-bg);
   color: var(--color-ink);
-  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
-  font-feature-settings: "ss01" 1;
+  font-family: var(--font-sans);
 }
 
 ::selection {

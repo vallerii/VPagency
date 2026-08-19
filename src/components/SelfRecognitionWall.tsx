@@ -162,7 +162,7 @@ export function SelfRecognitionWall() {
   return (
     <section className="relative w-full bg-bg">
       <div className="px-6 pt-32 pb-10 sm:px-10 sm:pt-36 lg:px-16 lg:pt-40 ">
-        <h2 className=" mx-auto w-full max-w-[1440px] text-balance text-[10vw] font-medium leading-[1.1] tracking-tighter text-ink sm:text-[6vw] lg:text-[4vw] xl:text-[76px]">
+        <h2 className=" mx-auto w-full max-w-[1440px] text-balance text-[10vw] font-heading font-semibold leading-[1.1] tracking-tighter text-ink sm:text-[6vw] lg:text-[4vw] xl:text-[76px]">
           Klingt nach Ihrem Projekt?
         </h2>
       </div>

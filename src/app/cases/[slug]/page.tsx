@@ -22,7 +22,7 @@ export default async function CasePage({
   return (
     <>
       <header className="flex items-center justify-between px-6 py-6 sm:px-10 lg:px-16">
-        <Link href="/" className="text-[21px] font-semibold tracking-tight text-ink">
+        <Link href="/" className="font-heading text-[21px] font-semibold tracking-tight text-ink">
           VP&nbsp;Digital
         </Link>
         <Link
@@ -42,7 +42,7 @@ export default async function CasePage({
             ← Alle Projekte
           </Link>
 
-          <h1 className="text-balance text-[12vw] font-medium leading-[1.05] tracking-tighter text-ink sm:text-[7vw] lg:text-[4.5vw] xl:text-[76px]">
+          <h1 className="text-balance text-[12vw] font-heading font-semibold leading-[1.05] tracking-tighter text-ink sm:text-[7vw] lg:text-[4.5vw] xl:text-[76px]">
             {item.name}
           </h1>
 
@@ -71,7 +71,7 @@ export default async function CasePage({
             </section>
 
             <section>
-              <span className="text-[13px] font-medium uppercase tracking-wide text-accent-deep">
+              <span className="text-[13px] font-medium uppercase tracking-wide text-accent-hover">
                 Ergebnis
               </span>
               <p className="mt-4 text-[19px] leading-[1.6] text-ink sm:text-[22px]">

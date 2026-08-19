@@ -114,7 +114,7 @@ export function FinalCTA() {
       <motion.div
         animate={assembled ? { scale: [1, 1.012, 1] } : {}}
         transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
-        className="relative mx-auto w-full max-w-[1440px] grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-10 lg:gap-20 rounded-3xl border border-accent bg-accent/20 px-6 py-14 sm:px-10 sm:py-16 lg:px-16 lg:py-20"
+        className="relative mx-auto w-full max-w-[1440px] grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-10 lg:gap-20 rounded-3xl border border-accent bg-accent/5 px-6 py-14 sm:px-10 sm:py-16 lg:px-16 lg:py-20"
       >
         <div className="mb-16 ">
           <motion.h2
@@ -122,7 +122,7 @@ export function FinalCTA() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.6 }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="text-balance text-[10vw] font-medium leading-[1.1] tracking-tighter text-ink sm:text-[6vw] lg:text-[4vw] xl:text-[76px]"
+            className="text-balance text-[10vw] font-heading font-semibold leading-[1.1] tracking-tighter text-ink sm:text-[6vw] lg:text-[4vw] xl:text-[76px]"
           >
             Lassen Sie uns ein System bauen,
             <br />das wirklich

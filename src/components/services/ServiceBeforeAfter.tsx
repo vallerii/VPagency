@@ -16,7 +16,7 @@ export function ServiceBeforeAfter({ rows }: ServiceBeforeAfterProps) {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.5 }}
         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-        className="mx-auto w-full max-w-[1440px] text-balance text-center text-[10vw] font-medium leading-[1.1] tracking-tighter text-ink sm:text-[6vw] lg:text-[4vw] xl:text-[76px]"
+        className="mx-auto w-full max-w-[1440px] text-balance text-center text-[10vw] font-heading font-semibold leading-[1.1] tracking-tighter text-ink sm:text-[6vw] lg:text-[4vw] xl:text-[76px]"
       >
         Das Ergebnis für Sie
       </motion.h2>
@@ -26,7 +26,7 @@ export function ServiceBeforeAfter({ rows }: ServiceBeforeAfterProps) {
           <span className="text-[13px] font-medium uppercase tracking-wide text-ink-faint sm:text-right sm:text-[14px]">
             Vorher
           </span>
-          <span className="text-[13px] font-medium uppercase tracking-wide text-accent-deep sm:text-[14px]">
+          <span className="text-[13px] font-medium uppercase tracking-wide text-accent-hover sm:text-[14px]">
             Nachher
           </span>
         </div>
@@ -50,7 +50,7 @@ export function ServiceBeforeAfter({ rows }: ServiceBeforeAfterProps) {
                 {row.before}
               </p>
               <p className="flex items-center gap-3 text-[16px] font-medium leading-[1.4] text-ink sm:text-[19px]">
-                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-accent">
+                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-accent-hover">
                   <Check className="h-3.5 w-3.5 text-white" strokeWidth={3} />
                 </span>
                 {row.after}

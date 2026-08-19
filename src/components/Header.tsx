@@ -16,8 +16,8 @@ export function Header() {
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       className="fixed inset-x-0 top-0 z-50 flex items-center justify-between px-6 py-6 sm:px-10"
     >
-      <Link href="/" className="text-[21px] font-semibold tracking-tight text-ink">
-        VP&nbsp;Digital
+      <Link href="/" className="inline-flex items-center">
+        <img src="/logo-mini.png" alt="VP Digital" className="h-[54px] w-auto" />
       </Link>
 
       <div className="flex items-center gap-6">

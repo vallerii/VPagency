@@ -13,8 +13,8 @@ interface ScopeTiersProps {
 
 function ColumnIcon({ icon: Icon }: { icon: LucideIcon }) {
   return (
-    <span className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl border border-border bg-card">
-      <Icon className="h-7 w-7 text-accent-deep" strokeWidth={1.6} />
+    <span className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl border border-border bg-accent-tint">
+      <Icon className="h-8 w-8 text-accent-hover" strokeWidth={1.6} />
     </span>
   );
 }
@@ -28,7 +28,7 @@ export function ScopeTiers({ included, addon, outOfScope }: ScopeTiersProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="mx-auto max-w-3xl text-balance text-center text-[10vw] font-medium leading-[1.1] tracking-tighter text-ink sm:text-[6vw] lg:text-[4vw] xl:text-[76px]"
+          className="mx-auto max-w-3xl text-balance text-center text-[10vw] font-heading font-semibold leading-[1.1] tracking-tighter text-ink sm:text-[6vw] lg:text-[4vw] xl:text-[76px]"
         >
           Was ist enthalten
         </motion.h2>
@@ -46,8 +46,8 @@ export function ScopeTiers({ included, addon, outOfScope }: ScopeTiersProps) {
             </span>
             <ul className="mt-6 flex flex-col gap-4">
               {included.map((item, i) => (
-                <li key={i} className="flex items-start gap-3 text-[16px] leading-[1.4] text-ink">
-                  <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-accent">
+                <li key={i} className="flex items-start gap-3 text-[18px] leading-[1.4] text-ink">
+                  <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-accent-hover">
                     <Check className="h-3 w-3 text-white" strokeWidth={3} />
                   </span>
                   {item.text}
@@ -68,9 +68,9 @@ export function ScopeTiers({ included, addon, outOfScope }: ScopeTiersProps) {
             </span>
             <ul className="mt-6 flex flex-col gap-4">
               {addon.map((item, i) => (
-                <li key={i} className="flex items-start gap-3 text-[16px] leading-[1.4] text-ink-soft">
-                  <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-accent-tint">
-                    <Plus className="h-3 w-3 text-accent-deep" strokeWidth={3} />
+                <li key={i} className="flex items-start gap-3 text-[18px] leading-[1.4] text-ink-soft">
+                  <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-accent-tint">
+                    <Plus className="h-3 w-3 text-accent-hover" strokeWidth={3} />
                   </span>
                   {item.text}
                 </li>
@@ -90,8 +90,8 @@ export function ScopeTiers({ included, addon, outOfScope }: ScopeTiersProps) {
             </span>
             <ul className="mt-6 flex flex-col gap-4">
               {outOfScope.map((item, i) => (
-                <li key={i} className="flex items-start gap-3 text-[16px] leading-[1.4] text-ink-faint">
-                  <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-border">
+                <li key={i} className="flex items-start gap-3 text-[18px] leading-[1.4] text-ink-faint">
+                  <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-white border border-border">
                     <X className="h-3 w-3 text-ink-faint" strokeWidth={3} />
                   </span>
                   <span>
@@ -99,7 +99,7 @@ export function ScopeTiers({ included, addon, outOfScope }: ScopeTiersProps) {
                     <br />
                     <Link
                       href={`/${item.linkSlug}`}
-                      className="font-medium text-accent-deep transition-colors hover:text-ink"
+                      className="font-medium uppercase text-[#d13900] font-[800] transition-colors hover:text-ink"
                     >
                       {item.linkLabel} →
                     </Link>
@@ -118,7 +118,7 @@ export function ScopeTiers({ included, addon, outOfScope }: ScopeTiersProps) {
           className="mt-20 flex items-center justify-center gap-6"
         >
           <span className="hidden h-px flex-1 bg-accent-hover sm:block" />
-          <span className="whitespace-nowrap rounded-full bg-accent-tint px-6 py-2.5 text-center text-[15px] font-medium text-accent-deep">
+          <span className="whitespace-nowrap rounded-full bg-accent-tint px-6 py-2.5 text-center text-[15px] font-medium text-accent-hover">
             Keine Schablonen, kein Ballast — nur das, was Ihr Unternehmen wirklich braucht
           </span>
           <span className="hidden h-px flex-1 bg-accent-hover sm:block" />

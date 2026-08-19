@@ -12,7 +12,7 @@ export function RationaleBlock() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.6 }}
         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-        className="mx-auto  text-balance text-[10vw] font-medium leading-[1.1] tracking-tighter text-ink sm:text-[6vw] lg:text-[4vw] xl:text-[76px]"
+        className="mx-auto  text-balance text-[10vw] font-heading font-semibold leading-[1.1] tracking-tighter text-ink sm:text-[6vw] lg:text-[4vw] xl:text-[76px]"
       >
         Ein Team, das
         <br />

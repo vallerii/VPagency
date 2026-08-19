@@ -13,8 +13,8 @@ export function BoxLoader() {
   const loaderCss = `
     .vp-loader {
       --duration: 3.6s;
-      --primary: #5BADD6;
-      --primary-light: #78BCDD;
+      --primary: #15837f;
+      --primary-light: #21bbb6ce;
       --primary-rgba: rgba(120, 188, 221, 0);
       --mask-bg: var(--color-bg);
       width: 200px;

@@ -49,7 +49,7 @@ export function WhatWeBuild() {
             <span className="mb-4 block text-[13px] font-medium uppercase tracking-wide text-ink-faint">
               What we build
             </span>
-            <h2 className="text-balance text-[8vw] font-medium leading-[1.15] tracking-tighter text-ink sm:text-[4vw] lg:text-[2.4vw] xl:text-[48px]">
+            <h2 className="text-balance text-[8vw] font-heading font-semibold leading-[1.15] tracking-tighter text-ink sm:text-[4vw] lg:text-[2.4vw] xl:text-[48px]">
               Websites, Shops
               <br />
               und individuelle Lösungen
@@ -73,7 +73,7 @@ export function WhatWeBuild() {
                 className="flex h-full flex-col rounded-[18px] border border-border bg-card p-6"
               >
                 <span className="mb-5 flex h-14 w-14 items-center justify-center rounded-xl border border-border bg-bg">
-                  <p.icon className="h-7 w-7 text-accent-deep" strokeWidth={1.6} />
+                  <p.icon className="h-7 w-7 text-accent-hover" strokeWidth={1.6} />
                 </span>
                 <h3 className="text-[17px] font-medium leading-[1.3] tracking-tight text-ink">
                   {p.title}
@@ -83,7 +83,7 @@ export function WhatWeBuild() {
                 </p>
                 <Link
                   href={`/${p.slug}`}
-                  className="mt-auto uppercase inline-flex items-center gap-1.5 pt-5 text-[13px] font-medium text-accent-deep transition-colors hover:text-ink"
+                  className="mt-auto uppercase inline-flex items-center gap-1.5 pt-5 text-[13px] font-medium text-accent-hover transition-colors hover:text-ink"
                 >
                   Mehr erfahren →
                 </Link>
