@@ -125,7 +125,8 @@ export function FinalCTA() {
             className="text-balance text-[10vw] font-medium leading-[1.1] tracking-tighter text-ink sm:text-[6vw] lg:text-[4vw] xl:text-[76px]"
           >
             Lassen Sie uns ein System bauen,
-            <br />das wirklich Sinn ergibt
+            <br />das wirklich
+            <br /><span className="text-accent-2">Sinn ergibt</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 16 }}

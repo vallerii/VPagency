@@ -21,7 +21,7 @@ export function ProductThinking() {
         {RING_SIZES.map((size, i) => (
           <span
             key={size}
-            className="target-ring absolute left-1/2 top-1/2 rounded-full border-2 border-accent-hover"
+            className="target-ring absolute left-1/2 top-1/2 rounded-full border-2 border-accent-hover/60"
             style={{
               width: size,
               height: size,
@@ -52,7 +52,7 @@ export function ProductThinking() {
         >
           <span className="block">Wir denken nicht in Projekten.</span>
           <span className="mt-3 block sm:mt-20">
-            Wir denken in <span className="text-accent-hover">Produkten</span>
+            Wir denken in <span className="text-accent-2">Produkten</span>
           </span>
         </motion.h2>
 

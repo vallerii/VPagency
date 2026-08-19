@@ -18,7 +18,7 @@ export function Hero() {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="text-balance text-[11vw] font-medium leading-[1.08] tracking-tighter text-ink sm:text-[7vw] lg:text-[5vw] xl:text-[100px]"
           >
-            <span className="text-accent-hover">Digitale Lösungen</span> für Ihr Unternehmen
+            <span className="text-accent-2">Digitale Lösungen</span> für Ihr Unternehmen
           </motion.h1>
 
           <motion.p
@@ -38,7 +38,7 @@ export function Hero() {
             transition={{ duration: 0.7, delay: 0.4 }}
             className="mt-12"
           >
-            <HoverLink href="#contact" variant="primary" className="px-8 py-4 text-[18px] w-full sm:w-auto">
+            <HoverLink href="#contact" variant="outline" className="px-8 py-4 text-[18px] w-full sm:w-auto">
               Projekt besprechen
             </HoverLink>
           </motion.div>
@@ -50,7 +50,7 @@ export function Hero() {
           transition={{ duration: 0.9, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
           className="relative z-0 flex lg:absolute right-[10%]  items-center justify-center lg:justify-end"
         >
-          <div className="sm:scale-100 lg:scale-110 xl:scale-150">
+          <div className="opacity-80 sm:scale-90 lg:scale-100 xl:scale-125">
             <BoxLoader />
           </div>
         </motion.div>

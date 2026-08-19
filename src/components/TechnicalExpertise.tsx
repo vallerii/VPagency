@@ -70,7 +70,7 @@ export function TechnicalExpertise() {
                     <h3 className="text-[19px] font-medium leading-[1.3] tracking-tight text-ink">
                       {t.name}
                     </h3>
-                    <p className="mt-3 text-[15px] leading-[1.55] text-ink-soft">
+                    <p className="mt-3 text-[16px] leading-[1.55] text-ink-soft">
                       {t.description}
                     </p>
                   </div>

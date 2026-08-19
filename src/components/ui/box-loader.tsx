@@ -13,9 +13,9 @@ export function BoxLoader() {
   const loaderCss = `
     .vp-loader {
       --duration: 3.6s;
-      --primary: var(--color-accent-hover);
-      --primary-light: var(--color-accent);
-      --primary-rgba: rgba(108, 207, 255, 0);
+      --primary: #5BADD6;
+      --primary-light: #78BCDD;
+      --primary-rgba: rgba(120, 188, 221, 0);
       --mask-bg: var(--color-bg);
       width: 200px;
       height: 320px;

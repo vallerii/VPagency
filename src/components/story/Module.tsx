@@ -29,7 +29,7 @@ export function Module({ kind, accent = false, label, className }: ModuleProps) 
   return (
     <div
       className={cn(
-        "flex h-full w-full items-center justify-center rounded-[20px] border bg-card transition-colors duration-500",
+        "flex h-full w-full items-center justify-center rounded-[20px] border-2 bg-card transition-colors duration-500",
         "shadow-[0_1px_2px_rgba(23,23,23,0.03)]",
         accent ? "border-accent-hover/60 bg-accent-tint" : "border-border",
         className
@@ -65,7 +65,7 @@ function ModuleGlyph({
         <span
           className={cn(
             "text-[15px] font-semibold tracking-tight",
-            accent ? "text-accent-hover" : "text-ink-soft"
+            accent ? "text-accent-deep" : "text-ink-soft"
           )}
         >
           {label}

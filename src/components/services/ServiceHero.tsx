@@ -57,7 +57,7 @@ export function ServiceHero({ title, subtitle }: ServiceHeroProps) {
             transition={{ duration: 0.7, delay: 0.4 }}
             className="mt-10"
           >
-            <HoverLink href="#contact" variant="primary" className="px-8 py-4 text-[18px]">
+            <HoverLink href="#contact" variant="outline" className="px-8 py-4 text-[18px]">
               Projekt besprechen
             </HoverLink>
           </motion.div>

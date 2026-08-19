@@ -14,7 +14,7 @@ interface ScopeTiersProps {
 function ColumnIcon({ icon: Icon }: { icon: LucideIcon }) {
   return (
     <span className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl border border-border bg-card">
-      <Icon className="h-7 w-7 text-accent-hover" strokeWidth={1.6} />
+      <Icon className="h-7 w-7 text-accent-deep" strokeWidth={1.6} />
     </span>
   );
 }
@@ -70,7 +70,7 @@ export function ScopeTiers({ included, addon, outOfScope }: ScopeTiersProps) {
               {addon.map((item, i) => (
                 <li key={i} className="flex items-start gap-3 text-[16px] leading-[1.4] text-ink-soft">
                   <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-accent-tint">
-                    <Plus className="h-3 w-3 text-accent-hover" strokeWidth={3} />
+                    <Plus className="h-3 w-3 text-accent-deep" strokeWidth={3} />
                   </span>
                   {item.text}
                 </li>
@@ -99,7 +99,7 @@ export function ScopeTiers({ included, addon, outOfScope }: ScopeTiersProps) {
                     <br />
                     <Link
                       href={`/${item.linkSlug}`}
-                      className="font-medium text-accent-hover transition-colors hover:text-ink"
+                      className="font-medium text-accent-deep transition-colors hover:text-ink"
                     >
                       {item.linkLabel} →
                     </Link>
@@ -118,7 +118,7 @@ export function ScopeTiers({ included, addon, outOfScope }: ScopeTiersProps) {
           className="mt-20 flex items-center justify-center gap-6"
         >
           <span className="hidden h-px flex-1 bg-accent-hover sm:block" />
-          <span className="whitespace-nowrap rounded-full bg-accent-tint px-6 py-2.5 text-center text-[15px] font-medium text-accent-hover">
+          <span className="whitespace-nowrap rounded-full bg-accent-tint px-6 py-2.5 text-center text-[15px] font-medium text-accent-deep">
             Keine Schablonen, kein Ballast — nur das, was Ihr Unternehmen wirklich braucht
           </span>
           <span className="hidden h-px flex-1 bg-accent-hover sm:block" />

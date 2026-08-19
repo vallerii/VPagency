@@ -4,10 +4,11 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-full border font-medium transition-colors duration-300";
+  "inline-flex items-center justify-center gap-2 rounded-full border-2 font-semibold uppercase tracking-wide transition-colors duration-300";
 const variants = {
-  primary: "border-accent bg-accent/20 text-ink hover:bg-accent/40",
-  secondary: "border-accent-hover bg-accent-hover/10 text-ink hover:bg-accent-hover/25",
+  primary: "border-accent-2 bg-accent-2/15 text-accent-2 hover:bg-accent-2/30",
+  secondary: "border-accent-2-hover bg-accent-2-hover/10 text-accent-2 hover:bg-accent-2-hover/25",
+  outline: "border-accent-2 bg-transparent text-accent-2 hover:bg-accent-2/10",
 };
 
 type Variant = keyof typeof variants;

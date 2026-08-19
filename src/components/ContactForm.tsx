@@ -152,7 +152,7 @@ export function ContactForm({ onSuccess }: ContactFormProps) {
 
       <HoverButton
         type="submit"
-        variant="primary"
+        variant="outline"
         disabled={status === "submitting"}
         className={cn(
           "mt-1 px-6 py-3.5 text-[15px]",

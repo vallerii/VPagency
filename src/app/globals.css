@@ -8,7 +8,7 @@
   /* Text */
   --color-ink: #171717;
   --color-ink-soft: #717171;
-  --color-ink-faint: #A6A6A6;
+  --color-ink-faint: #6C6C6C;
 
   /* Structure */
   --color-border: #ECECEC;
@@ -16,12 +16,24 @@
   --color-glyph: #96927F;
   --color-glyph-soft: #C7C2B0;
 
-  /* Accent — Soft Sky */
-  --color-accent: #6CCFFF;
-  --color-accent-hover: #45C2FF;
+  /* Accent — Soft Sky (decorative: icons, rings, borders, backgrounds) */
+  --color-accent: #0079b5b2;
+  --color-accent-hover: #007ab5
+;
   --color-accent-alt: #9FE6FF;
   --color-accent-line: #6CCFFF;
   --color-accent-tint: #EAF8FF;
+  /* Accessible-contrast shade of the sky accent, for text/icons that need
+     to actually read against a light background (links, icon glyphs). The
+     lighter accent/accent-hover stay reserved for decorative surfaces
+     (rings, borders, background tints) where WCAG text contrast doesn't apply. */
+  --color-accent-deep: #007AB5;
+
+  /* Accent 2 — warm signal color, used for buttons and highlighted words.
+     One color for both, chosen to stay accessible even at small button-text
+     sizes (D13900 passes WCAG AA contrast on both bg and card). */
+  --color-accent-2: #D13900;
+  --color-accent-2-hover: #B23000;
 
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -39,6 +51,9 @@
   --color-accent-alt: var(--color-accent-alt);
   --color-accent-line: var(--color-accent-line);
   --color-accent-tint: var(--color-accent-tint);
+  --color-accent-deep: var(--color-accent-deep);
+  --color-accent-2: var(--color-accent-2);
+  --color-accent-2-hover: var(--color-accent-2-hover);
 
   --font-sans: "Satoshi";
 
