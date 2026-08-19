@@ -5,8 +5,9 @@ import React from "react";
 /**
  * Decorative 3D construction animation — recolored to the site's sky accent.
  * Boxes fly in and stack into a small pyramid on a ground plane, then reset.
- * Purely presentational; respects the global prefers-reduced-motion rule in
- * globals.css (all animation-duration collapses to ~0 for those users).
+ * This animation is treated as core hero content, so globals.css explicitly
+ * keeps it running even under prefers-reduced-motion (see the `.vp-loader`
+ * override there) instead of collapsing its animation-duration to ~0.
  */
 export function BoxLoader() {
   const loaderCss = `

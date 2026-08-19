@@ -8,17 +8,17 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative flex min-h-dvh w-full items-center overflow-hidden px-6 pt-30 sm:px-10 lg:px-16"
+      className="relative flex min-h-dvh w-full items-center overflow-hidden px-6 pt-30 sm:px-10 lg:min-h-[86dvh] lg:px-16"
     >
       <div className="mx-auto grid w-full max-w-[1440px] grid-cols-1 items-center gap-16 lg:grid-cols-[1.5fr_1fr] lg:gap-10 relative">
-        <div className="">
+        <div className="relative z-10">
           <motion.h1
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="text-balance text-[11vw] font-medium leading-[1.08] tracking-tighter text-ink sm:text-[7vw] lg:text-[5vw] xl:text-[100px]"
           >
-            Digitale Lösungen für Ihr Unternehmen
+            <span className="text-accent-hover">Digitale Lösungen</span> für Ihr Unternehmen
           </motion.h1>
 
           <motion.p
@@ -48,7 +48,7 @@ export function Hero() {
           initial={{ opacity: 0, scale: 0.92 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.9, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-          className="flex lg:absolute right-[10%]  items-center justify-center lg:justify-end"
+          className="relative z-0 flex lg:absolute right-[10%]  items-center justify-center lg:justify-end"
         >
           <div className="sm:scale-100 lg:scale-110 xl:scale-150">
             <BoxLoader />

@@ -21,7 +21,7 @@ export default function Home() {
         <Hero />
         <TechMarquee />
         {/* <SelfRecognitionWall /> */}
-        <RationaleBlock />
+        {/* <RationaleBlock /> */}
         <WhatWeBuild />
         <TechnicalExpertise />
         <ProductThinking />

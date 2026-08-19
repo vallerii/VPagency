@@ -20,7 +20,7 @@ export function FinalCTA() {
   return (
     <section
       id="contact"
-      className="relative flex min-h-dvh w-full items-center overflow-hidden px-6 py-32 lg:py-44 sm:px-10 lg:px-16"
+      className="relative flex min-h-dvh w-full items-center overflow-hidden px-6 pb-32 lg:pb-44 sm:px-10 lg:px-16"
     >
       {/* <div className="pointer-events-none absolute inset-0 opacity-[0.55] sm:opacity-70" aria-hidden="true">
         <svg className="absolute inset-0 h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none">
@@ -114,7 +114,7 @@ export function FinalCTA() {
       <motion.div
         animate={assembled ? { scale: [1, 1.012, 1] } : {}}
         transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
-        className="relative mx-auto w-full max-w-[1440px] grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-10 lg:gap-20"
+        className="relative mx-auto w-full max-w-[1440px] grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-10 lg:gap-20 rounded-3xl border border-accent bg-accent/20 px-6 py-14 sm:px-10 sm:py-16 lg:px-16 lg:py-20"
       >
         <div className="mb-16 ">
           <motion.h2

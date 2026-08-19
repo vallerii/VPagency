@@ -37,7 +37,7 @@ const PILLARS: Pillar[] = [
 
 export function WhatWeBuild() {
   return (
-    <section className="w-full px-6 sm:px-10 lg:px-16">
+    <section className="w-full px-6 sm:px-10 lg:px-16 pt-32 lg:pt-44">
       <div className="mx-auto w-full max-w-[1440px]">
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-[0.85fr_1.8fr] lg:gap-14">
           <motion.div

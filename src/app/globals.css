@@ -78,6 +78,27 @@ body {
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
   }
+
+  /* The running-lines marquee and the hero build animation are core
+     visual content, not incidental motion — keep them running even
+     when the OS/browser requests reduced motion (this is also what
+     makes them play reliably on macOS/iOS, where "Reduce Motion" is
+     commonly on and otherwise freezes them via the rule above). */
+  .animate-marquee,
+  .animate-marquee-reverse {
+    animation-duration: 60s !important;
+    animation-iteration-count: infinite !important;
+  }
+
+  .vp-loader,
+  .vp-loader *,
+  .vp-loader::before,
+  .vp-loader::after,
+  .vp-loader *::before,
+  .vp-loader *::after {
+    animation-duration: var(--duration, 3.6s) !important;
+    animation-iteration-count: infinite !important;
+  }
 }
 
 .pulse-line {
@@ -100,4 +121,16 @@ body {
 @keyframes marquee {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
+}
+
+/* Concentric "target" rings — pulsing background decoration */
+.target-ring {
+  animation-name: target-pulse;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+@keyframes target-pulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); }
+  50% { transform: translate(-50%, -50%) scale(1.07); }
 }
