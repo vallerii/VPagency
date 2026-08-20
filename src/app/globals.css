@@ -69,38 +69,39 @@
 }
 
 :root {
-  /* Surface — warm, quiet white */
-  --color-bg: #FAFAF8;
-  --color-card: #FFFFFF;
+  /* Surface — graphite dark */
+  --color-bg: #17171A;
+  --color-card: #202126;
 
   /* Text */
-  --color-ink: #171717;
-  --color-ink-soft: #717171;
-  --color-ink-faint: #6C6C6C;
+  --color-ink: #F2F2EF;
+  --color-ink-soft: #9FA5AE;
+  --color-ink-faint: #8A909A;
 
   /* Structure */
-  --color-border: #ECECEC;
-  --color-line: #C6C2B8;
-  --color-glyph: #96927F;
-  --color-glyph-soft: #C7C2B0;
+  --color-border: #30343B;
+  --color-line: #30343B;
+  --color-glyph: #9FA5AE;
+  --color-glyph-soft: #565C66;
 
-  /* Accent — Soft Sky (decorative: icons, rings, borders, backgrounds) */
-  --color-accent: #21bbb6ce;
-  --color-accent-hover: #15837f
-;
-  --color-accent-alt: #9ed1cf;
-  --color-accent-line: #30b1ac;
-  --color-accent-tint: #9ed1cf;
-  /* Accessible-contrast shade of the sky accent, for text/icons that need
-     to actually read against a light background (links, icon glyphs). The
-     lighter accent/accent-hover stay reserved for decorative surfaces
+  /* Accent — Soft Blue (decorative: icons, rings, borders, backgrounds) */
+  --color-accent: #8FAFD4;
+  --color-accent-hover: #8FAFD4;
+  --color-accent-alt: #B8D0EA;
+  --color-accent-line: #8FAFD4;
+  --color-accent-tint: rgba(143, 175, 212, 0.16);
+  /* Accessible-contrast shade of the accent, for text/icons that need
+     to actually read against the dark background (links, icon glyphs). The
+     mid-tone accent/accent-hover stay reserved for decorative surfaces
      (rings, borders, background tints) where WCAG text contrast doesn't apply. */
+  --color-accent-deep: #B8D0EA;
 
-  /* Accent 2 — warm signal color, used for buttons and highlighted words.
-     One color for both, chosen to stay accessible even at small button-text
-     sizes (D13900 passes WCAG AA contrast on both bg and card). */
-  --color-accent-2: #D13900;
-  --color-accent-2-hover: #B23000;
+  /* Accent 2 — accented text + interactive buttons. Same blue family as the
+     visual accent above: lighter B8D0EA for highlighted words/text, and the
+     mid-tone 8FAFD4 for interactive borders/fills on buttons. */
+  --color-accent-2: #B8D0EA;
+  --color-accent-2-hover: #8FAFD4;
+  --color-accent-2-deep: #B8D0EA;
 
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -118,8 +119,10 @@
   --color-accent-alt: var(--color-accent-alt);
   --color-accent-line: var(--color-accent-line);
   --color-accent-tint: var(--color-accent-tint);
+  --color-accent-deep: var(--color-accent-deep);
   --color-accent-2: var(--color-accent-2);
   --color-accent-2-hover: var(--color-accent-2-hover);
+  --color-accent-2-deep: var(--color-accent-2-deep);
 
   --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
   --font-heading: "Raleway", "Manrope", ui-sans-serif, system-ui, sans-serif;

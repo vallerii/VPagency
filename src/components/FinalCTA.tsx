@@ -114,7 +114,7 @@ export function FinalCTA() {
       <motion.div
         animate={assembled ? { scale: [1, 1.012, 1] } : {}}
         transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
-        className="relative mx-auto w-full max-w-[1440px] grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-10 lg:gap-20 rounded-3xl border border-accent bg-accent/5 px-6 py-14 sm:px-10 sm:py-16 lg:px-16 lg:py-20"
+        className="relative mx-auto w-full max-w-[1440px] grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-10 lg:gap-20 rounded-3xl border border-accent bg-accent/30 px-6 py-14 sm:px-10 sm:py-16 lg:px-16 lg:py-20"
       >
         <div className="mb-16 ">
           <motion.h2
@@ -126,7 +126,7 @@ export function FinalCTA() {
           >
             Lassen Sie uns ein System bauen,
             <br />das wirklich
-            <br /><span className="text-accent-2">Sinn ergibt</span>
+            <br /><span className="text-[#578CB5]">Sinn ergibt</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 16 }}

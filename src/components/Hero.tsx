@@ -16,16 +16,16 @@ export function Hero() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="text-balance text-[11vw] font-heading font-semibold leading-[1.08] tracking-tighter text-ink sm:text-[7vw] lg:text-[5vw] xl:text-[100px]"
+            className="text-balance text-[12vw] font-heading font-semibold leading-[1.08] tracking-tighter text-ink sm:text-[8vw] lg:text-[5.5vw] xl:text-[96px]"
           >
-            <span className="text-accent-2">Digitale Lösungen</span> für Ihr Unternehmen
+            <span className="text-[#578CB5]">Digitale Lösungen</span> für Ihr Unternehmen
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.25 }}
-            className="mt-10 max-w-[800px] text-[16px] leading-[1.5] text-ink-soft sm:text-[19px] lg:text-[22px] xl:text-[26px]"
+            className="mt-10 max-w-[800px] text-[16px] leading-[1.5] text-ink-soft sm:text-[19px] lg:text-[22px]"
           >
             Wir gestalten und entwickeln Websites, Online-Shops und
             individuelle Webanwendungen — von der ersten Idee bis zur

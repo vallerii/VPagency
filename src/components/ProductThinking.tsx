@@ -13,7 +13,7 @@ const RING_SIZES = ["140vw", "108vw", "78vw", "50vw", "26vw"];
 
 export function ProductThinking() {
   return (
-    <section className="relative w-full overflow-hidden bg-accent/5 px-6 py-24 text-center sm:px-10 lg:px-16 lg:py-32">
+    <section className="relative w-full overflow-hidden bg-accent/30 px-6 py-24 text-center sm:px-10 lg:px-16 lg:py-32">
       <div
         className="pointer-events-none absolute inset-0 flex items-center justify-center"
         aria-hidden="true"
@@ -52,7 +52,7 @@ export function ProductThinking() {
         >
           <span className="block">Wir denken nicht in Projekten.</span>
           <span className="mt-3 block sm:mt-20">
-            Wir denken in <span className="text-accent-2">Produkten</span>
+            Wir denken in <span className="text-[#578CB5]">Produkten</span>
           </span>
         </motion.h2>
 

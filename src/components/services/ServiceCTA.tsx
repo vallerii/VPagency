@@ -15,11 +15,11 @@ export function ServiceCTA({ label }: ServiceCTAProps) {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.5 }}
         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-        className="relative mx-auto w-full max-w-[1440px] grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-10 lg:gap-20 rounded-3xl border border-accent bg-accent/5 px-6 py-14 sm:px-10 sm:py-16 lg:px-16 lg:py-20"
+        className="relative mx-auto w-full max-w-[1440px] grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-10 lg:gap-20 rounded-3xl border border-accent bg-accent/30 px-6 py-14 sm:px-10 sm:py-16 lg:px-16 lg:py-20"
       >
         <div className="mb-16">
           <h2 className="text-balance text-[10vw] font-heading font-semibold leading-[1.1] tracking-tighter text-ink sm:text-[6vw] lg:text-[4vw] xl:text-[76px]">
-            Erzählen Sie uns von Ihrer <span className="text-accent-2">Aufgabe</span>
+            Erzählen Sie uns von Ihrer <span className="text-[#578CB5]">Aufgabe</span>
           </h2>
           <p className="mt-8 max-w-3xl text-[16px] leading-[1.5] text-ink-soft sm:text-[19px] lg:text-[22px] xl:text-[26px]">
             Bereich – „{label}“. Beschreiben Sie, was in Ihrem Unternehmen
