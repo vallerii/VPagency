@@ -1,6 +1,7 @@
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { TechMarquee } from "@/components/TechMarquee";
+import InteractiveLines from "@/components/ui/reactive-lines";
 import { SelfRecognitionWall } from "@/components/SelfRecognitionWall";
 import { RationaleBlock } from "@/components/RationaleBlock";
 import { WhatWeBuild } from "@/components/WhatWeBuild";
@@ -18,8 +19,30 @@ export default function Home() {
     <>
       <Header />
       <main>
-        <Hero />
-        <TechMarquee />
+        {/* Hero + the marquee share one stacking context so the Reactive
+        Lines background can run behind both: it starts below the hero
+        button (nothing is rendered above that point) and extends down
+        through the marquee, which gets its own background in
+        TechMarquee.tsx so the running text stays readable on top of it. */}
+        <div className="relative isolate">
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-x-0 top-[54%] bottom-0 z-0 sm:top-[50%] lg:top-[10%]"
+          >
+            <InteractiveLines
+              backgroundColor="#17171A"
+              lineColor="#8FAFD4"
+              lineWidth={1}
+              minLines={7}
+              maxLines={16}
+              fadeIntensity={35}
+              tiltDeg={12}
+              tiltMinWidth={1024}
+            />
+          </div>
+          <Hero />
+          <TechMarquee />
+        </div>
         {/* <SelfRecognitionWall /> */}
         {/* <RationaleBlock /> */}
         <WhatWeBuild />

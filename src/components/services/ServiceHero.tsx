@@ -14,7 +14,7 @@ export function ServiceHero({ title, subtitle }: ServiceHeroProps) {
       className="relative flex min-h-[70dvh] w-full items-center overflow-hidden px-6 pt-32 pb-20 sm:px-10 lg:px-16 min-h-[80dvh]"
       style={{
         background:
-          "linear-gradient(to top, color-mix(in srgb, var(--color-accent) 14%, var(--color-bg) 86%) 0%, var(--color-bg) 62%)",
+          "linear-gradient(to top, color-mix(in srgb, #578CB5 20%, var(--color-bg) 86%) 0%, var(--color-bg) 62%)",
       }}
     >
       <div className="mx-auto flex w-full max-w-[1440px] flex-col items-center text-center">

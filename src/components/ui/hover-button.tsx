@@ -7,8 +7,8 @@ const base =
   "inline-flex items-center justify-center gap-2 rounded-full border-2 font-semibold uppercase tracking-wider transition-colors duration-300";
 const variants = {
   primary: "border-accent-2 bg-accent-2/15 text-accent-2-deep hover:bg-accent-2/30",
-  secondary: "border-accent-2-hover bg-accent-2-hover/10 text-accent-2-deep hover:bg-accent-2-hover/25",
-  outline: "border-accent-2 bg-transparent text-accent-2-deep hover:bg-accent-2/10",
+  secondary: "border-accent-2-hover bg-card/10 text-accent-2 hover:bg-accent-hover/25",
+  outline: "border-transparent bg-accent-2 text-bg transition-all duration-300 hover:bg-card/60 hover:text-accent-2 hover:border-accent-2-hover",
 };
 
 type Variant = keyof typeof variants;

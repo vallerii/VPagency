@@ -1,6 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
+// Cube animation is temporarily disabled in favor of the Reactive Lines
+// background (see page.tsx) — kept here, commented out, so it can be
+// restored later without re-writing it.
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { BoxLoader } from "./ui/box-loader";
 import { HoverLink } from "./ui/hover-button";
 
@@ -44,6 +48,8 @@ export function Hero() {
           </motion.div>
         </div>
 
+        {/* Cube animation — commented out, not removed, while the Reactive
+        Lines background (page.tsx) is used instead. Uncomment to restore.
         <motion.div
           initial={{ opacity: 0, scale: 0.92 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -54,6 +60,7 @@ export function Hero() {
             <BoxLoader />
           </div>
         </motion.div>
+        */}
       </div>
     </section>
   );

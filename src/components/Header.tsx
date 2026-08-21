@@ -47,7 +47,7 @@ export function Header() {
         <HoverLink
           href="#contact"
           variant="secondary"
-          className="hidden px-5 py-2.5 text-sm sm:inline-flex"
+          className="hidden px-5 py-2.5 h-[54px] text-sm sm:inline-flex"
         >
           Projekt besprechen
         </HoverLink>

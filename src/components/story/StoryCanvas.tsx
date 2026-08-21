@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { motion, useScroll, useSpring, useReducedMotion } from "framer-motion";
+import { motion, useScroll, useSpring } from "framer-motion";
 import { NetworkNode } from "./NetworkNode";
 import {
   NODES,
@@ -13,70 +13,18 @@ import {
   type NodeFrame,
 } from "./story-data";
 
-function ReducedStory() {
-  const frames = computeFrame(1);
-  const connections = computeConnections(1, frames);
-  const active = computeActiveNodes(connections);
-
-  return (
-    <div className="w-full">
-      {CAPTIONS.map((cap) => (
-        <section key={cap.index} className="px-6 py-24 sm:px-10 lg:px-16">
-          <div className="mx-auto max-w-2xl">
-            <span className="mb-6 flex items-center gap-2 text-[18px] font-medium text-ink-faint">
-              <span className="font-semibold text-ink">{cap.index}</span>
-              {cap.eyebrow}
-            </span>
-            <h2 className="text-balance text-[10vw] font-heading font-semibold leading-[1.1] tracking-tighter text-ink sm:text-[6vw] lg:text-[4vw] xl:text-[76px]">
-              {cap.title.join(" ")}
-            </h2>
-            <p className="mt-8 max-w-[560px] text-[16px] leading-[1.5] text-ink-soft sm:text-[19px] lg:text-[22px] xl:text-[26px]">
-              {cap.text}
-            </p>
-          </div>
-        </section>
-      ))}
-
-      <div className="relative mx-auto h-[440px] w-full max-w-3xl px-6 sm:h-[520px]" aria-hidden="true">
-        <svg className="absolute inset-0 h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-          {connections.map((c, i) => (
-            <path
-              key={`${c.from}-${c.to}-${i}`}
-              d={c.d}
-              fill="none"
-              stroke="var(--color-accent-hover)"
-              strokeWidth={1.7}
-              strokeLinecap="round"
-              vectorEffect="non-scaling-stroke"
-            />
-          ))}
-        </svg>
-        {NODES.map((n) => {
-          const f = frames[n.id];
-          return (
-            <NetworkNode
-              key={n.id}
-              kind={f.kind}
-              label={f.label}
-              accent={n.hub || active.has(n.id)}
-              rotate={f.rotate}
-              style={{
-                left: `${f.x}%`,
-                top: `${f.y}%`,
-                width: f.w * 0.8,
-                height: f.h * 0.8,
-              }}
-            />
-          );
-        })}
-      </div>
-    </div>
-  );
-}
-
+// This scroll-driven canvas is core visual content for the section, not
+// incidental motion — same call already made for the marquee and the hero
+// build animation in globals.css. macOS/iOS commonly ship with "Reduce
+// Motion" switched on (far more often than the Windows equivalent), and
+// framer-motion's useReducedMotion() honors that OS setting by swapping in
+// a static fallback. That used to make this section render as a plain
+// stacked list of captions ending in one static "finished" diagram on
+// Mac/iPhone, while Windows played the full animation. We intentionally
+// don't read prefers-reduced-motion here so the experience is identical
+// everywhere.
 export function StoryCanvas() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const prefersReduced = useReducedMotion();
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -95,10 +43,6 @@ export function StoryCanvas() {
     const unsub = smooth.on("change", (v) => setT(v));
     return () => unsub();
   }, [smooth]);
-
-  if (prefersReduced) {
-    return <ReducedStory />;
-  }
 
   const frames = computeFrame(t);
   const connections = computeConnections(t, frames);

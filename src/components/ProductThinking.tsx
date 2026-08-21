@@ -13,7 +13,7 @@ const RING_SIZES = ["140vw", "108vw", "78vw", "50vw", "26vw"];
 
 export function ProductThinking() {
   return (
-    <section className="relative w-full overflow-hidden bg-accent/30 px-6 py-24 text-center sm:px-10 lg:px-16 lg:py-32">
+    <section className="relative w-full overflow-hidden bg-[#578CB5]/80 px-6 py-24 text-center sm:px-10 lg:px-16 lg:py-32">
       <div
         className="pointer-events-none absolute inset-0 flex items-center justify-center"
         aria-hidden="true"
@@ -21,7 +21,7 @@ export function ProductThinking() {
         {RING_SIZES.map((size, i) => (
           <span
             key={size}
-            className="target-ring absolute left-1/2 top-1/2 rounded-full border-2 border-accent-hover/60"
+            className="target-ring absolute left-1/2 top-1/2 rounded-full border-2 border-border/60"
             style={{
               width: size,
               height: size,
@@ -39,7 +39,7 @@ export function ProductThinking() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.6 }}
           transition={{ duration: 0.6 }}
-          className="mb-4 block text-[13px] font-medium uppercase tracking-wide text-ink-soft"
+          className="mb-4 block text-[13px] font-medium uppercase tracking-wide text-ink"
         >
           Product thinking
         </motion.span>
@@ -52,7 +52,7 @@ export function ProductThinking() {
         >
           <span className="block">Wir denken nicht in Projekten.</span>
           <span className="mt-3 block sm:mt-20">
-            Wir denken in <span className="text-[#578CB5]">Produkten</span>
+            Wir denken in <span className="text-bg">Produkten</span>
           </span>
         </motion.h2>
 

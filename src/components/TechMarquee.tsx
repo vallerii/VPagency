@@ -55,7 +55,10 @@ function MarqueeRow({ items, repeat, reverse, muted }: MarqueeRowProps) {
 
 export function TechMarquee() {
   return (
-    <div className="w-full divide-y divide-border border-y border-border">
+    // relative + z-10 + a solid/near-solid background lift this above the
+    // Reactive Lines animation running behind it (see page.tsx) so the
+    // running text stays readable against the moving lines.
+    <div className="relative z-10 w-full divide-y divide-border border-y border-border bg-bg/90 backdrop-blur-sm">
       <MarqueeRow items={SERVICES} repeat={6} />
       <MarqueeRow items={TECH} repeat={8} reverse  />
     </div>
