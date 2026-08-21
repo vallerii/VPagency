@@ -48,7 +48,7 @@ export function ScopeTiers({ included, addon, outOfScope }: ScopeTiersProps) {
               {included.map((item, i) => (
                 <li key={i} className="flex items-start gap-3 text-[18px] leading-[1.4] text-ink">
                   <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-accent-hover">
-                    <Check className="h-3 w-3 text-white" strokeWidth={3} />
+                    <Check className="h-3 w-3 text-bg" strokeWidth={3} />
                   </span>
                   {item.text}
                 </li>

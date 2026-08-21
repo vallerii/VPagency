@@ -36,7 +36,7 @@ export default async function CasePage({
       <main className="px-6 pb-32 pt-16 sm:px-10 lg:px-16">
         <div className="mx-auto max-w-3xl">
           <Link
-            href="/#portfolio"
+            href="/produkte"
             className="mb-10 inline-flex items-center gap-1.5 text-[15px] font-medium text-ink-faint transition-colors hover:text-ink"
           >
             ← Alle Projekte

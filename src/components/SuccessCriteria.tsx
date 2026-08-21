@@ -67,7 +67,7 @@ export function SuccessCriteria() {
               </p>
               <p className="flex items-center gap-3 text-[16px] font-medium leading-[1.4] text-ink sm:text-[19px]">
                 <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-accent">
-                  <Check className="h-3.5 w-3.5 text-white" strokeWidth={3} />
+                  <Check className="h-3.5 w-3.5 text-bg" strokeWidth={3} />
                 </span>
                 {row.after}
               </p>

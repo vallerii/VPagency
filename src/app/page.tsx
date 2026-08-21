@@ -9,7 +9,7 @@ import { TechnicalExpertise } from "@/components/TechnicalExpertise";
 import { ProductThinking } from "@/components/ProductThinking";
 import { StoryCanvas } from "@/components/story/StoryCanvas";
 import { SuccessCriteria } from "@/components/SuccessCriteria";
-import { PortfolioSection } from "@/components/PortfolioSection";
+import { ClientLogos } from "@/components/ClientLogos";
 import { About } from "@/components/About";
 import { FinalCTA } from "@/components/FinalCTA";
 import { Footer } from "@/components/Footer";
@@ -36,7 +36,7 @@ export default function Home() {
               minLines={7}
               maxLines={16}
               fadeIntensity={35}
-              tiltDeg={12}
+              tiltDeg={10}
               tiltMinWidth={1024}
             />
           </div>
@@ -55,7 +55,7 @@ export default function Home() {
         </section>
 
         <StoryCanvas />
-        <PortfolioSection />
+        <ClientLogos />
         <About />
 
         {/* <SuccessCriteria /> */}

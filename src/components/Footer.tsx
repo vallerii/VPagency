@@ -26,6 +26,12 @@ export function Footer() {
               {s.label}
             </Link>
           ))}
+          <Link
+            href="/produkte"
+            className="text-sm text-ink-soft transition-colors hover:text-ink"
+          >
+            Projekte
+          </Link>
         </nav>
       </div>
 

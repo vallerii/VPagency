@@ -72,7 +72,7 @@ export function About() {
             </p>
 
             <div className="mt-10">
-              <HoverLink href="#contact" variant="primary" className="px-8 py-4 text-[18px]">
+              <HoverLink href="#contact" variant="outline" className="px-8 py-4 text-[18px]">
                 Projekt besprechen
               </HoverLink>
             </div>
