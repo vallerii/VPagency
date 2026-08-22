@@ -9,7 +9,7 @@ interface ServiceCTAProps {
 
 export function ServiceCTA({ label }: ServiceCTAProps) {
   return (
-    <section id="contact" className="w-full px-6 pb-24 sm:px-10 lg:px-16 lg:pb-32">
+    <section id="contact" className="w-full px-6 pb-32 sm:px-10 lg:px-16 lg:pb-44">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}

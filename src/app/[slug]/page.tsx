@@ -10,6 +10,8 @@ import { ScopeTiers } from "@/components/services/ScopeTiers";
 import { ServiceBeforeAfter } from "@/components/services/ServiceBeforeAfter";
 import { RelatedCases } from "@/components/services/RelatedCases";
 import { ServiceCTA } from "@/components/services/ServiceCTA";
+import { FAQ } from "@/components/FAQ";
+import { SERVICE_FAQ } from "@/data/faq";
 
 import { WebsiteHero } from "@/components/services/websites/WebsiteHero";
 import { WebsiteJourney } from "@/components/services/websites/WebsiteJourney";
@@ -150,6 +152,7 @@ export default async function ServicePage({
       <main>
         {sections}
         <RelatedCases category={service.slug} />
+        {SERVICE_FAQ[service.slug] && <FAQ items={SERVICE_FAQ[service.slug]} />}
         <ServiceCTA label={service.label} />
       </main>
       <Footer />

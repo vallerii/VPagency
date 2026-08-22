@@ -5,6 +5,8 @@ import { ProductsApproach } from "@/components/products/ProductsApproach";
 import { ProductsGrid } from "@/components/products/ProductsGrid";
 import { ProductsContinuity } from "@/components/products/ProductsContinuity";
 import { ProductsCTA } from "@/components/products/ProductsCTA";
+import { FAQ } from "@/components/FAQ";
+import { PRODUCTS_FAQ } from "@/data/faq";
 
 export const metadata = {
   title: "Projekte — VP Digital",
@@ -21,6 +23,7 @@ export default function ProductsPage() {
         <ProductsApproach />
         <ProductsGrid />
         <ProductsContinuity />
+        <FAQ items={PRODUCTS_FAQ} />
         <ProductsCTA />
       </main>
       <Footer />

@@ -24,7 +24,7 @@ export function RelatedCases({ category }: RelatedCasesProps) {
   };
 
   return (
-    <section className="w-full px-6 py-24 sm:px-10 lg:px-16 lg:py-32">
+    <section className="w-full px-6 py-32 sm:px-10 lg:px-16 lg:py-44">
       <motion.h2
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}

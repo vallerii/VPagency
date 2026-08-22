@@ -29,7 +29,7 @@ export function ClientLogos() {
   const loop = Array.from({ length: 6 }, () => LOGO_CASES).flat();
 
   return (
-    <section className="w-full px-6 py-20 sm:px-10 lg:px-16 lg:py-28">
+    <section className="w-full px-6 pt-20 sm:px-10 lg:px-16 lg:pt-28">
       <div className="mx-auto flex w-full max-w-[1440px] flex-col items-center">
         <motion.span
           initial={{ opacity: 0, y: 12 }}
@@ -60,7 +60,7 @@ export function ClientLogos() {
                 <img
                   src={LOGO_FILES[c.slug]}
                   alt={c.name}
-                  className="h-7 w-auto opacity-60 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0 sm:h-9"
+                  className="h-7 w-autotransition-all duration-300 hover:opacity-100 hover:grayscale-0 sm:h-9"
                 />
               </span>
             ))}

@@ -11,6 +11,8 @@ import { StoryCanvas } from "@/components/story/StoryCanvas";
 import { SuccessCriteria } from "@/components/SuccessCriteria";
 import { ClientLogos } from "@/components/ClientLogos";
 import { About } from "@/components/About";
+import { FAQ } from "@/components/FAQ";
+import { HOMEPAGE_FAQ } from "@/data/faq";
 import { FinalCTA } from "@/components/FinalCTA";
 import { Footer } from "@/components/Footer";
 
@@ -57,9 +59,10 @@ export default function Home() {
         <StoryCanvas />
         <ClientLogos />
         <About />
+        <FAQ items={HOMEPAGE_FAQ} />
 
         {/* <SuccessCriteria /> */}
-        
+
         <FinalCTA />
       </main>
       <Footer />

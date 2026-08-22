@@ -21,7 +21,7 @@ function ColumnIcon({ icon: Icon }: { icon: LucideIcon }) {
 
 export function ScopeTiers({ included, addon, outOfScope }: ScopeTiersProps) {
   return (
-    <section className="w-full px-6 py-24 sm:px-10 lg:px-16 lg:py-32">
+    <section className="w-full px-6 py-32 sm:px-10 lg:px-16 lg:py-44">
       <div className="mx-auto w-full max-w-[1440px]">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}

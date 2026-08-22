@@ -16,7 +16,7 @@ interface WebsiteStagesProps {
 // cards connected by a line, like a build timeline.
 export function WebsiteStages({ included, addon, outOfScope }: WebsiteStagesProps) {
   return (
-    <section className="w-full py-24 sm:py-32">
+    <section className="w-full py-32 sm:py-44">
       <div className="mx-auto w-full max-w-[1440px] px-6 sm:px-10 lg:px-16">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
