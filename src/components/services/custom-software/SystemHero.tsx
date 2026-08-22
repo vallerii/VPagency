@@ -119,7 +119,7 @@ export function SystemHero({ title, subtitle }: SystemHeroProps) {
               transition={{ duration: 0.5 }}
               className="flex items-center justify-center rounded-xl bg-accent-tint p-4"
             >
-              <span className="h-10 w-10 rounded-full border-4 border-accent-hover border-t-transparent" />
+              <span className="h-10 w-10 animate-spin rounded-full border-4 border-accent-hover border-t-transparent" />
             </motion.div>
           </motion.div>
         </div>

@@ -58,7 +58,7 @@ export function AutomationFlow({ included, addon, outOfScope }: AutomationFlowPr
           ))}
         </div>
 
-        <div className="mx-auto mt-16 grid w-full max-w-[900px] grid-cols-1 gap-10 sm:grid-cols-2">
+        <div className="mx-auto mt-16 grid w-full max-w-[640px] grid-cols-1 gap-10 ">
           <div>
             <span className="mb-4 block text-[13px] font-medium uppercase tracking-wide text-ink-faint">
               Optional erhältlich

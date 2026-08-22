@@ -29,7 +29,7 @@ export function WebsiteStages({ included, addon, outOfScope }: WebsiteStagesProp
         </motion.h2>
       </div>
 
-      <div className="mt-16 overflow-x-auto pb-4 pl-6 sm:pl-10 lg:pl-16 [scrollbar-width:thin]">
+      <div className="mx-auto mt-16 w-full max-w-[1440px] overflow-x-auto pb-4 pl-6 sm:pl-10 lg:pl-16 [scrollbar-width:thin]">
         <div className="relative flex w-max gap-6 pr-6 sm:pr-10 lg:pr-16">
           <span
             aria-hidden="true"

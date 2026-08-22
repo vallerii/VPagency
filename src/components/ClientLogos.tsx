@@ -10,7 +10,7 @@ import { CASES } from "@/data/cases";
 // without a supplied logo yet); those still show up on the full /produkte
 // page, just not here.
 const LOGO_FILES: Record<string, string> = {
-  wecubexx: "/logos/wecubexx.svg",
+  wecubexx: "/logos/wecubexx.png",
   proctec: "/logos/proctec.svg",
   erfi: "/logos/erfi.svg",
   gbs: "/logos/gbs.svg",

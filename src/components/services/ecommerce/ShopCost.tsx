@@ -32,7 +32,7 @@ export function ShopCost({ title, lines }: ShopCostProps) {
               </span>
             ))}
           </motion.h2>
-
+          <span className="mt-6 block h-px w-10 bg-accent-hover" aria-hidden="true" />
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -52,7 +52,7 @@ export function ShopCost({ title, lines }: ShopCostProps) {
             transition={{ duration: 0.7, delay: 0.28 }}
             className="mt-9"
           >
-            <HoverLink href="#contact" variant="primary" className="px-8 py-4 text-[18px]">
+            <HoverLink href="#contact" variant="outline" className="px-8 py-4 text-[18px]">
               Projekt besprechen
             </HoverLink>
           </motion.div>
