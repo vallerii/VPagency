@@ -58,7 +58,7 @@ export default function Home() {
 
         <StoryCanvas />
         <ClientLogos />
-        <About />
+        {/* <About /> */}
         <FAQ items={HOMEPAGE_FAQ} />
 
         {/* <SuccessCriteria /> */}

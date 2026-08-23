@@ -29,7 +29,7 @@ export function ClientLogos() {
   const loop = Array.from({ length: 6 }, () => LOGO_CASES).flat();
 
   return (
-    <section className="w-full px-6 pt-20 sm:px-10 lg:px-16 lg:pt-28">
+    <section className="w-full px-6 pb-20 sm:px-10 lg:px-16 lg:pb-28">
       <div className="mx-auto flex w-full max-w-[1440px] flex-col items-center">
         <motion.span
           initial={{ opacity: 0, y: 12 }}
