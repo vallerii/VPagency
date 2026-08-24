@@ -16,7 +16,19 @@ const INDUSTRIES = [
 
 export function ProductsApproach() {
   return (
-    <section className="w-full px-6 pt-28 sm:px-10 lg:px-16 lg:pt-36">
+    <section className="w-full px-6 pt-28 sm:px-10 lg:px-16 lg:pt-36 relative">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -inset-8 sm:-inset-14 max-w-[900px] lg:ml-auto"
+        style={{
+          backgroundImage:
+            "linear-gradient(to right, rgba(143, 175, 212, 0.18) 1px, transparent 1px), linear-gradient(to bottom, rgba(143, 175, 212, 0.18) 1px, transparent 1px)",
+          backgroundSize: "36px 36px",
+          maskImage: "radial-gradient(ellipse at center, black 45%, transparent 78%)",
+          WebkitMaskImage:
+            "radial-gradient(ellipse at center, black 45%, transparent 78%)",
+        }}
+      />
       <div className="mx-auto w-full max-w-[1440px]">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1fr_0.85fr] lg:gap-20">
           <motion.div
@@ -53,7 +65,7 @@ export function ProductsApproach() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.4 }}
             transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col justify-center rounded-[24px] border border-border bg-card p-8 sm:p-10"
+            className="flex flex-col justify-center rounded-[24px] border border-border bg-card p-8 sm:p-10 relative z-10"
           >
             <span className="mb-5 block text-[13px] font-medium uppercase tracking-wide text-ink-faint">
               Branchen auf dieser Seite

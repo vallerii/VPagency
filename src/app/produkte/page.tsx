@@ -7,6 +7,7 @@ import { ProductsContinuity } from "@/components/products/ProductsContinuity";
 import { ProductsCTA } from "@/components/products/ProductsCTA";
 import { FAQ } from "@/components/FAQ";
 import { PRODUCTS_FAQ } from "@/data/faq";
+import { TechMarquee } from "@/components/TechMarquee";
 
 export const metadata = {
   title: "Projekte — VP Digital",
@@ -20,6 +21,7 @@ export default function ProductsPage() {
       <Header />
       <main>
         <ProductsHero />
+        <TechMarquee />
         <ProductsApproach />
         <ProductsGrid />
         <ProductsContinuity />

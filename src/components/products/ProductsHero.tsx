@@ -23,7 +23,10 @@ export function ProductsHero() {
           >
             Was aus Geschäfts&shy;problemen
             <br />
-            wird, wenn man sie <span className="text-[#578CB5]">löst</span>
+            wird, wenn man sie{" "}
+            <span className="bg-gradient-to-r from-[#578CB5] to-[#0E68FF] bg-clip-text text-transparent">
+              löst
+            </span>
           </motion.h1>
 
           <motion.p

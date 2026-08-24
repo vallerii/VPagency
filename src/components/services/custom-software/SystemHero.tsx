@@ -43,7 +43,19 @@ export function SystemHero({ title, subtitle }: SystemHeroProps) {
             >
               {title.map((line, i) => (
                 <span key={i} className="block">
-                  {line}
+                  {line.split(" ").map((word, j) =>
+                    word === "funktionieren" ? (
+                      <span
+                        key={j}
+                        className="bg-gradient-to-r from-[#578CB5] to-[#0E68FF] bg-clip-text text-transparent"
+                      >
+                        {j > 0 ? " " : ""}
+                        {word}
+                      </span>
+                    ) : (
+                      `${j > 0 ? " " : ""}${word}`
+                    )
+                  )}
                 </span>
               ))}
             </motion.h1>

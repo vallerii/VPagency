@@ -13,7 +13,8 @@ interface AutomationResultProps {
 // at a glance rather than being read line by line.
 export function AutomationResult({ rows }: AutomationResultProps) {
   return (
-    <section className="w-full bg-card px-6 py-24 sm:px-10 lg:px-16 lg:py-32">
+    <section className="relative w-full overflow-hidden bg-card px-6 py-24 sm:px-10 lg:px-16 lg:py-32">
+
       <motion.h2
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -42,7 +43,7 @@ export function AutomationResult({ rows }: AutomationResultProps) {
                 <ArrowRight className="h-4 w-4 rotate-90 text-bg sm:rotate-0" strokeWidth={2.5} />
               </span>
             </div>
-            <div className="flex items-center bg-accent-tint px-6 py-6 sm:py-8">
+            <div className="flex items-center bg-[#578CB5]/80 px-6 py-6 sm:py-8">
               <p className="text-[17px] font-medium leading-[1.4] text-ink sm:text-[19px]">{row.after}</p>
             </div>
           </motion.div>

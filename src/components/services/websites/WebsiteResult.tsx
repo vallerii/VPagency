@@ -53,7 +53,9 @@ function ResultFrame({ row, index }: { row: BeforeAfterRow; index: number }) {
 
 export function WebsiteResult({ rows }: WebsiteResultProps) {
   return (
-    <section className="w-full bg-card px-6 py-24 sm:px-10 lg:px-16 lg:py-32">
+    <section className="relative w-full overflow-hidden bg-[#578CB5]/80 px-6 py-24 sm:px-10 lg:px-16 lg:py-32">
+      
+
       <motion.h2
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}

@@ -22,8 +22,8 @@ export function ShopResult({ rows }: ShopResultProps) {
         >
           <defs>
             <linearGradient id="shopResultChartFill" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#8FAFD4" stopOpacity="0.22" />
-              <stop offset="100%" stopColor="#8FAFD4" stopOpacity="0" />
+              <stop offset="0%" stopColor="#578CB5" stopOpacity="1" />
+              <stop offset="100%" stopColor="#578CB5" stopOpacity="0" />
             </linearGradient>
             <marker
               id="shopResultArrowhead"
@@ -33,7 +33,7 @@ export function ShopResult({ rows }: ShopResultProps) {
               refY="4"
               orient="auto"
             >
-              <path d="M0,0 L8,4 L0,8 Z" fill="#8fafd4" />
+              <path d="M0,0 L8,4 L0,8 Z" fill="#578CB5" />
             </marker>
           </defs>
 
@@ -48,7 +48,7 @@ export function ShopResult({ rows }: ShopResultProps) {
           <motion.path
             d="M0,400 L180,370 L360,392 L540,300 L720,325 L900,225 L1080,255 L1260,120 L1400,70"
             fill="none"
-            stroke="#8fafd4"
+            stroke="#578CB5"
             strokeWidth={4}
             strokeLinecap="round"
             strokeLinejoin="round"

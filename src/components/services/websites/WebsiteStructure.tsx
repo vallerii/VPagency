@@ -139,7 +139,8 @@ export function WebsiteStructure({ title, lines }: WebsiteStructureProps) {
   }, [inView]);
 
   return (
-    <section className="w-full bg-card px-6 py-24 sm:px-10 lg:px-16 lg:py-32 overflow-hidden">
+    <section className="w-full bg-card px-6 py-24 sm:px-10 lg:px-16 lg:py-32 overflow-hidden relative">
+    
       <div className="mx-auto grid w-full max-w-[1440px] items-center gap-16 lg:grid-cols-2 lg:gap-20">
         <div>
           <motion.h2
