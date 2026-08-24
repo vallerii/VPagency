@@ -18,17 +18,16 @@ export function ServiceHero({ title, subtitle }: ServiceHeroProps) {
       }}
     >
       <div className="mx-auto flex w-full max-w-[1440px] flex-col items-center text-center">
-        <motion.a
-          href="/"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+        <motion.span
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="mb-8 inline-flex items-center gap-1.5 text-[15px] font-medium text-ink-faint transition-colors hover:text-ink"
+          className="mb-5 inline-block text-[13px] font-semibold uppercase tracking-[0.2em] text-white/60"
         >
-          ← Zur Startseite
-        </motion.a>
+          Service
+        </motion.span>
 
-        <div className="flex max-w-4xl flex-col items-center">
+        <div className="flex flex-col items-center">
           <motion.h1
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
@@ -46,7 +45,7 @@ export function ServiceHero({ title, subtitle }: ServiceHeroProps) {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.25 }}
-            className="mt-8 max-w-[560px] text-[16px] leading-[1.5] text-ink-soft sm:text-[19px] lg:text-[22px]"
+            className="mt-8 max-w-3xl  text-[16px] leading-[1.5] text-ink-soft sm:text-[19px] lg:text-[22px]"
           >
             {subtitle}
           </motion.p>

@@ -126,7 +126,7 @@ export function FinalCTA() {
           >
             Lassen Sie uns ein System bauen,
             <br />das wirklich
-            <br /><span className="text-[#578CB5]">Sinn ergibt</span>
+            <br /><span className="bg-gradient-to-r from-[#578CB5] to-[#0E68FF] bg-clip-text text-transparent">Sinn ergibt</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 16 }}

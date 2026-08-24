@@ -20,7 +20,10 @@ export function ProductsCTA() {
           <h2 className="text-balance text-[10vw] font-heading font-semibold leading-[1.1] tracking-tighter text-ink sm:text-[6vw] lg:text-[4vw] xl:text-[76px]">
             Ihr Projekt steht
             <br />
-            hier noch <span className="text-[#578CB5]">nicht</span>
+            hier noch{" "}
+            <span className="bg-gradient-to-r from-[#578CB5] to-[#0E68FF] bg-clip-text text-transparent">
+              nicht
+            </span>
           </h2>
           <p className="mt-8 max-w-3xl text-[16px] leading-[1.5] text-ink-soft sm:text-[19px] lg:text-[22px] xl:text-[26px]">
             Erzählen Sie uns, was in Ihrem Unternehmen gerade bremst — wir

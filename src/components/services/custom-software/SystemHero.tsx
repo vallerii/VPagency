@@ -23,15 +23,6 @@ export function SystemHero({ title, subtitle }: SystemHeroProps) {
       }}
     >
       <div className="mx-auto w-full max-w-[1440px]">
-        <motion.a
-          href="/"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6 }}
-          className="mb-8 inline-flex items-center gap-1.5 text-[15px] font-medium text-ink-faint transition-colors hover:text-ink"
-        >
-          ← Zur Startseite
-        </motion.a>
 
         <div className="grid grid-cols-1 items-center gap-14 lg:grid-cols-[1fr_0.95fr] lg:gap-10">
           <div>
@@ -39,7 +30,7 @@ export function SystemHero({ title, subtitle }: SystemHeroProps) {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="mb-5 inline-block text-[13px] font-semibold uppercase tracking-[0.2em] text-accent-hover"
+              className="mb-5 inline-block text-[13px] font-semibold uppercase tracking-[0.2em] text-white/60"
             >
               System
             </motion.span>

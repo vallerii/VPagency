@@ -13,15 +13,6 @@ export function ProductsHero() {
       }}
     >
       <div className="mx-auto flex w-full max-w-[1440px] flex-col items-center text-center">
-        <motion.a
-          href="/"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6 }}
-          className="mb-8 inline-flex items-center gap-1.5 text-[15px] font-medium text-ink-faint transition-colors hover:text-ink"
-        >
-          ← Zur Startseite
-        </motion.a>
 
         <div className="flex max-w-4xl flex-col items-center">
           <motion.h1

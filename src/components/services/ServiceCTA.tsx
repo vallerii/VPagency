@@ -19,7 +19,10 @@ export function ServiceCTA({ label }: ServiceCTAProps) {
       >
         <div className="mb-16">
           <h2 className="text-balance text-[10vw] font-heading font-semibold leading-[1.1] tracking-tighter text-ink sm:text-[6vw] lg:text-[4vw] xl:text-[76px]">
-            Erzählen Sie uns von Ihrer <span className="text-[#578CB5]">Aufgabe</span>
+            Erzählen Sie uns von Ihrer{" "}
+            <span className="bg-gradient-to-r from-[#578CB5] to-[#0E68FF] bg-clip-text text-transparent">
+              Aufgabe
+            </span>
           </h2>
           <p className="mt-8 max-w-3xl text-[16px] leading-[1.5] text-ink-soft sm:text-[19px] lg:text-[22px] xl:text-[26px]">
             Bereich – „{label}“. Beschreiben Sie, was in Ihrem Unternehmen
