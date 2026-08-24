@@ -4,7 +4,7 @@ import { useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { NetworkNode } from "./story/NetworkNode";
 import { NODES, computeFrame, computeConnections, computeActiveNodes } from "./story/story-data";
-import { ContactForm } from "./ContactForm";
+import { ContactQuiz } from "./ContactQuiz";
 
 const GOAL = { x: 50, y: 97 };
 const GOAL_LINKS = ["crm", "tables"];
@@ -103,7 +103,7 @@ export function FinalCTA() {
                   </div>
                 </div>
                 <span className="absolute left-1/2 top-full mt-2.5 -translate-x-1/2 whitespace-nowrap text-[13px] font-medium text-ink-soft">
-                  Ваш бизнес
+                  Вач бизнес
                 </span>
               </div>
             </motion.div>
@@ -145,9 +145,20 @@ export function FinalCTA() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="rounded-[28px] border border-border bg-card p-8 sm:p-12"
         >
-          <ContactForm onSuccess={() => setAssembled(true)} />
+          <div className="rounded-[28px] border border-border bg-card p-8 sm:p-12">
+            <ContactQuiz onSuccess={() => setAssembled(true)} />
+          </div>
+
+          <p className="mt-6 text-center text-[14px] text-ink-soft">
+            Wissen Sie bereits, was Sie brauchen?{" "}
+            <a
+              href="mailto:hello@vpdigital.agency"
+              className="font-medium text-accent-hover transition-colors hover:text-ink"
+            >
+              Schreiben Sie uns: hello@vpdigital.agency
+            </a>
+          </p>
         </motion.div>
       </motion.div>
     </section>
