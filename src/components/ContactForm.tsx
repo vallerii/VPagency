@@ -6,19 +6,25 @@ import { Loader2, Check } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { HoverButton } from "./ui/hover-button";
 
+// Same field pattern as the quiz's final step (ContactQuiz.tsx step 3) —
+// name + a phone/e-mail toggle instead of two separate always-visible
+// fields — kept identical here so the standalone form on service/product
+// pages looks and behaves like the quiz's contact step. The one addition
+// is the "Ihr Anliegen" textarea: this form isn't preceded by the quiz's
+// click-through pain/goal steps, so it still needs a way to capture what
+// the request is actually about.
+
+type Method = "phone" | "email";
+
 interface FormState {
   name: string;
-  company: string;
-  email: string;
-  phone: string;
+  contact: string;
   message: string;
 }
 
 const INITIAL: FormState = {
   name: "",
-  company: "",
-  email: "",
-  phone: "",
+  contact: "",
   message: "",
 };
 
@@ -32,15 +38,25 @@ function validateEmail(value: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 }
 
+function validatePhone(value: string) {
+  return value.replace(/[^0-9]/g, "").length >= 6;
+}
+
 export function ContactForm({ onSuccess }: ContactFormProps) {
   const [values, setValues] = useState<FormState>(INITIAL);
+  const [method, setMethod] = useState<Method>("phone");
   const [touched, setTouched] = useState<Partial<Record<keyof FormState, boolean>>>({});
   const [status, setStatus] = useState<Status>("idle");
 
   const errors: Partial<Record<keyof FormState, string>> = {};
   if (!values.name.trim()) errors.name = "Bitte geben Sie Ihren Namen an";
-  if (!values.email.trim()) errors.email = "Bitte geben Sie Ihre E-Mail-Adresse an";
-  else if (!validateEmail(values.email)) errors.email = "Bitte überprüfen Sie das E-Mail-Format";
+  if (!values.contact.trim()) {
+    errors.contact =
+      method === "phone" ? "Bitte geben Sie eine Telefonnummer an" : "Bitte geben Sie Ihre E-Mail-Adresse an";
+  } else if (method === "phone" ? !validatePhone(values.contact) : !validateEmail(values.contact)) {
+    errors.contact =
+      method === "phone" ? "Bitte geben Sie eine gültige Telefonnummer an" : "Bitte überprüfen Sie das E-Mail-Format";
+  }
   if (!values.message.trim()) errors.message = "Beschreiben Sie kurz Ihr Anliegen";
 
   const hasErrors = Object.keys(errors).length > 0;
@@ -49,9 +65,15 @@ export function ContactForm({ onSuccess }: ContactFormProps) {
     setValues((prev) => ({ ...prev, [key]: value }));
   }
 
+  function switchMethod(m: Method) {
+    setMethod(m);
+    setValues((prev) => ({ ...prev, contact: "" }));
+    setTouched((t) => ({ ...t, contact: false }));
+  }
+
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
-    setTouched({ name: true, email: true, message: true });
+    setTouched({ name: true, contact: true, message: true });
     if (hasErrors) return;
 
     setStatus("submitting");
@@ -75,8 +97,8 @@ export function ContactForm({ onSuccess }: ContactFormProps) {
         </span>
         <p className="text-xl font-bold text-ink">Anfrage gesendet</p>
         <p className="max-w-xs text-[15px] leading-relaxed text-ink-soft">
-          {firstName ? `Danke, ${firstName}.` : "Danke für Ihre Anfrage."} Wir
-          melden uns innerhalb eines Werktages bei Ihnen.
+          {firstName ? `Danke, ${firstName}.` : "Danke für Ihre Anfrage."}{" "}
+          {method === "phone" ? "Wir rufen Sie in Kürze zurück." : "Wir melden uns per E-Mail bei Ihnen."}
         </p>
       </motion.div>
     );
@@ -84,51 +106,88 @@ export function ContactForm({ onSuccess }: ContactFormProps) {
 
   return (
     <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-5">
-      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-        <Field
-          id="name"
-          label="Name"
-          required
-          value={values.name}
-          onChange={(v) => update("name", v)}
-          onBlur={() => setTouched((t) => ({ ...t, name: true }))}
-          error={touched.name ? errors.name : undefined}
+      <div>
+        <label htmlFor="form-name" className="mb-1.5 block text-sm font-medium text-ink">
+          Name <span className="text-ink-soft">*</span>
+        </label>
+        <input
+          id="form-name"
+          name="name"
+          type="text"
           autoComplete="name"
+          value={values.name}
+          onChange={(e) => update("name", e.target.value)}
+          onBlur={() => setTouched((t) => ({ ...t, name: true }))}
+          aria-invalid={touched.name && !!errors.name}
+          aria-describedby={touched.name && errors.name ? "form-name-error" : undefined}
+          className={cn(
+            "h-12 w-full rounded-2xl border bg-bg px-4 text-[15px] text-ink placeholder:text-ink-faint",
+            "focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-hover/60",
+            touched.name && errors.name ? "border-red-300" : "border-border"
+          )}
         />
-        <Field
-          id="company"
-          label="Unternehmen"
-          value={values.company}
-          onChange={(v) => update("company", v)}
-          autoComplete="organization"
-        />
-        <Field
-          id="email"
-          label="E-Mail"
-          required
-          type="email"
-          value={values.email}
-          onChange={(v) => update("email", v)}
-          onBlur={() => setTouched((t) => ({ ...t, email: true }))}
-          error={touched.email ? errors.email : undefined}
-          autoComplete="email"
-        />
-        <Field
-          id="phone"
-          label="Telefon"
-          type="tel"
-          value={values.phone}
-          onChange={(v) => update("phone", v)}
-          autoComplete="tel"
-        />
+        {touched.name && errors.name && (
+          <p id="form-name-error" role="alert" className="mt-1.5 text-sm text-red-600">
+            {errors.name}
+          </p>
+        )}
       </div>
 
       <div>
-        <label htmlFor="message" className="mb-1.5 block text-sm font-medium text-ink">
+        <span className="mb-1.5 block text-sm font-medium text-ink">Wie melden wir uns?</span>
+        <div className="flex gap-2">
+          {(["phone", "email"] as const).map((m) => (
+            <button
+              key={m}
+              type="button"
+              onClick={() => switchMethod(m)}
+              className={cn(
+                "flex-1 rounded-2xl border px-4 py-2.5 text-[14px] font-medium transition-colors duration-200",
+                method === m
+                  ? "border-accent-hover bg-accent-tint text-ink"
+                  : "border-border bg-bg text-ink-soft hover:border-accent-line"
+              )}
+            >
+              {m === "phone" ? "Anrufen" : "E-Mail"}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div>
+        <label htmlFor="form-contact" className="mb-1.5 block text-sm font-medium text-ink">
+          {method === "phone" ? "Telefonnummer" : "E-Mail-Adresse"} <span className="text-ink-soft">*</span>
+        </label>
+        <input
+          id="form-contact"
+          name="contact"
+          type={method === "phone" ? "tel" : "email"}
+          autoComplete={method === "phone" ? "tel" : "email"}
+          value={values.contact}
+          onChange={(e) => update("contact", e.target.value)}
+          onBlur={() => setTouched((t) => ({ ...t, contact: true }))}
+          placeholder={method === "phone" ? "+49 ..." : "name@firma.de"}
+          aria-invalid={touched.contact && !!errors.contact}
+          aria-describedby={touched.contact && errors.contact ? "form-contact-error" : undefined}
+          className={cn(
+            "h-12 w-full rounded-2xl border bg-bg px-4 text-[15px] text-ink placeholder:text-ink-faint",
+            "focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-hover/60",
+            touched.contact && errors.contact ? "border-red-300" : "border-border"
+          )}
+        />
+        {touched.contact && errors.contact && (
+          <p id="form-contact-error" role="alert" className="mt-1.5 text-sm text-red-600">
+            {errors.contact}
+          </p>
+        )}
+      </div>
+
+      <div>
+        <label htmlFor="form-message" className="mb-1.5 block text-sm font-medium text-ink">
           Ihr Anliegen <span className="text-ink-soft">*</span>
         </label>
         <textarea
-          id="message"
+          id="form-message"
           name="message"
           rows={4}
           value={values.message}
@@ -136,7 +195,7 @@ export function ContactForm({ onSuccess }: ContactFormProps) {
           onBlur={() => setTouched((t) => ({ ...t, message: true }))}
           placeholder="Was bremst Ihr Geschäft aktuell, und was möchten Sie ändern?"
           aria-invalid={touched.message && !!errors.message}
-          aria-describedby={touched.message && errors.message ? "message-error" : undefined}
+          aria-describedby={touched.message && errors.message ? "form-message-error" : undefined}
           className={cn(
             "w-full resize-none rounded-2xl border bg-bg px-4 py-3 text-[15px] text-ink placeholder:text-ink-faint",
             "focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-hover/60",
@@ -144,7 +203,7 @@ export function ContactForm({ onSuccess }: ContactFormProps) {
           )}
         />
         {touched.message && errors.message && (
-          <p id="message-error" role="alert" className="mt-1.5 text-sm text-red-600">
+          <p id="form-message-error" role="alert" className="mt-1.5 text-sm text-red-600">
             {errors.message}
           </p>
         )}
@@ -154,10 +213,7 @@ export function ContactForm({ onSuccess }: ContactFormProps) {
         type="submit"
         variant="outline"
         disabled={status === "submitting"}
-        className={cn(
-          "mt-1 px-6 py-3.5 text-[15px]",
-          "disabled:cursor-not-allowed disabled:opacity-70"
-        )}
+        className="mt-1 px-6 py-3.5 text-[15px] disabled:cursor-not-allowed disabled:opacity-70"
       >
         {status === "submitting" && <Loader2 className="animate-spin" size={18} />}
         {status === "submitting" ? "Wird gesendet…" : "Anfrage senden"}
@@ -168,58 +224,5 @@ export function ContactForm({ onSuccess }: ContactFormProps) {
         Kontaktaufnahme zu.
       </p>
     </form>
-  );
-}
-
-interface FieldProps {
-  id: string;
-  label: string;
-  value: string;
-  onChange: (value: string) => void;
-  onBlur?: () => void;
-  error?: string;
-  required?: boolean;
-  type?: string;
-  autoComplete?: string;
-}
-
-function Field({
-  id,
-  label,
-  value,
-  onChange,
-  onBlur,
-  error,
-  required,
-  type = "text",
-  autoComplete,
-}: FieldProps) {
-  return (
-    <div>
-      <label htmlFor={id} className="mb-1.5 block text-sm font-medium text-ink">
-        {label} {required && <span className="text-ink-soft">*</span>}
-      </label>
-      <input
-        id={id}
-        name={id}
-        type={type}
-        value={value}
-        autoComplete={autoComplete}
-        onChange={(e) => onChange(e.target.value)}
-        onBlur={onBlur}
-        aria-invalid={!!error}
-        aria-describedby={error ? `${id}-error` : undefined}
-        className={cn(
-          "h-12 w-full rounded-2xl border bg-bg px-4 text-[15px] text-ink placeholder:text-ink-faint",
-          "focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-hover/60",
-          error ? "border-red-300" : "border-border"
-        )}
-      />
-      {error && (
-        <p id={`${id}-error`} role="alert" className="mt-1.5 text-sm text-red-600">
-          {error}
-        </p>
-      )}
-    </div>
   );
 }
