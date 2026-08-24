@@ -26,7 +26,7 @@ function SymptomLine({
   const ref = useRef<HTMLParagraphElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start 0.92", "start 0.4"],
+    offset: ["start 0.2", "start 0"],
   });
   const color = useTransform(scrollYProgress, [0, 1], ["#A6A6A6", "#171717"]);
 
