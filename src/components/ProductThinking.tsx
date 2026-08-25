@@ -13,7 +13,7 @@ const RING_SIZES = ["140vw", "108vw", "78vw", "50vw", "26vw"];
 
 export function ProductThinking() {
   return (
-    <section className="relative w-full overflow-hidden bg-[#0E68FF]/80 px-6 py-24 text-center sm:px-10 lg:px-16 lg:py-32">
+    <section className="relative w-full overflow-hidden bg-[#0E68FF]/60 px-6 py-24 text-center sm:px-10 lg:px-16 lg:py-32">
       <div
         className="pointer-events-none absolute inset-0 flex items-center justify-center"
         aria-hidden="true"

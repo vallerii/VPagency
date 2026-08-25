@@ -50,7 +50,7 @@ export function WebsiteHero({ title, subtitle }: WebsiteHeroProps) {
                     word === "verkaufen" ? (
                       <span
                         key={j}
-                        className=""
+                        className="text-[#0E68FF]"
                       >
                         {j > 0 ? " " : ""}
                         {word}
