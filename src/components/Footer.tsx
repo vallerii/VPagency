@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type React from "react";
 import { SERVICES } from "@/data/services";
 
 // TODO: swap these for VP Digital's real contact details before launch —
@@ -7,7 +8,7 @@ const EMAIL = "hello@vpdigital.agency";
 const PHONE = "+49 30 1234567";
 const PHONE_HREF = "+493012345670";
 
-const SOCIAL_LINKS: { name: string; href: string; Icon: (props: { className?: string }) => JSX.Element }[] = [
+const SOCIAL_LINKS: { name: string; href: string; Icon: (props: { className?: string }) => React.JSX.Element }[] = [
   { name: "Instagram", href: "https://instagram.com/vpdigital", Icon: InstagramIcon },
   { name: "LinkedIn", href: "https://linkedin.com/company/vpdigital", Icon: LinkedinIcon },
   { name: "WhatsApp", href: "https://wa.me/493012345670", Icon: WhatsappIcon },
