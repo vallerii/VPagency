@@ -48,7 +48,7 @@ export function ShopHero({ title, subtitle }: ShopHeroProps) {
                   word === "Käufer" ? (
                     <span
                       key={j}
-                      className="bg-gradient-to-r from-[#578CB5] to-[#0E68FF] bg-clip-text text-transparent"
+                      className="text-[#0E68FF]"
                     >
                       {j > 0 ? " " : ""}
                       {word}

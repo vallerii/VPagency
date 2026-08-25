@@ -20,7 +20,7 @@ export function ServiceCTA({ label }: ServiceCTAProps) {
         <div className="mb-16">
           <h2 className="text-balance text-[10vw] font-heading font-semibold leading-[1.1] tracking-tighter text-ink sm:text-[6vw] lg:text-[4vw] xl:text-[76px]">
             Erzählen Sie uns von Ihrer{" "}
-            <span className="bg-gradient-to-r from-[#578CB5] to-[#0E68FF] bg-clip-text text-transparent">
+            <span className="text-[#0E68FF]">
               Aufgabe
             </span>
           </h2>

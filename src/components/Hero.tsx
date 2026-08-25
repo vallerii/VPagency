@@ -22,7 +22,7 @@ export function Hero() {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="text-balance text-[12vw] font-heading font-semibold leading-[1.08] tracking-tighter text-ink sm:text-[8vw] lg:text-[5.5vw] xl:text-[96px]"
           >
-            <span className="bg-gradient-to-r from-[#578CB5] to-[#0E68FF] bg-clip-text text-transparent">
+            <span className="text-[#0E68FF]">
               Digitale Lösungen
             </span>{" "}
             für Ihr Unternehmen
