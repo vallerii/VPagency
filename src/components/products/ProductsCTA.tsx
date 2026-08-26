@@ -21,7 +21,7 @@ export function ProductsCTA() {
             Ihr Projekt steht
             <br />
             hier noch{" "}
-            <span className="bg-gradient-to-r from-[#8FAFD4] to-[#0E68FF] bg-clip-text text-transparent">
+            <span className="text-[#0E68FF]">
               nicht
             </span>
           </h2>

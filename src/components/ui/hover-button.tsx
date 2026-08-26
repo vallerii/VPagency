@@ -8,7 +8,7 @@ const base =
 const variants = {
   primary: "border-accent-2 bg-accent-2/15 text-accent-2-deep hover:bg-accent-2/30",
   secondary: "border-[#0E68FF] bg-card text-[#0E68FF]  hover:bg-[#0E68FF]/25 hover:text-white/80",
-  outline: "border-transparent bg-accent-2 text-bg transition-all duration-300 hover:bg-card/80 hover:text-[#0E68FF] hover:border-[#0E68FF]",
+  outline: "border-transparent bg-[#0E68FF] text-[#FFFFFF] transition-all duration-300 hover:bg-card/80 hover:text-[#0E68FF] hover:border-[#0E68FF]",
 };
 
 type Variant = keyof typeof variants;

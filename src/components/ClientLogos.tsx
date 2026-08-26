@@ -89,7 +89,7 @@ export function ClientLogos() {
         >
           Unternehmen aus Industrie, Bau und Logistik
           <br />
-          <span className="text-[#8FAFD4]">vertrauen</span> auf VP Digital
+          <span className="text-[#0E68FF]">vertrauen</span> auf VP Digital
         </motion.h2>
 
         <motion.div
@@ -105,7 +105,7 @@ export function ClientLogos() {
             return (
               <div
                 key={slug}
-                className={`flex items-center justify-center rounded-2xl border border-border bg-card px-6 transition-colors duration-300 hover:border-accent-line/50 hover:bg-[#24252b] ${place}`}
+                className={`flex items-center justify-center rounded-2xl border border-border bg-[#8FAFD4]/30 px-6 transition-colors duration-300 hover:border-accent-line/50 hover:bg-[#24252b] ${place}`}
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img

@@ -70,7 +70,7 @@ export function WhatWeBuild() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.4 }}
                 transition={{ duration: 0.6, delay: i * 0.08 }}
-                className="flex h-full flex-col rounded-[18px] border border-border bg-[#8FAFD4]/30 p-6"
+                className="flex h-full flex-col rounded-[18px] border border-border bg-card p-6"
               >
                 <span className="mb-5 flex h-14 w-14 items-center justify-center rounded-xl border border-border bg-bg">
                   <p.icon className="h-7 w-7 text-accent-hover" strokeWidth={1.6} />
