@@ -14,7 +14,7 @@ const CLEAN_WIDTHS = [100, 74, 52, 40];
 // sentences, not single words, so they need room to wrap.
 const PROBLEM_WIDTHS = [100, 90, 80, 70];
 
-const ARROW_COLOR = "#578CB5";
+const ARROW_COLOR = "#0E68FF";
 
 // The long divider between the two funnels — a shaft that stretches to
 // match whichever column is taller (the grid row does that for free) plus

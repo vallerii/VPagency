@@ -53,7 +53,7 @@ function ResultFrame({ row, index }: { row: BeforeAfterRow; index: number }) {
 
 export function WebsiteResult({ rows }: WebsiteResultProps) {
   return (
-    <section className="relative w-full overflow-hidden bg-[#578CB5]/80 px-6 py-24 sm:px-10 lg:px-16 lg:py-32">
+    <section className="relative w-full overflow-hidden bg-[#8FAFD4]/80 px-6 py-24 sm:px-10 lg:px-16 lg:py-32">
       
 
       <motion.h2

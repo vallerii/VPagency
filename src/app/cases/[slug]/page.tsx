@@ -71,7 +71,7 @@ export default async function CasePage({
             </section>
 
             <section>
-              <span className="text-[13px] font-medium uppercase tracking-wide text-accent-hover">
+              <span className="text-[13px] font-medium uppercase tracking-wide text-[#0E68FF]">
                 Ergebnis
               </span>
               <p className="mt-4 text-[19px] leading-[1.6] text-ink sm:text-[22px]">

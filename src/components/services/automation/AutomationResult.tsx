@@ -43,7 +43,7 @@ export function AutomationResult({ rows }: AutomationResultProps) {
                 <ArrowRight className="h-4 w-4 rotate-90 text-bg sm:rotate-0" strokeWidth={2.5} />
               </span>
             </div>
-            <div className="flex items-center bg-[#578CB5]/80 px-6 py-6 sm:py-8">
+            <div className="flex items-center bg-[#8FAFD4]/80 px-6 py-6 sm:py-8">
               <p className="text-[17px] font-medium leading-[1.4] text-ink sm:text-[19px]">{row.after}</p>
             </div>
           </motion.div>

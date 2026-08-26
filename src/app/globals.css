@@ -97,11 +97,11 @@
   --color-accent-deep: #B8D0EA;
 
   /* Accent 2 — accented text + interactive buttons. Matches the hero
-     headline's accent word (Hero.tsx: text-[#578CB5]) so buttons and the
+     headline's accent word (Hero.tsx: text-[#8FAFD4]) so buttons and the
      highlighted heading read as the same blue. */
-  --color-accent-2: #578CB5;
-  --color-accent-2-hover: #578CB5;
-  --color-accent-2-deep: #578CB5;
+  --color-accent-2: #8FAFD4;
+  --color-accent-2-hover: #8FAFD4;
+  --color-accent-2-deep: #8FAFD4;
 
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 }

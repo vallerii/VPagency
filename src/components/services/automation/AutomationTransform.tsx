@@ -44,7 +44,7 @@ export function AutomationTransform({ title, lines }: AutomationTransformProps) 
                   word === "Kostenposition" ? (
                     <span
                       key={j}
-                      className="bg-gradient-to-r from-[#578CB5] to-[#0E68FF] bg-clip-text text-transparent"
+                      className="bg-gradient-to-r from-[#8FAFD4] to-[#0E68FF] bg-clip-text text-transparent"
                     >
                       {j > 0 ? " " : ""}
                       {word}

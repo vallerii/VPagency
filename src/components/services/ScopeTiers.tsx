@@ -99,7 +99,7 @@ export function ScopeTiers({ included, addon, outOfScope }: ScopeTiersProps) {
                     <br />
                     <Link
                       href={`/${item.linkSlug}`}
-                      className="font-medium uppercase text-accent-hover font-[800] transition-colors hover:text-ink"
+                      className="font-medium uppercase text-[#0E68FF] font-[800] transition-colors hover:text-ink"
                     >
                       {item.linkLabel} →
                     </Link>

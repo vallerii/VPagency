@@ -32,7 +32,7 @@ export function ShopCost({ title, lines }: ShopCostProps) {
                   word === "Käufer" ? (
                     <span
                       key={j}
-                      className="bg-gradient-to-r from-[#578CB5] to-[#0E68FF] bg-clip-text text-transparent"
+                      className="bg-gradient-to-r from-[#8FAFD4] to-[#0E68FF] bg-clip-text text-transparent"
                     >
                       {j > 0 ? " " : ""}
                       {word}
@@ -91,7 +91,7 @@ export function ShopCost({ title, lines }: ShopCostProps) {
           </div>
 
           <div>
-            <span className="mb-4 block text-[13px] font-medium uppercase tracking-wide text-accent-hover">
+            <span className="mb-4 block text-[13px] font-medium uppercase tracking-wide text-[#0E68FF]">
               Wenige Schritte
             </span>
             <div className="flex items-center gap-3">

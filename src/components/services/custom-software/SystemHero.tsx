@@ -19,7 +19,7 @@ export function SystemHero({ title, subtitle }: SystemHeroProps) {
       className="relative w-full overflow-hidden px-6 pb-20 pt-32 sm:px-10 lg:px-16 lg:pb-28"
       style={{
         background:
-          "linear-gradient(to top, color-mix(in srgb, #578CB5 20%, var(--color-bg) 86%) 0%, var(--color-bg) 62%)",
+          "linear-gradient(to top, color-mix(in srgb, #8FAFD4 20%, var(--color-bg) 86%) 0%, var(--color-bg) 62%)",
       }}
     >
       <div className="mx-auto w-full max-w-[1440px]">
@@ -47,7 +47,7 @@ export function SystemHero({ title, subtitle }: SystemHeroProps) {
                     word === "funktionieren" ? (
                       <span
                         key={j}
-                        className="bg-gradient-to-r from-[#578CB5] to-[#0E68FF] bg-clip-text text-transparent"
+                        className="bg-gradient-to-r from-[#8FAFD4] to-[#0E68FF] bg-clip-text text-transparent"
                       >
                         {j > 0 ? " " : ""}
                         {word}
