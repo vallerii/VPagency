@@ -85,7 +85,7 @@ export function Footer() {
     <footer className="border-t border-border px-6 py-12 sm:px-10 lg:px-16">
       <div className="mx-auto flex w-full max-w-7xl flex-col gap-10 sm:flex-row sm:justify-between">
         <div>
-          <img src="/logo.png" alt="VP Digital" className="h-auto w-[340px]" />
+          <img src="/logo-mini.png" alt="VP Digital" className="h-auto w-[340px]" />
           <p className="mt-2 max-w-[340px] text-sm text-ink-faint">
             Wir verstehen Ihr Geschäftsproblem und entwickeln eine Lösung,
             die wirklich funktioniert
