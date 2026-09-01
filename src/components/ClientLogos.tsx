@@ -37,7 +37,7 @@ const GRID_ITEMS: { slug: string; place: string; img: string }[] = [
   },
   {
     slug: "proctec",
-    place: "col-start-1 row-start-3 row-span-1 lg:col-start-1 lg:row-start-3 lg:row-span-1",
+    place: "col-start-2 row-start-4 row-span-1 lg:col-start-4 lg:row-start-1 lg:row-span-1",
     img: "h-10 lg:h-12",
   },
   {
@@ -64,7 +64,7 @@ const GRID_ITEMS: { slug: string; place: string; img: string }[] = [
  
   {
     slug: "cnag",
-    place: "col-start-2 row-start-4 row-span-1 lg:col-start-4 lg:row-start-1 lg:row-span-1",
+    place: "col-start-1 row-start-3 row-span-1 lg:col-start-1 lg:row-start-3 lg:row-span-1",
     img: "h-10 lg:h-11",
   },
    {
@@ -73,6 +73,16 @@ const GRID_ITEMS: { slug: string; place: string; img: string }[] = [
     img: "h-30 lg:h-40",
   },
 ];
+
+// Logos that are white / light artwork need a dark plate under them; the
+// rest sit on the light blue one. Hover only nudges the plate a shade
+// lighter or darker, so the logo never changes contrast on hover.
+const DARK_PLATE = new Set(["gbs", "lemming", "proctec", "teupen"]);
+
+const PLATE_LIGHT =
+  "border-border bg-[#8FAFD4]/60 hover:bg-[#8FAFD4]/80";
+const PLATE_DARK =
+  "border-white/10 bg-[#24252b] hover:bg-[#33343c]";
 
 const CASE_BY_SLUG = new Map(CASES.map((c) => [c.slug, c]));
 
@@ -105,7 +115,9 @@ export function ClientLogos() {
             return (
               <div
                 key={slug}
-                className={`flex items-center justify-center rounded-2xl border border-border bg-[#8FAFD4]/30 px-6 transition-colors duration-300 hover:border-accent-line/50 hover:bg-[#24252b] ${place}`}
+                className={`flex items-center justify-center rounded-2xl border px-6 transition-colors duration-300 ${
+                  DARK_PLATE.has(slug) ? PLATE_DARK : PLATE_LIGHT
+                } ${place}`}
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img

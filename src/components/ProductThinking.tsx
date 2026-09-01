@@ -21,7 +21,7 @@ export function ProductThinking() {
         {RING_SIZES.map((size, i) => (
           <span
             key={size}
-            className="target-ring absolute left-1/2 top-1/2 rounded-full border-2 border-border/60"
+            className="target-ring absolute left-1/2 top-1/2 rounded-full border-2 border-accent/60"
             style={{
               width: size,
               height: size,
@@ -39,7 +39,7 @@ export function ProductThinking() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.6 }}
           transition={{ duration: 0.6 }}
-          className="mb-4 block text-[13px] font-medium uppercase tracking-wide text-ink"
+          className="mb-4 block text-[13px] font-medium uppercase tracking-wide text-bg/60"
         >
           Product thinking
         </motion.span>
@@ -50,9 +50,9 @@ export function ProductThinking() {
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           className="text-balance text-[10vw] font-heading font-semibold leading-[1.1] tracking-tighter text-ink sm:text-[6vw] lg:text-[4vw] xl:text-[76px]"
         >
-          <span className="block">Wir denken nicht in Projekten.</span>
-          <span className="mt-3 block sm:mt-20">
-            Wir denken in <span className="text-bg">Produkten</span>
+          <span className="block text-bg">Wir denken nicht in Projekten.</span>
+          <span className="mt-3 block sm:mt-20 text-bg">
+            Wir denken in <span className="text-ink">Produkten</span>
           </span>
         </motion.h2>
 

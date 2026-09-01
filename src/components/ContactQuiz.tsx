@@ -16,9 +16,11 @@ import { SERVICES } from "@/data/services";
 
 type ServiceSlug = (typeof SERVICES)[number]["slug"] | "unsure";
 
+// Every question in the quiz shows at most three concrete options plus an
+// "etwas anderes" escape hatch (see withOther) — a longer list makes the
+// first screen feel like work instead of a two-second click.
 const STEP0_OPTIONS: { slug: ServiceSlug; label: string }[] = [
   { slug: "websites", label: "Die Website bringt zu wenig Anfragen" },
-  { slug: "ecommerce", label: "Der Online-Shop verliert Käufer im Checkout" },
   {
     slug: "custom-software",
     label: "Wichtige Prozesse laufen nur in Excel oder in Köpfen einzelner Mitarbeiter",
@@ -28,47 +30,46 @@ const STEP0_OPTIONS: { slug: ServiceSlug; label: string }[] = [
     label: "Mitarbeiter erledigen jeden Tag dieselbe Routinearbeit von Hand",
   },
   {
-    slug: "support",
-    label: "Ein bestehendes System braucht Pflege, der bisherige Dienstleister ist weg",
-  },
-  {
     slug: "unsure",
-    label: "Ich bin mir nicht sicher — will das gemeinsam herausfinden",
+    label: "Etwas anderes — Online-Shop, Wartung oder noch unklar",
   },
 ];
 
-// Same 7 lines as the homepage's SelfRecognitionWall ("Klingt nach Ihrem
+// Options 1–3 of every list plus one shared "something else" answer, so no
+// step ever shows more than four buttons.
+const OTHER_OPTION = "Etwas anderes — erkläre ich im Gespräch";
+
+function withOther(list: string[]): string[] {
+  return [...list.slice(0, 3), OTHER_OPTION];
+}
+
+// Three lines from the homepage's SelfRecognitionWall ("Klingt nach Ihrem
 // Projekt?") — used here as the symptom step when nobody picked a
 // specific service yet.
 const UNSURE_SYMPTOMS = [
   "Sie wissen genau, was Sie brauchen — eine neue Website, einen Shop, eine eigene Lösung",
-  "Nur nicht, wer es sauber und zuverlässig umsetzt",
   "Der letzte Dienstleister hat die Technik nie wirklich verstanden",
   "Sie brauchen kein langes Beratungsgespräch, sondern ein Team, das liefert",
-  "Die Anforderungen sind klar — die Umsetzung soll es auch sein",
-  "Sie suchen einen Partner mit echter technischer Tiefe, nicht nur mit Design",
-  "Ein Angebot, das nicht nur gut klingt, sondern auch hält",
 ];
 
 // No single service is picked in this branch, so there's no beforeAfter
-// list to draw from — these four summarise the rationaleLines shared
+// list to draw from — these three summarise the rationaleLines shared
 // across all five services in @/data/services.
 const UNSURE_GOALS = [
   "Mehr Anfragen bekommen",
   "Weniger manuelle Arbeit im Team",
   "Ein System, das mit uns mitwächst",
-  "Einen verlässlichen Partner für die Umsetzung",
 ];
 
 function getSymptoms(slug: ServiceSlug): string[] {
-  if (slug === "unsure") return UNSURE_SYMPTOMS;
-  return SERVICES.find((s) => s.slug === slug)?.symptoms ?? [];
+  if (slug === "unsure") return withOther(UNSURE_SYMPTOMS);
+  return withOther(SERVICES.find((s) => s.slug === slug)?.symptoms ?? []);
 }
 
 function getGoals(slug: ServiceSlug): string[] {
-  if (slug === "unsure") return UNSURE_GOALS;
+  if (slug === "unsure") return withOther(UNSURE_GOALS);
   const service = SERVICES.find((s) => s.slug === slug);
-  return service ? service.beforeAfter.map((b) => b.after) : [];
+  return withOther(service ? service.beforeAfter.map((b) => b.after) : []);
 }
 
 function toggle(list: string[], value: string): string[] {

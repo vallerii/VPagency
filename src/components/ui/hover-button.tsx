@@ -7,8 +7,8 @@ const base =
   "inline-flex items-center justify-center gap-2 rounded-full border-2 font-semibold uppercase tracking-[15%] transition-colors duration-300";
 const variants = {
   primary: "border-accent-2 bg-accent-2/15 text-accent-2-deep hover:bg-accent-2/30",
-  secondary: "border-[#0E68FF] bg-card text-[#0E68FF]  hover:bg-[#0E68FF]/25 hover:text-white/80",
-  outline: "border-transparent bg-[#0E68FF] text-[#FFFFFF] transition-all duration-300 hover:bg-card/80 hover:text-[#0E68FF] hover:border-[#0E68FF]",
+  secondary: "border-accent bg-card text-accent hover:border-[#0E68FF]  hover:bg-[#0E68FF]/25 hover:text-white/80",
+  outline: "border-transparent bg-[#0E68FF] text-accent transition-all duration-300 hover:bg-[#0E68FF]/25 hover:text-[#FFFFFF] hover:border-[#0E68FF]",
 };
 
 type Variant = keyof typeof variants;
