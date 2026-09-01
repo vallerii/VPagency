@@ -5,6 +5,15 @@ import { motion, useReducedMotion } from "framer-motion";
 import { NetworkNode } from "./story/NetworkNode";
 import { NODES, computeFrame, computeConnections, computeActiveNodes } from "./story/story-data";
 import { ContactQuiz } from "./ContactQuiz";
+import {
+  CTA_CARD,
+  CTA_FOOTNOTE,
+  CTA_FOOTNOTE_LINK,
+  CTA_HEADING,
+  CTA_HIGHLIGHT,
+  CTA_LEAD,
+  CTA_PANEL,
+} from "@/components/ui/cta-styles";
 
 const GOAL = { x: 50, y: 97 };
 const GOAL_LINKS = ["crm", "tables"];
@@ -114,7 +123,7 @@ export function FinalCTA() {
       <motion.div
         animate={assembled ? { scale: [1, 1.012, 1] } : {}}
         transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
-        className="relative mx-auto w-full max-w-[1440px] grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-10 lg:gap-20 rounded-3xl border border-accent bg-accent/60 px-6 py-14 sm:px-10 sm:py-16 lg:px-16 lg:py-20"
+        className={CTA_PANEL}
       >
         <div className="mb-16 ">
           <motion.h2
@@ -122,18 +131,18 @@ export function FinalCTA() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.6 }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="text-balance text-[10vw] font-heading font-semibold leading-[1.1] tracking-tighter text-bg sm:text-[6vw] lg:text-[4vw] xl:text-[76px]"
+            className={CTA_HEADING}
           >
             Lassen Sie uns ein System bauen,
             <br />das wirklich
-            <br /><span className="text-ink">Sinn ergibt</span>
+            <br /><span className={CTA_HIGHLIGHT}>Sinn ergibt</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.6 }}
             transition={{ duration: 0.7, delay: 0.15 }}
-            className="mt-8 max-w-3xl text-[16px] leading-[1.5] text-card sm:text-[19px] lg:text-[22px] xl:text-[26px]"
+            className={CTA_LEAD}
           >
             Erzählen Sie uns von Ihrem Projekt — wir zeigen Ihnen, wie wir es
             gemeinsam umsetzen
@@ -146,15 +155,15 @@ export function FinalCTA() {
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
         >
-          <div className="rounded-[28px] border border-border bg-card p-8 sm:p-12">
+          <div className={CTA_CARD}>
             <ContactQuiz onSuccess={() => setAssembled(true)} />
           </div>
 
-          <p className="mt-6 text-center text-[14px] text-card">
+          <p className={CTA_FOOTNOTE}>
             Wissen Sie bereits, was Sie brauchen?{" "}
             <a
               href="mailto:hello@vpdigital.agency"
-              className="font-medium text-accent-hover transition-colors hover:text-ink"
+              className={CTA_FOOTNOTE_LINK}
             >
               Schreiben Sie uns: hello@vpdigital.agency
             </a>

@@ -8,7 +8,10 @@ const base =
 const variants = {
   primary: "border-accent-2 bg-accent-2/15 text-accent-2-deep hover:bg-accent-2/30",
   secondary: "border-accent bg-card text-accent hover:border-[#0E68FF]  hover:bg-[#0E68FF]/25 hover:text-white/80",
-  outline: "border-transparent bg-[#0E68FF] text-accent transition-all duration-300 hover:bg-[#0E68FF]/25 hover:text-[#FFFFFF] hover:border-[#0E68FF]",
+  // White label, not text-accent: #8FAFD4 on the #0E68FF fill is ~2:1,
+  // white is 4.8:1.
+  outline:
+    "border-transparent bg-[#0E68FF] text-white transition-all duration-300 hover:bg-[#0E68FF]/25 hover:text-[#FFFFFF] hover:border-[#0E68FF]",
 };
 
 type Variant = keyof typeof variants;
