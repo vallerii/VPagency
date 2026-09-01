@@ -1,11 +1,12 @@
 import Link from "next/link";
 import type React from "react";
 import { SERVICES } from "@/data/services";
+import { LEGAL_LINKS } from "@/data/legal";
 
 // TODO: swap these for VP Digital's real contact details before launch —
 // placeholders only so the footer UI can be reviewed end to end.
 const EMAIL = "hello@vpdigital.agency";
-const PHONE = "+49 30 1234567";
+const PHONE = "+49 (0) 271 313 93 517";
 const PHONE_HREF = "+493012345670";
 
 const SOCIAL_LINKS: { name: string; href: string; Icon: (props: { className?: string }) => React.JSX.Element }[] = [
@@ -141,8 +142,20 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="mx-auto mt-10 flex w-full max-w-7xl flex-col items-center justify-center border-t border-border pt-6 text-sm text-ink-faint">
+      <div className="mx-auto mt-10 flex w-full max-w-7xl flex-col items-center justify-between gap-4 border-t border-border pt-6 text-sm text-ink-faint sm:flex-row">
         <span>© {new Date().getFullYear()} VP Digital. Alle Rechte vorbehalten.</span>
+
+        <nav aria-label="Rechtliches" className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
+          {LEGAL_LINKS.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="transition-colors hover:text-ink"
+            >
+              {link.label}
+            </Link>
+          ))}
+        </nav>
       </div>
     </footer>
   );

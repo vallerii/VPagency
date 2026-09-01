@@ -5,76 +5,58 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Check, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { HoverButton } from "./ui/hover-button";
-import { SERVICES } from "@/data/services";
 
-// A click-through pain quiz instead of a wall of text fields — every
-// answer option is pulled straight from real site copy (SERVICES.symptoms
-// / SERVICES.beforeAfter[].after in @/data/services, plus the homepage's
-// "Klingt nach Ihrem Projekt?" wall for the "not sure yet" branch) so the
-// quiz never invents claims the rest of the site doesn't already make.
-// Typing only happens on the final step — name + one contact value.
+// A three-step click-through brief instead of a wall of text fields:
+//   1. What do you want to build?  (four project types, two columns)
+//   2. Which industry?             (single choice + free-text "Andere")
+//   3. Contact form                (one extra field that depends on step 1:
+//                                   a relaunch asks for the current site,
+//                                   everything else asks for references)
+// Typing only happens on the last step.
 
-type ServiceSlug = (typeof SERVICES)[number]["slug"] | "unsure";
+type NeedId = "new-website" | "relaunch" | "shop" | "portal";
 
-// Every question in the quiz shows at most three concrete options plus an
-// "etwas anderes" escape hatch (see withOther) — a longer list makes the
-// first screen feel like work instead of a two-second click.
-const STEP0_OPTIONS: { slug: ServiceSlug; label: string }[] = [
-  { slug: "websites", label: "Die Website bringt zu wenig Anfragen" },
+const NEED_OPTIONS: { id: NeedId; title: string; description: string }[] = [
   {
-    slug: "custom-software",
-    label: "Wichtige Prozesse laufen nur in Excel oder in Köpfen einzelner Mitarbeiter",
+    id: "new-website",
+    title: "Neue Website",
+    description:
+      "Eine neue Website für Ihr Unternehmen, Ihre Leistungen oder Ihre Marke erstellen.",
   },
   {
-    slug: "automation",
-    label: "Mitarbeiter erledigen jeden Tag dieselbe Routinearbeit von Hand",
+    id: "relaunch",
+    title: "Website-Relaunch",
+    description: "Ihre bestehende Website in Design, Struktur und Technik erneuern.",
   },
   {
-    slug: "unsure",
-    label: "Etwas anderes — Online-Shop, Wartung oder noch unklar",
+    id: "shop",
+    title: "Online-Shop",
+    description:
+      "Einen neuen Shop aufbauen oder Ihren bestehenden Shop weiterentwickeln.",
+  },
+  {
+    id: "portal",
+    title: "Kundenportal",
+    description:
+      "Einen persönlichen Bereich schaffen, in dem Ihre Kunden Dokumente, Bestellungen und Services verwalten.",
   },
 ];
 
-// Options 1–3 of every list plus one shared "something else" answer, so no
-// step ever shows more than four buttons.
-const OTHER_OPTION = "Etwas anderes — erkläre ich im Gespräch";
+const OTHER_INDUSTRY = "Andere";
 
-function withOther(list: string[]): string[] {
-  return [...list.slice(0, 3), OTHER_OPTION];
-}
-
-// Three lines from the homepage's SelfRecognitionWall ("Klingt nach Ihrem
-// Projekt?") — used here as the symptom step when nobody picked a
-// specific service yet.
-const UNSURE_SYMPTOMS = [
-  "Sie wissen genau, was Sie brauchen — eine neue Website, einen Shop, eine eigene Lösung",
-  "Der letzte Dienstleister hat die Technik nie wirklich verstanden",
-  "Sie brauchen kein langes Beratungsgespräch, sondern ein Team, das liefert",
+const INDUSTRY_OPTIONS = [
+  "Handwerk & Bau",
+  "Handel & E-Commerce",
+  "Produktion & Industrie",
+  "Dienstleistung & Beratung",
+  "Gesundheit & Medizin",
+  "Immobilien",
+  "Gastronomie & Hotellerie",
+  "IT & Software",
+  "Bildung & Weiterbildung",
+  "Finanzen & Versicherung",
+  OTHER_INDUSTRY,
 ];
-
-// No single service is picked in this branch, so there's no beforeAfter
-// list to draw from — these three summarise the rationaleLines shared
-// across all five services in @/data/services.
-const UNSURE_GOALS = [
-  "Mehr Anfragen bekommen",
-  "Weniger manuelle Arbeit im Team",
-  "Ein System, das mit uns mitwächst",
-];
-
-function getSymptoms(slug: ServiceSlug): string[] {
-  if (slug === "unsure") return withOther(UNSURE_SYMPTOMS);
-  return withOther(SERVICES.find((s) => s.slug === slug)?.symptoms ?? []);
-}
-
-function getGoals(slug: ServiceSlug): string[] {
-  if (slug === "unsure") return withOther(UNSURE_GOALS);
-  const service = SERVICES.find((s) => s.slug === slug);
-  return withOther(service ? service.beforeAfter.map((b) => b.after) : []);
-}
-
-function toggle(list: string[], value: string): string[] {
-  return list.includes(value) ? list.filter((v) => v !== value) : [...list, value];
-}
 
 function validateEmail(value: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
@@ -84,7 +66,14 @@ function validatePhone(value: string) {
   return value.replace(/[^0-9]/g, "").length >= 6;
 }
 
-const TOTAL_STEPS = 4;
+const TOTAL_STEPS = 3;
+
+const OPTION_BASE =
+  "rounded-2xl border px-5 py-3.5 text-left text-[15px] leading-[1.4] transition-colors duration-200";
+const OPTION_IDLE = "border-border bg-bg text-ink hover:border-accent-line hover:bg-accent-tint";
+const OPTION_ACTIVE = "border-accent-hover bg-accent-tint text-ink";
+const FIELD_BASE =
+  "w-full rounded-2xl border bg-bg px-4 text-[15px] text-ink placeholder:text-ink-faint focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-hover/60";
 
 interface ContactQuizProps {
   onSuccess?: () => void;
@@ -92,14 +81,24 @@ interface ContactQuizProps {
 
 export function ContactQuiz({ onSuccess }: ContactQuizProps) {
   const [step, setStep] = useState(0);
-  const [slug, setSlug] = useState<ServiceSlug | null>(null);
-  const [symptoms, setSymptoms] = useState<string[]>([]);
-  const [goals, setGoals] = useState<string[]>([]);
+  const [need, setNeed] = useState<NeedId | null>(null);
+  const [industry, setIndustry] = useState<string | null>(null);
+  const [otherIndustry, setOtherIndustry] = useState("");
   const [name, setName] = useState("");
   const [method, setMethod] = useState<"phone" | "email">("phone");
   const [contact, setContact] = useState("");
+  const [currentSite, setCurrentSite] = useState("");
+  const [references, setReferences] = useState("");
   const [touched, setTouched] = useState(false);
   const [status, setStatus] = useState<"idle" | "submitting" | "success">("idle");
+
+  // A relaunch is about an existing site, so that is what we ask for;
+  // every other project type has nothing to look at yet, so we ask for
+  // references instead.
+  const isRelaunch = need === "relaunch";
+
+  const industryDone =
+    industry !== null && (industry !== OTHER_INDUSTRY || otherIndustry.trim().length > 0);
 
   const nameError = touched && !name.trim() ? "Bitte geben Sie Ihren Namen an" : undefined;
   const contactError =
@@ -108,11 +107,13 @@ export function ContactQuiz({ onSuccess }: ContactQuizProps) {
       : touched && method === "phone" && !validatePhone(contact)
         ? "Bitte geben Sie eine gültige Telefonnummer an"
         : undefined;
+  const siteError =
+    touched && isRelaunch && !currentSite.trim()
+      ? "Bitte geben Sie die Adresse Ihrer aktuellen Website an"
+      : undefined;
 
-  function selectStep0(value: ServiceSlug) {
-    setSlug(value);
-    setSymptoms([]);
-    setGoals([]);
+  function selectNeed(value: NeedId) {
+    setNeed(value);
     setStep(1);
   }
 
@@ -123,7 +124,8 @@ export function ContactQuiz({ onSuccess }: ContactQuizProps) {
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
     setTouched(true);
-    if (!name.trim() || (method === "email" ? !validateEmail(contact) : !validatePhone(contact))) {
+    const contactValid = method === "email" ? validateEmail(contact) : validatePhone(contact);
+    if (!name.trim() || !contactValid || (isRelaunch && !currentSite.trim())) {
       return;
     }
     setStatus("submitting");
@@ -160,7 +162,7 @@ export function ContactQuiz({ onSuccess }: ContactQuizProps) {
     <div className="flex flex-col gap-6">
       {/* Progress */}
       <div className="flex items-center gap-3">
-        {step > 0 ? (
+        {step > 0 && (
           <button
             type="button"
             onClick={goBack}
@@ -168,14 +170,10 @@ export function ContactQuiz({ onSuccess }: ContactQuizProps) {
           >
             ← Zurück
           </button>
-        ) : (
-          <span className="text-[13px] font-medium text-ink-faint">Schritt {step + 1} von {TOTAL_STEPS}</span>
         )}
-        {step > 0 && (
-          <span className="text-[13px] font-medium text-ink-faint">
-            Schritt {step + 1} von {TOTAL_STEPS}
-          </span>
-        )}
+        <span className="text-[13px] font-medium text-ink-faint">
+          Schritt {step + 1} von {TOTAL_STEPS}
+        </span>
         <div className="ml-auto flex gap-1.5">
           {Array.from({ length: TOTAL_STEPS }).map((_, i) => (
             <span
@@ -200,24 +198,31 @@ export function ContactQuiz({ onSuccess }: ContactQuizProps) {
             className="flex flex-col gap-5"
           >
             <h3 className="text-[19px] font-semibold leading-[1.3] text-ink sm:text-[22px]">
-              Was bremst Ihr Geschäft gerade am meisten? - Was möchten Sie umsetzen?
+              Was brauchen Sie?
             </h3>
-            <div className="flex flex-col gap-2.5">
-              {STEP0_OPTIONS.map((opt) => (
+            <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
+              {NEED_OPTIONS.map((opt) => (
                 <button
-                  key={opt.slug}
+                  key={opt.id}
                   type="button"
-                  onClick={() => selectStep0(opt.slug)}
-                  className="rounded-2xl border border-border bg-bg px-5 py-3.5 text-left text-[15px] leading-[1.4] text-ink transition-colors duration-200 hover:border-accent-line hover:bg-accent-tint"
+                  onClick={() => selectNeed(opt.id)}
+                  className={cn(
+                    OPTION_BASE,
+                    need === opt.id ? OPTION_ACTIVE : OPTION_IDLE,
+                    "flex h-full flex-col gap-1.5"
+                  )}
                 >
-                  {opt.label}
+                  <span className="text-[16px] font-semibold text-ink">{opt.title}</span>
+                  <span className="text-[13.5px] leading-[1.45] text-ink-soft">
+                    {opt.description}
+                  </span>
                 </button>
               ))}
             </div>
           </motion.div>
         )}
 
-        {step === 1 && slug && (
+        {step === 1 && (
           <motion.div
             key="step1"
             initial={{ opacity: 0, x: 16 }}
@@ -228,42 +233,60 @@ export function ContactQuiz({ onSuccess }: ContactQuizProps) {
           >
             <div>
               <h3 className="text-[19px] font-semibold leading-[1.3] text-ink sm:text-[22px]">
-                Welche Punkte treffen zu?
+                In welcher Branche sind Sie tätig?
               </h3>
-              <p className="mt-1 text-[13px] text-ink-faint">Mehrfachauswahl möglich</p>
+              <p className="mt-1 text-[13px] text-ink-faint">Eine Auswahl</p>
             </div>
-            <div className="flex flex-col gap-2.5">
-              {getSymptoms(slug).map((text) => {
-                const active = symptoms.includes(text);
-                return (
-                  <button
-                    key={text}
-                    type="button"
-                    onClick={() => setSymptoms((s) => toggle(s, text))}
+
+            <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
+              {INDUSTRY_OPTIONS.map((text) => (
+                <button
+                  key={text}
+                  type="button"
+                  onClick={() => setIndustry(text)}
+                  className={cn(
+                    OPTION_BASE,
+                    industry === text ? OPTION_ACTIVE : OPTION_IDLE,
+                    "flex items-center gap-3"
+                  )}
+                >
+                  <span
                     className={cn(
-                      "flex items-start gap-3 rounded-2xl border px-5 py-3.5 text-left text-[15px] leading-[1.4] transition-colors duration-200",
-                      active
-                        ? "border-accent-hover bg-accent-tint text-ink"
-                        : "border-border bg-bg text-ink hover:border-accent-line"
+                      "flex h-5 w-5 shrink-0 items-center justify-center rounded-full border transition-colors duration-200",
+                      industry === text ? "border-accent-hover bg-accent-hover" : "border-border"
                     )}
                   >
-                    <span
-                      className={cn(
-                        "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-[6px] border transition-colors duration-200",
-                        active ? "border-accent-hover bg-accent-hover" : "border-border"
-                      )}
-                    >
-                      {active && <Check size={13} strokeWidth={3} className="text-bg" />}
-                    </span>
-                    {text}
-                  </button>
-                );
-              })}
+                    {industry === text && <Check size={13} strokeWidth={3} className="text-bg" />}
+                  </span>
+                  {text}
+                </button>
+              ))}
             </div>
+
+            {industry === OTHER_INDUSTRY && (
+              <motion.div initial={{ opacity: 0, y: -4 }} animate={{ opacity: 1, y: 0 }}>
+                <label
+                  htmlFor="quiz-industry-other"
+                  className="mb-1.5 block text-sm font-medium text-ink"
+                >
+                  Welche Branche? <span className="text-ink-soft">*</span>
+                </label>
+                <input
+                  id="quiz-industry-other"
+                  name="industry-other"
+                  type="text"
+                  value={otherIndustry}
+                  onChange={(e) => setOtherIndustry(e.target.value)}
+                  placeholder="z. B. Logistik"
+                  className={cn(FIELD_BASE, "h-12 border-border")}
+                />
+              </motion.div>
+            )}
+
             <HoverButton
               type="button"
               variant="outline"
-              disabled={symptoms.length === 0}
+              disabled={!industryDone}
               onClick={() => setStep(2)}
               className="mt-1 self-start px-6 py-3.5 text-[15px] disabled:cursor-not-allowed disabled:opacity-50"
             >
@@ -272,64 +295,9 @@ export function ContactQuiz({ onSuccess }: ContactQuizProps) {
           </motion.div>
         )}
 
-        {step === 2 && slug && (
-          <motion.div
-            key="step2"
-            initial={{ opacity: 0, x: 16 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -16 }}
-            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col gap-5"
-          >
-            <div>
-              <h3 className="text-[19px] font-semibold leading-[1.3] text-ink sm:text-[22px]">
-                Was soll sich am Ende ändern?
-              </h3>
-              <p className="mt-1 text-[13px] text-ink-faint">Mehrfachauswahl möglich</p>
-            </div>
-            <div className="flex flex-col gap-2.5">
-              {getGoals(slug).map((text) => {
-                const active = goals.includes(text);
-                return (
-                  <button
-                    key={text}
-                    type="button"
-                    onClick={() => setGoals((g) => toggle(g, text))}
-                    className={cn(
-                      "flex items-start gap-3 rounded-2xl border px-5 py-3.5 text-left text-[15px] leading-[1.4] transition-colors duration-200",
-                      active
-                        ? "border-accent-hover bg-accent-tint text-ink"
-                        : "border-border bg-bg text-ink hover:border-accent-line"
-                    )}
-                  >
-                    <span
-                      className={cn(
-                        "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-[6px] border transition-colors duration-200",
-                        active ? "border-accent-hover bg-accent-hover" : "border-border"
-                      )}
-                    >
-                      {active && <Check size={13} strokeWidth={3} className="text-bg" />}
-                    </span>
-                    {text}
-                  </button>
-                );
-              })}
-            </div>
-            <HoverButton
-              type="button"
-              variant="outline"
-              disabled={goals.length === 0}
-              onClick={() => setStep(3)}
-              className="mt-1 self-start px-6 py-3.5 text-[15px] disabled:cursor-not-allowed disabled:opacity-50"
-            >
-              Weiter
-            </HoverButton>
-          </motion.div>
-        )}
-
-        {step === 3 && (
+        {step === 2 && (
           <motion.form
-            key="step3"
+            key="step2"
             onSubmit={handleSubmit}
             noValidate
             initial={{ opacity: 0, x: 16 }}
@@ -355,11 +323,7 @@ export function ContactQuiz({ onSuccess }: ContactQuizProps) {
                 onChange={(e) => setName(e.target.value)}
                 aria-invalid={!!nameError}
                 aria-describedby={nameError ? "quiz-name-error" : undefined}
-                className={cn(
-                  "h-12 w-full rounded-2xl border bg-bg px-4 text-[15px] text-ink placeholder:text-ink-faint",
-                  "focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-hover/60",
-                  nameError ? "border-red-300" : "border-border"
-                )}
+                className={cn("h-12", FIELD_BASE, nameError ? "border-red-300" : "border-border")}
               />
               {nameError && (
                 <p id="quiz-name-error" role="alert" className="mt-1.5 text-sm text-red-600">
@@ -409,8 +373,8 @@ export function ContactQuiz({ onSuccess }: ContactQuizProps) {
                 aria-invalid={!!contactError}
                 aria-describedby={contactError ? "quiz-contact-error" : undefined}
                 className={cn(
-                  "h-12 w-full rounded-2xl border bg-bg px-4 text-[15px] text-ink placeholder:text-ink-faint",
-                  "focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-hover/60",
+                  "h-12",
+                  FIELD_BASE,
                   contactError ? "border-red-300" : "border-border"
                 )}
               />
@@ -420,6 +384,60 @@ export function ContactQuiz({ onSuccess }: ContactQuizProps) {
                 </p>
               )}
             </div>
+
+            {isRelaunch ? (
+              <div>
+                <label
+                  htmlFor="quiz-current-site"
+                  className="mb-1.5 block text-sm font-medium text-ink"
+                >
+                  Ihre aktuelle Website <span className="text-ink-soft">*</span>
+                </label>
+                <input
+                  id="quiz-current-site"
+                  name="current-site"
+                  type="url"
+                  inputMode="url"
+                  autoComplete="url"
+                  value={currentSite}
+                  onChange={(e) => setCurrentSite(e.target.value)}
+                  placeholder="https://ihre-website.de"
+                  aria-invalid={!!siteError}
+                  aria-describedby={siteError ? "quiz-current-site-error" : undefined}
+                  className={cn("h-12", FIELD_BASE, siteError ? "border-red-300" : "border-border")}
+                />
+                {siteError && (
+                  <p
+                    id="quiz-current-site-error"
+                    role="alert"
+                    className="mt-1.5 text-sm text-red-600"
+                  >
+                    {siteError}
+                  </p>
+                )}
+              </div>
+            ) : (
+              <div>
+                <label
+                  htmlFor="quiz-references"
+                  className="mb-1.5 block text-sm font-medium text-ink"
+                >
+                  Referenzen <span className="text-ink-soft">(optional)</span>
+                </label>
+                <textarea
+                  id="quiz-references"
+                  name="references"
+                  rows={3}
+                  value={references}
+                  onChange={(e) => setReferences(e.target.value)}
+                  placeholder="Websites, die Ihnen gefallen — ein Link pro Zeile"
+                  className={cn(FIELD_BASE, "resize-y py-3 leading-[1.5] border-border")}
+                />
+                <p className="mt-1.5 text-xs leading-relaxed text-ink-faint">
+                  Beispiele helfen uns, Ihren Geschmack schneller zu treffen.
+                </p>
+              </div>
+            )}
 
             <HoverButton
               type="submit"
@@ -432,8 +450,7 @@ export function ContactQuiz({ onSuccess }: ContactQuizProps) {
             </HoverButton>
 
             <p className="text-xs leading-relaxed text-ink-faint">
-              Mit dem Absenden stimmen Sie der Verarbeitung Ihrer Daten zur
-              Kontaktaufnahme zu.
+              Mit dem Absenden stimmen Sie der Verarbeitung Ihrer Daten zur Kontaktaufnahme zu.
             </p>
           </motion.form>
         )}
