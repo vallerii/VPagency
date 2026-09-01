@@ -133,9 +133,8 @@ export function FinalCTA() {
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             className={CTA_HEADING}
           >
-            Lassen Sie uns ein System bauen,
-            <br />das wirklich
-            <br /><span className={CTA_HIGHLIGHT}>Sinn ergibt</span>
+            Ihr Projekt beginnt mit einer
+            <br /><span className={CTA_HIGHLIGHT}> Idee</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 16 }}
@@ -144,8 +143,7 @@ export function FinalCTA() {
             transition={{ duration: 0.7, delay: 0.15 }}
             className={CTA_LEAD}
           >
-            Erzählen Sie uns von Ihrem Projekt — wir zeigen Ihnen, wie wir es
-            gemeinsam umsetzen
+            Beantworten Sie ein paar kurze Fragen zu Ihrem Projekt.
           </motion.p>
         </div>
 

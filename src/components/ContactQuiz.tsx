@@ -200,7 +200,7 @@ export function ContactQuiz({ onSuccess }: ContactQuizProps) {
             className="flex flex-col gap-5"
           >
             <h3 className="text-[19px] font-semibold leading-[1.3] text-ink sm:text-[22px]">
-              Was bremst Ihr Geschäft gerade am meisten?
+              Was bremst Ihr Geschäft gerade am meisten? - Was möchten Sie umsetzen?
             </h3>
             <div className="flex flex-col gap-2.5">
               {STEP0_OPTIONS.map((opt) => (

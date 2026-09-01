@@ -80,7 +80,7 @@ const GRID_ITEMS: { slug: string; place: string; img: string }[] = [
 const DARK_PLATE = new Set(["gbs", "lemming", "proctec", "teupen"]);
 
 const PLATE_LIGHT =
-  "border-border bg-[#8FAFD4]/60 hover:bg-[#8FAFD4]/80";
+  "border-border bg-ink hover:bg-ink/80";
 const PLATE_DARK =
   "border-white/10 bg-[#24252b] hover:bg-[#33343c]";
 

@@ -14,15 +14,15 @@
 // Light text beats dark text on this mid-tone, which is why the headline
 // is cream with a near-black accent word rather than the other way round.
 export const CTA_PANEL =
-  "relative mx-auto w-full max-w-[1440px] grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-10 lg:gap-20 rounded-3xl border border-accent/40 bg-accent/60 px-6 py-14 sm:px-10 sm:py-16 lg:px-16 lg:py-20";
+  "relative mx-auto w-full max-w-[1440px] grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-10 lg:gap-20 rounded-3xl border border-accent/40 bg-[#0E68FF]/55 px-6 py-14 sm:px-10 sm:py-16 lg:px-16 lg:py-20";
 
 export const CTA_HEADING =
-  "text-balance text-[10vw] font-heading font-semibold leading-[1.1] tracking-tighter text-ink sm:text-[6vw] lg:text-[4vw] xl:text-[76px]";
+  "text-balance text-[10vw] font-heading font-semibold leading-[1.1] tracking-tighter text-bg sm:text-[6vw] lg:text-[4vw] xl:text-[76px]";
 
 // The accented word in the headline — near-black against the light blue
 // panel. Never the brand blue #0E68FF here: on #5F7289 it lands at
 // 1.03:1 and is effectively invisible.
-export const CTA_HIGHLIGHT = "text-bg";
+export const CTA_HIGHLIGHT = "text-ink ";
 
 export const CTA_LEAD =
   "mt-8 max-w-3xl text-[16px] leading-[1.5] text-ink/90 sm:text-[19px] lg:text-[22px] xl:text-[26px]";
