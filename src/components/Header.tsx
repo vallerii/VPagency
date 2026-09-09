@@ -6,9 +6,18 @@ import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { HoverLink } from "./ui/hover-button";
 import { SERVICES } from "@/data/services";
+import { routes } from "@/data/site";
 import { LEGAL_LINKS } from "@/data/legal";
 
-const NAV_ITEMS = [...SERVICES.map((s) => ({ slug: s.slug, label: s.label })), { slug: "produkte", label: "Projekte" }];
+// Every entry carries its own href instead of being derived from a slug:
+// the five service pages now live under /leistungen/, while Projekte and
+// Glossar are top-level sections. Deriving `/${slug}` silently kept the old
+// root URLs alive here after the pages had already moved.
+const NAV_ITEMS: { href: string; label: string }[] = [
+  ...SERVICES.map((s) => ({ href: routes.leistung(s.slug), label: s.label })),
+  { href: routes.projekte, label: "Projekte" },
+  { href: routes.glossar, label: "Glossar" },
+];
 
 // Below lg the pill nav and the header CTA are hidden — everything the
 // desktop header offers lives in a full-screen panel that slides in from
@@ -18,6 +27,12 @@ export function Header() {
   const [hovered, setHovered] = useState<string | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
+
+  // The legal pages are the only ones that render no #contact section, so
+  // there the CTA has to carry the visitor home to the form instead of
+  // pointing at an anchor that does not exist on the page.
+  const hasContactSection = !LEGAL_LINKS.some((l) => l.href === pathname);
+  const contactHref = hasContactSection ? routes.kontakt : routes.kontaktHome;
 
   // Route changes close the panel — Next keeps the Header mounted across
   // navigations, so without this the menu would stay open on the new page.
@@ -62,12 +77,12 @@ export function Header() {
             className="hidden items-center gap-1 rounded-full border border-border bg-card/80 p-1.5 backdrop-blur-sm lg:flex"
           >
             {NAV_ITEMS.map((s) => {
-              const isActive = pathname === `/${s.slug}`;
+              const isActive = pathname === s.href;
               return (
                 <Link
-                  key={s.slug}
-                  href={`/${s.slug}`}
-                  onMouseEnter={() => setHovered(s.slug)}
+                  key={s.href}
+                  href={s.href}
+                  onMouseEnter={() => setHovered(s.href)}
                   className={`relative isolate rounded-full px-4 py-2 text-[16px] font-medium transition-colors ${
                     isActive ? "text-ink" : "text-ink-soft hover:text-ink"
                   }`}
@@ -78,7 +93,7 @@ export function Header() {
                       className="absolute inset-0 -z-10 rounded-full bg-[rgba(143,175,212,0.32)]"
                     />
                   ) : (
-                    hovered === s.slug && (
+                    hovered === s.href && (
                       <motion.span
                         layoutId="header-nav-pill"
                         className="absolute inset-0 -z-10 rounded-full bg-accent-tint"
@@ -93,7 +108,7 @@ export function Header() {
           </nav>
 
           <HoverLink
-            href="#contact"
+            href={contactHref}
             variant="secondary"
             className=" px-5 py-2.5 h-[54px] text-sm !hidden lg:!inline-flex"
           >
@@ -155,16 +170,16 @@ export function Header() {
 
             <nav aria-label="Hauptnavigation" className="mt-12 flex flex-col">
               {NAV_ITEMS.map((s, i) => {
-                const isActive = pathname === `/${s.slug}`;
+                const isActive = pathname === s.href;
                 return (
                   <motion.div
-                    key={s.slug}
+                    key={s.href}
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.4, delay: 0.12 + i * 0.05, ease: [0.16, 1, 0.3, 1] }}
                   >
                     <Link
-                      href={`/${s.slug}`}
+                      href={s.href}
                       onClick={() => setMenuOpen(false)}
                       aria-current={isActive ? "page" : undefined}
                       className={`flex items-center justify-between border-b border-border py-5 font-heading text-[28px] font-semibold leading-[1.15] tracking-tight transition-colors xs:text-[32px] ${
@@ -188,7 +203,7 @@ export function Header() {
               className="mt-auto flex flex-col gap-6 pt-12"
             >
               <HoverLink
-                href="#contact"
+                href={contactHref}
                 onClick={() => setMenuOpen(false)}
                 variant="outline"
                 className="w-full px-6 py-4 text-[15px]"

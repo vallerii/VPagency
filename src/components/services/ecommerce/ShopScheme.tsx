@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { routes } from "@/data/site";
 import { motion } from "framer-motion";
 import { Store, CreditCard, Boxes, BarChart3, Plus, X, type LucideIcon } from "lucide-react";
 import type { ScopeItem, OutOfScopeItem } from "@/data/services";
@@ -85,7 +86,7 @@ export function ShopScheme({ included, addon, outOfScope }: ShopSchemeProps) {
                     <span>
                       {item.text}{" "}
                       <Link
-                        href={`/${item.linkSlug}`}
+                        href={routes.leistung(item.linkSlug)}
                         className="font-medium text-accent-hover transition-colors hover:text-ink"
                       >
                         {item.linkLabel} →

@@ -1,13 +1,22 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { SERVICES, getService } from "@/data/services";
+import { getDeepDive, getServiceSeo } from "@/data/service-details";
+import { routes } from "@/data/site";
+import { pageMetadata } from "@/lib/seo";
+import { JsonLd } from "@/components/JsonLd";
+import { faqSchema, serviceSchema } from "@/lib/schema";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { TechMarquee } from "@/components/TechMarquee";
 import { ServiceHero } from "@/components/services/ServiceHero";
 import { SymptomList } from "@/components/services/SymptomList";
 import { RationaleStrip } from "@/components/services/RationaleStrip";
 import { ScopeTiers } from "@/components/services/ScopeTiers";
 import { ServiceBeforeAfter } from "@/components/services/ServiceBeforeAfter";
+import { ServiceDeepDive } from "@/components/services/ServiceDeepDive";
+import { ServiceGlossary } from "@/components/services/ServiceGlossary";
 import { RelatedCases } from "@/components/services/RelatedCases";
 import { ServiceCTA } from "@/components/services/ServiceCTA";
 import { FAQ } from "@/components/FAQ";
@@ -41,6 +50,24 @@ export function generateStaticParams() {
   return SERVICES.map((s) => ({ slug: s.slug }));
 }
 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const service = getService(slug);
+  if (!service) return {};
+
+  const seo = getServiceSeo(slug);
+
+  return pageMetadata({
+    title: seo?.title ?? `${service.label} — VP Digital`,
+    description: seo?.description ?? service.heroSubtitle,
+    path: routes.leistung(slug),
+  });
+}
+
 export default async function ServicePage({
   params,
 }: {
@@ -53,19 +80,25 @@ export default async function ServicePage({
     notFound();
   }
 
+  const deepDive = getDeepDive(service.slug);
+  const seo = getServiceSeo(service.slug);
+  const faqItems = SERVICE_FAQ[service.slug];
+
   // Websites, Automation, Custom Solutions and E-Commerce each get their
   // own hero/visual language (see components/services/<slug>/) so the
   // four pages read as distinct directions rather than one template with
   // swapped text. Support isn't part of that redesign and keeps the
   // original shared template below. All four still share the same
-  // marquee, related-cases grid, contact form and header/footer.
-  let sections;
+  // breadcrumbs, marquee, deep dive, glossary strip, related-cases grid,
+  // contact form and header/footer.
+  let hero;
+  let body;
+
   switch (service.slug) {
     case "websites":
-      sections = (
+      hero = <WebsiteHero title={service.heroTitle} subtitle={service.heroSubtitle} />;
+      body = (
         <>
-          <WebsiteHero title={service.heroTitle} subtitle={service.heroSubtitle} />
-          <TechMarquee />
           <WebsiteJourney title="Kommt Ihnen bekannt vor?" items={service.symptoms} />
           <WebsiteStructure title={service.rationaleTitle} lines={service.rationaleLines} />
           <WebsiteStages
@@ -78,10 +111,9 @@ export default async function ServicePage({
       );
       break;
     case "automation":
-      sections = (
+      hero = <AutomationHero title={service.heroTitle} subtitle={service.heroSubtitle} />;
+      body = (
         <>
-          <AutomationHero title={service.heroTitle} subtitle={service.heroSubtitle} />
-          <TechMarquee />
           <AutomationChaos title="Kommt Ihnen bekannt vor?" items={service.symptoms} />
           <AutomationTransform title={service.rationaleTitle} lines={service.rationaleLines} />
           <AutomationFlow
@@ -94,10 +126,9 @@ export default async function ServicePage({
       );
       break;
     case "custom-software":
-      sections = (
+      hero = <SystemHero title={service.heroTitle} subtitle={service.heroSubtitle} />;
+      body = (
         <>
-          <SystemHero title={service.heroTitle} subtitle={service.heroSubtitle} />
-          <TechMarquee />
           <SystemChaos title="Kommt Ihnen bekannt vor?" items={service.symptoms} />
           <SystemBuild title={service.rationaleTitle} lines={service.rationaleLines} />
           <SystemModules
@@ -110,10 +141,9 @@ export default async function ServicePage({
       );
       break;
     case "ecommerce":
-      sections = (
+      hero = <ShopHero title={service.heroTitle} subtitle={service.heroSubtitle} />;
+      body = (
         <>
-          <ShopHero title={service.heroTitle} subtitle={service.heroSubtitle} />
-          <TechMarquee />
           <ShopFunnel title="Kommt Ihnen bekannt vor?" items={service.symptoms} />
           <ShopCost title={service.rationaleTitle} lines={service.rationaleLines} />
           <ShopScheme
@@ -126,10 +156,9 @@ export default async function ServicePage({
       );
       break;
     default:
-      sections = (
+      hero = <ServiceHero title={service.heroTitle} subtitle={service.heroSubtitle} />;
+      body = (
         <>
-          <ServiceHero title={service.heroTitle} subtitle={service.heroSubtitle} />
-          <TechMarquee />
           <SymptomList title="Kommt Ihnen bekannt vor?" items={service.symptoms} />
           <RationaleStrip
             slug={service.slug}
@@ -150,12 +179,43 @@ export default async function ServicePage({
     <>
       <Header />
       <main>
-        {sections}
+        {hero}
+
+        {/* Sits between the hero and the marquee: the hero already carries
+        the top spacing that clears the fixed header, so this is the first
+        point on the page where a trail can be placed without colliding
+        with it. */}
+        <div className="border-b border-border px-6 py-4 sm:px-10 lg:px-16">
+          <Breadcrumbs
+            className="mx-auto w-full max-w-[1440px]"
+            items={[
+              { name: "Leistungen", href: routes.leistungen },
+              { name: service.label },
+            ]}
+          />
+        </div>
+
+        <TechMarquee />
+        {body}
+
+        {deepDive && <ServiceDeepDive content={deepDive} />}
+
         <RelatedCases category={service.slug} />
-        {SERVICE_FAQ[service.slug] && <FAQ items={SERVICE_FAQ[service.slug]} />}
+        <ServiceGlossary serviceSlug={service.slug} />
+
+        {faqItems && <FAQ items={faqItems} />}
         <ServiceCTA label={service.label} />
       </main>
       <Footer />
+
+      <JsonLd
+        data={serviceSchema({
+          name: seo?.title ?? service.label,
+          description: seo?.description ?? service.heroSubtitle,
+          path: routes.leistung(service.slug),
+        })}
+      />
+      {faqItems && <JsonLd data={faqSchema(faqItems)} />}
     </>
   );
 }

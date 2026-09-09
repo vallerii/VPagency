@@ -2,6 +2,7 @@ import Link from "next/link";
 import type React from "react";
 import { SERVICES } from "@/data/services";
 import { LEGAL_LINKS } from "@/data/legal";
+import { routes } from "@/data/site";
 
 // TODO: swap these for VP Digital's real contact details before launch —
 // placeholders only so the footer UI can be reviewed end to end.
@@ -93,24 +94,50 @@ export function Footer() {
           </p>
         </div>
 
+        {/* Two columns instead of one: the services now sit under their own
+        hub page, and Projekte / Glossar are separate sections of the site.
+        The footer is the one place every page links from, so each hub has
+        to be reachable here — otherwise /leistungen and /glossar would only
+        be reachable through the header. */}
         <nav aria-label="Leistungen" className="flex flex-col gap-2.5">
-          <span className="text-[13px] font-medium uppercase tracking-wide text-ink-faint">
+          <Link
+            href={routes.leistungen}
+            className="text-[13px] font-medium uppercase tracking-wide text-ink-faint transition-colors hover:text-ink"
+          >
             Leistungen
-          </span>
+          </Link>
           {SERVICES.map((s) => (
             <Link
               key={s.slug}
-              href={`/${s.slug}`}
+              href={routes.leistung(s.slug)}
               className="text-sm text-ink-soft transition-colors hover:text-ink"
             >
               {s.label}
             </Link>
           ))}
+        </nav>
+
+        <nav aria-label="Weitere Bereiche" className="flex flex-col gap-2.5">
+          <span className="text-[13px] font-medium uppercase tracking-wide text-ink-faint">
+            Mehr
+          </span>
           <Link
-            href="/produkte"
+            href={routes.projekte}
             className="text-sm text-ink-soft transition-colors hover:text-ink"
           >
             Projekte
+          </Link>
+          <Link
+            href={routes.glossar}
+            className="text-sm text-ink-soft transition-colors hover:text-ink"
+          >
+            Glossar
+          </Link>
+          <Link
+            href={routes.kontaktHome}
+            className="text-sm text-ink-soft transition-colors hover:text-ink"
+          >
+            Projekt besprechen
           </Link>
         </nav>
 

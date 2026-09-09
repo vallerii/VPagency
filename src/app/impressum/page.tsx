@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import {
   LegalAddress,
   LegalHeading,
@@ -9,10 +10,11 @@ import {
 } from "@/components/legal/LegalLayout";
 import { COMPANY } from "@/data/legal";
 
-export const metadata: Metadata = {
-  title: `Impressum — ${COMPANY.brand}`,
+export const metadata: Metadata = pageMetadata({
+  title: "Impressum",
   description: `Anbieterkennzeichnung nach § 5 TMG für ${COMPANY.domain}.`,
-};
+  path: "/impressum",
+});
 
 export default function ImpressumPage() {
   return (

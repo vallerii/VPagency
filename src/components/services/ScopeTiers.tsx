@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { routes } from "@/data/site";
 import { motion } from "framer-motion";
 import { Check, Plus, X, type LucideIcon } from "lucide-react";
 import type { ScopeItem, OutOfScopeItem } from "@/data/services";
@@ -98,7 +99,7 @@ export function ScopeTiers({ included, addon, outOfScope }: ScopeTiersProps) {
                     {item.text}
                     <br />
                     <Link
-                      href={`/${item.linkSlug}`}
+                      href={routes.leistung(item.linkSlug)}
                       className="font-medium uppercase text-[#0E68FF] font-[800] transition-colors hover:text-ink"
                     >
                       {item.linkLabel} →

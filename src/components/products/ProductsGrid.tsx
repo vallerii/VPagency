@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { CASES, type CaseStudy } from "@/data/cases";
+import { routes } from "@/data/site";
 
 function chunk<T>(arr: T[], size: number): T[][] {
   const out: T[][] = [];
@@ -39,7 +40,7 @@ function ProductsRow({ row, rowIndex }: { row: CaseStudy[]; rowIndex: number }) 
           className="min-w-0"
         >
           <Link
-            href={`/cases/${c.slug}`}
+            href={routes.projekt(c.slug)}
             className="group relative flex h-full min-h-[220px] flex-col justify-between overflow-hidden rounded-[20px] border border-border shadow-[0_1px_2px_rgba(23,23,23,0.03)] transition-colors hover:border-accent-hover/60"
           >
             <div

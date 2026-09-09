@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import {
   LegalLayout,
   LegalList,
@@ -7,10 +8,11 @@ import {
 } from "@/components/legal/LegalLayout";
 import { COMPANY, LEGAL_VERSION } from "@/data/legal";
 
-export const metadata: Metadata = {
-  title: `AGB — ${COMPANY.brand}`,
+export const metadata: Metadata = pageMetadata({
+  title: "AGB",
   description: `Allgemeine Geschäftsbedingungen von ${COMPANY.name} für Leistungen im Bereich Webentwicklung, Online-Shops, Kundenportale, Individualsoftware und Automatisierung.`,
-};
+  path: "/agb",
+});
 
 export default function AgbPage() {
   return (

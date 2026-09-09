@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { routes } from "@/data/site";
 import { motion } from "framer-motion";
 import { Globe, ShoppingCart, Layers, type LucideIcon } from "lucide-react";
 
@@ -82,10 +83,10 @@ export function WhatWeBuild() {
                   {p.description}
                 </p>
                 <Link
-                  href={`/${p.slug}`}
+                  href={routes.leistung(p.slug)}
                   className="mt-auto uppercase inline-flex items-center gap-1.5 pt-5 text-[13px] font-medium text-[#0E68FF] transition-colors hover:text-ink"
                 >
-                  Mehr erfahren →
+                  {p.title} ansehen →
                 </Link>
               </motion.div>
             ))}

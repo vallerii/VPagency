@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import {
   LegalAddress,
   LegalHeading,
@@ -10,10 +11,11 @@ import {
 } from "@/components/legal/LegalLayout";
 import { COMPANY, HOSTING, LEGAL_VERSION } from "@/data/legal";
 
-export const metadata: Metadata = {
-  title: `Datenschutzerklärung — ${COMPANY.brand}`,
+export const metadata: Metadata = pageMetadata({
+  title: "Datenschutzerklärung",
   description: `Informationen zur Verarbeitung personenbezogener Daten auf ${COMPANY.domain} nach Art. 13 DSGVO.`,
-};
+  path: "/datenschutz",
+});
 
 export default function DatenschutzPage() {
   return (

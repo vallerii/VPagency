@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { routes } from "@/data/site";
 import { motion } from "framer-motion";
 import { Plus, X } from "lucide-react";
 import type { ScopeItem, OutOfScopeItem } from "@/data/services";
@@ -83,7 +84,7 @@ export function WebsiteStages({ included, addon, outOfScope }: WebsiteStagesProp
                   <span>
                     {item.text}{" "}
                     <Link
-                      href={`/${item.linkSlug}`}
+                      href={routes.leistung(item.linkSlug)}
                       className="font-medium text-accent-hover transition-colors hover:text-ink"
                     >
                       {item.linkLabel} →

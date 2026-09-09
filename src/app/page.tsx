@@ -15,6 +15,8 @@ import { FAQ } from "@/components/FAQ";
 import { HOMEPAGE_FAQ } from "@/data/faq";
 import { FinalCTA } from "@/components/FinalCTA";
 import { Footer } from "@/components/Footer";
+import { JsonLd } from "@/components/JsonLd";
+import { faqSchema } from "@/lib/schema";
 
 export default function Home() {
   return (
@@ -66,6 +68,8 @@ export default function Home() {
         <FinalCTA />
       </main>
       <Footer />
+
+      <JsonLd data={faqSchema(HOMEPAGE_FAQ)} />
     </>
   );
 }

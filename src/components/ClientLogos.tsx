@@ -3,12 +3,13 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { CASES } from "@/data/cases";
+import { routes } from "@/data/site";
 
 // Only clients we have an actual logo file for show up in the grid — the
 // filenames match public/logos/<slug>.<ext> shipped alongside this
 // component. We currently have 8 (CASES has a 9th, VOB, with no supplied
 // logo file yet — add public/logos/vob.<ext> and a LOGO_FILES entry to
-// bring it in). Those still show up on the full /produkte page either way.
+// bring it in). Those still show up on the full /projekte page either way.
 const LOGO_FILES: Record<string, string> = {
   wecubexx: "/logos/wecubexx.png",
   proctec: "/logos/proctec.svg",
@@ -138,7 +139,7 @@ export function ClientLogos() {
           className="mt-10 sm:mt-12"
         >
           <Link
-            href="/produkte"
+            href={routes.projekte}
             className="inline-flex items-center gap-1.5 text-[15px] font-medium text-ink-soft transition-colors hover:text-ink"
           >
             Alle Projekte ansehen
