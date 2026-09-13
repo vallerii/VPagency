@@ -6,19 +6,27 @@ import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { HoverLink } from "./ui/hover-button";
 import { Logo } from "./ui/Logo";
-import { SERVICES } from "@/data/services";
 import { routes } from "@/data/site";
 import { LEGAL_LINKS } from "@/data/legal";
 
-// Every entry carries its own href instead of being derived from a slug:
-// the five service pages now live under /leistungen/, while Projekte and
-// Glossar are top-level sections. Deriving `/${slug}` silently kept the old
-// root URLs alive here after the pages had already moved.
+// The nav points at the three hubs, not at every single page: listing all
+// five services here made the visitor choose a service before the site had
+// explained anything, and a visitor who does not yet know which digital
+// solution he needs cannot make that choice. /leistungen does that work —
+// it sorts the services by the business problem they solve. The five
+// detail pages stay reachable from there and from the footer.
 const NAV_ITEMS: { href: string; label: string }[] = [
-  ...SERVICES.map((s) => ({ href: routes.leistung(s.slug), label: s.label })),
+  { href: routes.leistungen, label: "Leistungen" },
   { href: routes.projekte, label: "Projekte" },
   { href: routes.glossar, label: "Glossar" },
 ];
+
+// A service detail page (/leistungen/websites) has to keep "Leistungen"
+// marked as current — matching on equality alone would leave the whole nav
+// unhighlighted on five of the site's pages.
+function isCurrent(pathname: string, href: string) {
+  return pathname === href || pathname.startsWith(`${href}/`);
+}
 
 // Below lg the pill nav and the header CTA are hidden — everything the
 // desktop header offers lives in a full-screen panel that slides in from
@@ -75,20 +83,19 @@ export function Header() {
         >
           <Logo size={26} />
         </Link>
-
-        <div className="flex items-center gap-3 sm:gap-6">
-          <nav
+<nav
             onMouseLeave={() => setHovered(null)}
             className="hidden items-center gap-1 rounded-full border border-border bg-card/80 p-1.5 backdrop-blur-sm lg:flex"
           >
             {NAV_ITEMS.map((s) => {
-              const isActive = pathname === s.href;
+              const isActive = isCurrent(pathname, s.href);
               return (
                 <Link
                   key={s.href}
                   href={s.href}
+                  aria-current={isActive ? "page" : undefined}
                   onMouseEnter={() => setHovered(s.href)}
-                  className={`relative isolate rounded-full px-4 py-2 text-[16px] font-medium transition-colors ${
+                  className={`relative isolate rounded-full px-4 py-2 text-[16px] font-medium transition-colors uppercase ${
                     isActive ? "text-ink" : "text-ink-soft hover:text-ink"
                   }`}
                 >
@@ -111,6 +118,7 @@ export function Header() {
               );
             })}
           </nav>
+        <div className="flex items-center gap-3 sm:gap-6">
 
           <HoverLink
             href={contactHref}
@@ -176,7 +184,7 @@ export function Header() {
 
             <nav aria-label="Hauptnavigation" className="mt-12 flex flex-col">
               {NAV_ITEMS.map((s, i) => {
-                const isActive = pathname === s.href;
+                const isActive = isCurrent(pathname, s.href);
                 return (
                   <motion.div
                     key={s.href}
