@@ -3,6 +3,7 @@ import type React from "react";
 import { SERVICES } from "@/data/services";
 import { LEGAL_LINKS } from "@/data/legal";
 import { routes } from "@/data/site";
+import { Logo } from "./ui/Logo";
 
 // TODO: swap these for VP Digital's real contact details before launch —
 // placeholders only so the footer UI can be reviewed end to end.
@@ -87,8 +88,8 @@ export function Footer() {
     <footer className="border-t border-border px-6 py-12 sm:px-10 lg:px-16">
       <div className="mx-auto flex w-full max-w-7xl flex-col gap-10 sm:flex-row sm:justify-between">
         <div>
-          <img src="/logo-mini.png" alt="VP Digital" className="h-auto w-[340px]" />
-          <p className="mt-2 max-w-[340px] text-sm text-ink-faint">
+          <Logo size={40} variant="stacked" />
+          <p className="mt-5 max-w-[340px] text-sm text-ink-faint">
             Wir verstehen Ihr Geschäftsproblem und entwickeln eine Lösung,
             die wirklich funktioniert
           </p>

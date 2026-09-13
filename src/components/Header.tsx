@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { HoverLink } from "./ui/hover-button";
+import { Logo } from "./ui/Logo";
 import { SERVICES } from "@/data/services";
 import { routes } from "@/data/site";
 import { LEGAL_LINKS } from "@/data/legal";
@@ -67,8 +68,12 @@ export function Header() {
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         className="fixed inset-x-0 top-0 z-50 flex items-center justify-between px-6 py-6 sm:px-10"
       >
-        <Link href="/" className="inline-flex items-center">
-          <img src="/logo-mini.png" alt="VP Digital" className="h-[54px] w-auto" />
+        <Link
+          href="/"
+          aria-label="VP Digital — Startseite"
+          className="inline-flex h-[54px] items-center transition-opacity hover:opacity-80"
+        >
+          <Logo size={26} />
         </Link>
 
         <div className="flex items-center gap-3 sm:gap-6">
@@ -150,9 +155,10 @@ export function Header() {
               <Link
                 href="/"
                 onClick={() => setMenuOpen(false)}
-                className="inline-flex items-center"
+                aria-label="VP Digital — Startseite"
+                className="inline-flex h-[54px] items-center"
               >
-                <img src="/logo-mini.png" alt="VP Digital" className="h-[54px] w-auto" />
+                <Logo size={26} />
               </Link>
 
               <button

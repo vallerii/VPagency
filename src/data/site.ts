@@ -6,8 +6,12 @@ export const SITE = {
   url: "https://vpagency.de",
   name: "VP Digital",
   locale: "de_DE",
-  /** Used as the default OpenGraph/Twitter image. */
-  ogImage: "/logo.png",
+  /**
+   * Default OpenGraph/Twitter image — a 1200x630 card, which is what the
+   * platforms crop to. /logo.png stays the bare wordmark and is what the
+   * Organization schema points at; the two must not be the same file.
+   */
+  ogImage: "/og.png",
 } as const;
 
 /** Absolute URL for a site-relative path ("/leistungen" -> "https://…/leistungen"). */

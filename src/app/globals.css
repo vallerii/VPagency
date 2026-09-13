@@ -185,6 +185,18 @@ body {
   }
 }
 
+/* Logo cursor — the underscore behind "VP" blinks like a caret in an
+   editor. It never drops below 0.18: in a fixed header a cursor that goes
+   fully dark and back keeps pulling the eye away from the page. */
+.vp-caret {
+  animation: vp-caret-blink 1.15s steps(1, end) infinite;
+}
+
+@keyframes vp-caret-blink {
+  0%, 55% { opacity: 1; }
+  56%, 100% { opacity: 0.18; }
+}
+
 .pulse-line {
   animation: pulse-line 2.6s ease-in-out infinite;
 }
