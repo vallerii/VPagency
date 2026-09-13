@@ -10,11 +10,11 @@ import { routes } from "@/data/site";
 import { LEGAL_LINKS } from "@/data/legal";
 
 // The nav points at the three hubs, not at every single page: listing all
-// five services here made the visitor choose a service before the site had
+// five services here made the visitor pick a service before the site had
 // explained anything, and a visitor who does not yet know which digital
-// solution he needs cannot make that choice. /leistungen does that work —
-// it sorts the services by the business problem they solve. The five
-// detail pages stay reachable from there and from the footer.
+// solution he needs cannot make that pick. /leistungen does that work — it
+// sorts the services by the business problem they solve. The five detail
+// pages stay reachable from there and from the footer.
 const NAV_ITEMS: { href: string; label: string }[] = [
   { href: routes.leistungen, label: "Leistungen" },
   { href: routes.projekte, label: "Projekte" },
@@ -30,8 +30,8 @@ function isCurrent(pathname: string, href: string) {
 
 // Below lg the pill nav and the header CTA are hidden — everything the
 // desktop header offers lives in a full-screen panel that slides in from
-// the right: the five service pages, Projekte, and the "Projekt
-// besprechen" button pinned to the bottom of the panel.
+// the right: the three hub pages and the "Projekt besprechen" button
+// pinned to the bottom of the panel.
 export function Header() {
   const [hovered, setHovered] = useState<string | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -83,7 +83,9 @@ export function Header() {
         >
           <Logo size={26} />
         </Link>
-<nav
+
+        <div className="flex items-center gap-3 sm:gap-6">
+          <nav
             onMouseLeave={() => setHovered(null)}
             className="hidden items-center gap-1 rounded-full border border-border bg-card/80 p-1.5 backdrop-blur-sm lg:flex"
           >
@@ -95,7 +97,7 @@ export function Header() {
                   href={s.href}
                   aria-current={isActive ? "page" : undefined}
                   onMouseEnter={() => setHovered(s.href)}
-                  className={`relative isolate rounded-full px-4 py-2 text-[16px] font-medium transition-colors uppercase ${
+                  className={`relative isolate rounded-full px-4 py-2 text-[16px] font-medium transition-colors ${
                     isActive ? "text-ink" : "text-ink-soft hover:text-ink"
                   }`}
                 >
@@ -118,7 +120,6 @@ export function Header() {
               );
             })}
           </nav>
-        <div className="flex items-center gap-3 sm:gap-6">
 
           <HoverLink
             href={contactHref}

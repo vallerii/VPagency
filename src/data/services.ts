@@ -16,6 +16,8 @@ export interface BeforeAfterRow {
 export interface ServiceDef {
   slug: string;
   label: string; // matches the TechMarquee wording
+  /** One line for the header dropdown — the business outcome, not the technology. */
+  navHint: string;
   heroTitle: string[]; // lines
   heroSubtitle: string;
   symptoms: string[];
@@ -31,6 +33,7 @@ export const SERVICES: ServiceDef[] = [
   {
     slug: "websites",
     label: "Websites",
+    navHint: "Ein Auftritt, der erklärt und Anfragen bringt",
     heroTitle: ["Websites, die", "erklären und verkaufen"],
     heroSubtitle:
       "Keine Visitenkarte, die nur schön aussieht, sondern ein Werkzeug, das Kundenfragen beantwortet und Anfragen bringt.",
@@ -79,6 +82,7 @@ export const SERVICES: ServiceDef[] = [
   {
     slug: "ecommerce",
     label: "E-Commerce",
+    navHint: "Ein Shop, der Käufer nicht unterwegs verliert",
     heroTitle: ["Shops, die", "Käufer nicht verlieren"],
     heroSubtitle:
       "Jeder unnötige Schritt im Checkout ist entgangener Umsatz. Wir entfernen diese Schritte.",
@@ -127,6 +131,7 @@ export const SERVICES: ServiceDef[] = [
   {
     slug: "custom-software",
     label: "Custom Solutions",
+    navHint: "Ein System, das zu Ihren Abläufen passt",
     heroTitle: ["Systeme, die", "wie Ihr Geschäft funktionieren"],
     heroSubtitle:
       "Wenn fertige Tools nicht abdecken, wie Ihre Prozesse wirklich funktionieren.",
@@ -175,6 +180,7 @@ export const SERVICES: ServiceDef[] = [
   {
     slug: "automation",
     label: "Automation",
+    navHint: "Weniger Handarbeit, mehr Zeit fürs Geschäft",
     heroTitle: ["Weniger Routine,", "mehr Ergebnis"],
     heroSubtitle:
       "Manuelle Routine ist eine versteckte Kostenposition, die in keinem Bericht direkt sichtbar ist.",
@@ -223,6 +229,7 @@ export const SERVICES: ServiceDef[] = [
   {
     slug: "support",
     label: "Support",
+    navHint: "Nach dem Launch messen und weiterentwickeln",
     heroTitle: ["Der Launch ist der Anfang,", "nicht das Ende"],
     heroSubtitle:
       "Erst nach dem Launch zeigt sich, was Nutzer wirklich brauchen. Wir bleiben dabei und entwickeln das System weiter.",
