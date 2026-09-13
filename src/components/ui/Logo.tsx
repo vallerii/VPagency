@@ -54,7 +54,7 @@ export function Logo({
         width="26"
         height="9"
         rx="1"
-        fill="var(--color-accent-2)"
+        fill="var(--color-logo-caret)"
         className={animated ? "vp-caret" : undefined}
       />
     </svg>

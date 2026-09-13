@@ -103,6 +103,14 @@
   --color-accent-2-hover: #8FAFD4;
   --color-accent-2-deep: #8FAFD4;
 
+  /* Logo cursor — a saturated blue of its own, deliberately not the soft
+     accent above. The mark is the one place on the page that has to hold
+     its own at 16px in a browser tab, and the muted accent greys out at
+     that size. Changing this changes the cursor everywhere it is drawn in
+     the DOM; the exported PNG/ICO/SVG files in /public carry the same
+     value baked in and have to be regenerated alongside it. */
+  --color-logo-caret: #0E68FF;
+
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -123,6 +131,7 @@
   --color-accent-2: var(--color-accent-2);
   --color-accent-2-hover: var(--color-accent-2-hover);
   --color-accent-2-deep: var(--color-accent-2-deep);
+  --color-logo-caret: var(--color-logo-caret);
 
   --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
   --font-heading: "Raleway", "Manrope", ui-sans-serif, system-ui, sans-serif;

@@ -6,15 +6,16 @@ import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { HoverLink } from "./ui/hover-button";
 import { Logo } from "./ui/Logo";
+import { SERVICES } from "@/data/services";
 import { routes } from "@/data/site";
 import { LEGAL_LINKS } from "@/data/legal";
 
 // The nav points at the three hubs, not at every single page: listing all
-// five services here made the visitor pick a service before the site had
+// five services here made the visitor choose a service before the site had
 // explained anything, and a visitor who does not yet know which digital
-// solution he needs cannot make that pick. /leistungen does that work — it
-// sorts the services by the business problem they solve. The five detail
-// pages stay reachable from there and from the footer.
+// solution he needs cannot make that choice. /leistungen does that work —
+// it sorts the services by the business problem they solve. The five
+// detail pages stay reachable from there and from the footer.
 const NAV_ITEMS: { href: string; label: string }[] = [
   { href: routes.leistungen, label: "Leistungen" },
   { href: routes.projekte, label: "Projekte" },
@@ -30,11 +31,12 @@ function isCurrent(pathname: string, href: string) {
 
 // Below lg the pill nav and the header CTA are hidden — everything the
 // desktop header offers lives in a full-screen panel that slides in from
-// the right: the three hub pages and the "Projekt besprechen" button
-// pinned to the bottom of the panel.
+// the right: the five service pages, Projekte, and the "Projekt
+// besprechen" button pinned to the bottom of the panel.
 export function Header() {
   const [hovered, setHovered] = useState<string | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
   const pathname = usePathname();
 
   // The legal pages are the only ones that render no #contact section, so
@@ -43,11 +45,25 @@ export function Header() {
   const hasContactSection = !LEGAL_LINKS.some((l) => l.href === pathname);
   const contactHref = hasContactSection ? routes.kontakt : routes.kontaktHome;
 
-  // Route changes close the panel — Next keeps the Header mounted across
-  // navigations, so without this the menu would stay open on the new page.
+  // Route changes close both menus — Next keeps the Header mounted across
+  // navigations, so without this they would stay open on the new page. The
+  // dropdown matters most here: clicking one of its services navigates
+  // without the pointer ever leaving it, so nothing else would close it.
   useEffect(() => {
     setMenuOpen(false);
+    setServicesOpen(false);
   }, [pathname]);
+
+  // Escape closes the dropdown, the same way it closes the mobile panel.
+  useEffect(() => {
+    if (!servicesOpen) return;
+
+    function onKeyDown(e: KeyboardEvent) {
+      if (e.key === "Escape") setServicesOpen(false);
+    }
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [servicesOpen]);
 
   // While the panel covers the screen the page behind it must not scroll,
   // and Escape has to close it like any other dialog.
@@ -74,30 +90,59 @@ export function Header() {
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        className="fixed inset-x-0 top-0 z-50 flex items-center justify-between px-6 py-6 sm:px-10"
+        // Three columns, not justify-between: with space-between the nav only
+        // lands in the middle if the logo and the CTA happen to be the same
+        // width, which they are not — it drifted left. The 1fr side columns
+        // absorb that difference, so the nav sits on the page's centre line
+        // whatever the logo or the button do.
+        className="fixed inset-x-0 top-0 z-50 grid grid-cols-[1fr_auto_1fr] items-center px-6 py-6 sm:px-10"
       >
         <Link
           href="/"
           aria-label="VP Digital — Startseite"
-          className="inline-flex h-[54px] items-center transition-opacity hover:opacity-80"
+          className="inline-flex h-[54px] items-center justify-self-start transition-opacity hover:opacity-80"
         >
           <Logo size={26} />
         </Link>
+        <nav
+          onMouseLeave={() => {
+            setHovered(null);
+            setServicesOpen(false);
+          }}
+          className="hidden items-center gap-2 rounded-full border border-border bg-card/80 p-2 backdrop-blur-sm lg:flex"
+        >
+          {NAV_ITEMS.map((s) => {
+            const isActive = isCurrent(pathname, s.href);
+            // Only Leistungen carries a submenu — the other two are single pages.
+            const hasMenu = s.href === routes.leistungen;
 
-        <div className="flex items-center gap-3 sm:gap-6">
-          <nav
-            onMouseLeave={() => setHovered(null)}
-            className="hidden items-center gap-1 rounded-full border border-border bg-card/80 p-1.5 backdrop-blur-sm lg:flex"
-          >
-            {NAV_ITEMS.map((s) => {
-              const isActive = isCurrent(pathname, s.href);
-              return (
+            return (
+              <div
+                key={s.href}
+                className="relative"
+                onMouseEnter={() => {
+                  setHovered(s.href);
+                  setServicesOpen(hasMenu);
+                }}
+                // A keyboard never fires mouseenter, so focus has to open the
+                // dropdown as well — otherwise the five service pages are
+                // unreachable from the header without a mouse.
+                onFocus={() => setServicesOpen(hasMenu)}
+                onBlur={(e) => {
+                  if (
+                    hasMenu &&
+                    !e.currentTarget.contains(e.relatedTarget as Node | null)
+                  ) {
+                    setServicesOpen(false);
+                  }
+                }}
+              >
                 <Link
-                  key={s.href}
                   href={s.href}
                   aria-current={isActive ? "page" : undefined}
-                  onMouseEnter={() => setHovered(s.href)}
-                  className={`relative isolate rounded-full px-4 py-2 text-[16px] font-medium transition-colors ${
+                  aria-haspopup={hasMenu ? "true" : undefined}
+                  aria-expanded={hasMenu ? servicesOpen : undefined}
+                  className={`relative isolate flex items-center gap-2 rounded-full px-6 py-2.5 text-[15px] font-medium uppercase tracking-[0.06em] transition-colors ${
                     isActive ? "text-ink" : "text-ink-soft hover:text-ink"
                   }`}
                 >
@@ -116,10 +161,81 @@ export function Header() {
                     )
                   )}
                   {s.label}
+                  {hasMenu && (
+                    <motion.svg
+                      viewBox="0 0 10 6"
+                      aria-hidden="true"
+                      animate={{ rotate: servicesOpen ? 180 : 0 }}
+                      transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                      className="h-[6px] w-[10px] shrink-0"
+                    >
+                      <path
+                        d="M1 1 L5 5 L9 1"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="1.6"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </motion.svg>
+                  )}
                 </Link>
-              );
-            })}
-          </nav>
+
+                {hasMenu && (
+                  <AnimatePresence>
+                    {servicesOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, y: -8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -8 }}
+                        transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
+                        // pt-3 is the bridge: the visible gap between the pill
+                        // and the panel is padding *inside* the hover target,
+                        // so the pointer never crosses dead space on its way
+                        // down and the menu does not flicker shut.
+                        className="absolute left-1/2 top-full w-[380px] -translate-x-1/2 pt-3"
+                      >
+                        <div className="rounded-2xl border border-border bg-card p-2 shadow-2xl shadow-black/50">
+                          {SERVICES.map((service) => (
+                            <Link
+                              key={service.slug}
+                              href={routes.leistung(service.slug)}
+                              aria-current={
+                                pathname === routes.leistung(service.slug)
+                                  ? "page"
+                                  : undefined
+                              }
+                              className="flex flex-col gap-0.5 rounded-xl px-4 py-3 transition-colors hover:bg-accent-tint"
+                            >
+                              <span className="text-[15px] font-medium text-ink">
+                                {service.label}
+                              </span>
+                              {/* The hint, not the label, is what a visitor who
+                              does not yet know which solution he needs can
+                              actually choose from. */}
+                              <span className="text-[13px] leading-snug text-ink-faint">
+                                {service.navHint}
+                              </span>
+                            </Link>
+                          ))}
+
+                          <Link
+                            href={routes.leistungen}
+                            className="mt-2 flex items-center justify-between gap-4 border-t border-border px-4 pb-1 pt-3 text-[14px] text-ink-soft transition-colors hover:text-ink"
+                          >
+                            Alle Leistungen im Überblick
+                            <span aria-hidden="true">↗</span>
+                          </Link>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                )}
+              </div>
+            );
+          })}
+        </nav>
+        <div className="flex items-center justify-self-end gap-3 sm:gap-6">
 
           <HoverLink
             href={contactHref}
@@ -206,6 +322,31 @@ export function Header() {
                         ↗
                       </span>
                     </Link>
+
+                    {/* Touch devices have no hover, so the dropdown the desktop
+                    header shows has to be spelled out here — otherwise the
+                    service pages would sit one tap deeper on the very devices
+                    where extra taps cost the most. */}
+                    {s.href === routes.leistungen && (
+                      <ul className="flex flex-col border-b border-border py-2">
+                        {SERVICES.map((service) => (
+                          <li key={service.slug}>
+                            <Link
+                              href={routes.leistung(service.slug)}
+                              onClick={() => setMenuOpen(false)}
+                              aria-current={
+                                pathname === routes.leistung(service.slug)
+                                  ? "page"
+                                  : undefined
+                              }
+                              className="block py-2.5 text-[17px] text-ink-soft transition-colors hover:text-ink"
+                            >
+                              {service.label}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                   </motion.div>
                 );
               })}
