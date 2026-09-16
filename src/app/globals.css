@@ -111,7 +111,68 @@
      value baked in and have to be regenerated alongside it. */
   --color-logo-caret: #0E68FF;
 
+  /* Blue panel — the solid surface behind "Wir denken in Produkten" and
+     the contact blocks, with the two text tones allowed on it. Dark text
+     is never used on this blue. See cta-styles.ts for the contrast math. */
+  --color-panel: #1450C0;
+  --color-on-panel: #F2F2EF;
+  --color-on-panel-soft: #A9C5F2;
+
+  /* Client logo plates (ClientLogos.tsx) — the light plate carries logos
+     with dark artwork. Tokenised so the plate can follow the section
+     theme: cream on graphite, white on the light sections. */
+  --logo-plate: #F2F2EF;
+  --logo-plate-hover: #E4E4E0;
+
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Light sections.
+   The customer found the all-graphite page too dark. Instead of a second
+   design, a block opts into the light palette with `theme-light`: it
+   re-points the same tokens every component already uses (bg, card, ink,
+   border, accent), so no component needs a light variant of its own.
+
+   The background is a warm off-white, not #FFF — pure white next to the
+   graphite bands is what makes a dark/light page glare. Cards are white
+   so they still lift off the section. Contrast on #F4F4F0:
+     ink       #16171A  17.0:1
+     ink-soft  #4B5059   7.4:1
+     ink-faint #626873   5.2:1
+     accent    #0E68FF   4.3:1 on bg / 4.8:1 on white cards (links are
+                         13px+ medium uppercase on cards — AA)
+   The soft blue #8FAFD4 of the dark theme is only 2.1:1 on white, so on
+   light sections the decorative accent becomes the brand blue. */
+.theme-light {
+  color-scheme: light;
+
+  --color-bg: #F4F4F0;
+  --color-card: #FFFFFF;
+
+  --color-ink: #16171A;
+  --color-ink-soft: #4B5059;
+  --color-ink-faint: #626873;
+
+  --color-border: #E3E3DD;
+  --color-line: #E3E3DD;
+  --color-glyph: #626873;
+  --color-glyph-soft: #B9BDC3;
+
+  --color-accent: #0E68FF;
+  --color-accent-hover: #0E68FF;
+  --color-accent-alt: #5B8FE0;
+  --color-accent-line: #0E68FF;
+  --color-accent-tint: rgba(14, 104, 255, 0.08);
+  --color-accent-deep: #0A52CC;
+  --color-accent-2: #0E68FF;
+  --color-accent-2-hover: #0A52CC;
+  --color-accent-2-deep: #0A52CC;
+
+  --logo-plate: #FFFFFF;
+  --logo-plate-hover: #F7F7F4;
+
+  background-color: var(--color-bg);
+  color: var(--color-ink);
 }
 
 @theme inline {

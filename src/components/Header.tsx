@@ -10,7 +10,7 @@ import { SERVICES } from "@/data/services";
 import { routes } from "@/data/site";
 import { LEGAL_LINKS } from "@/data/legal";
 
-// The nav points at the three hubs, not at every single page: listing all
+// The nav points at the hubs, not at every single page: listing all
 // five services here made the visitor choose a service before the site had
 // explained anything, and a visitor who does not yet know which digital
 // solution he needs cannot make that choice. /leistungen does that work —
@@ -19,7 +19,10 @@ import { LEGAL_LINKS } from "@/data/legal";
 const NAV_ITEMS: { href: string; label: string }[] = [
   { href: routes.leistungen, label: "Leistungen" },
   { href: routes.projekte, label: "Projekte" },
-  { href: routes.glossar, label: "Glossar" },
+  // Glossar is deliberately not here: it is a reference for search
+  // visitors and is linked from the service pages and the footer. In the
+  // header it competed with the two sections a business owner actually
+  // came for.
 ];
 
 // A service detail page (/leistungen/websites) has to keep "Leistungen"
@@ -37,7 +40,26 @@ export function Header() {
   const [hovered, setHovered] = useState<string | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+
+  // The header floats transparently over the hero, but further down the
+  // page it passes over light sections, where the cream logo would vanish.
+  // Once the page is scrolled the bar gets its own graphite, blurred
+  // backdrop, so it reads the same over dark and light blocks.
+  useEffect(() => {
+    function onScroll() {
+      setScrolled(window.scrollY > 24);
+    }
+    // A reload can restore the page mid-scroll, so check once on mount too —
+    // in a frame, not synchronously inside the effect.
+    const frame = requestAnimationFrame(onScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, []);
 
   // The legal pages are the only ones that render no #contact section, so
   // there the CTA has to carry the visitor home to the form instead of
@@ -95,14 +117,18 @@ export function Header() {
         // width, which they are not — it drifted left. The 1fr side columns
         // absorb that difference, so the nav sits on the page's centre line
         // whatever the logo or the button do.
-        className="fixed inset-x-0 top-0 z-50 grid grid-cols-[1fr_auto_1fr] items-center px-6 py-6 sm:px-10"
+        className={`fixed inset-x-0 top-0 z-50 grid grid-cols-[1fr_auto_1fr] items-center px-6 transition-[background-color,padding,box-shadow] duration-300 ease-out sm:px-10 ${
+          scrolled
+            ? "bg-bg/90 py-3 shadow-[0_1px_0_rgba(255,255,255,0.06)] backdrop-blur-md"
+            : "py-6"
+        }`}
       >
         <Link
           href="/"
           aria-label="VP Digital — Startseite"
           className="inline-flex h-[54px] items-center justify-self-start transition-opacity hover:opacity-80"
         >
-          <Logo size={26} />
+          <Logo size={28} />
         </Link>
         <nav
           onMouseLeave={() => {
@@ -113,7 +139,7 @@ export function Header() {
         >
           {NAV_ITEMS.map((s) => {
             const isActive = isCurrent(pathname, s.href);
-            // Only Leistungen carries a submenu — the other two are single pages.
+            // Only Leistungen carries a submenu — Projekte is a single page.
             const hasMenu = s.href === routes.leistungen;
 
             return (
@@ -235,7 +261,10 @@ export function Header() {
             );
           })}
         </nav>
-        <div className="flex items-center justify-self-end gap-3 sm:gap-6">
+        {/* col-start-3: below lg the nav is display:none and drops out of the
+        grid, which used to pull this block into the middle column — the
+        burger sat in the centre of the bar instead of on the right. */}
+        <div className="col-start-3 flex items-center justify-self-end gap-3 sm:gap-6">
 
           <HoverLink
             href={contactHref}
@@ -283,7 +312,7 @@ export function Header() {
                 aria-label="VP Digital — Startseite"
                 className="inline-flex h-[54px] items-center"
               >
-                <Logo size={26} />
+                <Logo size={28} />
               </Link>
 
               <button

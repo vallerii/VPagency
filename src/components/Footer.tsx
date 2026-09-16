@@ -88,7 +88,7 @@ export function Footer() {
     <footer className="border-t border-border px-6 py-12 sm:px-10 lg:px-16">
       <div className="mx-auto flex w-full max-w-7xl flex-col gap-10 sm:flex-row sm:justify-between">
         <div>
-          <Logo size={40} variant="stacked" />
+          <Logo size={36} />
           <p className="mt-5 max-w-[340px] text-sm text-ink-faint">
             Wir verstehen Ihr Geschäftsproblem und entwickeln eine Lösung,
             die wirklich funktioniert

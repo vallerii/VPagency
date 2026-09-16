@@ -12,7 +12,8 @@ import {
   CTA_HEADING,
   CTA_HIGHLIGHT,
   CTA_LEAD,
-  CTA_PANEL,
+  CTA_PANEL_WIDE,
+  CTA_PANEL_WIDE_INNER,
 } from "@/components/ui/cta-styles";
 
 const GOAL = { x: 50, y: 97 };
@@ -29,7 +30,8 @@ export function FinalCTA() {
   return (
     <section
       id="contact"
-      className="relative flex min-h-dvh w-full items-center overflow-hidden px-6 pb-32 lg:pb-44 sm:px-10 lg:px-16"
+      // Full-width sheet with the same inset as the light bands above it.
+      className="relative w-full overflow-hidden px-2 pb-2 sm:px-3 sm:pb-3 lg:px-4 lg:pb-4"
     >
       {/* <div className="pointer-events-none absolute inset-0 opacity-[0.55] sm:opacity-70" aria-hidden="true">
         <svg className="absolute inset-0 h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none">
@@ -123,8 +125,9 @@ export function FinalCTA() {
       <motion.div
         animate={assembled ? { scale: [1, 1.012, 1] } : {}}
         transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
-        className={CTA_PANEL}
+        className={CTA_PANEL_WIDE}
       >
+        <div className={CTA_PANEL_WIDE_INNER}>
         <div className="mb-16 ">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -167,6 +170,7 @@ export function FinalCTA() {
             </a>
           </p>
         </motion.div>
+        </div>
       </motion.div>
     </section>
   );

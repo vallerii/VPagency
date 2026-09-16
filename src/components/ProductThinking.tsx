@@ -13,7 +13,7 @@ const RING_SIZES = ["140vw", "108vw", "78vw", "50vw", "26vw"];
 
 export function ProductThinking() {
   return (
-    <section className="relative w-full overflow-hidden bg-[#0E68FF]/55 px-6 py-24 text-center sm:px-10 lg:px-16 lg:py-32">
+    <section className="relative w-full overflow-hidden bg-(--color-panel) px-6 py-24 text-center sm:px-10 lg:px-16 lg:py-32">
       <div
         className="pointer-events-none absolute inset-0 flex items-center justify-center"
         aria-hidden="true"
@@ -39,7 +39,7 @@ export function ProductThinking() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.6 }}
           transition={{ duration: 0.6 }}
-          className="mb-4 block text-[13px] font-medium uppercase tracking-wide text-ink-faint"
+          className="mb-4 block text-[13px] font-medium uppercase tracking-wide text-(--color-on-panel)/80"
         >
           Product thinking
         </motion.span>
@@ -50,9 +50,9 @@ export function ProductThinking() {
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           className="text-balance text-[10vw] font-heading font-semibold leading-[1.1] tracking-tighter text-ink sm:text-[6vw] lg:text-[4vw] xl:text-[76px]"
         >
-          <span className="block text-bg">Wir denken nicht in Projekten.</span>
-          <span className="mt-3 block sm:mt-20 text-bg">
-            Wir denken in <span className="text-ink">Produkten</span>
+          <span className="block text-(--color-on-panel-soft)">Wir denken nicht in Projekten.</span>
+          <span className="mt-3 block sm:mt-20 text-(--color-on-panel-soft)">
+            Wir denken in <span className="text-(--color-on-panel)">Produkten</span>
           </span>
         </motion.h2>
 

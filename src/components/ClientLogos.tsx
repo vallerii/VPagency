@@ -80,8 +80,10 @@ const GRID_ITEMS: { slug: string; place: string; img: string }[] = [
 // lighter or darker, so the logo never changes contrast on hover.
 const DARK_PLATE = new Set(["gbs", "lemming", "proctec", "teupen"]);
 
+// The light plate reads its colour from --logo-plate (globals.css), so on a
+// light section it turns white instead of cream.
 const PLATE_LIGHT =
-  "border-border bg-ink hover:bg-ink/80";
+  "border-border bg-(--logo-plate) hover:bg-(--logo-plate-hover)";
 const PLATE_DARK =
   "border-white/10 bg-[#24252b] hover:bg-[#33343c]";
 
