@@ -1,19 +1,23 @@
 "use client";
 
+import type { ReactNode } from "react";
 import { motion } from "framer-motion";
 import { HoverLink } from "@/components/ui/hover-button";
 
-export function ProductsHero() {
+export function ProductsHero({ breadcrumbs }: { breadcrumbs?: ReactNode }) {
   return (
     <section
-      className="relative flex min-h-[60dvh] w-full items-center overflow-hidden px-6 pb-20 pt-32 sm:px-10 lg:px-16"
+      className="relative flex min-h-[60dvh] w-full flex-col overflow-hidden px-6 pb-20 pt-32 sm:px-10 lg:px-16"
       style={{
         background:
           "linear-gradient(to top, color-mix(in srgb, #8FAFD4 20%, var(--color-bg) 86%) 0%, var(--color-bg) 62%)",
       }}
     >
-      <div className="mx-auto flex w-full max-w-[1440px] flex-col items-center text-center">
-
+      {/* Breadcrumbs sit at the top of the hero, left-aligned with the content — the same place as on /leistungen, /glossar and the article pages. */}
+      {breadcrumbs && (
+        <div className="mx-auto mb-10 w-full max-w-[1440px]">{breadcrumbs}</div>
+      )}
+      <div className="mx-auto my-auto flex w-full max-w-[1440px] flex-col items-center text-center">
         <div className="flex max-w-4xl flex-col items-center">
           <motion.h1
             initial={{ opacity: 0, y: 24 }}
@@ -24,7 +28,7 @@ export function ProductsHero() {
             Was aus Geschäfts&shy;problemen
             <br />
             wird, wenn man sie{" "}
-            <span className="text-[#0E68FF]">
+            <span className="text-link">
               löst
             </span>
           </motion.h1>

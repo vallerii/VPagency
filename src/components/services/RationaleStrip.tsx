@@ -102,7 +102,7 @@ export function RationaleStrip({ slug, title, lines }: RationaleStripProps) {
                   word === "stillsteht" ? (
                     <span
                       key={j}
-                      className="text-[#0E68FF]"
+                      className="text-link"
                     >
                       {j > 0 ? " " : ""}
                       {word}

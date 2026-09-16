@@ -44,7 +44,7 @@ export function AutomationTransform({ title, lines }: AutomationTransformProps) 
                   word === "Kostenposition" ? (
                     <span
                       key={j}
-                      className="text-[#0E68FF]"
+                      className="text-link"
                     >
                       {j > 0 ? " " : ""}
                       {word}

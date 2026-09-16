@@ -48,7 +48,7 @@ export function ServiceDeepDive({ content }: { content: DeepDive }) {
                 {block.termSlug && block.termLinkLabel && (
                   <Link
                     href={routes.glossarTerm(block.termSlug)}
-                    className="mt-5 inline-flex w-fit items-center gap-1.5 text-[15px] font-medium text-[#0E68FF] underline decoration-[#0E68FF]/30 underline-offset-4 transition-colors hover:text-ink hover:decoration-ink/40"
+                    className="mt-5 inline-flex w-fit items-center gap-1.5 text-[15px] font-medium text-link underline decoration-link/30 underline-offset-4 transition-colors hover:text-ink hover:decoration-ink/40"
                   >
                     {block.termLinkLabel}
                     <span aria-hidden="true">→</span>

@@ -7,7 +7,9 @@ import {
   CTA_HEADING,
   CTA_HIGHLIGHT,
   CTA_LEAD,
-  CTA_PANEL,
+  CTA_PANEL_WIDE,
+  CTA_PANEL_WIDE_INNER,
+  CTA_SECTION_WIDE,
 } from "@/components/ui/cta-styles";
 
 
@@ -17,14 +19,15 @@ interface ServiceCTAProps {
 
 export function ServiceCTA({ label }: ServiceCTAProps) {
   return (
-    <section id="contact" className="w-full px-6 pb-32 sm:px-10 lg:px-16 lg:pb-44">
+    <section id="contact" className={CTA_SECTION_WIDE}>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.5 }}
         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-        className={CTA_PANEL}
+        className={CTA_PANEL_WIDE}
       >
+        <div className={CTA_PANEL_WIDE_INNER}>
         <div className="mb-16">
           <h2 className={CTA_HEADING}>
             Erzählen Sie uns von Ihrer{" "}
@@ -41,6 +44,7 @@ export function ServiceCTA({ label }: ServiceCTAProps) {
 
         <div className={CTA_CARD}>
           <ContactForm />
+        </div>
         </div>
       </motion.div>
     </section>

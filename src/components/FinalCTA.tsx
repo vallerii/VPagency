@@ -13,6 +13,7 @@ import {
   CTA_HIGHLIGHT,
   CTA_LEAD,
   CTA_PANEL_WIDE,
+  CTA_SECTION_WIDE,
   CTA_PANEL_WIDE_INNER,
 } from "@/components/ui/cta-styles";
 
@@ -31,7 +32,7 @@ export function FinalCTA() {
     <section
       id="contact"
       // Full-width sheet with the same inset as the light bands above it.
-      className="relative w-full overflow-hidden px-2 pb-2 sm:px-3 sm:pb-3 lg:px-4 lg:pb-4"
+      className={`${CTA_SECTION_WIDE} overflow-hidden`}
     >
       {/* <div className="pointer-events-none absolute inset-0 opacity-[0.55] sm:opacity-70" aria-hidden="true">
         <svg className="absolute inset-0 h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none">

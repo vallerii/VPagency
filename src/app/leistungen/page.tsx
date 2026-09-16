@@ -29,7 +29,15 @@ export default function LeistungenPage() {
     <>
       <Header />
       <main>
-        <section className="w-full px-6 pb-16 pt-36 sm:px-10 lg:px-16 lg:pb-20 lg:pt-44">
+        {/* Same soft blue glow at the bottom of the hero as on the five
+        service pages (ServiceHero & co.), so the hub reads as their parent. */}
+        <section
+          className="w-full px-6 pb-20 pt-36 sm:px-10 lg:px-16 lg:pb-28 lg:pt-44"
+          style={{
+            background:
+              "linear-gradient(to top, color-mix(in srgb, #8FAFD4 20%, var(--color-bg) 86%) 0%, var(--color-bg) 62%)",
+          }}
+        >
           <div className="mx-auto w-full max-w-[1440px]">
             <Breadcrumbs className="mb-8" items={[{ name: "Leistungen" }]} />
 
@@ -40,7 +48,7 @@ export default function LeistungenPage() {
             <h1 className="text-balance text-[11vw] font-heading font-semibold leading-[1.08] tracking-tighter text-ink sm:text-[7vw] lg:text-[4.4vw] xl:text-[76px]">
               Sie müssen nicht wissen,
               <br className="hidden sm:block" />{" "}
-              <span className="text-[#0E68FF]">welche Lösung Sie brauchen</span>
+              <span className="text-link">welche Lösung Sie brauchen</span>
             </h1>
 
             <p className="mt-8 max-w-3xl text-[16px] leading-[1.55] text-ink-soft sm:text-[19px] lg:text-[22px]">
@@ -79,7 +87,7 @@ export default function LeistungenPage() {
                     <h2 className="text-balance font-heading text-[30px] font-semibold leading-[1.15] tracking-tight text-ink sm:text-[38px]">
                       <Link
                         href={routes.leistung(service.slug)}
-                        className="transition-colors hover:text-[#0E68FF]"
+                        className="transition-colors hover:text-accent-hover"
                       >
                         {service.label}
                       </Link>
@@ -105,7 +113,9 @@ export default function LeistungenPage() {
                     <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-3">
                       <Link
                         href={routes.leistung(service.slug)}
-                        className="inline-flex items-center gap-1.5 text-[15px] font-medium text-[#0E68FF] underline decoration-[#0E68FF]/30 underline-offset-4 transition-colors hover:text-ink hover:decoration-ink/40"
+                        // Soft accent instead of the brand blue: #0E68FF on graphite is only
+                        // ~3.7:1 at 15px, #8FAFD4 is ~8:1.
+                        className="inline-flex items-center gap-1.5 text-[15px] font-medium text-accent-hover underline decoration-accent-hover/40 underline-offset-4 transition-colors hover:text-ink hover:decoration-ink/40"
                       >
                         {seo?.title ?? `${service.label} im Detail`}
                         <span aria-hidden="true">→</span>
@@ -129,6 +139,7 @@ export default function LeistungenPage() {
           </div>
         </section>
 
+
         {/* Hub → hub: the two other entry points of the site, so no section
         is a dead end (§10). */}
         <section className="w-full px-6 pb-24 sm:px-10 lg:px-16 lg:pb-32">
@@ -147,7 +158,7 @@ export default function LeistungenPage() {
                 {CASES.length} Projekte mit Ausgangslage, Lösung und Ergebnis —
                 damit Sie sehen, wie wir arbeiten, bevor Sie anfragen.
               </p>
-              <span className="mt-5 text-[15px] font-medium text-[#0E68FF] transition-colors group-hover:text-ink">
+              <span className="mt-5 text-[15px] font-medium text-accent-hover transition-colors group-hover:text-ink">
                 Projekte ansehen →
               </span>
             </Link>
@@ -167,7 +178,7 @@ export default function LeistungenPage() {
                 zwei Sätzen erklärt und mit dem, was sie für Ihr Geschäft
                 bedeuten.
               </p>
-              <span className="mt-5 text-[15px] font-medium text-[#0E68FF] transition-colors group-hover:text-ink">
+              <span className="mt-5 text-[15px] font-medium text-accent-hover transition-colors group-hover:text-ink">
                 Zum Glossar →
               </span>
             </Link>

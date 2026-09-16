@@ -84,7 +84,7 @@ export function WhatWeBuild() {
                 </p>
                 <Link
                   href={routes.leistung(p.slug)}
-                  className="mt-auto uppercase inline-flex items-center gap-1.5 pt-5 text-[13px] font-medium text-[#0E68FF] transition-colors hover:text-ink"
+                  className="mt-auto uppercase inline-flex items-center gap-1.5 pt-5 text-[13px] font-medium text-link transition-colors hover:text-ink"
                 >
                   {p.title} ansehen →
                 </Link>

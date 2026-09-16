@@ -8,7 +8,8 @@ interface WebsiteResultProps {
   rows: BeforeAfterRow[];
 }
 
-// Each before/after pair lives inside its own small "browser frame" —
+// Each before/after pair lives inside its own small light "browser frame"
+// on the page background —
 // the before line fades out as the after line fades in, on scroll.
 function ResultFrame({ row, index }: { row: BeforeAfterRow; index: number }) {
   return (
@@ -17,7 +18,7 @@ function ResultFrame({ row, index }: { row: BeforeAfterRow; index: number }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.5 }}
       transition={{ duration: 0.6, delay: (index % 2) * 0.1 }}
-      className="overflow-hidden rounded-[16px] border border-border bg-bg"
+      className="theme-light overflow-hidden rounded-[16px] border border-border bg-card"
     >
       <div className="flex items-center gap-1.5 border-b border-border px-4 py-2.5">
         <span className="h-2 w-2 rounded-full bg-ink-faint/40" />
@@ -53,7 +54,7 @@ function ResultFrame({ row, index }: { row: BeforeAfterRow; index: number }) {
 
 export function WebsiteResult({ rows }: WebsiteResultProps) {
   return (
-    <section className="relative w-full overflow-hidden bg-[#0E68FF]/55 px-6 py-24 sm:px-10 lg:px-16 lg:py-32">
+    <section className="relative w-full overflow-hidden px-6 py-24 sm:px-10 lg:px-16 lg:py-32">
       
 
       <motion.h2

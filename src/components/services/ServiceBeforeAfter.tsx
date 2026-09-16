@@ -26,7 +26,7 @@ export function ServiceBeforeAfter({ rows }: ServiceBeforeAfterProps) {
           <span className="text-[13px] font-medium uppercase tracking-wide text-ink-faint sm:text-right sm:text-[14px]">
             Vorher
           </span>
-          <span className="text-[13px] font-medium uppercase tracking-wide text-[#0E68FF] sm:text-[14px]">
+          <span className="text-[13px] font-medium uppercase tracking-wide text-link sm:text-[14px]">
             Nachher
           </span>
         </div>

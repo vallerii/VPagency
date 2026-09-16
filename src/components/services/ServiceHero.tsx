@@ -1,23 +1,30 @@
 "use client";
 
+import type { ReactNode } from "react";
 import { motion } from "framer-motion";
 import { HoverLink } from "@/components/ui/hover-button";
 
 interface ServiceHeroProps {
+  /** Breadcrumb trail, shown at the top of the hero. */
+  breadcrumbs?: ReactNode;
   title: string[];
   subtitle: string;
 }
 
-export function ServiceHero({ title, subtitle }: ServiceHeroProps) {
+export function ServiceHero({ title, subtitle, breadcrumbs }: ServiceHeroProps) {
   return (
     <section
-      className="relative flex min-h-[70dvh] w-full items-center overflow-hidden px-6 pt-32 pb-20 sm:px-10 lg:px-16 min-h-[80dvh]"
+      className="relative flex min-h-[80dvh] w-full flex-col overflow-hidden px-6 pt-32 pb-20 sm:px-10 lg:px-16"
       style={{
         background:
           "linear-gradient(to top, color-mix(in srgb, #8FAFD4 20%, var(--color-bg) 86%) 0%, var(--color-bg) 62%)",
       }}
     >
-      <div className="mx-auto flex w-full max-w-[1440px] flex-col items-center text-center">
+      {/* Breadcrumbs sit at the top of the hero, left-aligned with the content — the same place as on /leistungen, /glossar and the article pages. */}
+      {breadcrumbs && (
+        <div className="mx-auto mb-10 w-full max-w-[1440px]">{breadcrumbs}</div>
+      )}
+      <div className="mx-auto my-auto flex w-full max-w-[1440px] flex-col items-center text-center">
         <motion.span
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -40,7 +47,7 @@ export function ServiceHero({ title, subtitle }: ServiceHeroProps) {
                   word === "Anfang," ? (
                     <span
                       key={j}
-                      className="text-[#0E68FF]"
+                      className="text-link"
                     >
                       {j > 0 ? " " : ""}
                       {word}

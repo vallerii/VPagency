@@ -28,7 +28,7 @@ export function ServiceGlossary({ serviceSlug }: { serviceSlug: string }) {
           </div>
           <Link
             href={routes.glossar}
-            className="shrink-0 text-[15px] font-medium text-[#0E68FF] underline decoration-[#0E68FF]/30 underline-offset-4 transition-colors hover:text-ink"
+            className="shrink-0 text-[15px] font-medium text-link underline decoration-link/30 underline-offset-4 transition-colors hover:text-ink"
           >
             Zum ganzen Glossar →
           </Link>

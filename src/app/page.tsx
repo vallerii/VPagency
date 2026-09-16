@@ -16,17 +16,8 @@ import { HOMEPAGE_FAQ } from "@/data/faq";
 import { FinalCTA } from "@/components/FinalCTA";
 import { Footer } from "@/components/Footer";
 import { JsonLd } from "@/components/JsonLd";
+import { Sheet } from "@/components/ui/Sheet";
 import { faqSchema } from "@/lib/schema";
-
-const LIGHT_BAND =
-  "theme-light relative mx-2 my-2 overflow-hidden rounded-[28px] sm:mx-3 sm:my-3 sm:rounded-[36px] lg:mx-4 lg:my-4 lg:rounded-[48px]";
-
-// The blue "Wir denken in Produkten" band sits right under the first light
-// band; as a full-bleed strip its square edges met the light sheet's round
-// corners with dark wedges in between. Framed the same way, the two read
-// as a deliberate stack of sheets.
-const SHEET =
-  "relative mx-2 overflow-hidden rounded-[28px] sm:mx-3 sm:rounded-[36px] lg:mx-4 lg:rounded-[48px]";
 
 export default function Home() {
   return (
@@ -64,14 +55,15 @@ export default function Home() {
         sections read as separate chapters. Each band is a rounded sheet
         inset from the viewport edges — it sits on the dark page like a
         card instead of cutting it with a hard horizontal line. The tokens
-        are swapped by `theme-light` (globals.css). */}
-        <div className={LIGHT_BAND}>
+        are swapped by `theme-light` (globals.css); the frame is <Sheet>. */}
+        <Sheet>
           <WhatWeBuild />
           <TechnicalExpertise />
-        </div>
-        <div className={SHEET}>
+        </Sheet>
+        {/* ProductThinking brings its own blue; the sheet only frames it. */}
+        <Sheet tone="plain">
           <ProductThinking />
-        </div>
+        </Sheet>
         <section className="px-6 pt-32 lg:pt-44 pb-16 sm:px-10 lg:px-16">
           <h2 className="mx-auto max-w-[1440px] text-balance text-[10vw] font-heading font-semibold leading-[1.1] tracking-tighter text-ink sm:text-[6vw] lg:text-[4vw] xl:text-[76px]">
             So arbeiten wir
@@ -82,9 +74,9 @@ export default function Home() {
         {/* Only the client logos get the light sheet — the FAQ below stays
         on the page background, so the sheet frames one message ("who
         trusts us") instead of two unrelated blocks. */}
-        <div className={`${LIGHT_BAND} pt-24 lg:pt-32`}>
+        <Sheet className="pt-24 lg:pt-32">
           <ClientLogos />
-        </div>
+        </Sheet>
         {/* <About /> */}
         <div className="pt-24 lg:pt-32">
           <FAQ items={HOMEPAGE_FAQ} />

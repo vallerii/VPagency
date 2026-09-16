@@ -44,7 +44,7 @@ export function SystemBuild({ title, lines }: SystemBuildProps) {
                   word.includes("provisorisch") ? (
                     <span
                       key={j}
-                      className="text-[#0E68FF]"
+                      className="text-link"
                     >
                       {j > 0 ? " " : ""}
                       {word}

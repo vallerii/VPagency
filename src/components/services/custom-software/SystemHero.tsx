@@ -1,9 +1,12 @@
 "use client";
 
+import type { ReactNode } from "react";
 import { motion } from "framer-motion";
 import { HoverLink } from "@/components/ui/hover-button";
 
 interface SystemHeroProps {
+  /** Breadcrumb trail, shown at the top of the hero. */
+  breadcrumbs?: ReactNode;
   title: string[];
   subtitle: string;
 }
@@ -13,7 +16,7 @@ const tileVariants = {
   show: { opacity: 1, scale: 1, y: 0 },
 };
 
-export function SystemHero({ title, subtitle }: SystemHeroProps) {
+export function SystemHero({ title, subtitle, breadcrumbs }: SystemHeroProps) {
   return (
     <section
       className="relative w-full overflow-hidden px-6 pb-20 pt-32 sm:px-10 lg:px-16 lg:pb-28"
@@ -23,6 +26,8 @@ export function SystemHero({ title, subtitle }: SystemHeroProps) {
       }}
     >
       <div className="mx-auto w-full max-w-[1440px]">
+        {/* Breadcrumbs sit at the top of the hero, left-aligned with the content — the same place as on /leistungen, /glossar and the article pages. */}
+        {breadcrumbs && <div className="mb-10">{breadcrumbs}</div>}
 
         <div className="grid grid-cols-1 items-center gap-14 lg:grid-cols-[1fr_0.95fr] lg:gap-10">
           <div>
@@ -47,7 +52,7 @@ export function SystemHero({ title, subtitle }: SystemHeroProps) {
                     word === "funktionieren" ? (
                       <span
                         key={j}
-                        className="text-[#0E68FF]"
+                        className="text-link"
                       >
                         {j > 0 ? " " : ""}
                         {word}

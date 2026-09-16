@@ -9,6 +9,7 @@ import { faqSchema, serviceSchema } from "@/lib/schema";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { Sheet } from "@/components/ui/Sheet";
 import { TechMarquee } from "@/components/TechMarquee";
 import { ServiceHero } from "@/components/services/ServiceHero";
 import { SymptomList } from "@/components/services/SymptomList";
@@ -91,86 +92,135 @@ export default async function ServicePage({
   // original shared template below. All four still share the same
   // breadcrumbs, marquee, deep dive, glossary strip, related-cases grid,
   // contact form and header/footer.
+  // Page rhythm (same frame as the home page, see ui/Sheet.tsx):
+  //   symptoms        — light sheet ("Kommt Ihnen bekannt vor?")
+  //   rationale       — graphite card sheet (its illustration is drawn dark)
+  //   what's included — on the page background
+  //   result          — graphite card sheet (Websites: with light cards)
+  //   deep dive       — light sheet
+  // then related projects, glossary and FAQ on the page background and the
+  // blue contact sheet at the end.
+
+  // Shared by every hero variant below — rendered at the top of the hero.
+  const breadcrumbs = (
+    <Breadcrumbs
+      items={[
+        { name: "Leistungen", href: routes.leistungen },
+        { name: service.label },
+      ]}
+    />
+  );
+
   let hero;
   let body;
 
   switch (service.slug) {
     case "websites":
-      hero = <WebsiteHero title={service.heroTitle} subtitle={service.heroSubtitle} />;
+      hero = <WebsiteHero title={service.heroTitle} subtitle={service.heroSubtitle} breadcrumbs={breadcrumbs} />;
       body = (
         <>
-          <WebsiteJourney title="Kommt Ihnen bekannt vor?" items={service.symptoms} />
-          <WebsiteStructure title={service.rationaleTitle} lines={service.rationaleLines} />
+          <Sheet>
+            <WebsiteJourney title="Kommt Ihnen bekannt vor?" items={service.symptoms} />
+          </Sheet>
+          <Sheet tone="card">
+            <WebsiteStructure title={service.rationaleTitle} lines={service.rationaleLines} />
+          </Sheet>
           <WebsiteStages
             included={service.included}
             addon={service.addon}
             outOfScope={service.outOfScope}
           />
-          <WebsiteResult rows={service.beforeAfter} />
+          <Sheet tone="card">
+            <WebsiteResult rows={service.beforeAfter} />
+          </Sheet>
         </>
       );
       break;
     case "automation":
-      hero = <AutomationHero title={service.heroTitle} subtitle={service.heroSubtitle} />;
+      hero = <AutomationHero title={service.heroTitle} subtitle={service.heroSubtitle} breadcrumbs={breadcrumbs} />;
       body = (
         <>
-          <AutomationChaos title="Kommt Ihnen bekannt vor?" items={service.symptoms} />
-          <AutomationTransform title={service.rationaleTitle} lines={service.rationaleLines} />
+          <Sheet>
+            <AutomationChaos title="Kommt Ihnen bekannt vor?" items={service.symptoms} />
+          </Sheet>
+          <Sheet tone="card">
+            <AutomationTransform title={service.rationaleTitle} lines={service.rationaleLines} />
+          </Sheet>
           <AutomationFlow
             included={service.included}
             addon={service.addon}
             outOfScope={service.outOfScope}
           />
-          <AutomationResult rows={service.beforeAfter} />
+          <Sheet tone="card">
+            <AutomationResult rows={service.beforeAfter} />
+          </Sheet>
         </>
       );
       break;
     case "custom-software":
-      hero = <SystemHero title={service.heroTitle} subtitle={service.heroSubtitle} />;
+      hero = <SystemHero title={service.heroTitle} subtitle={service.heroSubtitle} breadcrumbs={breadcrumbs} />;
       body = (
         <>
-          <SystemChaos title="Kommt Ihnen bekannt vor?" items={service.symptoms} />
-          <SystemBuild title={service.rationaleTitle} lines={service.rationaleLines} />
+          <Sheet>
+            <SystemChaos title="Kommt Ihnen bekannt vor?" items={service.symptoms} />
+          </Sheet>
+          <Sheet tone="card">
+            <SystemBuild title={service.rationaleTitle} lines={service.rationaleLines} />
+          </Sheet>
           <SystemModules
             included={service.included}
             addon={service.addon}
             outOfScope={service.outOfScope}
           />
-          <SystemResult rows={service.beforeAfter} />
+          <Sheet tone="card">
+            <SystemResult rows={service.beforeAfter} />
+          </Sheet>
         </>
       );
       break;
     case "ecommerce":
-      hero = <ShopHero title={service.heroTitle} subtitle={service.heroSubtitle} />;
+      hero = <ShopHero title={service.heroTitle} subtitle={service.heroSubtitle} breadcrumbs={breadcrumbs} />;
       body = (
         <>
-          <ShopFunnel title="Kommt Ihnen bekannt vor?" items={service.symptoms} />
-          <ShopCost title={service.rationaleTitle} lines={service.rationaleLines} />
+          <Sheet>
+            <ShopFunnel title="Kommt Ihnen bekannt vor?" items={service.symptoms} />
+          </Sheet>
+          <Sheet tone="card">
+            <ShopCost title={service.rationaleTitle} lines={service.rationaleLines} />
+          </Sheet>
           <ShopScheme
             included={service.included}
             addon={service.addon}
             outOfScope={service.outOfScope}
           />
-          <ShopResult rows={service.beforeAfter} />
+          <Sheet tone="card">
+            <ShopResult rows={service.beforeAfter} />
+          </Sheet>
         </>
       );
       break;
     default:
-      hero = <ServiceHero title={service.heroTitle} subtitle={service.heroSubtitle} />;
+      hero = <ServiceHero title={service.heroTitle} subtitle={service.heroSubtitle} breadcrumbs={breadcrumbs} />;
       body = (
         <>
-          <SymptomList title="Kommt Ihnen bekannt vor?" items={service.symptoms} />
-          <RationaleStrip
-            slug={service.slug}
-            title={service.rationaleTitle}
-            lines={service.rationaleLines}
-          />
+          <Sheet>
+            <SymptomList title="Kommt Ihnen bekannt vor?" items={service.symptoms} />
+          </Sheet>
+          <Sheet tone="card">
+            <RationaleStrip
+              slug={service.slug}
+              title={service.rationaleTitle}
+              lines={service.rationaleLines}
+            />
+          </Sheet>
           <ScopeTiers
             included={service.included}
             addon={service.addon}
             outOfScope={service.outOfScope}
           />
-          <ServiceBeforeAfter rows={service.beforeAfter} />
+          <Sheet tone="card">
+            <ServiceBeforeAfter rows={service.beforeAfter} />
+          </Sheet>
         </>
       );
   }
@@ -181,24 +231,15 @@ export default async function ServicePage({
       <main>
         {hero}
 
-        {/* Sits between the hero and the marquee: the hero already carries
-        the top spacing that clears the fixed header, so this is the first
-        point on the page where a trail can be placed without colliding
-        with it. */}
-        <div className="border-b border-border px-6 py-4 sm:px-10 lg:px-16">
-          <Breadcrumbs
-            className="mx-auto w-full max-w-[1440px]"
-            items={[
-              { name: "Leistungen", href: routes.leistungen },
-              { name: service.label },
-            ]}
-          />
-        </div>
 
         <TechMarquee />
         {body}
 
-        {deepDive && <ServiceDeepDive content={deepDive} />}
+        {deepDive && (
+          <Sheet>
+            <ServiceDeepDive content={deepDive} />
+          </Sheet>
+        )}
 
         <RelatedCases category={service.slug} />
         <ServiceGlossary serviceSlug={service.slug} />

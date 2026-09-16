@@ -7,7 +7,7 @@ const base =
   "inline-flex items-center justify-center gap-2 rounded-full border-2 font-semibold uppercase tracking-[15%] transition-colors duration-300";
 const variants = {
   primary: "border-accent-2 bg-accent-2/15 text-accent-2-deep hover:bg-accent-2/30",
-  secondary: "border-[#0E68FF] bg-card text-[#0E68FF] hover:border-[#0E68FF]  hover:bg-[#0E68FF]/25 hover:text-white/80",
+  secondary: "border-[#0E68FF] bg-card text-link hover:border-[#0E68FF]  hover:bg-[#0E68FF]/25 hover:text-white/80",
   // White label, not text-accent: #8FAFD4 on the #0E68FF fill is ~2:1,
   // white is 4.8:1.
   outline:

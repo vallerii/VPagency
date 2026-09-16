@@ -1,16 +1,19 @@
 "use client";
 
+import type { ReactNode } from "react";
 import { motion } from "framer-motion";
 import { HoverLink } from "@/components/ui/hover-button";
 
 interface AutomationHeroProps {
+  /** Breadcrumb trail, shown at the top of the hero. */
+  breadcrumbs?: ReactNode;
   title: string[];
   subtitle: string;
 }
 
 const NODES = ["Anfrage", "Prüfung", "CRM", "E-Mail", "Team"];
 
-export function AutomationHero({ title, subtitle }: AutomationHeroProps) {
+export function AutomationHero({ title, subtitle, breadcrumbs }: AutomationHeroProps) {
   return (
     <section
       className="relative w-full overflow-hidden px-6 pb-20 pt-32 sm:px-10 lg:px-16 lg:pb-28"
@@ -20,6 +23,8 @@ export function AutomationHero({ title, subtitle }: AutomationHeroProps) {
       }}
     >
       <div className="mx-auto flex w-full max-w-[1440px] flex-col items-center text-center">
+        {/* Breadcrumbs sit at the top of the hero, left-aligned with the content — the same place as on /leistungen, /glossar and the article pages. */}
+        {breadcrumbs && <div className="mb-10 self-stretch text-left">{breadcrumbs}</div>}
 
         <motion.span
           initial={{ opacity: 0, y: 10 }}
@@ -43,7 +48,7 @@ export function AutomationHero({ title, subtitle }: AutomationHeroProps) {
                   word === "Ergebnis" ? (
                     <span
                       key={j}
-                      className="text-[#0E68FF]"
+                      className="text-link"
                     >
                       {j > 0 ? " " : ""}
                       {word}

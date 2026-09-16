@@ -156,7 +156,7 @@ export function WebsiteStructure({ title, lines }: WebsiteStructureProps) {
                   word === "Kontaktpunkt" ? (
                     <span
                       key={j}
-                      className="text-[#0E68FF]"
+                      className="text-link"
                     >
                       {j > 0 ? " " : ""}
                       {word}

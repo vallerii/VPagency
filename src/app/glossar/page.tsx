@@ -37,7 +37,7 @@ export default function GlossarPage() {
 
             <h1 className="text-balance text-[11vw] font-heading font-semibold leading-[1.08] tracking-tighter text-ink sm:text-[7vw] lg:text-[4.4vw] xl:text-[76px]">
               Sie sollten nicht raten müssen,{" "}
-              <span className="text-[#0E68FF]">was gemeint ist</span>
+              <span className="text-link">was gemeint ist</span>
             </h1>
 
             <p className="mt-8 max-w-3xl text-[16px] leading-[1.55] text-ink-soft sm:text-[19px] lg:text-[22px]">
@@ -66,7 +66,9 @@ export default function GlossarPage() {
                     <li key={term.slug} className="flex">
                       <Link
                         href={routes.glossarTerm(term.slug)}
-                        className="group flex w-full flex-col rounded-[18px] border border-border bg-card p-6 transition-colors hover:border-accent-line"
+                        // Light cards on the graphite page: `theme-light` flips the
+                        // tokens inside the card only, the section stays dark.
+                        className="theme-light group flex w-full flex-col rounded-[18px] border border-border bg-card p-6 transition-colors hover:border-accent-line"
                       >
                         <h3 className="font-heading text-[19px] font-semibold leading-[1.25] tracking-tight text-ink">
                           {term.term}
@@ -79,7 +81,7 @@ export default function GlossarPage() {
                         <p className="mt-3 text-[15px] leading-[1.55] text-ink-soft">
                           {term.short}
                         </p>
-                        <span className="mt-auto pt-5 text-[14px] font-medium text-[#0E68FF] transition-colors group-hover:text-ink">
+                        <span className="mt-auto pt-5 text-[14px] font-medium text-link transition-colors group-hover:text-ink">
                           {term.term} erklärt →
                         </span>
                       </Link>
@@ -104,13 +106,13 @@ export default function GlossarPage() {
             <div className="mt-7 flex flex-wrap gap-x-6 gap-y-3">
               <Link
                 href={routes.leistungen}
-                className="text-[15px] font-medium text-[#0E68FF] underline decoration-[#0E68FF]/30 underline-offset-4 transition-colors hover:text-ink"
+                className="text-[15px] font-medium text-link underline decoration-link/30 underline-offset-4 transition-colors hover:text-ink"
               >
                 Alle Leistungen ansehen →
               </Link>
               <Link
                 href={routes.projekte}
-                className="text-[15px] font-medium text-[#0E68FF] underline decoration-[#0E68FF]/30 underline-offset-4 transition-colors hover:text-ink"
+                className="text-[15px] font-medium text-link underline decoration-link/30 underline-offset-4 transition-colors hover:text-ink"
               >
                 Projekte ansehen →
               </Link>

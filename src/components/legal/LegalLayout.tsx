@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { LEGAL_LINKS } from "@/data/legal";
+import { Sheet } from "@/components/ui/Sheet";
 
 // One shell for all three legal pages so /impressum, /datenschutz and
 // /agb read as one document family: same measure, same rhythm, same
@@ -22,42 +23,51 @@ export function LegalLayout({ title, intro, meta, currentPath, children }: Legal
   return (
     <>
       <Header />
-      <main className="px-6 pt-36 pb-24 sm:px-10 sm:pt-44 lg:px-16">
-        <div className="mx-auto w-full max-w-[820px]">
-          <nav aria-label="Rechtliches" className="mb-10 flex flex-wrap gap-2">
-            {LEGAL_LINKS.map((link) => {
-              const isActive = link.href === currentPath;
-              return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  aria-current={isActive ? "page" : undefined}
-                  className={
-                    isActive
-                      ? "rounded-full border border-accent-line bg-accent-tint px-4 py-1.5 text-[14px] font-medium text-ink"
-                      : "rounded-full border border-border px-4 py-1.5 text-[14px] font-medium text-ink-soft transition-colors hover:border-accent-line hover:text-ink"
-                  }
-                >
-                  {link.label}
-                </Link>
-              );
-            })}
-          </nav>
+      <main>
+        {/* Tabs and title on the page background; the document itself on a
+        light sheet, like the glossary and project pages. Long legal text is
+        also simply easier to read dark-on-light. */}
+        <header className="px-6 pt-36 pb-14 sm:px-10 sm:pt-44 lg:px-16 lg:pb-16">
+          <div className="mx-auto w-full max-w-[820px]">
+            <nav aria-label="Rechtliches" className="mb-10 flex flex-wrap gap-2">
+              {LEGAL_LINKS.map((link) => {
+                const isActive = link.href === currentPath;
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    aria-current={isActive ? "page" : undefined}
+                    className={
+                      isActive
+                        ? "rounded-full border border-accent-line bg-accent-tint px-4 py-1.5 text-[14px] font-medium text-ink"
+                        : "rounded-full border border-border px-4 py-1.5 text-[14px] font-medium text-ink-soft transition-colors hover:border-accent-line hover:text-ink"
+                    }
+                  >
+                    {link.label}
+                  </Link>
+                );
+              })}
+            </nav>
 
-          <h1 className="text-balance font-heading text-[9vw] font-semibold leading-[1.1] tracking-tighter text-ink sm:text-[5vw] lg:text-[3.2vw] xl:text-[58px]">
-            {title}
-          </h1>
+            <h1 className="text-balance font-heading text-[9vw] font-semibold leading-[1.1] tracking-tighter text-ink sm:text-[5vw] lg:text-[3.2vw] xl:text-[58px]">
+              {title}
+            </h1>
 
-          {intro && (
-            <p className="mt-6 max-w-[65ch] text-[16px] leading-[1.6] text-ink-soft sm:text-[18px]">
-              {intro}
-            </p>
-          )}
+            {intro && (
+              <p className="mt-6 max-w-[65ch] text-[16px] leading-[1.6] text-ink-soft sm:text-[18px]">
+                {intro}
+              </p>
+            )}
 
-          {meta && <p className="mt-4 text-[14px] text-ink-faint">{meta}</p>}
+            {meta && <p className="mt-4 text-[14px] text-ink-faint">{meta}</p>}
+          </div>
+        </header>
 
-          <div className="mt-14 flex flex-col gap-10">{children}</div>
-        </div>
+        <Sheet className="mb-24 lg:mb-32">
+          <div className="px-6 py-16 sm:px-10 lg:px-16 lg:py-24">
+            <div className="mx-auto flex w-full max-w-[820px] flex-col gap-10">{children}</div>
+          </div>
+        </Sheet>
       </main>
       <Footer />
     </>

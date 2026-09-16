@@ -1,9 +1,12 @@
 "use client";
 
+import type { ReactNode } from "react";
 import { motion } from "framer-motion";
 import { HoverLink } from "@/components/ui/hover-button";
 
 interface WebsiteHeroProps {
+  /** Breadcrumb trail, shown at the top of the hero. */
+  breadcrumbs?: ReactNode;
   title: string[];
   subtitle: string;
 }
@@ -17,7 +20,7 @@ const blockVariants = {
   show: { opacity: 1, y: 0, scaleX: 1 },
 };
 
-export function WebsiteHero({ title, subtitle }: WebsiteHeroProps) {
+export function WebsiteHero({ title, subtitle, breadcrumbs }: WebsiteHeroProps) {
   return (
     <section
       className="relative w-full overflow-hidden px-6 pb-20 pt-32 sm:px-10 lg:px-16 lg:pb-28"
@@ -27,6 +30,9 @@ export function WebsiteHero({ title, subtitle }: WebsiteHeroProps) {
       }}
     >
       <div className="mx-auto w-full max-w-[1440px]">
+        {/* Breadcrumbs sit at the top of the hero, left-aligned with the content — the same place as on /leistungen, /glossar and the article pages. */}
+        {breadcrumbs && <div className="mb-10">{breadcrumbs}</div>}
+
         <div className="grid grid-cols-1 items-center gap-14 lg:grid-cols-[1fr_0.95fr] lg:gap-10">
           <div>
             <motion.span
@@ -50,7 +56,7 @@ export function WebsiteHero({ title, subtitle }: WebsiteHeroProps) {
                     word === "verkaufen" ? (
                       <span
                         key={j}
-                        className="text-[#0E68FF]"
+                        className="text-link"
                       >
                         {j > 0 ? " " : ""}
                         {word}

@@ -169,19 +169,21 @@ export function Header() {
                   aria-haspopup={hasMenu ? "true" : undefined}
                   aria-expanded={hasMenu ? servicesOpen : undefined}
                   className={`relative isolate flex items-center gap-2 rounded-full px-6 py-2.5 text-[15px] font-medium uppercase tracking-[0.06em] transition-colors ${
-                    isActive ? "text-ink" : "text-ink-soft hover:text-ink"
+                    // Dark text on the solid accent pill: cream on #8FAFD4
+                    // would be ~1.9:1, graphite is ~8:1.
+                    isActive || hovered === s.href ? "text-bg" : "text-ink-soft hover:text-ink"
                   }`}
                 >
                   {isActive ? (
                     <span
                       aria-hidden="true"
-                      className="absolute inset-0 -z-10 rounded-full bg-[rgba(143,175,212,0.32)]"
+                      className="absolute inset-0 -z-10 rounded-full bg-[#f4f4f0]"
                     />
                   ) : (
                     hovered === s.href && (
                       <motion.span
                         layoutId="header-nav-pill"
-                        className="absolute inset-0 -z-10 rounded-full bg-accent-tint"
+                        className="absolute inset-0 -z-10 rounded-full bg-[#f4f4f0]/60"
                         transition={{ type: "spring", stiffness: 380, damping: 32 }}
                       />
                     )
@@ -221,7 +223,7 @@ export function Header() {
                         // down and the menu does not flicker shut.
                         className="absolute left-1/2 top-full w-[380px] -translate-x-1/2 pt-3"
                       >
-                        <div className="rounded-2xl border border-border bg-card p-2 shadow-2xl shadow-black/50">
+                        <div className="flex flex-col gap-1 rounded-2xl border border-border bg-card p-2 shadow-2xl shadow-black/50">
                           {SERVICES.map((service) => (
                             <Link
                               key={service.slug}
@@ -231,15 +233,17 @@ export function Header() {
                                   ? "page"
                                   : undefined
                               }
-                              className="flex flex-col gap-0.5 rounded-xl px-4 py-3 transition-colors hover:bg-accent-tint"
+                              // Same solid accent as the nav pill, for hover and for the
+                              // page the visitor is on; the text flips to graphite.
+                              className="group flex flex-col gap-0.5 rounded-xl px-4 py-3 transition-colors hover:bg-[#f4f4f0]/60 aria-[current=page]:bg-[#f4f4f0]"
                             >
-                              <span className="text-[15px] font-medium text-ink">
+                              <span className="text-[15px] font-medium text-ink transition-colors group-hover:text-bg group-aria-[current=page]:text-bg">
                                 {service.label}
                               </span>
                               {/* The hint, not the label, is what a visitor who
                               does not yet know which solution he needs can
                               actually choose from. */}
-                              <span className="text-[13px] leading-snug text-ink-faint">
+                              <span className="text-[13px] leading-snug text-ink-faint transition-colors group-hover:text-bg/80 group-aria-[current=page]:text-bg/80">
                                 {service.navHint}
                               </span>
                             </Link>

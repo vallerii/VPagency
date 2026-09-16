@@ -32,7 +32,7 @@ export function ShopCost({ title, lines }: ShopCostProps) {
                   word === "Käufer" ? (
                     <span
                       key={j}
-                      className="text-[#0E68FF]"
+                      className="text-link"
                     >
                       {j > 0 ? " " : ""}
                       {word}
@@ -91,7 +91,7 @@ export function ShopCost({ title, lines }: ShopCostProps) {
           </div>
 
           <div>
-            <span className="mb-4 block text-[13px] font-medium uppercase tracking-wide text-[#0E68FF]">
+            <span className="mb-4 block text-[13px] font-medium uppercase tracking-wide text-link">
               Wenige Schritte
             </span>
             <div className="flex items-center gap-3">

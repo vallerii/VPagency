@@ -102,7 +102,7 @@ export function ClientLogos() {
         >
           Unternehmen aus Industrie, Bau und Logistik
           <br />
-          <span className="text-[#0E68FF]">vertrauen</span> auf VP Digital
+          <span className="text-link">vertrauen</span> auf VP Digital
         </motion.h2>
 
         <motion.div

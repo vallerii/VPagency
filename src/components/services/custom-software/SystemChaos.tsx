@@ -27,7 +27,9 @@ export function SystemChaos({ title, items }: SystemChaosProps) {
   return (
     <section className="w-full relative px-6 py-24 sm:px-10 lg:px-16 lg:py-32">
       <InteractiveTangle
-        backgroundColor="#17171A"
+        // The section sits on a light sheet (leistungen/[slug]/page.tsx):
+        // the canvas paints its own background, so it has to match #F4F4F0.
+        backgroundColor="#F4F4F0"
         lineColor="#8FAFD4"
         lineWidth={1.2}
         minLines={12}

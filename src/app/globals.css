@@ -111,6 +111,11 @@
      value baked in and have to be regenerated alongside it. */
   --color-logo-caret: #0E68FF;
 
+  /* Inline links and accent words. The brand blue on graphite; on light
+     sections it is one step darker (#0B5FEA, 5.0:1 on #F4F4F0) because
+     #0E68FF itself only reaches 4.3:1 there — short of AA for 15px text. */
+  --color-link: #0E68FF;
+
   /* Blue panel — the solid surface behind "Wir denken in Produkten" and
      the contact blocks, with the two text tones allowed on it. Dark text
      is never used on this blue. See cta-styles.ts for the contrast math. */
@@ -143,36 +148,43 @@
                          13px+ medium uppercase on cards — AA)
    The soft blue #8FAFD4 of the dark theme is only 2.1:1 on white, so on
    light sections the decorative accent becomes the brand blue. */
-.theme-light {
-  color-scheme: light;
+/* In the base layer on purpose: a `bg-card` / `bg-*` utility on the same
+   element must win over the sheet background, so a single card can be
+   made light (`theme-light bg-card` = white card on a dark section). */
+@layer base {
+  .theme-light {
+    color-scheme: light;
 
-  --color-bg: #F4F4F0;
-  --color-card: #FFFFFF;
+    --color-bg: #F4F4F0;
+    --color-card: #FFFFFF;
 
-  --color-ink: #16171A;
-  --color-ink-soft: #4B5059;
-  --color-ink-faint: #626873;
+    --color-ink: #16171A;
+    --color-ink-soft: #4B5059;
+    --color-ink-faint: #626873;
 
-  --color-border: #E3E3DD;
-  --color-line: #E3E3DD;
-  --color-glyph: #626873;
-  --color-glyph-soft: #B9BDC3;
+    --color-border: #E3E3DD;
+    --color-line: #E3E3DD;
+    --color-glyph: #626873;
+    --color-glyph-soft: #B9BDC3;
 
-  --color-accent: #0E68FF;
-  --color-accent-hover: #0E68FF;
-  --color-accent-alt: #5B8FE0;
-  --color-accent-line: #0E68FF;
-  --color-accent-tint: rgba(14, 104, 255, 0.08);
-  --color-accent-deep: #0A52CC;
-  --color-accent-2: #0E68FF;
-  --color-accent-2-hover: #0A52CC;
-  --color-accent-2-deep: #0A52CC;
+    --color-accent: #0E68FF;
+    --color-accent-hover: #0E68FF;
+    --color-accent-alt: #5B8FE0;
+    --color-accent-line: #0E68FF;
+    --color-accent-tint: rgba(14, 104, 255, 0.08);
+    --color-accent-deep: #0A52CC;
+    --color-accent-2: #0E68FF;
+    --color-accent-2-hover: #0A52CC;
+    --color-accent-2-deep: #0A52CC;
 
-  --logo-plate: #FFFFFF;
-  --logo-plate-hover: #F7F7F4;
+    --color-link: #0B5FEA;
 
-  background-color: var(--color-bg);
-  color: var(--color-ink);
+    --logo-plate: #FFFFFF;
+    --logo-plate-hover: #F7F7F4;
+
+    background-color: var(--color-bg);
+    color: var(--color-ink);
+  }
 }
 
 @theme inline {
@@ -193,6 +205,7 @@
   --color-accent-2-hover: var(--color-accent-2-hover);
   --color-accent-2-deep: var(--color-accent-2-deep);
   --color-logo-caret: var(--color-logo-caret);
+  --color-link: var(--color-link);
 
   --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
   --font-heading: "Raleway", "Manrope", ui-sans-serif, system-ui, sans-serif;

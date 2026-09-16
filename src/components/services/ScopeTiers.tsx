@@ -92,7 +92,7 @@ export function ScopeTiers({ included, addon, outOfScope }: ScopeTiersProps) {
             <ul className="mt-6 flex flex-col gap-4">
               {outOfScope.map((item, i) => (
                 <li key={i} className="flex items-start gap-3 text-[18px] leading-[1.4] text-ink-faint">
-                  <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-white/10 border border-border">
+                  <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-accent-tint border border-border">
                     <X className="h-3 w-3 text-ink-faint" strokeWidth={3} />
                   </span>
                   <span>
@@ -100,7 +100,7 @@ export function ScopeTiers({ included, addon, outOfScope }: ScopeTiersProps) {
                     <br />
                     <Link
                       href={routes.leistung(item.linkSlug)}
-                      className="font-medium uppercase text-[#0E68FF] font-[800] transition-colors hover:text-ink"
+                      className="font-medium uppercase text-link font-[800] transition-colors hover:text-ink"
                     >
                       {item.linkLabel} →
                     </Link>

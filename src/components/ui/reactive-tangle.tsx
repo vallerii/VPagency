@@ -367,6 +367,13 @@ export default function InteractiveTangle({
           Math.max(width, height) * 0.7
         );
 
+        // The edge fade blends into the canvas background, whatever colour
+        // that is — it used to be hard-wired to the graphite #17171A.
+        const hex = backgroundColor.replace("#", "");
+        const bgRgb = [0, 2, 4]
+          .map((i) => parseInt(hex.slice(i, i + 2), 16))
+          .join(",");
+
         const fadeAmount = clamp(
           fadeIntensity / 50,
           0,
@@ -375,22 +382,22 @@ export default function InteractiveTangle({
 
         gradient.addColorStop(
           0,
-          "rgba(23,23,26,0)"
+          `rgba(${bgRgb},0)`
         );
 
         gradient.addColorStop(
           0.45,
-          "rgba(23,23,26,0)"
+          `rgba(${bgRgb},0)`
         );
 
         gradient.addColorStop(
           0.75,
-          `rgba(23,23,26,${0.25 * fadeAmount})`
+          `rgba(${bgRgb},${0.25 * fadeAmount})`
         );
 
         gradient.addColorStop(
           1,
-          `rgba(23,23,26,${0.9 * fadeAmount})`
+          `rgba(${bgRgb},${0.9 * fadeAmount})`
         );
 
         ctx.fillStyle = gradient;
