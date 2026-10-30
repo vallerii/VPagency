@@ -3,6 +3,7 @@ import type { CSSProperties } from "react";
 import type { Lang } from "@/content/home";
 import { more } from "@/content/home-more";
 import { AnfrageForm } from "./AnfrageForm";
+import { AnfrageModal } from "./AnfrageModal";
 import { BrandLogo } from "./BrandLogo";
 import { href, pageCopy, t } from "@/content/catalog";
 import { tone } from "./tone";
@@ -140,6 +141,7 @@ export function Final({ lang }: { lang: Lang }) {
       <div className={s.formCard} data-reveal style={i(2)}>
         <AnfrageForm t={c.form} />
       </div>
+      <AnfrageModal t={c.form} title={c.closing} sub={c.closingSub} close={lang === "ru" ? "Закрыть" : "Schließen"} />
     </section>
   );
 }

@@ -52,6 +52,10 @@ type More = {
       invalidPhone: string;
       consentError: string;
       pending: string;
+      files: string;
+      filesHint: string;
+      filesRemove: string;
+      filesTooBig: string;
     };
   };
   footer: { links: { label: string; href: string }[]; rights: string };
@@ -83,7 +87,7 @@ export const more: Record<Lang, More> = {
     },
     stack: {
       title: "Technik, auf der wir bauen",
-      lead: "Die Plattform wählen wir nach Ihrer Aufgabe. So bleibt die Lösung wartbar, wächst mit Ihrem Unternehmen und hängt nicht an einem einzelnen Entwickler",
+      lead: "Die Plattform wählen wir nach Ihrer Aufgabe. So bleibt die Lösung wartbar und wächst mit Ihrem Unternehmen",
       servicesLabel: "Was wir damit machen",
       cards: [
         {
@@ -129,7 +133,7 @@ export const more: Record<Lang, More> = {
     },
     projects: {
       title: "Was wir schon umgesetzt haben",
-      lead: "Relaunch von Unternehmenswebsites: von veralteten Lösungen zu modernen Plattformen, die das Team selbst pflegt",
+      lead: "Relaunches für Industrie- und B2B-Unternehmen aus Produktion, Messtechnik, Verpackung und Bau. Jedes Projekt zeigt die Ausgangslage, was wir umgesetzt haben und was sich für den Kunden verändert hat",
       tags: ["WordPress", "Relaunch"],
       all: "Alle Projekte",
       open: "Projekt ansehen",
@@ -144,7 +148,7 @@ export const more: Record<Lang, More> = {
     },
     final: {
       title: "Von der Idee bis zur Betreuung",
-      text: "Ein Team führt Ihr Projekt vom ersten Gespräch bis nach dem Start. Sie müssen keine Dienstleister koordinieren",
+      text: "Ein Team führt Ihr Projekt vom ersten Gespräch bis nach dem Start",
       closing: "Erzählen Sie uns, was los ist",
       closingSub: "Wir melden uns innerhalb eines Werktags",
       contactLabel: "Oder direkt",
@@ -161,6 +165,10 @@ export const more: Record<Lang, More> = {
         required: "Bitte ausfüllen",
         invalidPhone: "Bitte eine Telefonnummer angeben",
         consentError: "Bitte bestätigen Sie die Einwilligung",
+        files: "Dateien anhängen",
+        filesHint: "Pflichtenheft, Skizzen oder Screenshots: PDF, Word, Excel, Bilder oder ZIP, bis 20 MB",
+        filesRemove: "Entfernen",
+        filesTooBig: "Die Dateien sind zusammen größer als 20 MB",
         pending: `Das Formular wird gerade angebunden und sendet noch nicht. Bis dahin erreichen Sie uns unter ${PHONE}`,
       },
     },
@@ -181,7 +189,7 @@ export const more: Record<Lang, More> = {
     },
     stack: {
       title: "Технологии, на которых мы строим",
-      lead: "Платформу выбираем под вашу задачу. Так решение легко поддерживать, оно растёт вместе с бизнесом и не зависит от одного разработчика",
+      lead: "Платформу выбираем под вашу задачу. Так решение легко поддерживать, оно растёт вместе с вашим бизнесом",
       servicesLabel: "Что мы на этом делаем",
       cards: [
         {
@@ -227,7 +235,7 @@ export const more: Record<Lang, More> = {
     },
     projects: {
       title: "Что уже сделано",
-      lead: "Релаунч корпоративных сайтов: от устаревших решений к современным платформам, которые команда клиента ведёт сама",
+      lead: "Релаунчи сайтов для производственных и B2B-компаний: производство, измерительная техника, упаковка и строительство. В каждом проекте видно, с чем клиент пришёл, что мы сделали и что для него изменилось",
       tags: ["WordPress", "Релаунч"],
       all: "Все проекты",
       open: "Смотреть проект",
@@ -242,7 +250,7 @@ export const more: Record<Lang, More> = {
     },
     final: {
       title: "От идеи до поддержки",
-      text: "Одна команда ведёт ваш проект от первого разговора до работы после запуска. Вам не нужно координировать подрядчиков",
+      text: "Одна команда ведёт ваш проект от первого разговора до работы после запуска",
       closing: "Расскажите, что происходит",
       closingSub: "Мы свяжемся с вами в течение рабочего дня",
       contactLabel: "Или напрямую",
@@ -259,6 +267,10 @@ export const more: Record<Lang, More> = {
         required: "Заполните поле",
         invalidPhone: "Укажите номер телефона",
         consentError: "Подтвердите согласие",
+        files: "Прикрепить файлы",
+        filesHint: "ТЗ, наброски или скриншоты: PDF, Word, Excel, картинки или ZIP, до 20 МБ",
+        filesRemove: "Убрать",
+        filesTooBig: "Файлы вместе больше 20 МБ",
         pending: `Форма ещё подключается и пока не отправляет. До этого позвоните нам: ${PHONE}`,
       },
     },
