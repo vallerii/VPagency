@@ -121,7 +121,7 @@ export function definedTermSchema(input: {
     url: absoluteUrl(input.path),
     inDefinedTermSet: {
       "@type": "DefinedTermSet",
-      name: "VP Digital Glossar",
+      name: "VP agency Glossar",
       url: absoluteUrl(routes.glossar),
     },
   };

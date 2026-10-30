@@ -125,7 +125,7 @@ export function Header() {
       >
         <Link
           href="/"
-          aria-label="VP Digital — Startseite"
+          aria-label="VP agency — Startseite"
           className="inline-flex h-[54px] items-center justify-self-start transition-opacity hover:opacity-80"
         >
           <Logo size={28} />
@@ -313,7 +313,7 @@ export function Header() {
               <Link
                 href="/"
                 onClick={() => setMenuOpen(false)}
-                aria-label="VP Digital — Startseite"
+                aria-label="VP agency — Startseite"
                 className="inline-flex h-[54px] items-center"
               >
                 <Logo size={28} />

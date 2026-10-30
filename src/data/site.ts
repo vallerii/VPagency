@@ -4,7 +4,7 @@
 
 export const SITE = {
   url: "https://vpagency.de",
-  name: "VP Digital",
+  name: "VP agency",
   locale: "de_DE",
   /**
    * Default OpenGraph/Twitter image — a 1200x630 card, which is what the

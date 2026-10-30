@@ -63,7 +63,7 @@ export async function generateMetadata({
   const seo = getServiceSeo(slug);
 
   return pageMetadata({
-    title: seo?.title ?? `${service.label} — VP Digital`,
+    title: seo?.title ?? `${service.label} — VP agency`,
     description: seo?.description ?? service.heroSubtitle,
     path: routes.leistung(slug),
   });

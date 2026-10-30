@@ -130,7 +130,7 @@ export default function GlossarPage() {
             name: t.term,
             path: routes.glossarTerm(t.slug),
           })),
-          "Glossar von VP Digital",
+          "Glossar von VP agency",
         )}
       />
     </>

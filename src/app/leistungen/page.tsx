@@ -195,7 +195,7 @@ export default function LeistungenPage() {
             name: s.label,
             path: routes.leistung(s.slug),
           })),
-          "Leistungen von VP Digital",
+          "Leistungen von VP agency",
         )}
       />
     </>

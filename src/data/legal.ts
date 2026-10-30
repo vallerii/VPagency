@@ -4,7 +4,7 @@
 //
 // ⚠️ BEFORE LAUNCH — please have these verified:
 //   • `name` / `register` / `vatId` / `managingDirector` must match the
-//     legal entity that actually operates vpdigital.agency. They are the
+//     legal entity that actually operates vpagency.de. They are the
 //     entity behind the Sandstraße 31 address; if the site is operated by
 //     a different company, every one of these fields has to change, not
 //     just the brand name (§ 5 TMG / § 18 MStV).
@@ -15,9 +15,9 @@
 
 export const COMPANY = {
   /** The brand the website is published under. */
-  brand: "VP Digital",
+  brand: "VP agency",
   /** The domain the legal texts refer to. */
-  domain: "vpdigital.agency",
+  domain: "vpagency.de",
   /** The legal entity operating the website (§ 5 TMG). */
   name: "Poosch Consulting GmbH",
   street: "Sandstraße 31",
@@ -26,7 +26,7 @@ export const COMPANY = {
   country: "Deutschland",
   phone: "+49 (0) 271 313 93 517",
   phoneHref: "+4927131393517",
-  email: "hello@vpdigital.agency",
+  email: "hello@vpagency.de",
   register: {
     court: "Amtsgericht Siegen",
     number: "HRB 12741",

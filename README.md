@@ -1,4 +1,4 @@
-# VP Digital — сайт
+# VP agency — сайт
 
 Next.js 16 (App Router) + Tailwind CSS v4 + Framer Motion + Satoshi (Fontshare).
 
@@ -61,6 +61,6 @@ fontshare.com и подключите через `next/font/local`.
 
 - Подключить реальную отправку формы (сейчас имитация) — `ContactForm.tsx`,
   функция `handleSubmit`.
-- Заменить email в футере (`hello@vpdigital.agency`).
+- Заменить email в футере (`hello@vpagency.de`).
 - При желании — самостоятельный хостинг шрифта Satoshi (см. раздел
   «Типографика» выше) вместо Fontshare CDN.

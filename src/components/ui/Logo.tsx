@@ -1,4 +1,4 @@
-// VP Digital mark: "VP_" — two letters and the cursor, nothing else.
+// VP agency mark: "VP_" — two letters and the cursor, nothing else.
 //
 // The letters are the actual V and P outlines of Raleway SemiBold (600),
 // the same cut the site's headlines use, converted to paths. They stay
@@ -40,7 +40,7 @@ export function Logo({ size = 32, animated = true, className = "" }: LogoProps) 
         viewBox={`0 0 ${VIEW_W} ${VIEW_H}`}
         fill="none"
         role="img"
-        aria-label="VP Digital"
+        aria-label="VP agency"
         className="shrink-0"
       >
         <path fill="currentColor" d={V_PATH} />

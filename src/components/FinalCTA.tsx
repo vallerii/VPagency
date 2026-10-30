@@ -164,10 +164,10 @@ export function FinalCTA() {
           <p className={CTA_FOOTNOTE}>
             Wissen Sie bereits, was Sie brauchen?{" "}
             <a
-              href="mailto:hello@vpdigital.agency"
+              href="mailto:hello@vpagency.de"
               className={CTA_FOOTNOTE_LINK}
             >
-              Schreiben Sie uns: hello@vpdigital.agency
+              Schreiben Sie uns: hello@vpagency.de
             </a>
           </p>
         </motion.div>

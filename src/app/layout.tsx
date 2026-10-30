@@ -9,29 +9,29 @@ export const metadata: Metadata = {
   // emitted as a relative path, which crawlers and social previews ignore.
   metadataBase: new URL(SITE.url),
   title: {
-    default: "VP Digital — vom Chaos zum System",
+    default: "VP agency — vom Chaos zum System",
     // Page titles set their own wording; the brand is appended here so no
     // page has to repeat it.
-    template: "%s | VP Digital",
+    template: "%s | VP agency",
   },
   description:
-    "VP Digital hilft Unternehmen zu verstehen, welche digitale Lösung sie wirklich brauchen, und baut ein System, das messbare Ergebnisse liefert.",
+    "VP agency hilft Unternehmen zu verstehen, welche digitale Lösung sie wirklich brauchen, und baut ein System, das messbare Ergebnisse liefert.",
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     siteName: SITE.name,
     locale: SITE.locale,
     url: SITE.url,
-    title: "VP Digital — vom Chaos zum System",
+    title: "VP agency — vom Chaos zum System",
     description:
-      "VP Digital hilft Unternehmen zu verstehen, welche digitale Lösung sie wirklich brauchen, und baut ein System, das messbare Ergebnisse liefert.",
+      "VP agency hilft Unternehmen zu verstehen, welche digitale Lösung sie wirklich brauchen, und baut ein System, das messbare Ergebnisse liefert.",
     images: [{ url: SITE.ogImage }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "VP Digital — vom Chaos zum System",
+    title: "VP agency — vom Chaos zum System",
     description:
-      "VP Digital hilft Unternehmen zu verstehen, welche digitale Lösung sie wirklich brauchen, und baut ein System, das messbare Ergebnisse liefert.",
+      "VP agency hilft Unternehmen zu verstehen, welche digitale Lösung sie wirklich brauchen, und baut ein System, das messbare Ergebnisse liefert.",
     images: [SITE.ogImage],
   },
   robots: { index: true, follow: true },

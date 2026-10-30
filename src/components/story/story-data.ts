@@ -66,7 +66,7 @@ export interface Caption {
 export const CAPTIONS: Caption[] = [
   {
     index: "00",
-    eyebrow: "VP Digital",
+    eyebrow: "VP agency",
     title: ["Von der Idee", "zur fertigen Lösung"],
     text: "So arbeiten wir — jeder Schritt macht die Lösung konkreter.",
   },

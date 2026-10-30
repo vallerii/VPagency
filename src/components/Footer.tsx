@@ -5,9 +5,9 @@ import { LEGAL_LINKS } from "@/data/legal";
 import { routes } from "@/data/site";
 import { Logo } from "./ui/Logo";
 
-// TODO: swap these for VP Digital's real contact details before launch —
+// TODO: swap these for VP agency's real contact details before launch —
 // placeholders only so the footer UI can be reviewed end to end.
-const EMAIL = "hello@vpdigital.agency";
+const EMAIL = "hello@vpagency.de";
 const PHONE = "+49 (0) 271 313 93 517";
 const PHONE_HREF = "+493012345670";
 
@@ -171,7 +171,7 @@ export function Footer() {
       </div>
 
       <div className="mx-auto mt-10 flex w-full max-w-7xl flex-col items-center justify-between gap-4 border-t border-border pt-6 text-sm text-ink-faint sm:flex-row">
-        <span>© {new Date().getFullYear()} VP Digital. Alle Rechte vorbehalten.</span>
+        <span>© {new Date().getFullYear()} VP agency. Alle Rechte vorbehalten.</span>
 
         <nav aria-label="Rechtliches" className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
           {LEGAL_LINKS.map((link) => (

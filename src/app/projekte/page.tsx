@@ -50,7 +50,7 @@ export default function ProductsPage() {
       <JsonLd
         data={itemListSchema(
           CASES.map((c) => ({ name: c.name, path: routes.projekt(c.slug) })),
-          "Projekte von VP Digital",
+          "Projekte von VP agency",
         )}
       />
       <JsonLd data={faqSchema(PRODUCTS_FAQ)} />
