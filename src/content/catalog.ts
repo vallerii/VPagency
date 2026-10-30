@@ -12,8 +12,8 @@ export type ServiceId =
   | "websites" | "online-shops" | "systeme-und-portale" | "neue-produkte"
   | "automatisierung" | "ki" | "betreuung" | "analyse-und-beratung";
 
-// Prototype base: the new pages live under /neu until they replace the old ones.
-export const BASE = "/neu";
+// Base path of the site pages (empty: the pages live at the root).
+export const BASE = "";
 export const href = (lang: Lang, path: string) => {
   const p = path.startsWith("#") ? `${BASE}${path}` : `${BASE}${path}`;
   if (lang !== "ru") return p;

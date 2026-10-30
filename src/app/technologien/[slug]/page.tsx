@@ -8,12 +8,20 @@ export function generateStaticParams() {
   return techs.map((x) => ({ slug: x.id }));
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+type P = { params: Promise<{ slug: string }>; searchParams: Promise<{ lang?: string }> };
+
+export async function generateMetadata({ params, searchParams }: P): Promise<Metadata> {
   const x = getTech((await params).slug);
-  return { title: x ? `${x.title.de} (Entwurf)` : "Technik", robots: { index: false, follow: false } };
+  if (!x) return { title: "Technologie" };
+  const { lang } = await searchParams;
+  return {
+    title: x.title.de,
+    alternates: { canonical: `/technologien/${x.id}` },
+    ...(lang === "ru" ? { robots: { index: false, follow: false } } : {}),
+  };
 }
 
-export default async function Page({ params, searchParams }: { params: Promise<{ slug: string }>; searchParams: Promise<{ lang?: string }> }) {
+export default async function Page({ params, searchParams }: P) {
   const x = getTech((await params).slug);
   if (!x) notFound();
   const lang = langOf((await searchParams).lang);

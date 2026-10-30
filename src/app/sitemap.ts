@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { SERVICES } from "@/data/services";
+import { services, techs } from "@/content/catalog";
 import { CASES } from "@/data/cases";
 import { GLOSSAR } from "@/data/glossar";
 import { LEGAL_LINKS } from "@/data/legal";
@@ -28,11 +28,23 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.9,
     },
-    ...SERVICES.map((service) => ({
-      url: absoluteUrl(routes.leistung(service.slug)),
+    ...services.map((service) => ({
+      url: absoluteUrl(routes.leistung(service.id)),
       lastModified: now,
       changeFrequency: "monthly" as const,
       priority: 0.9,
+    })),
+    {
+      url: absoluteUrl("/technologien"),
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    ...techs.map((tech) => ({
+      url: absoluteUrl(`/technologien/${tech.id}`),
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
     })),
     {
       url: absoluteUrl(routes.projekte),
