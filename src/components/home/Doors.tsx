@@ -3,6 +3,7 @@ import type { CSSProperties } from "react";
 import type { Lang } from "@/content/home";
 import { more } from "@/content/home-more";
 import { href } from "@/content/catalog";
+import { toneOf } from "./tone";
 import s from "./home.module.css";
 
 const i = (n: number) => ({ "--i": n }) as CSSProperties;
@@ -21,7 +22,7 @@ export function Services({ lang }: { lang: Lang }) {
             <Link href={href(lang, it.href)} className={s.serviceRow}>
               <span className={s.serviceTitle}>{it.title}</span>
               <span className={s.serviceText}>{it.text}</span>
-              <span className={s.serviceTags}>{it.tags.map((t) => <span key={t}>{t}</span>)}</span>
+              <span className={s.serviceTags}>{it.tags.map((t) => <span key={t} className={toneOf(t) ? `${s.tagDot} ${toneOf(t)}` : undefined}>{t}</span>)}</span>
               <span className={s.doorArrow} aria-hidden>→</span>
             </Link>
           </li>

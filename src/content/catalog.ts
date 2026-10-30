@@ -15,7 +15,8 @@ export type ServiceId =
 // Base path of the site pages (empty: the pages live at the root).
 export const BASE = "";
 export const href = (lang: Lang, path: string) => {
-  const p = path.startsWith("#") ? `${BASE}${path}` : `${BASE}${path}`;
+  // An empty path is the home page: "/" (an empty href would point to the current page)
+  const p = `${BASE}${path}` || "/";
   if (lang !== "ru") return p;
   const [a, h] = p.split("#");
   return `${a}?lang=ru${h ? `#${h}` : ""}`;

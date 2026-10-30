@@ -4,6 +4,7 @@ import { home } from "@/content/home";
 import { more } from "@/content/home-more";
 import { services, techs, pageCopy, href, t } from "@/content/catalog";
 import { BrandLogo } from "./BrandLogo";
+import { tone } from "./tone";
 import s from "./home.module.css";
 
 const navCopy = {
@@ -35,7 +36,7 @@ export function SiteHeader({ lang, floating }: { lang: Lang; floating?: boolean 
           <div className={`${s.ddPanel} ${s.ddPanelNarrow}`}>
             {techs.map((x) => (
               <Link key={x.id} href={href(lang, `/technologien/${x.id}`)} className={`${s.ddLink} ${s.ddTech}`}>
-                <span className={s.ddMark}><BrandLogo name={x.id === "schnittstellen" ? "auto" : x.brands[0]} size={18} /></span>
+                <span className={`${s.ddMark} ${s.techTint} ${tone(x.id)}`}><BrandLogo name={x.id === "schnittstellen" ? "auto" : x.brands[0]} size={18} /></span>
                 <b>{t(x.nav, lang)}</b>
               </Link>
             ))}

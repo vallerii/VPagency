@@ -1,11 +1,12 @@
 import Link from "next/link";
 import type { CSSProperties } from "react";
-import type { Lang } from "@/content/home";
+import { home, type Lang } from "@/content/home";
 import {
-  services, techs, formats, pageCopy as pc, href, t, itemName, itemText,
+  services, techs, pageCopy as pc, href, t, itemName, itemText,
   getTech, getService, type Service, type Tech,
 } from "@/content/catalog";
 import { BrandLogo, hasLogo } from "./BrandLogo";
+import { tone } from "./tone";
 import s from "./home.module.css";
 
 const i = (n: number) => ({ "--i": n }) as CSSProperties;
@@ -25,7 +26,7 @@ function Marks({ brands, size = 30 }: { brands: string[]; size?: number }) {
 
 function Crumbs({ lang, trail }: { lang: Lang; trail: { label: string; path?: string }[] }) {
   return (
-    <nav className={s.crumbs} aria-label="Breadcrumb">
+    <nav className={`${s.crumbs} ${s.crumbsBar}`} aria-label="Breadcrumb">
       <Link href={href(lang, "")}>{t(pc.home, lang)}</Link>
       {trail.map((c) => (
         <span key={c.label}>
@@ -58,20 +59,18 @@ function Groups({ lang, groups, id }: { lang: Lang; groups: Service["groups"]; i
   );
 }
 
-function Formats({ lang }: { lang: Lang }) {
+/* How we work: the same three steps as in the home hero */
+function Steps({ lang }: { lang: Lang }) {
   return (
-    <section className={s.ipSection} aria-labelledby="formats-title">
-      <h2 id="formats-title" className={s.h2} data-reveal>{t(formats.title, lang)}</h2>
-      <ol className={s.formatGrid}>
-        {formats.items.map((f, n) => (
-          <li key={f.title.de} data-reveal style={i(n)}>
-            <span className={s.wegNo}>{n + 1}</span>
-            <b>{t(f.title, lang)}</b>
-            <span>{t(f.text, lang)}</span>
-          </li>
-        ))}
-      </ol>
-    </section>
+    <ol className={`${s.progress} ${s.progressCenter}`} aria-label={lang === "ru" ? "Как мы работаем" : "So arbeiten wir"}>
+      {home[lang].hero.progress.map((p, n) => (
+        <li key={p.title}>
+          <span className={s.progressDot}>{n + 1}</span>
+          <b>{p.title}</b>
+          <small>{p.text}</small>
+        </li>
+      ))}
+    </ol>
   );
 }
 
@@ -84,7 +83,7 @@ function TechCards({ lang, ids, title }: { lang: Lang; ids: string[]; title: str
       <ul className={s.linkCards}>
         {list.map((x, n) => (
           <li key={x.id} data-reveal style={i(n)}>
-            <Link href={href(lang, `/technologien/${x.id}`)} className={s.linkCard}>
+            <Link href={href(lang, `/technologien/${x.id}`)} className={`${s.linkCard} ${s.techTint} ${tone(x.id)}`}>
               <Marks brands={x.brands.slice(0, 2)} size={26} />
               <b>{t(x.title, lang)}</b>
               <span>{t(x.lead, lang)}</span>
@@ -97,6 +96,9 @@ function TechCards({ lang, ids, title }: { lang: Lang; ids: string[]; title: str
   );
 }
 
+// Service cards take the hero pastels in turn, so neighbours never share a colour
+const pastels = ["mist", "sage", "sand", "clay"];
+
 function ServiceCards({ lang, ids, title }: { lang: Lang; ids: string[]; title: string }) {
   const list = ids.map(getService).filter(Boolean) as Service[];
   return (
@@ -105,7 +107,7 @@ function ServiceCards({ lang, ids, title }: { lang: Lang; ids: string[]; title: 
       <ul className={s.linkCards}>
         {list.map((sv, n) => (
           <li key={sv.id} data-reveal style={i(n)}>
-            <Link href={href(lang, `/leistungen/${sv.id}`)} className={s.linkCard}>
+            <Link href={href(lang, `/leistungen/${sv.id}`)} className={`${s.linkCard} ${s.pastelCard}`} style={{ "--paint": `var(--${pastels[n % pastels.length]})` } as CSSProperties}>
               <b>{t(sv.nav, lang)}</b>
               <span>{t(sv.title, lang)}</span>
               <span className={s.doorMore}>{t(pc.more, lang)}<span className={s.doorArrow} aria-hidden>→</span></span>
@@ -121,21 +123,15 @@ function ServiceCards({ lang, ids, title }: { lang: Lang; ids: string[]; title: 
 export function ServicePage({ lang, sv }: { lang: Lang; sv: Service }) {
   return (
     <>
-      <section className={s.ipHero}>
+      <Crumbs lang={lang} trail={[{ label: t(pc.servicesHub.title, lang), path: "/leistungen" }, { label: t(sv.nav, lang) }]} />
+      <section className={`${s.ipHero} ${s.ipHeroCenter}`}>
         <div className={s.ipHeroCopy}>
-          <Crumbs lang={lang} trail={[{ label: t(pc.servicesHub.title, lang), path: "/leistungen" }, { label: t(sv.nav, lang) }]} />
           <h1 className={s.ipH1}>{t(sv.title, lang)}</h1>
           <p className={s.lead}>{t(sv.lead, lang)}</p>
           <div className={s.btns}>
             <a href="#anfrage" className={`${s.pill} ${s.pillDark}`}>{t(pc.cta, lang)}<span className={s.arr} aria-hidden>↗</span></a>
           </div>
-        </div>
-        <div className={s.sitCard}>
-          <small>{t(pc.recognize, lang)}</small>
-          <ul>
-            {sv.situations.map((x) => <li key={x.de}><span className={s.kiCheck} aria-hidden>✓</span>{t(x, lang)}</li>)}
-          </ul>
-          <p>{t(sv.result, lang)}</p>
+          <Steps lang={lang} />
         </div>
       </section>
       <section className={s.ipSection} aria-labelledby="what-title">
@@ -144,7 +140,6 @@ export function ServicePage({ lang, sv }: { lang: Lang; sv: Service }) {
         <p className={s.notListedLine} data-reveal>{t(pc.notListed, lang)}</p>
       </section>
       <TechCards lang={lang} ids={sv.tech} title={t(pc.onTech, lang)} />
-      <Formats lang={lang} />
     </>
   );
 }
@@ -153,9 +148,9 @@ export function ServicePage({ lang, sv }: { lang: Lang; sv: Service }) {
 export function TechPage({ lang, x }: { lang: Lang; x: Tech }) {
   return (
     <>
-      <section className={s.ipHero}>
+      <Crumbs lang={lang} trail={[{ label: t(pc.techHub.title, lang), path: "/technologien" }, { label: t(x.nav, lang) }]} />
+      <section className={`${s.ipHero} ${s.ipHeroCenter} ${s.techMarks} ${tone(x.id)}`}>
         <div className={s.ipHeroCopy}>
-          <Crumbs lang={lang} trail={[{ label: t(pc.techHub.title, lang), path: "/technologien" }, { label: t(x.nav, lang) }]} />
           <Marks brands={x.brands} size={34} />
           <h1 className={s.ipH1}>{t(x.title, lang)}</h1>
           <p className={s.lead}>{t(x.lead, lang)}</p>
@@ -163,19 +158,12 @@ export function TechPage({ lang, x }: { lang: Lang; x: Tech }) {
             <a href="#anfrage" className={`${s.pill} ${s.pillDark}`}>{t(pc.specCta, lang)}<span className={s.arr} aria-hidden>↗</span></a>
             <a href="#anfrage" className={`${s.pill} ${s.pillLine}`}>{t(pc.cta, lang)}<span className={s.arr} aria-hidden>↗</span></a>
           </div>
-        </div>
-        <div className={s.sitCard}>
-          <small>{t(pc.specTitle, lang)}</small>
-          <ol className={s.specSteps}>
-            {pc.specSteps.map((st, n) => (
-              <li key={st.title.de}><span className={s.wegNo}>{n + 1}</span><div><b>{t(st.title, lang)}</b><span>{t(st.text, lang)}</span></div></li>
-            ))}
-          </ol>
+          <Steps lang={lang} />
         </div>
       </section>
 
       {x.migrations && (
-        <section className={`${s.ipSection} ${s.migr}`} aria-labelledby="migr-title">
+        <section className={`${s.ipSection} ${s.migr} ${tone(x.id)}`} aria-labelledby="migr-title">
           <div>
             <h2 id="migr-title" className={s.h2} data-reveal>{t(pc.migrationsTitle, lang)}</h2>
             <p className={s.body}>{t(pc.migrationsLead, lang)}</p>
@@ -210,7 +198,7 @@ export function TechPage({ lang, x }: { lang: Lang; x: Tech }) {
       )}
 
       {x.tools && (
-        <section className={s.ipSection} aria-labelledby="tools-title">
+        <section className={`${s.ipSection} ${s.techMarks} ${tone(x.id)}`} aria-labelledby="tools-title">
           <h2 id="tools-title" className={s.h2} data-reveal>{t(pc.toolsTitle, lang)}</h2>
           <ul className={s.toolChips}>
             {x.tools.map((it) => <li key={it}>{hasLogo(it) && <BrandLogo name={it} size={22} />}{it}</li>)}
@@ -227,9 +215,9 @@ export function TechPage({ lang, x }: { lang: Lang; x: Tech }) {
 export function ServicesHub({ lang }: { lang: Lang }) {
   return (
     <>
+      <Crumbs lang={lang} trail={[{ label: t(pc.servicesHub.title, lang) }]} />
       <section className={`${s.ipHero} ${s.ipHeroSolo}`}>
         <div className={s.ipHeroCopy}>
-          <Crumbs lang={lang} trail={[{ label: t(pc.servicesHub.title, lang) }]} />
           <h1 className={s.ipH1}>{t(pc.servicesHub.title, lang)}</h1>
           <p className={s.lead}>{t(pc.servicesHub.lead, lang)}</p>
         </div>
@@ -255,9 +243,9 @@ export function ServicesHub({ lang }: { lang: Lang }) {
 export function TechHub({ lang }: { lang: Lang }) {
   return (
     <>
+      <Crumbs lang={lang} trail={[{ label: t(pc.techHub.title, lang) }]} />
       <section className={`${s.ipHero} ${s.ipHeroSolo}`}>
         <div className={s.ipHeroCopy}>
-          <Crumbs lang={lang} trail={[{ label: t(pc.techHub.title, lang) }]} />
           <h1 className={s.ipH1}>{t(pc.techHub.title, lang)}</h1>
           <p className={s.lead}>{t(pc.techHub.lead, lang)}</p>
         </div>
@@ -266,7 +254,7 @@ export function TechHub({ lang }: { lang: Lang }) {
         <ul className={s.linkCards}>
           {techs.map((x, n) => (
             <li key={x.id} data-reveal style={i(n % 3)}>
-              <Link href={href(lang, `/technologien/${x.id}`)} className={s.linkCard}>
+              <Link href={href(lang, `/technologien/${x.id}`)} className={`${s.linkCard} ${s.techTint} ${tone(x.id)}`}>
                 <Marks brands={x.id === "schnittstellen" ? ["SAP", "DATEV"] : x.brands} size={26} />
                 <b>{t(x.title, lang)}</b>
                 <span>{t(x.lead, lang)}</span>

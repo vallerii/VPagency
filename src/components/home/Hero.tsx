@@ -2,13 +2,13 @@ import Link from "next/link";
 import { home, type Door, type Lang, type ToolCard } from "@/content/home";
 import { DoorArt } from "./DoorArt";
 import { BrandLogo } from "./BrandLogo";
+import { tone } from "./tone";
 import { SiteHeader } from "./Site";
 import { href } from "@/content/catalog";
 import s from "./home.module.css";
 
 const tint: Record<string, string> = {
   anfragen: s.mist, shop: s.clay, excel: s.sand, idee: s.warm, dienstleister: s.warm, systeme: s.sage, ki: s.mist,
-  wp: s.mist, shopify: s.sage, laravel: s.clay, auto: s.sand,
 };
 // Tile heights vary so the two columns never line up (in units of tile width).
 const ratio: Record<string, number> = {
@@ -28,7 +28,7 @@ function Tile({ door, lang }: { door: Door; lang: Lang }) {
 function ToolTile({ tool, lang }: { tool: ToolCard; lang: Lang }) {
   const many = tool.brands.length > 1;
   return (
-    <Link href={href(lang, `/technologien/${tool.tech}`)} tabIndex={-1} className={`${s.tile} ${s.toolTile} ${tint[tool.id] ?? s.warm}`} style={{ aspectRatio: `1 / ${ratio[tool.id] ?? 1.35}` }}>
+    <Link href={href(lang, `/technologien/${tool.tech}`)} tabIndex={-1} className={`${s.tile} ${s.toolTile} ${s.techTint} ${tone(tool.tech)}`} style={{ aspectRatio: `1 / ${ratio[tool.id] ?? 1.35}` }}>
       <div className={many ? s.toolMarks : s.toolMark}>
         {tool.brands.map((b) => (
           <span key={b} title={b}><BrandLogo name={b} size={many ? 26 : 44} /></span>

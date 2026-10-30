@@ -13,7 +13,7 @@
   --muted: #6f655b;          /* 5.6:1 on ground, AA for body text */
   --line: #ebe7e2;
   --line-strong: #d6d0c9;
-  --warm: #f5f2ee;
+  --warm: #f8f7f5;          /* second background: sections and soft panels */
   --sage: #e7ece6;
   --sand: #f1ebe2;
   --mist: #e9edf2;
@@ -45,12 +45,13 @@
   transition: background-color .2s ease, color .2s ease, box-shadow .2s ease, transform .2s ease;
 }
 .pillDark { background: var(--ink); color: #fff !important; }
-.pillDark:hover { background: #3a332d; }
+.pillDark:hover { background: #000; box-shadow: 0 10px 24px rgba(22,19,16,.18); transform: translateY(-1px); }
 .pillLine { box-shadow: inset 0 0 0 1px var(--line-strong); font-weight: 500; }
 .pillLine:hover { box-shadow: inset 0 0 0 1px var(--ink); }
 .pill:active { transform: translateY(1px); }
 .pillSm { padding: 13px 20px; font-size: 14px; }
-.arr { font-weight: 400; opacity: .8; }
+.arr { font-weight: 400; opacity: .8; display: inline-block; transition: transform .2s ease, opacity .2s ease; }
+.pill:hover .arr { transform: translate(2px, -2px); opacity: 1; }
 
 /* ---------- header ---------- */
 .header {
@@ -219,7 +220,7 @@
 .eyebrow { margin: 0 0 14px; font-size: clamp(11px, .78vw, 13px); letter-spacing: .1em; text-transform: uppercase; font-weight: 600; color: var(--muted); }
 .body { margin: 0; color: var(--ink); font-size: clamp(16px, 1.15vw, 21px); line-height: 1.55; max-width: 34em; }
 .pillLight { background: #fff; color: var(--ink) !important; }
-.pillLight:hover { background: #ece7e1; }
+.pillLight:hover { background: #fff; box-shadow: 0 10px 24px rgba(0,0,0,.25); transform: translateY(-1px); }
 .root [data-reveal] { transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); transition-delay: calc(var(--i, 0) * 70ms); }
 .root [data-reveal][data-pending] { opacity: 0; transform: translateY(18px); }
 
@@ -561,7 +562,8 @@
 .ddPanelNarrow { width: 300px; grid-template-columns: 1fr; }
 .dd:hover .ddPanel, .dd:focus-within .ddPanel { opacity: 1; visibility: visible; transform: none; }
 .ddLink { display: grid; gap: 2px; padding: 11px 12px; border-radius: 12px; white-space: normal; }
-.ddLink:hover { background: var(--warm); }
+.ddLink:hover { background: #f3f2ef; }
+.root .pillnav .ddPanel a:hover { color: var(--ink); }
 .ddLink b { font-weight: 600; font-size: 14px; }
 .ddLink small { font-size: 12.5px; color: var(--muted); line-height: 1.35; }
 .ddTech { grid-template-columns: auto 1fr; align-items: center; gap: 12px; }
@@ -653,3 +655,69 @@
   .footCols { grid-template-columns: minmax(0, 1fr); }
 }
 @media (prefers-reduced-motion: reduce) { .ddPanel, .linkCard, .bento li > a { transition: none; } }
+
+/* ── Technology colours ─────────────────────────────────────────────
+   Brand colour for the icon, the same colour at 8% for the background.
+   Automatisierung and KI have no brand colour: amber and violet. */
+.tWordpress { --tc: #21759B; --tb: #21759B14; }
+.tShopify   { --tc: #95BF47; --tb: #95BF4714; }
+.tLaravel   { --tc: #FF2D20; --tb: #FF2D2014; }
+.tAuto      { --tc: #E8890C; --tb: #E8890C14; }
+.tKi        { --tc: #7C5CFF; --tb: #7C5CFF14; }
+
+/* Cards tinted by their technology */
+/* the tint is laid over white, so it looks the same on any section background */
+.root .toolTile.techTint, .root .bento .techTint, .root .linkCard.techTint { background: linear-gradient(var(--tb), var(--tb)), #fff; }
+.root .toolTile.techTint, .root .bento .techTint, .root .linkCard.techTint { box-shadow: none; }
+.root .linkCard.techTint:hover, .root .bento li > a.techTint:hover { box-shadow: 0 18px 40px rgba(22,19,16,.08); }
+.techTint .toolMark, .techTint .toolMarks, .techTint .bMarks, .techMarks .bMarks { color: var(--tc); }
+.techTint .bMarks span, .techMarks .bMarks span { background: rgba(255,255,255,.72); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--tc) 8%, transparent); }
+
+/* Header menu */
+.ddMark.techTint { background: linear-gradient(var(--tb), var(--tb)), #fff; color: var(--tc); }
+
+/* Tags with a coloured dot */
+.tagDot { display: inline-flex; align-items: center; gap: 7px; }
+.tagDot::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--tc); flex: none; }
+
+/* Tool chips on technology pages */
+.techMarks .toolChips svg { color: var(--tc); }
+
+/* Service page hero: everything centred, the three steps under the button */
+.root .ipHeroCenter { grid-template-columns: minmax(0, 1fr); justify-items: center; text-align: center; }
+.ipHeroCenter .ipHeroCopy { justify-items: center; width: 100%; }
+.ipHeroCenter .btns { justify-content: center; }
+.ipHeroCenter .ipH1 { max-width: 16em; }
+.ipHeroCenter .lead { max-width: 38em; }
+.progressCenter { --g: clamp(16px, 2.4vw, 48px); max-width: none; width: min(100%, 60.5em); gap: var(--g); margin-top: clamp(20px, 3vw, 56px); }
+.progressCenter li { justify-items: center; text-align: center; }
+.progressCenter li:not(:last-child)::after { left: calc(50% + 24px); right: calc(-50% - var(--g) + 24px); }
+.progressCenter b { font-size: clamp(20px, 1.7vw, 32px); }
+.progressCenter small { font-size: clamp(12px, .95vw, 16px); }
+@media (max-width: 640px) {
+  .progressCenter { --g: 8px; }
+  .progressCenter li:not(:last-child)::after { left: calc(50% + 20px); right: calc(-50% - var(--g) + 20px); }
+  .progressCenter b { font-size: 15px; letter-spacing: -0.02em; }
+  .progressCenter small { font-size: 12px; }
+}
+
+/* Service cards on technology pages: hero pastels, no outline */
+.root .linkCard.pastelCard { background: var(--paint); box-shadow: none; }
+.root .linkCard.pastelCard:hover { box-shadow: 0 18px 40px rgba(22,19,16,.08); }
+
+/* Breadcrumbs: their own row right under the header, always on the left */
+.crumbsBar { padding: clamp(14px, 1.4vw, 26px) var(--gutter) 0; }
+.crumbsBar + .ipHero { padding-top: clamp(36px, 4.2vw, 96px); }
+
+/* Technology hero centred like the service hero: logos centred too */
+.ipHeroCenter .bMarks { justify-content: center; }
+/* Migration band takes the platform colour (8% over white) */
+.root .migr.tShopify, .root .migr.tWordpress, .root .migr.tLaravel, .root .migr.tAuto, .root .migr.tKi { background: linear-gradient(var(--tb), var(--tb)), #fff; }
+
+/* "Mehr erfahren" at the bottom of every stack card */
+.bCard:not(.bFull) { grid-template-rows: auto auto auto 1fr; }
+.bMore { align-self: end; margin-top: 0; }
+.bFull .bMarks { grid-column: 1; grid-row: 1; align-self: start; }
+.bFull .bMore { grid-column: 1; grid-row: 1; align-self: end; }
+@media (max-width: 1023px) { .bFull .bMarks, .bFull .bMore { grid-row: auto; } }
+.bento li > a:hover .doorArrow { background: var(--ink); color: #fff; box-shadow: none; }

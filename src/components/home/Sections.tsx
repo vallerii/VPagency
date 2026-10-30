@@ -4,7 +4,8 @@ import type { Lang } from "@/content/home";
 import { more } from "@/content/home-more";
 import { AnfrageForm } from "./AnfrageForm";
 import { BrandLogo } from "./BrandLogo";
-import { href } from "@/content/catalog";
+import { href, pageCopy, t } from "@/content/catalog";
+import { tone } from "./tone";
 import s from "./home.module.css";
 
 const i = (n: number) => ({ "--i": n }) as CSSProperties;
@@ -16,7 +17,6 @@ const stackPlace: Record<string, string> = { wp: s.bWide, shopify: s.bNarrow, la
 const WIDE: Record<string, number> = { WooCommerce: 104, SAP: 64 };
 const liPlace: Record<string, string> = { wp: s.liWide, shopify: s.liNarrow, laravel: s.liNarrow, auto: s.liWide, ki: s.liFull };
 const stackTech: Record<string, string> = { wp: "wordpress", shopify: "shopify", laravel: "laravel", auto: "schnittstellen", ki: "ki" };
-const stackTint: Record<string, string> = { wp: s.mist, shopify: s.sage, laravel: s.clay, auto: s.sand, ki: s.warm };
 
 /* 3 · The stack: why it matters and what we do with each part */
 export function Stack({ lang }: { lang: Lang }) {
@@ -30,7 +30,7 @@ export function Stack({ lang }: { lang: Lang }) {
       <ul className={s.bento}>
         {c.cards.map((card, n) => (
           <li key={card.id} className={liPlace[card.id]} data-reveal style={i(n)}>
-            <Link href={href(lang, `/technologien/${stackTech[card.id]}`)} className={`${s.bCard} ${stackPlace[card.id]} ${stackTint[card.id]}`}>
+            <Link href={href(lang, `/technologien/${stackTech[card.id]}`)} className={`${s.bCard} ${stackPlace[card.id]} ${s.techTint} ${tone(stackTech[card.id])}`}>
             <div className={s.bMarks}>
               {card.brands.map((b) => {
                 const wide = WIDE[b];
@@ -46,6 +46,7 @@ export function Stack({ lang }: { lang: Lang }) {
               <small>{c.servicesLabel}</small>
               <ul>{card.services.map((sv) => <li key={sv}>{sv}</li>)}</ul>
             </div>
+            <span className={`${s.doorMore} ${s.bMore}`}>{t(pageCopy.more, lang)}<span className={s.doorArrow} aria-hidden>→</span></span>
             </Link>
           </li>
         ))}
