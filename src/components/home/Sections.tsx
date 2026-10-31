@@ -4,6 +4,7 @@ import type { Lang } from "@/content/home";
 import { more } from "@/content/home-more";
 import { AnfrageForm } from "./AnfrageForm";
 import { AnfrageModal } from "./AnfrageModal";
+import { KiStage } from "./KiStage";
 import { BrandLogo } from "./BrandLogo";
 import { href, pageCopy, t } from "@/content/catalog";
 import { tone } from "./tone";
@@ -27,6 +28,7 @@ export function Stack({ lang }: { lang: Lang }) {
       <div className={s.stackHead}>
         <h2 id="stack-title" className={s.h2} data-reveal style={i(0)}>{c.title}</h2>
         <p className={s.body} data-reveal style={i(1)}>{c.lead}</p>
+        <p className={s.germany} data-reveal style={i(2)}>{c.germany}</p>
       </div>
       <ul className={s.bento}>
         {c.cards.map((card, n) => (
@@ -52,50 +54,73 @@ export function Stack({ lang }: { lang: Lang }) {
           </li>
         ))}
       </ul>
-      <p className={s.germany} data-reveal style={i(2)}>{c.germany}</p>
     </section>
   );
 }
 
-/* 4 · Where AI helps: the one dark band on the page */
+/* 4 · Where AI helps: the one dark band on the page.
+   On desktop it grows out of the KI card of the stack block: the card arrives
+   as the next card, stops in the middle of the screen, then widens into the
+   dark band while its icons stay on top; the background turns white.
+   KiStage drives --m (0 → 1) from the scroll position; the rest is CSS. */
 export function Ki({ lang }: { lang: Lang }) {
   const c = more[lang].ki;
+  const card = more[lang].stack.cards.find((x) => x.id === "ki");
   return (
-    <section id="ki" className={s.ki} aria-labelledby="ki-title">
-      <div className={s.kiCopy}>
-        <h2 id="ki-title" className={s.h2} data-reveal style={i(0)}>{c.title}</h2>
-        <p className={s.body} data-reveal style={i(1)}>{c.lead}</p>
-        <a href="#anfrage" className={`${s.pill} ${s.pillLight}`} data-reveal style={i(2)}>{c.cta}<span className={s.arr} aria-hidden>↗</span></a>
+    <div className={s.kiStage} data-ki-stage>
+      <div className={s.kiSticky}>
+        <section id="ki" className={`${s.ki} ${tone("ki")}`} aria-labelledby="ki-title">
+          {card && (
+            <Link href={href(lang, "/technologien/ki")} className={s.kiCardFace} tabIndex={-1} aria-hidden>
+              <b>{card.title}</b>
+              <p>{card.text}</p>
+              {card.note && <p className={s.kiFaceNote}>{card.note}</p>}
+              <div className={s.bServices}>
+                <small>{more[lang].stack.servicesLabel}</small>
+                <ul>{card.services.map((sv) => <li key={sv}>{sv}</li>)}</ul>
+              </div>
+              <span className={`${s.doorMore} ${s.kiFaceMore}`}>{t(pageCopy.more, lang)}<span className={s.doorArrow} aria-hidden>→</span></span>
+            </Link>
+          )}
+          <div className={s.kiCopy}>
+            {card && (
+              <div className={s.kiMarks}>
+                {card.brands.map((b) => <span key={b} title={b}><BrandLogo name={b} size={30} /></span>)}
+              </div>
+            )}
+            <h2 id="ki-title" className={s.h2}>{c.title}</h2>
+            <p className={s.body}>{c.lead}</p>
+            <a href="#anfrage" className={`${s.pill} ${s.pillLight}`}>{c.cta}</a>
+          </div>
+          <ul className={s.kiPoints}>
+            {c.points.map((p) => (
+              <li key={p.title}>
+                <span className={s.kiCheck} aria-hidden>✓</span>
+                <div><b>{p.title}</b><span>{p.text}</span></div>
+              </li>
+            ))}
+          </ul>
+        </section>
       </div>
-      <ul className={s.kiPoints}>
-        {c.points.map((p, n) => (
-          <li key={p.title} data-reveal style={i(n)}>
-            <span className={s.kiCheck} aria-hidden>✓</span>
-            <div><b>{p.title}</b><span>{p.text}</span></div>
-          </li>
-        ))}
-      </ul>
-    </section>
+      <KiStage />
+    </div>
   );
 }
 
-/* 5 · Projects: big screenshots of the live sites as backgrounds, on an uneven grid */
-const projectPlace = [s.pWide, s.pNarrow, s.pNarrow, s.pWide, s.pWide, s.pNarrow];
+/* 5 · Projects: big screenshots of the live sites as backgrounds */
 
 export function Projects({ lang }: { lang: Lang }) {
   const c = more[lang].projects;
   return (
     <section className={s.projects} aria-labelledby="projects-title">
       <div className={s.projectsHead}>
-        <div className={s.projectsIntro}>
-          <h2 id="projects-title" className={s.h2} data-reveal style={i(0)}>{c.title}</h2>
-          <p className={s.body} data-reveal style={i(1)}>{c.lead}</p>
-        </div>
-        <Link href="/projekte" className={`${s.pill} ${s.pillLine}`}>{c.all}<span className={s.arr} aria-hidden>↗</span></Link>
+        <h2 id="projects-title" className={s.h2} data-reveal style={i(0)}>{c.title}</h2>
       </div>
-      <ul className={s.projectGrid}>
-        {c.items.map((p, n) => (
-          <li key={p.slug} className={projectPlace[n]} data-reveal style={i(n % 2)}>
+      {/* Three projects across the full width; the screenshot of each stays
+          fixed while the page moves past it (parallax) */}
+      <ul className={s.projectStack}>
+        {c.items.slice(0, 3).map((p, n) => (
+          <li key={p.slug} style={i(n)}>
             <Link href={`/projekte/${p.slug}`} className={s.project}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img className={s.projectShot} src={p.image} alt="" loading="lazy" />
@@ -115,6 +140,10 @@ export function Projects({ lang }: { lang: Lang }) {
           </li>
         ))}
       </ul>
+      <div className={s.projectsFoot}>
+        <p className={s.body} data-reveal>{c.lead}</p>
+        <Link href="/projekte" className={`${s.pill} ${s.pillLine}`}>{c.all}</Link>
+      </div>
     </section>
   );
 }

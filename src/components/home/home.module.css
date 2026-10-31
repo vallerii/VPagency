@@ -55,8 +55,9 @@
 
 /* ---------- header ---------- */
 .header {
-  position: absolute; z-index: 10; top: 18px; left: var(--gutter); right: var(--gutter);
-  height: 52px; display: flex; align-items: center; justify-content: space-between;
+  position: fixed; z-index: 60; top: 0; left: 0; right: 0;
+  height: 88px; padding: 0 var(--gutter); display: flex; align-items: center; justify-content: space-between;
+  background: rgba(254,254,254,.82); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
 }
 .logo { font-family: var(--display); font-weight: 600; font-size: 26px; letter-spacing: -0.05em; }
 .logo span { font-weight: 400; color: var(--muted); }
@@ -134,6 +135,7 @@
 .chip b { font-family: var(--display); font-weight: 500; font-size: clamp(16px, 1.4vw, 26px); letter-spacing: -0.03em; line-height: 1.05; }
 .chip small { font-size: clamp(11px, .8vw, 14px); color: var(--muted); }
 .chip1 { left: -6vw; top: 25%; }
+.chipHero { display: none; }
 .chip2 { left: -3.4vw; top: calc(25% + clamp(150px, 11vw, 220px)); }
 .fade { position: absolute; z-index: 2; left: -2vw; right: -1px; height: 14%; pointer-events: none; }
 .fadeTop { top: 0; background: linear-gradient(var(--ground) 30%, rgba(254,254,254,0)); }
@@ -195,8 +197,8 @@
 }
 @media (max-width: 1023px) {
   .hero { min-height: 0; }
-  .header { position: relative; top: 0; left: 0; right: 0; padding: 18px var(--gutter) 0; height: auto; }
-  .heroCopy { width: auto; min-height: 0; padding: 56px var(--gutter) 0; }
+  .header { height: 72px; }
+  .heroCopy { width: auto; min-height: 0; padding: 128px var(--gutter) 0; }
   .wall { position: relative; left: auto; right: auto; height: 520px; margin: 44px var(--gutter) 0; grid-template-columns: 1fr 1fr; --t: 8.5px; }
   .tileCap { font-size: 1.85em; }
   .chip1 { left: -8px; top: 26%; }
@@ -547,8 +549,7 @@
 .bMarks .bMarkWide { width: auto; min-width: clamp(120px, 9vw, 160px); padding: 0 14px; overflow: hidden; }
 
 /* ---------- header on inner pages + dropdowns ---------- */
-.headerStatic { position: relative; top: 0; left: 0; right: 0; height: auto; padding: 18px var(--gutter) 0; }
-.headerStatic .pillnav { top: 18px; }
+.headerStatic { position: sticky; }
 .dd { position: relative; display: inline-flex; }
 .ddTrigger { display: inline-flex; align-items: center; gap: 6px; }
 .ddTrigger span { font-size: 12px; opacity: .6; transform: translateY(-2px); }
@@ -580,7 +581,7 @@
 .footStrong { font-family: var(--display); font-size: 20px; letter-spacing: -0.02em; }
 
 /* ---------- logo band under "What we do" ---------- */
-.clientsBand { display: block; padding: 0; margin: 0 0 clamp(56px, 6vw, 140px); }
+.clientsBand { display: block; padding: 0; margin: clamp(40px, 4.5vw, 100px) 0 clamp(56px, 6vw, 140px); }
 .clientsBand .clients { margin: 0; }
 .clientsLabel { font-size: 13px; color: var(--muted); white-space: nowrap; }
 
@@ -752,3 +753,261 @@
 .fileList small { color: var(--muted); font-size: 12.5px; white-space: nowrap; }
 .fileList button { flex: none; width: 28px; height: 28px; border: 0; border-radius: 50%; background: #fff; color: var(--ink); font-size: 18px; line-height: 1; cursor: pointer; }
 .fileList button:hover { background: var(--ink); color: #fff; }
+
+/* ── Hero stage (desktop) ─────────────────────────────────────────────
+   Layers inside .heroPin:
+   - wallLayer: the two moving columns, pinned for the whole stage
+   - heroCopyPin: header + text; held while the steps light up 1, 2, 3,
+     then it scrolls away like a normal page
+   - services: "what we do" moves in over the columns, no background of its
+     own; the columns dim behind it so the title stays readable
+   Intro (top of page): big text in the middle, one column per side.
+   HeroStage only sets data-settled / data-step / data-covered. */
+.heroPin { --ease: cubic-bezier(.22, .8, .2, 1); --heroH: max(100svh, 700px); position: relative; }
+@media (max-width: 1023px) {
+  .heroPin { display: flex; flex-direction: column; }
+  .heroCopyPin { order: 1; }
+  .wallLayer { order: 2; }
+  .heroPin > .services { order: 3; }
+}
+@media (min-width: 1024px) {
+  /* the layer spans the whole stage; the wall inside sticks to the top of the
+     screen and is released exactly where "what we do" ends */
+  .wallLayer { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+  .wallLayer .wall { pointer-events: auto; }
+  .heroCopyPin { position: relative; z-index: 1; height: calc(var(--heroH) + 40vh); pointer-events: none; }
+  .heroCopyPin .hero { position: sticky; top: 0; height: var(--heroH); min-height: 0; overflow: visible; }
+  .heroCopyPin .hero > * { pointer-events: auto; }
+
+  /* text block: only moves and scales, never changes width or alignment,
+     so nothing jumps. In the intro each line of the block is centred by
+     itself (left 50% + translate -50%); the title is also scaled up. */
+  .heroPin .heroCopy { height: 100%; min-height: 0; justify-items: start; transition: transform 1s var(--ease); }
+  .heroPin .heroCopy > :not(.progress) { position: relative; left: 0; transition: left 1s var(--ease), transform 1s var(--ease); }
+  .heroPin .h1 { transform-origin: 50% 100%; }
+  .heroPin .heroCopy > .progress { justify-self: stretch; }
+  .heroPin:not([data-settled]) .heroCopy { transform: translate(calc(28vw - var(--gutter)), clamp(48px, 4.6vw, 96px)); }
+  .heroPin:not([data-settled]) .heroCopy > :not(.progress) { left: 50%; transform: translateX(-50%); }
+  /* centred lines in the intro; the box itself keeps its width, so only the
+     line starts change when it settles to the left, while it is moving */
+  .heroPin:not([data-settled]) .heroCopy > .h1, .heroPin:not([data-settled]) .heroCopy > .lead { text-align: center; }
+  .heroPin:not([data-settled]) .heroCopy > .h1 { transform: translateX(-50%) scale(1.3); }
+  .heroPin:not([data-settled]) .progress { opacity: 0; visibility: hidden; }
+
+  /* the wall spans the stage; four tracks: space, column, space, column */
+  .heroPin .wall {
+    position: sticky; top: 88px; height: calc(var(--heroH) - 88px); margin: 0 var(--gutter); gap: 0;
+    grid-template-columns: calc(100% - 31.4vw - var(--gap)) 17.4vw var(--gap) 14vw;
+    transition: grid-template-columns 1.1s var(--ease);
+  }
+  .heroPin:not([data-settled]) .wall { grid-template-columns: 0px 15vw calc(100% - 29vw) 14vw; }
+  .heroPin .wall > .col { grid-column: 2; grid-row: 1; }
+  .heroPin .toolCol > .col { grid-column: 4; grid-row: 1; }
+  .heroPin .fade { display: none; }
+  .heroPin .col { -webkit-mask-image: linear-gradient(transparent, #000 10%, #000 86%, transparent); mask-image: linear-gradient(transparent, #000 10%, #000 86%, transparent); }
+  .heroPin .chip1 { display: none; }
+  .heroPin .chipHero {
+    display: grid; left: calc(100% - var(--gutter) - 31.4vw - var(--gap) - 6vw); top: calc(88px + (var(--heroH) - 88px) * .25);
+    transition: opacity .5s ease .7s, transform .5s var(--ease) .7s;
+  }
+  .heroPin:not([data-settled]) .chipHero { opacity: 0; transform: translateY(10px); transition: opacity .2s ease, transform .2s ease; }
+
+  /* steps: appear on settle, light up with the scroll */
+  .heroPin .progress { transition: opacity .3s ease, visibility 0s; }
+  .heroPin[data-settled] .progress li { animation: stepRise .6s var(--ease) both; }
+  .heroPin[data-settled] .progress li:nth-child(2) { animation-delay: .08s; }
+  .heroPin[data-settled] .progress li:nth-child(3) { animation-delay: .16s; }
+  .heroPin .progress .progressDot,
+  .heroPin .progress li:first-child .progressDot {
+    background: var(--ground); color: var(--ink); box-shadow: inset 0 0 0 1px var(--line-strong);
+    transition: background-color .35s ease, color .35s ease, box-shadow .35s ease, transform .35s var(--ease);
+  }
+  .heroPin .progress li:not(:last-child)::after { transform-origin: left center; transform: scaleX(0); transition: transform .45s var(--ease); }
+  .heroPin[data-step="1"] .progress li:nth-child(1) .progressDot,
+  .heroPin[data-step="2"] .progress li:nth-child(-n+2) .progressDot,
+  .heroPin[data-step="3"] .progress li .progressDot { background: var(--ink); color: #fff; box-shadow: none; transform: scale(1.08); }
+  .heroPin[data-step="2"] .progress li:nth-child(1)::after,
+  .heroPin[data-step="3"] .progress li:not(:last-child)::after { transform: scaleX(1); }
+
+  /* "what we do": title above the list, both on the left, no background;
+     the columns keep moving on the right until this block ends */
+  .heroPin .services { position: relative; z-index: 2; grid-template-columns: minmax(0, 1fr); background: none; padding-right: calc(31.4vw + var(--gap) + var(--gutter) + 4vw); }
+  .heroPin .servicesHead { position: static; }
+}
+@media (min-width: 1024px) and (prefers-reduced-motion: reduce) {
+  .heroPin .heroCopy, .heroPin .h1, .heroPin .wall, .heroPin .progress, .heroPin .progressDot, .heroPin .progress li::after { transition: none !important; animation: none !important; }
+}
+@keyframes heroTextA { from { opacity: 0; } to { opacity: 1; } }
+@keyframes heroTextB { from { opacity: 0; } to { opacity: 1; } }
+@keyframes stepRise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+@keyframes dotOn { 0% { transform: scale(.85); } 60% { transform: scale(1.12); } 100% { transform: scale(1); background: var(--ink); color: #fff; box-shadow: none; } }
+@keyframes lineOn { to { transform: scaleX(1); } }
+
+/* Buttons without the arrow: text sits in the middle */
+@media (max-width: 640px) { .btns .pill { justify-content: center; } }
+
+/* ── Projects: full-width panels; the screenshot stays fixed while the
+   page moves past it (each panel is a window onto its own fixed image) ── */
+.projectStack { list-style: none; margin: 0 calc(-1 * var(--gutter)); padding: 0; display: grid; gap: clamp(8px, .8vw, 14px); }
+.projectStack > li { position: relative; height: clamp(460px, 46vw, 92svh); }
+.projectStack .project {
+  height: 100%; min-height: 0; border-radius: 0;
+  padding: clamp(28px, 4vw, 88px) var(--gutter) clamp(32px, 4.4vw, 96px);
+}
+.projectStack .project .projectName { font-size: clamp(44px, 6vw, 140px); letter-spacing: -0.05em; line-height: .95; }
+.projectStack .project .projectText { font-size: clamp(16px, 1.25vw, 24px); }
+.projectStack .projectShot { transition: none; }
+.projectStack .project:hover .projectShot { transform: none; }
+@media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
+  .projectStack .project { clip-path: inset(0); }
+  .projectStack .projectShot { position: fixed; inset: 0; width: 100vw; height: 100vh; object-position: center top; }
+}
+@media (max-width: 1023px) {
+  .projectStack > li { height: 72svh; min-height: 440px; }
+}
+
+/* ── Technologies: title stays on the left, cards stack like a deck ── */
+@media (min-width: 1024px) {
+  .stack2 { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 8fr); column-gap: clamp(32px, 4.4vw, 110px); align-items: start; }
+  .stack2 .stackHead { grid-column: 1; grid-row: 1 / span 2; position: sticky; top: 130px; grid-template-columns: minmax(0, 1fr); gap: 22px; margin: 0; align-items: start; }
+  .stack2 .bento { grid-column: 2; grid-row: 1; grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .stack2 .bento > li { grid-column: 1 / -1; position: sticky; top: calc(110px + var(--i, 0) * 26px); margin-bottom: clamp(20px, 2vw, 36px); }
+  .stack2 .bento > li > a { box-shadow: 0 -12px 40px rgba(22,19,16,.06); }
+  .stack2 .bCard { min-height: clamp(420px, 34vw, 580px); }
+  .stack2 .bCard.bFull { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto auto auto 1fr; }
+  .stack2 .bFull .bMarks, .stack2 .bFull .bMore { grid-column: auto; grid-row: auto; }
+}
+
+/* ── KI stage: the KI card grows into the "Where AI helps" band ─────── */
+/* --m is a registered number so it can be transitioned smoothly */
+@property --m { syntax: "<number>"; inherits: true; initial-value: 0; }
+.kiMarks { display: flex; flex-wrap: nowrap; gap: 12px; margin-bottom: clamp(4px, .6vw, 12px); }
+.kiMarks span { width: clamp(48px, 3.6vw, 66px); height: clamp(48px, 3.6vw, 66px); border-radius: 16px; display: grid; place-items: center; background: rgba(255,255,255,.1); color: #b9a8ff; }
+.kiCardFace { display: none; }
+@media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
+  /* the KI card keeps its place in the deck (so the deck holds as long as
+     before) but is drawn by the KI stage, which overlaps the end of this block */
+  .stack2 .bento > li:last-child { visibility: hidden; }
+  .stack2 .stackHead { grid-row: 1; }
+  .kiStage {
+    --m: 0; --cg: clamp(32px, 4.4vw, 110px);
+    --x0: calc(var(--gutter) + (100% - 2 * var(--gutter) - var(--cg)) * 5 / 13 + var(--cg));
+    --w0: calc((100% - 2 * var(--gutter) - var(--cg)) * 8 / 13);
+    --h0: clamp(420px, 34vw, 580px);
+    --x1: var(--gutter); --w1: calc(100% - 2 * var(--gutter)); --h1: clamp(480px, 40vw, 640px);
+    --p0: clamp(28px, 3vw, 60px); --p1: clamp(44px, 5.4vw, 120px);
+    /* --c: the colour change happens in the second half of the growth */
+    --c: clamp(0, calc((var(--m) - .35) * 2.2), 1);
+    /* overlap = how far the stage reaches back into the stack block, so the
+       KI card arrives exactly where the fifth card of the deck would */
+    --top0: calc(110px + 4 * 26px);
+    --ov: calc(var(--h0) + clamp(20px, 2vw, 36px) + clamp(72px, 8vw, 180px) + var(--top0));
+    position: relative; z-index: 2; height: calc(100svh + 40vh); margin-top: calc(-1 * var(--ov)); pointer-events: none;
+    transition: --m 1s cubic-bezier(.65, 0, .25, 1);
+    /* bottom layer: the beige of the stack block continues under the card;
+       top layer: white fades in over everything while the card grows, so the
+       rest of the stack block disappears behind it */
+    --bg: color-mix(in srgb, transparent, var(--ground) calc(clamp(0, var(--m) * 1.8, 1) * 100%));
+    background: linear-gradient(var(--bg), var(--bg)), linear-gradient(transparent var(--ov), var(--warm) var(--ov));
+  }
+  .kiStage[data-open] { --m: 1; }
+  .kiSticky { position: sticky; top: 0; height: 100svh; }
+  .kiStage .ki {
+    position: absolute; margin: 0; overflow: hidden; pointer-events: auto;
+    /* ends centred in the space under the fixed header */
+    top: calc(var(--top0) + (88px + (100svh - 88px - var(--h1)) / 2 - var(--top0)) * var(--m));
+    left: calc(var(--x0) + (var(--x1) - var(--x0)) * var(--m));
+    width: calc(var(--w0) + (var(--w1) - var(--w0)) * var(--m));
+    height: calc(var(--h0) + (var(--h1) - var(--h0)) * var(--m));
+    padding: calc(var(--p0) + (var(--p1) - var(--p0)) * var(--m));
+    border-radius: calc(var(--radius) + 6px + (var(--radius) * .6 - 6px) * var(--m));
+    background: color-mix(in srgb, #f5f2ff, var(--ink) calc(var(--c) * 100%));
+    color: color-mix(in srgb, var(--ink), #fff calc(var(--c) * 100%));
+    box-shadow: 0 -12px 40px rgba(22,19,16, calc(.06 * (1 - var(--m))));
+  }
+  .kiStage .kiMarks span {
+    width: clamp(54px, 4.2vw, 76px); height: clamp(54px, 4.2vw, 76px); border-radius: 18px;
+    background: color-mix(in srgb, rgba(255,255,255,.75), rgba(255,255,255,.1) calc(var(--c) * 100%));
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, #7c5cff 8%, transparent);
+    color: color-mix(in srgb, #7c5cff, #b9a8ff calc(var(--c) * 100%));
+  }
+  .kiStage .kiCopy > :not(.kiMarks), .kiStage .kiPoints { opacity: clamp(0, calc((var(--m) - .62) * 3), 1); }
+  .kiStage .kiCardFace {
+    display: flex; flex-direction: column; align-items: flex-start; gap: 12px; position: absolute;
+    left: calc(var(--p0) + (var(--p1) - var(--p0)) * var(--m)); right: var(--p0);
+    top: calc(var(--p0) + clamp(54px, 4.2vw, 76px) + clamp(22px, 2vw, 40px)); bottom: var(--p0);
+    opacity: clamp(0, calc(1 - var(--m) * 3), 1); pointer-events: none; color: var(--ink);
+  }
+  .kiStage:not([data-open]) .kiCardFace { pointer-events: auto; }
+  .kiCardFace p { max-width: 34em; }
+  .kiCardFace .kiFaceNote { font-size: clamp(14px, .95vw, 17px); color: var(--muted); }
+  .kiCardFace .bServices { margin-top: clamp(8px, 1vw, 18px); }
+  .kiCardFace .kiFaceMore { margin-top: auto; }
+  .kiStage:not([data-open]) .kiCardFace:hover .doorArrow { background: var(--ink); color: #fff; box-shadow: none; }
+  .kiCardFace b { font-family: var(--display); font-weight: 400; font-size: clamp(30px, 2.8vw, 60px); letter-spacing: -0.045em; line-height: 1; }
+  .kiCardFace p { margin: 0; font-size: clamp(16px, 1.15vw, 21px); line-height: 1.5; }
+}
+
+/* Projects: the description and "all projects" come after the projects */
+.projectsFoot { display: flex; flex-wrap: wrap; gap: 20px 40px; justify-content: space-between; align-items: end; margin-top: clamp(28px, 3vw, 56px); }
+.projectsFoot .body { max-width: 46em; margin: 0; }
+/* less air between the AI band and the projects */
+.kiStage + .projects { padding-top: clamp(16px, 2vw, 48px); }
+
+/* ══ Mobile: calmer, fewer moving parts ══════════════════════════════════ */
+@media (max-width: 1023px) {
+  /* hero: the two moving columns become two slow horizontal rows */
+  .wall { display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; height: auto; margin: 40px 0 0; --t: 8.5px; }
+  .wall .col { height: 172px; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+  .wall .colTrack { flex-direction: row; width: max-content; height: 100%; animation-name: driftX; animation-duration: 60s; }
+  .wall .colReverse .colTrack { margin-top: 0; animation-duration: 70s; }
+  .wall .colTrack > div { width: 156px; height: 100%; flex: none; }
+  .wall .tile { aspect-ratio: auto !important; height: 100%; }
+  .wall .fade, .wall .chip1 { display: none; }
+}
+@keyframes driftX { from { transform: translateX(0); } to { transform: translateX(calc(-50% - var(--gap) / 2)); } }
+
+/* projects: the same fixed-screenshot parallax as on desktop */
+@media (max-width: 1023px) and (prefers-reduced-motion: no-preference) {
+  .projectStack .project { clip-path: inset(0); }
+  .projectStack .projectShot { position: fixed; inset: 0; width: 100vw; height: 100lvh; object-position: left top; }
+}
+
+/* AI: the KI card stays the same size and turns into the dark band in place */
+@media (max-width: 1023px) and (prefers-reduced-motion: no-preference) {
+  .stack2 .bento > li:last-child { display: none; }
+  /* the card arrives on the beige of the stack block, stops under the header,
+     stays readable for a moment, then turns into the band; meanwhile the
+     page behind it scrolls on from beige to white */
+  .kiStage {
+    --m: 0; transition: --m .7s cubic-bezier(.65, 0, .25, 1);
+    padding: 8px 0 0; background: linear-gradient(var(--warm) 0 52%, var(--ground) 52%);
+  }
+  /* runway inside the content box, so the pinned card has room to stay */
+  .kiStage::after { content: ""; display: block; height: 75svh; }
+  .kiSticky { position: sticky; top: 84px; }
+  .kiStage .ki { margin-top: 0; }
+  .kiStage[data-open] { --m: 1; }
+  .kiStage .ki {
+    position: relative; overflow: hidden;
+    background: color-mix(in srgb, #f5f2ff, var(--ink) calc(var(--m) * 100%));
+    color: color-mix(in srgb, var(--ink), #fff calc(var(--m) * 100%));
+  }
+  .kiStage .kiMarks span {
+    background: color-mix(in srgb, rgba(255,255,255,.8), rgba(255,255,255,.1) calc(var(--m) * 100%));
+    color: color-mix(in srgb, #7c5cff, #b9a8ff calc(var(--m) * 100%));
+  }
+  .kiStage .kiCopy > :not(.kiMarks), .kiStage .kiPoints { opacity: clamp(0, calc((var(--m) - .5) * 2), 1); }
+  .kiStage .kiCardFace {
+    display: flex; flex-direction: column; align-items: flex-start; gap: 12px; position: absolute;
+    left: clamp(24px, 4.6vw, 110px); right: clamp(24px, 4.6vw, 110px);
+    top: calc(clamp(44px, 5.4vw, 120px) + 48px + 22px);
+    opacity: clamp(0, calc(1 - var(--m) * 2), 1); color: var(--ink);
+  }
+  .kiStage[data-open] .kiCardFace { pointer-events: none; }
+  .kiCardFace b { font-family: var(--display); font-weight: 400; font-size: 30px; letter-spacing: -0.045em; line-height: 1; }
+  .kiCardFace p { margin: 0; font-size: 16px; line-height: 1.5; }
+  .kiCardFace .kiFaceNote { font-size: 14px; color: var(--muted); }
+}
+/* mobile: air between the AI band and the projects title */
+@media (max-width: 1023px) { .kiStage + .projects { padding-top: 56px; } }

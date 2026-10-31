@@ -102,7 +102,7 @@ export function AnfrageForm({ t, id = "anf" }: { t: T; id?: string }) {
         <span>{t.consent}</span>
       </label>
       {err("consent")}
-      <button type="submit" className={`${s.pill} ${s.pillDark} ${s.submit}`}>{t.submit}<span className={s.arr} aria-hidden>↗</span></button>
+      <button type="submit" className={`${s.pill} ${s.pillDark} ${s.submit}`}>{t.submit}</button>
       {done && <p className={s.formNote} role="status">{t.pending}</p>}
     </form>
   );

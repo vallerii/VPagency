@@ -3,6 +3,7 @@ import type { Lang } from "@/content/home";
 import { SiteHeader, SiteFooter } from "./Site";
 import { Final } from "./Sections";
 import { Reveal } from "./Reveal";
+import { SmoothScroll } from "./SmoothScroll";
 import s from "./home.module.css";
 
 // Shared frame for inner pages: header, content, the request form, footer.
@@ -16,6 +17,7 @@ export function InnerShell({ lang, children }: { lang: Lang; children: ReactNode
       </main>
       <SiteFooter lang={lang} />
       <Reveal />
+      <SmoothScroll />
     </div>
   );
 }

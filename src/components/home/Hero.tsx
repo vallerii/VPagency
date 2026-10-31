@@ -3,7 +3,6 @@ import { home, type Door, type Lang, type ToolCard } from "@/content/home";
 import { DoorArt } from "./DoorArt";
 import { BrandLogo } from "./BrandLogo";
 import { tone } from "./tone";
-import { SiteHeader } from "./Site";
 import { href } from "@/content/catalog";
 import s from "./home.module.css";
 
@@ -56,12 +55,11 @@ export function Hero({ lang }: { lang: Lang }) {
   const c = home[lang];
   return (
     <section className={s.hero}>
-      <SiteHeader lang={lang} floating />
       <div className={s.heroCopy}>
         <h1 className={s.h1}>{c.hero.title}</h1>
         <p className={s.lead}>{c.hero.lead}</p>
         <div className={s.btns}>
-          <a href="#anfrage" className={`${s.pill} ${s.pillDark}`}>{c.hero.cta}<span className={s.arr} aria-hidden>↗</span></a>
+          <a href="#anfrage" className={`${s.pill} ${s.pillDark}`}>{c.hero.cta}</a>
         </div>
         <ol className={s.progress}>
           {c.hero.progress.map((p, n) => (
@@ -73,17 +71,30 @@ export function Hero({ lang }: { lang: Lang }) {
           ))}
         </ol>
       </div>
-      <div className={s.wall} role="region" aria-label={c.hero.wallLabel}>
-        <Track count={c.wall.length}>{c.wall.map((d) => <Tile key={d.id} door={d} lang={lang} />)}</Track>
-        <div role="group" aria-label={c.hero.toolsLabel} className={s.toolCol}>
-          <Track count={c.tools.length} reverse>{c.tools.map((t) => <ToolTile key={t.id} tool={t} lang={lang} />)}</Track>
-        </div>
-        <div className={`${s.chip} ${s.chip1}`}>
-          <b>{c.hero.team.value}</b><small>{c.hero.team.label}</small>
-        </div>
-        <span className={`${s.fade} ${s.fadeTop}`} aria-hidden />
-        <span className={`${s.fade} ${s.fadeBottom}`} aria-hidden />
+      {/* On desktop the "1 Team" chip belongs to the text layer, so it leaves
+          the screen together with the header and the text */}
+      <div className={`${s.chip} ${s.chipHero}`} aria-hidden>
+        <b>{c.hero.team.value}</b><small>{c.hero.team.label}</small>
       </div>
     </section>
+  );
+}
+
+// The moving columns live in their own layer so they can stay on screen while
+// the hero text scrolls away and "what we do" moves in over them.
+export function HeroWall({ lang }: { lang: Lang }) {
+  const c = home[lang];
+  return (
+    <div className={s.wall} role="region" aria-label={c.hero.wallLabel}>
+      <Track count={c.wall.length}>{c.wall.map((d) => <Tile key={d.id} door={d} lang={lang} />)}</Track>
+      <div role="group" aria-label={c.hero.toolsLabel} className={s.toolCol}>
+        <Track count={c.tools.length} reverse>{c.tools.map((t) => <ToolTile key={t.id} tool={t} lang={lang} />)}</Track>
+      </div>
+      <div className={`${s.chip} ${s.chip1}`}>
+        <b>{c.hero.team.value}</b><small>{c.hero.team.label}</small>
+      </div>
+      <span className={`${s.fade} ${s.fadeTop}`} aria-hidden />
+      <span className={`${s.fade} ${s.fadeBottom}`} aria-hidden />
+    </div>
   );
 }

@@ -129,7 +129,7 @@ export function ServicePage({ lang, sv }: { lang: Lang; sv: Service }) {
           <h1 className={s.ipH1}>{t(sv.title, lang)}</h1>
           <p className={s.lead}>{t(sv.lead, lang)}</p>
           <div className={s.btns}>
-            <a href="#anfrage" className={`${s.pill} ${s.pillDark}`}>{t(pc.cta, lang)}<span className={s.arr} aria-hidden>↗</span></a>
+            <a href="#anfrage" className={`${s.pill} ${s.pillDark}`}>{t(pc.cta, lang)}</a>
           </div>
           <Steps lang={lang} />
         </div>
@@ -155,8 +155,8 @@ export function TechPage({ lang, x }: { lang: Lang; x: Tech }) {
           <h1 className={s.ipH1}>{t(x.title, lang)}</h1>
           <p className={s.lead}>{t(x.lead, lang)}</p>
           <div className={s.btns}>
-            <a href="#anfrage" className={`${s.pill} ${s.pillDark}`}>{t(pc.specCta, lang)}<span className={s.arr} aria-hidden>↗</span></a>
-            <a href="#anfrage" className={`${s.pill} ${s.pillLine}`}>{t(pc.cta, lang)}<span className={s.arr} aria-hidden>↗</span></a>
+            <a href="#anfrage" className={`${s.pill} ${s.pillDark}`}>{t(pc.specCta, lang)}</a>
+            <a href="#anfrage" className={`${s.pill} ${s.pillLine}`}>{t(pc.cta, lang)}</a>
           </div>
           <Steps lang={lang} />
         </div>

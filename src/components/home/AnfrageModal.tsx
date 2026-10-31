@@ -31,7 +31,7 @@ export function AnfrageModal({ t, title, sub, close }: { t: FormCopy; title: str
       aria-labelledby="anfrage-modal-title"
       onClick={(e) => { if (e.target === ref.current) ref.current?.close(); }}
     >
-      <div className={s.modalCard}>
+      <div className={s.modalCard} data-lenis-prevent>
         <div className={s.modalHead}>
           <h2 id="anfrage-modal-title" className={s.modalTitle}>{title}</h2>
           <button type="button" className={s.modalClose} onClick={() => ref.current?.close()} aria-label={close}>×</button>
