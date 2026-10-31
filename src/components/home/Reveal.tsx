@@ -4,10 +4,9 @@ import { useEffect } from "react";
 
 // Gentle appearance for [data-reveal] elements. Everything is visible without
 // JavaScript; only elements still below the fold are held back and then shown
-// as they scroll in. Skipped entirely under "reduce motion".
+// as they scroll in.
 export function Reveal() {
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const els = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]"));
     const io = new IntersectionObserver((entries) => {
       for (const e of entries) {

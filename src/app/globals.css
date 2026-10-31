@@ -238,35 +238,9 @@ body {
   text-wrap: balance;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.001ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.001ms !important;
-    scroll-behavior: auto !important;
-  }
+/* Animations always run: the owner wants the same experience on every device,
+   including iPhones with "Reduce Motion" turned on. */
 
-  /* The running-lines marquee and the hero build animation are core
-     visual content, not incidental motion — keep them running even
-     when the OS/browser requests reduced motion (this is also what
-     makes them play reliably on macOS/iOS, where "Reduce Motion" is
-     commonly on and otherwise freezes them via the rule above). */
-  .animate-marquee,
-  .animate-marquee-reverse {
-    animation-duration: 60s !important;
-    animation-iteration-count: infinite !important;
-  }
-
-  .vp-loader,
-  .vp-loader *,
-  .vp-loader::before,
-  .vp-loader::after,
-  .vp-loader *::before,
-  .vp-loader *::after {
-    animation-duration: var(--duration, 3.6s) !important;
-    animation-iteration-count: infinite !important;
-  }
-}
 
 /* Logo cursor — the underscore behind "VP" blinks like a caret in an
    editor. It never drops below 0.18: in a fixed header a cursor that goes
