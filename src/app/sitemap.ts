@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { services, techs } from "@/content/catalog";
-import { CASES } from "@/data/cases";
+import { cases } from "@/content/cases";
 import { GLOSSAR } from "@/data/glossar";
 import { LEGAL_LINKS } from "@/data/legal";
 import { absoluteUrl, routes } from "@/data/site";
@@ -52,7 +52,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.8,
     },
-    ...CASES.map((item) => ({
+    ...cases.map((item) => ({
       url: absoluteUrl(routes.projekt(item.slug)),
       lastModified: now,
       changeFrequency: "yearly" as const,

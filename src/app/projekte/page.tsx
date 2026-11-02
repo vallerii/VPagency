@@ -1,59 +1,29 @@
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
-import { ProductsHero } from "@/components/products/ProductsHero";
-import { ProductsApproach } from "@/components/products/ProductsApproach";
-import { ProductsGrid } from "@/components/products/ProductsGrid";
-import { ProductsContinuity } from "@/components/products/ProductsContinuity";
-import { ProductsCTA } from "@/components/products/ProductsCTA";
-import { FAQ } from "@/components/FAQ";
-import { PRODUCTS_FAQ } from "@/data/faq";
-import { TechMarquee } from "@/components/TechMarquee";
-import { Breadcrumbs } from "@/components/Breadcrumbs";
-import { Sheet } from "@/components/ui/Sheet";
+import type { Metadata } from "next";
+import { InnerShell, langOf } from "@/components/home/InnerShell";
+import { CasesHub } from "@/components/home/Cases";
+import { cases } from "@/content/cases";
 import { JsonLd } from "@/components/JsonLd";
-import { itemListSchema, faqSchema } from "@/lib/schema";
-import { CASES } from "@/data/cases";
-import { routes } from "@/data/site";
+import { itemListSchema } from "@/lib/schema";
 import { pageMetadata } from "@/lib/seo";
 
-export const metadata = pageMetadata({
-  title: "Projekte — Websites, Portale und automatisierte Prozesse",
+export const metadata: Metadata = pageMetadata({
+  title: "Projekte — Websites und Portale für Industrie und B2B",
   description:
-    "Echte Projekte für echte Geschäftsprobleme: Websites, Portale und automatisierte Prozesse, die wir gemeinsam mit unseren Kunden gebaut haben.",
-  path: routes.projekte,
+    "Relaunches für Industrie- und B2B-Unternehmen aus Produktion, Messtechnik, Verpackung und Bau: Ausgangslage, Umsetzung und was sich für den Kunden verändert hat.",
+  path: "/projekte",
 });
 
-export default function ProductsPage() {
+export default async function Page({ searchParams }: { searchParams: Promise<{ lang?: string }> }) {
+  const lang = langOf((await searchParams).lang);
   return (
-    <>
-      <Header />
-      <main>
-        <ProductsHero breadcrumbs={<Breadcrumbs items={[{ name: "Projekte" }]} />} />
-
-        <TechMarquee />
-        {/* Light sheets for the two reading blocks; the project grid stays on
-        the page background because its cards are dark photo tiles. */}
-        <Sheet className="pb-20 lg:pb-28">
-          <ProductsApproach />
-        </Sheet>
-        <ProductsGrid />
-        <Sheet className="mt-20 lg:mt-28">
-          <ProductsContinuity />
-        </Sheet>
-        <div className="pt-20 lg:pt-28">
-          <FAQ items={PRODUCTS_FAQ} />
-        </div>
-        <ProductsCTA />
-      </main>
-      <Footer />
-
+    <InnerShell lang={lang}>
+      <CasesHub lang={lang} />
       <JsonLd
         data={itemListSchema(
-          CASES.map((c) => ({ name: c.name, path: routes.projekt(c.slug) })),
+          cases.map((c) => ({ name: c.name, path: `/projekte/${c.slug}` })),
           "Projekte von VP agency",
         )}
       />
-      <JsonLd data={faqSchema(PRODUCTS_FAQ)} />
-    </>
+    </InnerShell>
   );
 }

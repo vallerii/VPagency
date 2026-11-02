@@ -39,7 +39,7 @@ function Crumbs({ lang, trail }: { lang: Lang; trail: { label: string; path?: st
 }
 
 /* Groups of catalog items: title on the left, items on the right */
-function Groups({ lang, groups, id }: { lang: Lang; groups: Service["groups"]; id: string }) {
+export function Groups({ lang, groups, id }: { lang: Lang; groups: Service["groups"]; id: string }) {
   return (
     <div className={s.grpList}>
       {groups.map((g, n) => (
@@ -74,7 +74,7 @@ function Steps({ lang }: { lang: Lang }) {
   );
 }
 
-function TechCards({ lang, ids, title }: { lang: Lang; ids: string[]; title: string }) {
+export function TechCards({ lang, ids, title }: { lang: Lang; ids: string[]; title: string }) {
   const list = ids.map(getTech).filter(Boolean) as Tech[];
   if (!list.length) return null;
   return (
@@ -229,7 +229,7 @@ export function ServicesHub({ lang }: { lang: Lang }) {
               <Link href={href(lang, `/leistungen/${sv.id}`)} className={s.serviceRow}>
                 <span className={s.serviceTitle}>{t(sv.nav, lang)}</span>
                 <span className={s.serviceText}>{t(sv.title, lang)}</span>
-                <span className={s.serviceTags}>{sv.tech.map((x) => <span key={x}>{t(getTech(x)!.nav, lang)}</span>)}</span>
+                <span className={s.serviceTags}>{sv.tech.map((x) => <span key={x} className={`${s.tagDot} ${tone(x)}`}>{t(getTech(x)!.nav, lang)}</span>)}</span>
                 <span className={s.doorArrow} aria-hidden>→</span>
               </Link>
             </li>
