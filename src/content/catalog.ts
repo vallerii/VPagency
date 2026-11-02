@@ -38,7 +38,7 @@ export const items: Record<string, Item> = {
   w4: I("Landingpages für Kampagnen", "Посадочные страницы под рекламу", "Eine eigene Seite für jede Kampagne oder jedes Angebot", "Отдельная страница под каждую кампанию или предложение"),
   wn4: I("Karriereseite", "Карьерная страница", "Stellen, Vorteile Ihres Unternehmens und eine einfache Bewerbung", "Вакансии, преимущества работы у вас и простой отклик для кандидатов"),
   w17: I("WooCommerce-Shop", "Магазин на WooCommerce", "Ein Online-Shop auf WordPress für alle, die schon mit WordPress arbeiten", "Интернет-магазин на WordPress для тех, кто уже работает с этим сайтом"),
-  w12: I("Content-Einpflege", "Наполнение сайта", "Seiten, Texte, Bilder und Bereiche komplett eingepflegt", "Страницы, тексты, фото и разделы под ключ"),
+  w12: I("Inhalte einpflegen", "Наполнение сайта", "Seiten, Texte, Bilder und Bereiche komplett eingepflegt", "Страницы, тексты, фото и разделы под ключ"),
   w6: I("Website-Pflege ohne Entwickler", "Редактирование без программиста", "Ein einfacher Editor, mit dem Ihr Team Texte und Bilder selbst ändert", "Удобный редактор, чтобы команда сама меняла тексты и фото"),
   w13: I("Fehlerbehebung für bestehende Websites", "Исправление ошибок и вёрстки", "Fehler, kaputte Darstellung und mobile Ansicht auf Ihrer bestehenden Website", "Ошибки, поломанная вёрстка и мобильная версия на существующем сайте"),
   w9: I("Website-Performance", "Ускорение сайта", "Seiten laden schnell auf Handy und Computer", "Страницы открываются быстро на телефоне и компьютере"),
@@ -98,7 +98,7 @@ export const items: Record<string, Item> = {
   c4: I("Kundenportal", "Клиентский портал", "Kunden sehen Bestellungen, Dokumente und Status selbst", "Заказы, документы и статусы клиент видит сам"),
   c5: I("Partner- und Händlerportal", "Портал для партнёров и дилеров", "Partner arbeiten mit Ihnen ohne Anrufe und E-Mail-Ketten", "Партнёры работают с вами без звонков и переписки"),
   c12: I("Online-Terminbuchung", "Онлайн-запись и расписание", "Kunden buchen selbst, Ihr Team sieht die Auslastung", "Клиенты записываются сами, команда видит загрузку"),
-  c13: I("Preis- und Angebotsrechner", "Калькулятор стоимости", "Kunden erhalten selbst einen Preisrahmen oder ein Angebot", "Клиент сам получает ориентир цены или предложение"),
+  c13: I("Preis- und Angebotsrechner", "Калькулятор стоимости", "Kunden ermitteln selbst einen Preisrahmen oder fordern ein Angebot an", "Клиент сам получает ориентир цены или предложение"),
   c11: I("Mitarbeiter-App", "Мобильное приложение для сотрудников", "Arbeiten vom Handy aus: auf der Baustelle, unterwegs, beim Kunden", "Работа с телефона на объекте, в поездке, у клиента"),
   lapp: I("Kunden-App", "Мобильное приложение для клиентов", "Bestellungen, Status und Kontakt zu Ihnen auf dem Handy Ihrer Kunden", "Заказы, статусы и связь с вами в телефоне клиента"),
   n1: I("SaaS-Entwicklung", "Онлайн-сервис по подписке", "Plattform, Kundenkonto und Bezahlung für Ihre Kunden", "Платформа, личный кабинет и оплата для ваших клиентов"),
@@ -121,7 +121,7 @@ export const items: Record<string, Item> = {
   a5: I("KI-Assistent für Kundenanfragen", "ИИ-ассистент для клиентов", "Beantwortet typische Fragen auf der Website und im Messenger, schwierige gehen an Ihr Team", "Отвечает на типовые вопросы на сайте и в мессенджерах, сложные передаёт команде"),
   aiC: I("KI-Telefonassistent", "Голосовой ИИ-ассистент для телефона", "Nimmt Anrufe an, beantwortet Fragen und notiert Anliegen", "Принимает звонки, отвечает на вопросы и записывает обращения"),
   a1: I("KI-Lead-Qualifizierung", "ИИ-сортировка входящих заявок", "Jede Anfrage wird sofort bewertet und landet beim richtigen Ansprechpartner", "Заявка оценивается сразу и попадает к нужному человеку"),
-  a7: I("KI-Dokumentenverarbeitung", "ИИ-обработка документов", "Rechnungen, Lieferscheine und Briefe werden erkannt und landen selbst in der Buchhaltung", "Счета, накладные и письма распознаются и попадают в учёт сами"),
+  a7: I("KI-Dokumentenverarbeitung", "ИИ-обработка документов", "Rechnungen, Lieferscheine und Briefe werden erkannt und landen automatisch in der Buchhaltung", "Счета, накладные и письма распознаются и попадают в учёт сами"),
   a6: I("Interner KI-Wissensassistent", "ИИ-помощник для сотрудников", "Findet Antworten in Dokumenten und Anleitungen Ihres Unternehmens", "Находит ответы в документах и инструкциях компании"),
   // Automation
   auA: I("Workflow-Automatisierung mit Make und n8n", "Автоматизация на готовых сервисах", "Wir verbinden Programme und Abläufe ohne eigene Entwicklung", "Связываем программы и сценарии без отдельной разработки"),
@@ -135,7 +135,7 @@ export const items: Record<string, Item> = {
   // Support
   p1: I("Support und Monitoring", "Техническая поддержка и мониторинг", "Ausfälle sind sofort sichtbar, die Reaktionszeit steht im Vertrag", "Сбои видны сразу, срок реакции прописан в договоре"),
   p2: I("Updates, Backups und Sicherheit", "Обновления, резервные копии и безопасность", "Regelmäßige Updates und Schutz vor Angriffen", "Регулярные обновления и защита от взлома"),
-  p9: I("Projektübernahme von anderen Dienstleistern", "Принять проект от прежнего подрядчика", "Wir arbeiten uns in fremde Arbeit ein, stellen fertig und betreuen weiter", "Разбираемся в чужой работе, доделываем и поддерживаем дальше"),
+  p9: I("Projektübernahme von anderen Dienstleistern", "Принять проект от прежнего подрядчика", "Wir arbeiten uns in den bestehenden Stand ein, stellen fertig und betreuen weiter", "Разбираемся в чужой работе, доделываем и поддерживаем дальше"),
   p6: I("Schulung des Teams", "Обучение команды", "Anleitungen und Einweisung, damit Ihr Team ohne ständige Rückfragen arbeitet", "Инструкции и разбор, чтобы команда работала без постоянных вопросов"),
   // First step
   s1: I("Digitalisierungs-Check und Roadmap", "Диагностика и план развития", "Wo Zeit und Kunden verloren gehen, was zuerst kommt und in welcher Reihenfolge", "Где теряются время и клиенты, что делать первым и в каком порядке"),
@@ -240,7 +240,7 @@ export const services: Service[] = [
     id: "ki", nav: L2("KI-Lösungen", "ИИ-решения"),
     title: L2("KI, die eine konkrete Arbeit übernimmt", "ИИ, который берёт на себя конкретную работу"),
     lead: L2("Für Unternehmen, die KI nutzen wollen, aber nicht wissen, wo sie sich lohnt", "Для компаний, которые хотят использовать ИИ, но не знают, где он окупится"),
-    who: L2("Alle reden über KI, aber unklar ist, wo sie bei Ihnen Zeit und Geld spart", "Все говорят про ИИ, но неясно, где он сэкономит время и деньги у вас"),
+    who: L2("Alle reden über KI, aber es ist unklar, wo sie bei Ihnen Zeit und Geld spart", "Все говорят про ИИ, но неясно, где он сэкономит время и деньги у вас"),
     result: L2("Klar ist, wo KI Zeit spart, und sie arbeitet in echten Abläufen. Ihre Daten bleiben geschützt", "Понятно, где ИИ экономит время, и он работает в реальных процессах. Данные защищены"),
     situations: [L2("Unklar, wo KI sich bei Ihnen lohnt", "Неясно, где ИИ окупится у вас"), L2("Ihr Team beantwortet ständig dieselben Fragen", "Команда постоянно отвечает на одни и те же вопросы"), L2("Sie haben Bedenken beim Datenschutz", "Есть опасения по защите данных")],
     groups: [
@@ -253,7 +253,7 @@ export const services: Service[] = [
   {
     id: "betreuung", nav: L2("Betreuung", "Поддержка"),
     title: L2("Ihr System läuft und entwickelt sich nach dem Start weiter", "Система работает и развивается после запуска"),
-    lead: L2("Für Unternehmen, deren Projekt läuft, um das sich aber niemand kümmert", "Для компаний, у которых проект запущен, но за ним некому следить"),
+    lead: L2("Für Unternehmen, deren Projekt zwar läuft, um das sich aber niemand kümmert", "Для компаний, у которых проект запущен, но за ним некому следить"),
     who: L2("Updates werden aufgeschoben, und der frühere Dienstleister ist nicht erreichbar", "Обновления откладываются, а прежний подрядчик не отвечает"),
     result: L2("Stabiler Betrieb und ein Partner, der Ihr Geschäft und Ihr System kennt", "Стабильная работа и партнёр, который знает и бизнес, и систему"),
     situations: [L2("Das Projekt läuft, aber niemand kümmert sich", "Проект запущен, но за ним никто не следит"), L2("Der Dienstleister ist nicht mehr erreichbar", "Подрядчик больше не отвечает"), L2("Updates werden immer wieder aufgeschoben", "Обновления постоянно откладываются")],
@@ -266,8 +266,8 @@ export const services: Service[] = [
   {
     id: "analyse-und-beratung", nav: L2("Analyse und Beratung", "Анализ и консультация"),
     title: L2("Verstehen, was Ihr Unternehmen bremst, und was zuerst kommt", "Понять, что тормозит бизнес, и что делать первым"),
-    lead: L2("Für Inhaber, die spüren, dass etwas langsam läuft, aber nicht wissen warum, und für Gründer mit einer neuen Idee", "Для владельцев, которые чувствуют, что всё работает медленно, но не знают почему, и для предпринимателей с новой идеей"),
-    who: L2("Sie spüren, dass etwas bremst, wissen aber nicht was und wo Sie anfangen sollen", "Чувствуете, что что-то тормозит, но не знаете что и с чего начать"),
+    lead: L2("Für Inhaber, die spüren, dass etwas langsam läuft, aber nicht wissen, warum, und für Gründer mit einer neuen Idee", "Для владельцев, которые чувствуют, что всё работает медленно, но не знают почему, и для предпринимателей с новой идеей"),
+    who: L2("Sie spüren, dass etwas bremst, wissen aber nicht, was es ist und wo Sie anfangen sollen", "Чувствуете, что что-то тормозит, но не знаете что и с чего начать"),
     result: L2("Ein klarer Plan und eine geprüfte Idee vor großen Investitionen", "Понятный план и проверенная идея до больших вложений"),
     situations: [L2("Etwas bremst, aber unklar was", "Что-то тормозит, но непонятно что"), L2("Sie brauchen einen Plan, bevor Sie investieren", "Нужен план до вложений"), L2("Sie wollen eine zweite Meinung zu einem Angebot oder System", "Нужно второе мнение о предложении или системе")],
     groups: [
@@ -375,11 +375,11 @@ export const formats = {
 };
 
 export const pageCopy = {
-  servicesHub: { title: L2("Leistungen", "Услуги"), lead: L2("Beschreiben Sie, was in Ihrem Unternehmen passiert. Wir finden heraus, was dafür passt, und setzen es um", "Опишите, что происходит в бизнесе. Мы разберёмся, что подходит, и сделаем") },
+  servicesHub: { title: L2("Leistungen", "Услуги"), lead: L2("Beschreiben Sie, was in Ihrem Unternehmen gerade nicht rundläuft. Wir finden heraus, was dazu passt, und setzen es um", "Опишите, что происходит в бизнесе. Мы разберёмся, что подходит, и сделаем") },
   techHub: { title: L2("Technik", "Технологии"), lead: L2("Sie wissen, was Sie brauchen und auf welcher Plattform? Hier sehen Sie, was wir auf jeder Plattform umsetzen", "Знаете, что нужно и на какой платформе? Здесь видно, что мы делаем на каждой из них") },
   recognize: L2("Kennen Sie das?", "Узнаёте ситуацию?"),
   whatWeDo: L2("Was wir machen", "Что мы делаем"),
-  onTech: L2("Auf welcher Technik", "На каких технологиях"),
+  onTech: L2("Die Technik dahinter", "На каких технологиях"),
   servicesOnTech: L2("Leistungen auf dieser Plattform", "Услуги на этой платформе"),
   migrationsTitle: L2("Umzug auf Shopify", "Переезд на Shopify"),
   migrationsLead: L2("Produkte, Kunden, Bestellungen und Seitenadressen ziehen mit, vorher prüfen wir, was umzieht", "Товары, клиенты, заказы и адреса страниц переезжают вместе с магазином, а до переезда проверяем, что переносить"),
@@ -388,16 +388,16 @@ export const pageCopy = {
   specTitle: L2("Sie haben ein Pflichtenheft?", "У вас есть ТЗ?"),
   specSteps: [
     { title: L2("Kurze Prüfung", "Короткая проверка"), text: L2("Wir lesen die Aufgabe und stellen die Fragen, die wirklich wichtig sind", "Читаем задачу и задаём вопросы, которые действительно важны") },
-    { title: L2("Einschätzung und Frist", "Оценка и срок"), text: L2("Sie erhalten eine Einschätzung, eine Frist und Hinweise, was sonst noch hilft", "Вы получаете оценку, срок и подсказки, что ещё стоит поправить") },
+    { title: L2("Einschätzung und Termin", "Оценка и срок"), text: L2("Sie erhalten eine Einschätzung, einen Termin und Hinweise, was sonst noch hilft", "Вы получаете оценку, срок и подсказки, что ещё стоит поправить") },
     { title: L2("Umsetzung", "Работа"), text: L2("Wir setzen es um und bleiben nach dem Start erreichbar", "Делаем и остаёмся на связи после запуска") },
   ],
   specCta: L2("Pflichtenheft senden", "Отправить ТЗ"),
-  cta: L2("Aufgabe besprechen", "Обсудить задачу"),
+  cta: L2("Projekt besprechen", "Обсудить задачу"),
   more: L2("Mehr erfahren", "Подробнее"),
   allServices: L2("Alle Leistungen", "Все услуги"),
-  allTech: L2("Alle Technik", "Все технологии"),
+  allTech: L2("Technik im Überblick", "Все технологии"),
   home: L2("Startseite", "Главная"),
-  notListed: L2("Nicht dabei? Beschreiben Sie Ihre Aufgabe, und wir finden die Lösung", "Нет в списке? Опишите задачу, а решение подберём мы"),
+  notListed: L2("Nicht dabei? Beschreiben Sie Ihre Aufgabe, wir finden die passende Lösung", "Нет в списке? Опишите задачу, а решение подберём мы"),
 };
 
 export const getService = (id: string) => services.find((s) => s.id === id);

@@ -74,20 +74,20 @@ const EMAIL = "hello@vpagency.de";
 export const more: Record<Lang, More> = {
   de: {
     services: {
-      title: "Die digitale Seite Ihres Unternehmens, von einem Team",
+      title: "Alles Digitale für Ihr Unternehmen, aus einer Hand",
       items: [
-        { title: "Websites", text: "Die Ihr Angebot erklären und Anfragen bringen", tags: ["WordPress", "Laravel"], href: "/leistungen/websites" },
-        { title: "Online-Shops", text: "Für Endkunden und Großhandel, auch der Umzug von einer alten Plattform", tags: ["Shopify", "WooCommerce"], href: "/leistungen/online-shops" },
+        { title: "Websites", text: "Erklären Ihr Angebot und bringen neue Anfragen", tags: ["WordPress", "Laravel"], href: "/leistungen/websites" },
+        { title: "Online-Shops", text: "Für Endkunden und Großhandel, auf Wunsch mit Umzug von der alten Plattform", tags: ["Shopify", "WooCommerce"], href: "/leistungen/online-shops" },
         { title: "Systeme und Portale", text: "Für Ihre Kunden und Ihr Team, statt Excel und E-Mail", tags: ["Laravel"], href: "/leistungen/systeme-und-portale" },
-        { title: "Automatisierung", text: "Weniger Handarbeit, Ihre Programme arbeiten zusammen", tags: ["JTL", "SAP", "DATEV"], href: "/leistungen/automatisierung" },
+        { title: "Automatisierung", text: "Weniger Handarbeit, weil Ihre Programme zusammenarbeiten", tags: ["JTL", "SAP", "DATEV"], href: "/leistungen/automatisierung" },
         { title: "KI-Lösungen", text: "Dort, wo KI Zeit und Geld spart", tags: ["KI-Agenten", "Assistenten"], href: "/leistungen/ki" },
-        { title: "Neue Produkte", text: "Plattform, Online-Service oder App von Grund auf, mit Prototyp vor großen Investitionen", tags: ["Laravel"], href: "/leistungen/neue-produkte" },
-        { title: "Betreuung", text: "Nach dem Start bleiben wir und entwickeln weiter", tags: [], href: "/leistungen/betreuung" },
+        { title: "Neue Produkte", text: "Plattform, Online-Service oder App von Grund auf, mit Prototyp vor der großen Investition", tags: ["Laravel"], href: "/leistungen/neue-produkte" },
+        { title: "Betreuung", text: "Nach dem Start bleiben wir an Bord und entwickeln weiter", tags: [], href: "/leistungen/betreuung" },
       ],
     },
     stack: {
-      title: "Technik, auf der wir bauen",
-      lead: "Die Plattform wählen wir nach Ihrer Aufgabe. So bleibt die Lösung wartbar und wächst mit Ihrem Unternehmen",
+      title: "Technik, auf die wir setzen",
+      lead: "Die Plattform wählen wir passend zu Ihrer Aufgabe. So bleibt die Lösung wartbar und wächst mit Ihrem Unternehmen",
       servicesLabel: "Was wir damit machen",
       cards: [
         {
@@ -103,7 +103,7 @@ export const more: Record<Lang, More> = {
         },
         {
           id: "laravel", brands: ["Laravel"], title: "Laravel",
-          text: "Eigene Systeme, Kundenportale und Webanwendungen, wenn fertige Lösungen nicht passen",
+          text: "Eigene Systeme, Kundenportale und Webanwendungen, wenn Standardlösungen nicht passen",
           services: ["Kundenportal", "Internes System", "Plattform", "Weiterentwicklung"],
         },
         {
@@ -119,20 +119,20 @@ export const more: Record<Lang, More> = {
           note: "Claude, ChatGPT, Cursor, GitHub Copilot",
         },
       ],
-      germany: "Für Deutschland gebaut: DSGVO und Barrierefreiheit nach BFSG",
+      germany: "Gebaut für Deutschland: DSGVO-konform und barrierefrei nach BFSG",
     },
     ki: {
       title: "Wo KI hilft",
       lead: "Wir nutzen KI dort, wo sie Ihre Arbeit schneller und günstiger macht",
       points: [
-        { title: "Schneller und günstiger", text: "Kürzere Fristen und ein vernünftiger Preis" },
-        { title: "Daten nach DSGVO geschützt", text: "Ihre Daten bleiben geschützt" },
+        { title: "Schneller und günstiger", text: "Kürzere Laufzeiten und ein fairer Preis" },
+        { title: "Datenschutz nach DSGVO", text: "Ihre Daten bleiben geschützt und werden nicht weitergegeben" },
         { title: "Ein Mensch prüft", text: "Jedes Ergebnis prüft ein Mensch, bevor es bei Ihnen ankommt" },
       ],
       cta: "Wo lohnt sich KI bei Ihnen? Sprechen wir darüber",
     },
     projects: {
-      title: "Was wir schon umgesetzt haben",
+      title: "Was wir bereits umgesetzt haben",
       lead: "Relaunches für Industrie- und B2B-Unternehmen aus Produktion, Messtechnik, Verpackung und Bau. Jedes Projekt zeigt die Ausgangslage, was wir umgesetzt haben und was sich für den Kunden verändert hat",
       tags: ["WordPress", "Relaunch"],
       all: "Alle Projekte",
@@ -147,9 +147,9 @@ export const more: Record<Lang, More> = {
       ],
     },
     final: {
-      title: "Von der Idee bis zur Betreuung",
-      text: "Ein Team führt Ihr Projekt vom ersten Gespräch bis nach dem Start",
-      closing: "Erzählen Sie uns, was los ist",
+      title: "Von der ersten Idee bis zur laufenden Betreuung",
+      text: "Ein Team begleitet Ihr Projekt vom ersten Gespräch bis über den Start hinaus",
+      closing: "Erzählen Sie uns, worum es geht",
       closingSub: "Wir melden uns innerhalb eines Werktags",
       contactLabel: "Oder direkt",
       city: "Siegen, Deutschland",
@@ -157,11 +157,11 @@ export const more: Record<Lang, More> = {
       email: EMAIL,
       form: {
         what: "Beschreiben Sie Ihre Aufgabe oder Idee",
-        whatHint: "Ein paar Sätze reichen: was gerade passiert oder was Sie vorhaben",
+        whatHint: "Ein paar Sätze genügen: was gerade nicht rundläuft oder was Sie vorhaben",
         name: "Ihr Name",
         phone: "Telefon",
         consent: "Ich bin einverstanden, dass VP agency meine Angaben zur Bearbeitung der Anfrage verwendet",
-        submit: "Aufgabe besprechen",
+        submit: "Projekt besprechen",
         required: "Bitte ausfüllen",
         invalidPhone: "Bitte eine Telefonnummer angeben",
         consentError: "Bitte bestätigen Sie die Einwilligung",
@@ -169,7 +169,7 @@ export const more: Record<Lang, More> = {
         filesHint: "Pflichtenheft, Skizzen oder Screenshots: PDF, Word, Excel, Bilder oder ZIP, bis 20 MB",
         filesRemove: "Entfernen",
         filesTooBig: "Die Dateien sind zusammen größer als 20 MB",
-        pending: `Das Formular wird gerade angebunden und sendet noch nicht. Bis dahin erreichen Sie uns unter ${PHONE}`,
+        pending: `Das Formular wird gerade eingerichtet und versendet noch nicht. Bis dahin erreichen Sie uns unter ${PHONE}`,
       },
     },
     footer: { links: legal, rights: "© 2026 VP agency" },

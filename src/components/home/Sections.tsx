@@ -179,9 +179,6 @@ export function Footer({ lang }: { lang: Lang }) {
   const c = more[lang].footer;
   return (
     <footer className={s.footer}>
-      <svg className={s.footName} viewBox="0 0 1000 170" role="img" aria-label="VP agency">
-        <text x="0" y="138" textLength="1000" lengthAdjust="spacingAndGlyphs">VP agency</text>
-      </svg>
       <div className={s.footRow}>
         <span>{c.rights}</span>
         <nav aria-label="Rechtliches">{c.links.map((l) => <Link key={l.href} href={l.href}>{l.label}</Link>)}</nav>

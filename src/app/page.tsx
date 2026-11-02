@@ -12,15 +12,14 @@ import { services } from "@/content/catalog";
 import { JsonLd } from "@/components/JsonLd";
 import { itemListSchema } from "@/lib/schema";
 
-// The Russian version (?lang=ru) is for the owner's review only and is never indexed.
 export async function generateMetadata({ searchParams }: { searchParams: Promise<{ lang?: string }> }): Promise<Metadata> {
   const { lang } = await searchParams;
   return { alternates: { canonical: "/" }, ...(lang === "ru" ? { robots: { index: false, follow: false } } : {}) };
 }
 
 export default async function Home({ searchParams }: { searchParams: Promise<{ lang?: string }> }) {
-  const { lang: q } = await searchParams;
-  const lang: Lang = q === "ru" ? "ru" : "de";
+  await searchParams;
+  const lang: Lang = "de";
   return (
     <div className={s.root} lang={lang}>
       <SiteHeader lang={lang} floating />

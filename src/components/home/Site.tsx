@@ -4,6 +4,7 @@ import { home } from "@/content/home";
 import { more } from "@/content/home-more";
 import { services, techs, pageCopy, href, t } from "@/content/catalog";
 import { BrandLogo } from "./BrandLogo";
+import { Logo } from "../ui/Logo";
 import { tone } from "./tone";
 import s from "./home.module.css";
 
@@ -18,7 +19,7 @@ export function SiteHeader({ lang, floating }: { lang: Lang; floating?: boolean 
   const n = navCopy[lang];
   return (
     <header className={`${s.header} ${floating ? "" : s.headerStatic}`}>
-      <Link href={href(lang, "")} className={s.logo} aria-label="VP agency, Startseite">VP<span> agency</span></Link>
+      <Link href={href(lang, "")} className={s.logo} aria-label="VP agency, Startseite"><Logo size={46} /></Link>
       <nav className={s.pillnav} aria-label="Hauptnavigation">
         <div className={s.dd}>
           <Link href={href(lang, "/leistungen")} className={s.ddTrigger}>{n.services}<span aria-hidden>⌄</span></Link>
@@ -47,10 +48,6 @@ export function SiteHeader({ lang, floating }: { lang: Lang; floating?: boolean 
         <a href="#anfrage">{n.contact}</a>
       </nav>
       <div className={s.headRight}>
-        <span className={s.langSwitch}>
-          <a href="?lang=de" aria-current={lang === "de" || undefined}>DE</a>
-          <a href="?lang=ru" aria-current={lang === "ru" || undefined}>RU</a>
-        </span>
         <a href="#anfrage" className={`${s.pill} ${s.pillDark} ${s.pillSm} ${s.hideSm}`}>{c.navCta}</a>
         <details className={s.mobileMenu}>
           <summary>{c.menu}</summary>
@@ -96,11 +93,9 @@ export function SiteFooter({ lang }: { lang: Lang }) {
           <span className={s.footStrong}>{fin.phone}</span>
           <span>{fin.email}</span>
           <span>{fin.city}</span>
+          <Logo size={42} className={s.footMark} />
         </div>
       </div>
-      <svg className={s.footName} viewBox="0 0 1000 170" role="img" aria-label="VP agency">
-        <text x="0" y="138" textLength="1000" lengthAdjust="spacingAndGlyphs">VP agency</text>
-      </svg>
       <div className={s.footRow}>
         <span>{f.rights}</span>
         <nav aria-label="Rechtliches">{f.links.map((l) => <Link key={l.href} href={l.href}>{l.label}</Link>)}</nav>

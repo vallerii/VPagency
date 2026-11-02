@@ -22,4 +22,5 @@ export function InnerShell({ lang, children }: { lang: Lang; children: ReactNode
   );
 }
 
-export const langOf = (q?: string): Lang => (q === "ru" ? "ru" : "de");
+// The site is German only; the ?lang parameter is ignored.
+export const langOf = (_q?: string): Lang => "de";

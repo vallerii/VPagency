@@ -3,7 +3,6 @@ import type React from "react";
 import { SERVICES } from "@/data/services";
 import { LEGAL_LINKS } from "@/data/legal";
 import { routes } from "@/data/site";
-import { Logo } from "./ui/Logo";
 
 // TODO: swap these for VP agency's real contact details before launch —
 // placeholders only so the footer UI can be reviewed end to end.
@@ -88,10 +87,9 @@ export function Footer() {
     <footer className="border-t border-border px-6 py-12 sm:px-10 lg:px-16">
       <div className="mx-auto flex w-full max-w-7xl flex-col gap-10 sm:flex-row sm:justify-between">
         <div>
-          <Logo size={36} />
-          <p className="mt-5 max-w-[340px] text-sm text-ink-faint">
-            Wir verstehen Ihr Geschäftsproblem und entwickeln eine Lösung,
-            die wirklich funktioniert
+          <p className="max-w-[340px] text-sm text-ink-faint">
+            Wir verstehen, wo es in Ihrem Unternehmen klemmt, und entwickeln
+            eine Lösung, die wirklich funktioniert
           </p>
         </div>
 
