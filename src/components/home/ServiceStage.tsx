@@ -7,6 +7,10 @@ import { useEffect } from "react";
 //                 the middle and grows, the "what happens" block slides in
 //   data-step     1, 2, 3: the steps light up one by one while pinned
 // The same approach as HeroStage on the home page.
+// The sticky heading above the deck of scope cards is bounded by its own
+// box, which reaches further down than the cards do, so it stayed pinned
+// over the next section after the last card had already let go. This lets
+// it go at the moment the deck leaves instead.
 export function ServiceStage() {
   useEffect(() => {
     const pin = document.querySelector<HTMLElement>("[data-svc-pin]");

@@ -160,13 +160,12 @@ export function ServicePageLong({ lang, sv, page }: { lang: Lang; sv: Service; p
       </section>
 
       <section className={s.ipSection} aria-labelledby="scope-title">
-        {/* Sticky, so the section heading and its line stay readable while
-            the cards below stack up under them. */}
-        <div className={s.scopeHead}>
+        <div className={s.scopeStage} data-scope-stage>
+        <div className={s.scopeHead} data-scope-head>
           <h2 id="scope-title" className={s.h2}>{page.scope.title}</h2>
           <p className={s.lead}>{page.scope.lead}</p>
         </div>
-        <ul className={s.scopeDeck}>
+        <ul className={s.scopeDeck} data-scope-deck>
           <li className={`${s.scopeCol} ${s.scopeIn}`} style={i(0)}>
             <h3>{page.scope.included.title}</h3>
             <p className={s.scopeNote}>{page.scope.included.text}</p>
@@ -190,6 +189,7 @@ export function ServicePageLong({ lang, sv, page }: { lang: Lang; sv: Service; p
             </ul>
           </li>
         </ul>
+        </div>
       </section>
 
       <section className={s.ipSection} aria-labelledby="proc-title">

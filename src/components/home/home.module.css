@@ -1342,28 +1342,37 @@
 /* ── Scope: full-width cards that stack on each other like the Technik deck ── */
 .scopeDeck { list-style: none; margin: 0; padding: 0; display: grid; }
 .scopeItems { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 11px clamp(20px, 2.4vw, 48px); }
-/* The section heading holds above the stack. It is opaque and bleeds into
-   the gutters, so the cards pass underneath it instead of over it. */
+.scopeStage { position: relative; }
+/* An ordinary section heading: no background band and no pinning, so
+   nothing shows through above the cards while the page scrolls. */
 .scopeHead {
-  margin: 0 calc(-1 * var(--gutter)) clamp(18px, 1.8vw, 32px);
-  padding: 10px var(--gutter) 16px;
+  margin: 0 0 clamp(18px, 1.8vw, 32px);
   display: grid; gap: clamp(8px, 1vw, 16px);
 }
 @media (min-width: 1024px) {
   .scopeHead {
-    position: sticky; top: 88px; z-index: 5; background: var(--ground);
     grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
     gap: clamp(20px, 3vw, 64px); align-items: end;
   }
   .scopeHead .h2 { font-size: clamp(28px, 2.4vw, 46px); }
-  /* Each card keeps the same height, and the one above stays readable:
-     the offset leaves its heading and first line uncovered. */
+}
+/* The stack needs a window tall enough to hold it: two 104px strips and
+   a whole card below the site header. Under 700px of viewport height
+   that does not fit, so the cards simply follow one another instead. */
+@media (min-width: 1024px) and (min-height: 700px) {
+  /* Equal heights, and the offset leaves each card's heading and its line
+     uncovered when the next one slides over it. The deck ends right after
+     the last card: with extra room below, the first cards came loose and
+     flew off while the last one was still pinned, leaving a hole. */
   .scopeDeck > li {
-    position: sticky; top: calc(220px + var(--i, 0) * 112px);
-    min-height: clamp(300px, 34vh, 410px);
+    /* The first card parks far enough below the heading to keep the same
+       air between them as while the page is still scrolling, instead of
+       nailing itself right under the text. */
+    position: sticky; top: calc(215px + var(--i, 0) * 98px);
+    min-height: clamp(250px, 40vh, 430px);
     box-shadow: 0 -14px 44px rgba(22,19,16,.09);
   }
-  .scopeDeck > li + li { margin-top: clamp(30px, 3vw, 56px); }
+  .scopeDeck > li + li { margin-top: clamp(36px, 4.5vh, 72px); }
   .scopeIn { box-shadow: 0 -14px 44px rgba(22,19,16,.09); }
 }
 
@@ -1397,4 +1406,12 @@
 @media (prefers-reduced-motion: reduce) {
   .symWall .colTrack { animation: none; }
   .heroLayer, .stepsLayer, .promiseLayer, .stepsLayer .progressDot { transition: none; }
+}
+
+/* ── 404 ────────────────────────────────────────────────────────────── */
+.nf { padding-top: clamp(60px, 7vw, 150px); }
+.nfCode {
+  font-family: var(--display); font-weight: 400; line-height: .85; letter-spacing: -0.06em;
+  font-size: clamp(90px, 16vw, 280px); color: var(--line-strong);
+  display: block; margin-bottom: clamp(-10px, -0.6vw, 0px);
 }
