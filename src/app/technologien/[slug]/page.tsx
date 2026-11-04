@@ -17,7 +17,8 @@ export async function generateMetadata({ params, searchParams }: P): Promise<Met
   if (!x) return { title: "Technologie" };
   const { lang } = await searchParams;
   return {
-    title: x.title.de,
+    title: x.seo.title,
+    description: x.seo.description,
     alternates: { canonical: `/technologien/${x.id}` },
     ...(lang === "ru" ? { robots: { index: false, follow: false } } : {}),
   };

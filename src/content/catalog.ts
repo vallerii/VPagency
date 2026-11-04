@@ -38,15 +38,15 @@ export const items: Record<string, Item> = {
   w4: I("Landingpages für Kampagnen", "Посадочные страницы под рекламу", "Eine eigene Seite für jede Kampagne oder jedes Angebot", "Отдельная страница под каждую кампанию или предложение"),
   wn4: I("Karriereseite", "Карьерная страница", "Stellen, Vorteile Ihres Unternehmens und eine einfache Bewerbung", "Вакансии, преимущества работы у вас и простой отклик для кандидатов"),
   w17: I("WooCommerce-Shop", "Магазин на WooCommerce", "Ein Online-Shop auf WordPress für alle, die schon mit WordPress arbeiten", "Интернет-магазин на WordPress для тех, кто уже работает с этим сайтом"),
-  w12: I("Inhalte einpflegen", "Наполнение сайта", "Seiten, Texte, Bilder und Bereiche komplett eingepflegt", "Страницы, тексты, фото и разделы под ключ"),
+  w12: I("Inhalte einpflegen", "Наполнение сайта", "Sie liefern Texte und Bilder, wir setzen alle Seiten fertig auf", "Вы передаёте тексты и фото, мы собираем все страницы целиком"),
   w6: I("Website-Pflege ohne Entwickler", "Редактирование без программиста", "Ein einfacher Editor, mit dem Ihr Team Texte und Bilder selbst ändert", "Удобный редактор, чтобы команда сама меняла тексты и фото"),
   w13: I("Fehlerbehebung für bestehende Websites", "Исправление ошибок и вёрстки", "Fehler, kaputte Darstellung und mobile Ansicht auf Ihrer bestehenden Website", "Ошибки, поломанная вёрстка и мобильная версия на существующем сайте"),
   w9: I("Website-Performance", "Ускорение сайта", "Seiten laden schnell auf Handy und Computer", "Страницы открываются быстро на телефоне и компьютере"),
   wn3: I("Gehackte WordPress-Website wiederherstellen", "Восстановление взломанного сайта", "Schadcode entfernen, Website wiederherstellen und Lücken schließen", "Убираем вредоносный код, восстанавливаем работу и закрываем уязвимости"),
   wn5: I("Hosting-Umzug ohne Ausfallzeit", "Переезд на новый хостинг", "Die Website zieht auf einen neuen Server um, ohne offline zu gehen", "Перенос сайта на другой сервер без остановки работы"),
   w14: I("WordPress-Plugin-Entwicklung", "Создание плагинов WordPress", "Eine Funktion für Ihre Aufgabe, die es in fertigen Plugins nicht gibt", "Функция под задачу, которой нет в готовых плагинах"),
-  w15: I("Plugin-Einrichtung und -Reparatur", "Подключение и починка плагинов", "Plugins installieren, einrichten und reparieren, die nicht mehr funktionieren", "Установка, настройка и исправление плагинов, которые перестали работать"),
-  w16: I("Plugin- und Theme-Konflikte lösen", "Исправление конфликтов", "Wenn sich Plugins oder Theme gegenseitig stören und die Website ausfällt", "Когда плагины или тема мешают друг другу и ломают сайт"),
+  w15: I("Plugin-Einrichtung und -Reparatur", "Подключение и починка плагинов", "Eine Funktion auf Ihrer Website tut nicht mehr, was sie soll", "Функция на сайте перестала работать так, как нужно"),
+  w16: I("Plugin- und Theme-Konflikte lösen", "Исправление конфликтов", "Nach einem Update zeigt die Website Fehler oder ist nicht mehr erreichbar", "После обновления сайт выдаёт ошибки или перестаёт открываться"),
   w5: I("Formulare mit CRM verbinden", "Заявки с сайта в CRM", "Anfragen aus Formularen landen sofort im CRM beim richtigen Ansprechpartner", "Обращения из форм сразу попадают в CRM к нужному человеку"),
   w19: I("ERP-Anbindung für WordPress", "Связка сайта с ERP", "Anfragen und Daten der Website gehen automatisch ins ERP", "Заявки и данные сайта автоматически передаются в ERP-систему"),
   wn1: I("Barrierefreie Website nach BFSG", "Доступность сайта по BFSG", "Prüfung und Anpassung für Websites und Shops, die an Privatkunden verkaufen", "Проверка и доработка для сайтов и магазинов, которые продают частным лицам"),
@@ -57,15 +57,15 @@ export const items: Record<string, Item> = {
   shA: I("Shopify-Shop erstellen", "Запуск магазина на Shopify", "Ein Shop von Grund auf: Struktur, Katalog, Zahlung, Versand", "Магазин с нуля: структура, каталог, оплата, доставка"),
   shB: I("Shopify-Theme-Entwicklung", "Разработка темы магазина", "Eigenes Design und eigene Vorlagen statt Standard-Theme", "Собственный дизайн и шаблоны вместо стандартной темы"),
   ns42: I("Migration zu Shopify", "Миграция на Shopify", "Produkte, Kunden und Bestellungen ziehen von jeder Plattform um, ohne Datenverlust", "Перенос товаров, клиентов и заказов с любой платформы без потери данных"),
-  ns18: I("Migration von Shopware zu Shopify", "Миграция с Shopware", "Umzug des Shops, alle Daten bleiben erhalten", "Перенос магазина с сохранением данных"),
+  ns18: I("Migration von Shopware zu Shopify", "Миграция с Shopware", "Der Shop zieht um, Produkte, Kunden und Bestellungen bleiben vollständig", "Магазин переезжает, товары, клиенты и заказы сохраняются полностью"),
   ns19: I("Migration von Magento zu Shopify", "Миграция с Magento", "Katalog und Bestellhistorie ziehen um, ohne Umsatzverlust", "Перенос каталога и истории заказов без потери продаж"),
   ns20: I("Migration von WooCommerce zu Shopify", "Миграция с WooCommerce", "Produkte, Bestellungen und Kunden wechseln ohne Datenverlust", "Товары, заказы и клиенты переходят без потери данных"),
-  ns21: I("Migration von OXID zu Shopify", "Миграция с OXID", "Umzug des Shops mit allen Daten und Seitenadressen", "Перенос магазина с сохранением данных и адресов страниц"),
+  ns21: I("Migration von OXID zu Shopify", "Миграция с OXID", "Der Shop zieht um, und Ihre bisherigen Seitenadressen funktionieren weiter", "Магазин переезжает, и прежние адреса страниц продолжают работать"),
   ns22: I("Migrations-Audit", "Аудит перед миграцией", "Was umzieht, was nicht nötig ist und wo Daten verloren gehen können", "Что переносить, что не нужно и где могут потеряться данные"),
   ns6: I("Shopify-Beratung", "Консультация по Shopify", "Was zuerst kommt und wie sich der Shop weiterentwickelt", "Что делать первым и как развивать магазин дальше"),
   ns7: I("Shopify Plus Entwicklung", "Разработка на Shopify Plus", "Große Shops: komplexe Logik, mehrere Regionen, großer Katalog", "Крупный магазин: сложная логика, несколько регионов, большой каталог"),
   ns41: I("Shopify-App-Entwicklung", "Создание приложений для Shopify", "Eine App für Ihre Aufgabe, die es fertig nicht gibt", "Приложение под задачу, которой нет в готовых решениях"),
-  ns9: I("App-Einrichtung, Reparatur und Konfliktlösung", "Подключение, починка и конфликты приложений", "Wir wählen Apps aus, richten sie ein, reparieren sie und lösen Konflikte", "Подбираем и настраиваем приложения, чиним сломанные и убираем конфликты"),
+  ns9: I("App-Einrichtung, Reparatur und Konfliktlösung", "Подключение, починка и конфликты приложений", "Eine App im Shop funktioniert nicht mehr oder stört eine andere", "Приложение в магазине перестало работать или мешает другому"),
   shC: I("KI-gestützte Produktdatenpflege", "Наполнение каталога с помощью ИИ", "Beschreibungen, Eigenschaften und Übersetzungen, geprüft von einem Menschen", "Описания, характеристики и переводы товаров, проверенные человеком"),
   shD: I("Automatisierung mit Shopify Flow", "Автоматизация магазина (Shopify Flow)", "Bestellungen, Bestände und Benachrichtigungen laufen ohne Handarbeit", "Заказы, остатки и уведомления обрабатываются без ручной работы"),
   ns10: I("Shopify UX/UI-Design", "Дизайн магазина", "Klare Navigation und Seiten, die zum Kauf führen", "Понятная навигация и страницы, которые ведут к покупке"),
@@ -105,10 +105,10 @@ export const items: Record<string, Item> = {
   n2: I("Marktplatz- und Plattformentwicklung", "Маркетплейс или платформа", "Eine Plattform, auf der sich Anbieter und Käufer treffen", "Площадка, где встречаются продавцы и покупатели"),
   c9: I("Systemintegration", "Связка программ в одну систему", "Daten aus verschiedenen Programmen ergeben ein Gesamtbild", "Данные из разных программ собираются в одной картине"),
   lapi: I("API für Partner und Kunden", "Доступ партнёров к вашей системе", "Partner und Kunden erhalten Daten direkt, ohne manuelle Exporte", "Партнёры и клиенты получают данные напрямую, без выгрузок вручную"),
-  l4: I("Reparatur von Schnittstellen", "Починка интеграций", "Ein externer Dienst wurde aktualisiert, und Daten kommen nicht mehr an", "Внешний сервис обновился, и данные перестали передаваться"),
+  l4: I("Reparatur von Schnittstellen", "Починка интеграций", "Daten kommen nicht mehr an, und niemand merkt es, bis etwas fehlt", "Данные перестали передаваться, и это заметно только когда чего-то не хватает"),
   c10: I("Datenmigration", "Перенос данных из старой системы или таблиц", "Ohne Verlust der Historie und ohne Abtippen", "Без потери истории и без ручного ввода"),
   c14: I("Digitale Signatur und Dokumentenmanagement", "Электронная подпись и документооборот", "Dokumente digital unterschreiben und ohne Papier ablegen", "Подпись документов и их хранение без бумаги"),
-  l2: I("Weiterentwicklung bestehender Laravel-Anwendungen", "Доработка существующей системы", "Neue Funktionen in einem System, das schon läuft", "Новые функции в системе, которая уже работает"),
+  l2: I("Weiterentwicklung bestehender Laravel-Anwendungen", "Доработка существующей системы", "Neue Funktionen in einem System, das schon läuft, ohne alles neu zu bauen", "Новые функции в работающей системе, без переделки всего заново"),
   l6: I("Laravel- und PHP-Upgrade", "Обновление старой версии Laravel и PHP", "Das System wechselt auf eine unterstützte Version, ohne Stillstand", "Система переходит на поддерживаемую версию без остановки работы"),
   l1: I("Ablösung von Altsystemen", "Замена устаревшей системы", "Funktionen und Daten des alten Programms ziehen in ein neues System auf Laravel", "Функции и данные старой программы переходят в новую систему на Laravel"),
   lc: I("Code-Audit", "Аудит кода", "Sicherheit und Qualität des Codes geprüft, zum Beispiel vor einem Dienstleisterwechsel", "Проверка безопасности и качества кода, например перед сменой подрядчика"),
@@ -134,9 +134,9 @@ export const items: Record<string, Item> = {
   a11: I("E-Mail-Automatisierung", "Рассылки по сценарию", "E-Mails an neue Kunden und an Kunden, die lange nicht gekauft haben", "Письма новым и давно не покупавшим клиентам"),
   // Support
   p1: I("Support und Monitoring", "Техническая поддержка и мониторинг", "Ausfälle sind sofort sichtbar, die Reaktionszeit steht im Vertrag", "Сбои видны сразу, срок реакции прописан в договоре"),
-  p2: I("Updates, Backups und Sicherheit", "Обновления, резервные копии и безопасность", "Regelmäßige Updates und Schutz vor Angriffen", "Регулярные обновления и защита от взлома"),
+  p2: I("Updates, Backups und Sicherheit", "Обновления, резервные копии и безопасность", "Alles bleibt aktuell, und im Notfall ist die Website in Stunden zurück", "Всё остаётся обновлённым, а в случае сбоя сайт возвращается за часы"),
   p9: I("Projektübernahme von anderen Dienstleistern", "Принять проект от прежнего подрядчика", "Wir arbeiten uns in den bestehenden Stand ein, stellen fertig und betreuen weiter", "Разбираемся в чужой работе, доделываем и поддерживаем дальше"),
-  p6: I("Schulung des Teams", "Обучение команды", "Anleitungen und Einweisung, damit Ihr Team ohne ständige Rückfragen arbeitet", "Инструкции и разбор, чтобы команда работала без постоянных вопросов"),
+  p6: I("Schulung des Teams", "Обучение команды", "Ihr Team arbeitet selbstständig weiter, ohne bei jeder Kleinigkeit zu fragen", "Команда работает дальше сама, не спрашивая по каждой мелочи"),
   // First step
   s1: I("Digitalisierungs-Check und Roadmap", "Диагностика и план развития", "Wo Zeit und Kunden verloren gehen, was zuerst kommt und in welcher Reihenfolge", "Где теряются время и клиенты, что делать первым и в каком порядке"),
   s2: I("Audit von Website, Shop oder Software", "Аудит сайта, магазина или системы", "Was funktioniert, was stört und was sich zu ändern lohnt", "Что работает, что мешает и что стоит переделать"),
@@ -146,9 +146,16 @@ export const items: Record<string, Item> = {
 
 type Group = { title: L; ids: string[] };
 
+/** Title and description for search results. Written per page: the nav
+    label alone ("Websites") is not a phrase anyone searches for, and the
+    region and the industries belong in the snippet. German only, because
+    only the German pages are indexed. */
+export type Seo = { title: string; description: string };
+
 export type Service = {
   id: ServiceId;
   nav: L;
+  seo: Seo;
   title: L;
   lead: L;
   who: L;
@@ -163,6 +170,7 @@ const L2 = (de: string, ru: string): L => ({ de, ru });
 export const services: Service[] = [
   {
     id: "websites", nav: L2("Websites", "Сайты"),
+    seo: { title: "Unternehmenswebsite für Industrie und B2B", description: "Websites und Relaunches für Industrie- und B2B-Unternehmen: klare Struktur, kurzer Weg zur Anfrage, Inhalte pflegt Ihr Team selbst. Aus Siegen, deutschlandweit." },
     title: L2("Websites, die Ihr Angebot erklären und Anfragen bringen", "Сайты, которые объясняют ваше предложение и приводят заявки"),
     lead: L2("Für Unternehmen, deren Website veraltet wirkt, keine Anfragen bringt oder ständig Probleme macht", "Для компаний, чей сайт выглядит устаревшим, не даёт заявок или ломается"),
     who: L2("Ihre Website wirkt veraltet, bringt keine Anfragen oder fällt immer wieder aus", "Сайт выглядит устаревшим, не даёт заявок или ломается"),
@@ -173,13 +181,14 @@ export const services: Service[] = [
       { title: L2("Inhalte und Pflege", "Наполнение и управление"), ids: ["w12", "w6"] },
       { title: L2("Reparieren und beschleunigen", "Исправление и ускорение"), ids: ["w13", "w9", "wn3", "wn5"] },
       { title: L2("Funktionen und Anbindungen", "Функции и связки"), ids: ["w14", "w15", "w16", "w5", "w19"] },
-      { title: L2("Recht und Barrierefreiheit", "Право и доступность"), ids: ["wn1", "wn2"] },
+      { title: L2("Recht und Barrierefreiheit", "Право и доступность"), ids: ["wn1"] },
       { title: L2("KI auf der Website", "ИИ на сайте"), ids: ["wai1", "wai2"] },
     ],
     tech: ["wordpress", "schnittstellen"],
   },
   {
     id: "online-shops", nav: L2("Online-Shops", "Интернет-магазины"),
+    seo: { title: "Online-Shop erstellen und auf Shopify umziehen", description: "B2B- und Endkunden-Shops mit Shopify: Neubau, Umzug von Shopware, Magento oder WooCommerce, Anbindung an Warenwirtschaft und Buchhaltung." },
     title: L2("Online-Shops, die verkaufen und nicht ausfallen", "Магазины, которые продают и не ломаются"),
     lead: L2("Für Shop-Betreiber und Unternehmen, die einen neuen Shop brauchen oder auf Shopify umziehen", "Для владельцев магазинов и компаний, которым нужен новый магазин или переезд на Shopify"),
     who: L2("Ihr Shop verkauft zu wenig, die Plattform läuft aus oder Bestellungen werden per Hand übertragen", "Магазин продаёт мало, платформа устаревает или заказы переносят вручную"),
@@ -196,6 +205,7 @@ export const services: Service[] = [
   },
   {
     id: "systeme-und-portale", nav: L2("Systeme und Portale", "Системы и порталы"),
+    seo: { title: "Kundenportale und individuelle Software", description: "Interne Systeme, Kunden- und Partnerportale statt Excel: gebaut entlang Ihrer Abläufe und verbunden mit ERP und Warenwirtschaft. Aus Siegen für den DACH-Raum." },
     title: L2("Ein klares System statt Excel und fünf Programmen", "Один понятный инструмент вместо Excel и пяти программ"),
     lead: L2("Für Unternehmen, die schneller gewachsen sind als ihre Abläufe, oder denen fertige Software nicht passt", "Для компаний, которые выросли быстрее процессов, или которым не подходит готовое ПО"),
     who: L2("Alles läuft über Excel und E-Mail, und vieles hängt an einzelnen Personen", "Всё держится на Excel, почте и отдельных людях"),
@@ -211,6 +221,7 @@ export const services: Service[] = [
   },
   {
     id: "neue-produkte", nav: L2("Neue Produkte", "Новое с нуля"),
+    seo: { title: "Plattform, SaaS oder App von der Idee bis zum Start", description: "Neue digitale Produkte: Prototyp vor der großen Investition, Pflichtenheft und eine erste Version, die echte Nutzer testen. Für Unternehmen mit einer Idee." },
     title: L2("Eine neue Plattform oder ein Online-Service, von der Idee bis zum Start", "Новая платформа или онлайн-сервис, от идеи до запуска"),
     lead: L2("Für Unternehmer mit einer Idee für einen Service, eine Plattform oder eine App", "Для предпринимателей с идеей сервиса, платформы или приложения"),
     who: L2("Sie haben eine Idee, wissen aber nicht, was zuerst gebaut werden sollte und was es kostet", "Есть идея, но непонятно, что делать первым и сколько это стоит"),
@@ -225,6 +236,7 @@ export const services: Service[] = [
   },
   {
     id: "automatisierung", nav: L2("Automatisierung", "Автоматизация"),
+    seo: { title: "Prozesse automatisieren und Programme verbinden", description: "Weniger Handarbeit im Alltag: Schnittstellen zwischen Shop, ERP und Buchhaltung, automatische Dokumente, Erinnerungen und Berichte." },
     title: L2("Weniger Routine, mehr Zeit für Ihr Geschäft", "Меньше рутины, больше времени на бизнес"),
     lead: L2("Für Teams, die jeden Tag Stunden mit denselben Handgriffen verbringen", "Для команд, которые тратят часы на одинаковые действия"),
     who: L2("Ihr Team kopiert Daten, schreibt Erinnerungen und baut Berichte per Hand", "Команда вручную копирует данные, пишет напоминания и собирает отчёты"),
@@ -238,6 +250,7 @@ export const services: Service[] = [
   },
   {
     id: "ki", nav: L2("KI-Lösungen", "ИИ-решения"),
+    seo: { title: "KI im Unternehmen einsetzen, wo sie sich rechnet", description: "KI-Agenten, Assistenten und automatische Dokumentenverarbeitung für konkrete Aufgaben. Nach DSGVO, jedes Ergebnis von einem Menschen geprüft." },
     title: L2("KI, die eine konkrete Arbeit übernimmt", "ИИ, который берёт на себя конкретную работу"),
     lead: L2("Für Unternehmen, die KI nutzen wollen, aber nicht wissen, wo sie sich lohnt", "Для компаний, которые хотят использовать ИИ, но не знают, где он окупится"),
     who: L2("Alle reden über KI, aber es ist unklar, wo sie bei Ihnen Zeit und Geld spart", "Все говорят про ИИ, но неясно, где он сэкономит время и деньги у вас"),
@@ -252,6 +265,7 @@ export const services: Service[] = [
   },
   {
     id: "betreuung", nav: L2("Betreuung", "Поддержка"),
+    seo: { title: "Website- und Systembetreuung nach dem Launch", description: "Updates, Sicherungen, Monitoring und Weiterentwicklung mit fester Reaktionszeit. Auch für Projekte, die ein anderer Dienstleister begonnen hat." },
     title: L2("Ihr System läuft und entwickelt sich nach dem Start weiter", "Система работает и развивается после запуска"),
     lead: L2("Für Unternehmen, deren Projekt zwar läuft, um das sich aber niemand kümmert", "Для компаний, у которых проект запущен, но за ним некому следить"),
     who: L2("Updates werden aufgeschoben, und der frühere Dienstleister ist nicht erreichbar", "Обновления откладываются, а прежний подрядчик не отвечает"),
@@ -265,6 +279,7 @@ export const services: Service[] = [
   },
   {
     id: "analyse-und-beratung", nav: L2("Analyse und Beratung", "Анализ и консультация"),
+    seo: { title: "Digitalisierung: Analyse, Audit und Roadmap", description: "Wo Zeit und Kunden verloren gehen, was zuerst kommt und in welcher Reihenfolge. Für Inhaber, die spüren, dass etwas bremst, aber nicht wissen, wo." },
     title: L2("Verstehen, was Ihr Unternehmen bremst, und was zuerst kommt", "Понять, что тормозит бизнес, и что делать первым"),
     lead: L2("Für Inhaber, die spüren, dass etwas langsam läuft, aber nicht wissen, warum, und für Gründer mit einer neuen Idee", "Для владельцев, которые чувствуют, что всё работает медленно, но не знают почему, и для предпринимателей с новой идеей"),
     who: L2("Sie spüren, dass etwas bremst, wissen aber nicht, was es ist und wo Sie anfangen sollen", "Чувствуете, что что-то тормозит, но не знаете что и с чего начать"),
@@ -280,6 +295,7 @@ export const services: Service[] = [
 
 export type Tech = {
   id: TechId;
+  seo: Seo;
   name: string;
   brands: string[];
   nav: L;
@@ -294,6 +310,7 @@ export type Tech = {
 
 export const techs: Tech[] = [
   {
+    seo: { title: "WordPress-Agentur für Unternehmenswebsites", description: "Eigene Themes und Plugins, Anbindung an CRM und ERP, Wartung und Sicherheit. WordPress-Entwicklung für Industrie und B2B aus Siegen." },
     id: "wordpress", name: "WordPress", brands: ["WordPress", "WooCommerce"], nav: L2("WordPress", "WordPress"),
     title: L2("WordPress-Entwicklung", "Разработка на WordPress"),
     lead: L2("Websites, Kataloge und WooCommerce-Shops: eigene Themes und Plugins, Anbindungen an CRM und ERP, Wartung und Sicherheit", "Сайты, каталоги и магазины на WooCommerce: свои темы и плагины, связки с CRM и ERP, поддержка и безопасность"),
@@ -308,6 +325,7 @@ export const techs: Tech[] = [
     services: ["websites", "online-shops", "betreuung"],
   },
   {
+    seo: { title: "Shopify-Agentur: Shops, Themes und Migration", description: "Shopify und Shopify Plus: Shopaufbau, eigene Themes und Apps, Umzug von Shopware, Magento, WooCommerce und OXID, Anbindung an ERP und Buchhaltung." },
     id: "shopify", name: "Shopify", brands: ["Shopify"], nav: L2("Shopify", "Shopify"),
     title: L2("Shopify- und Shopify-Plus-Entwicklung", "Разработка на Shopify и Shopify Plus"),
     lead: L2("Shops, Themes und Apps, Umzüge von Shopware, Magento, WooCommerce und OXID, Anbindungen an ERP, PIM und Buchhaltung", "Магазины, темы и приложения, переезды с Shopware, Magento, WooCommerce и OXID, связки с ERP, PIM и бухгалтерией"),
@@ -323,6 +341,7 @@ export const techs: Tech[] = [
     services: ["online-shops", "betreuung"],
   },
   {
+    seo: { title: "Laravel-Entwicklung für Portale und Webanwendungen", description: "Individuelle Webanwendungen, Kundenportale, Apps und APIs sowie Upgrades bestehender Laravel- und PHP-Systeme." },
     id: "laravel", name: "Laravel", brands: ["Laravel"], nav: L2("Laravel", "Laravel"),
     title: L2("Laravel-Entwicklung", "Разработка на Laravel"),
     lead: L2("Individuelle Webanwendungen, Portale, Apps und APIs, Weiterentwicklung und Upgrades bestehender Laravel- und PHP-Systeme", "Свои веб-приложения, порталы, приложения и API, доработка и обновление существующих систем на Laravel и PHP"),
@@ -335,6 +354,7 @@ export const techs: Tech[] = [
     services: ["systeme-und-portale", "neue-produkte", "betreuung"],
   },
   {
+    seo: { title: "Schnittstellen zu SAP, DATEV, JTL und Co.", description: "Wir verbinden Website, Shop und interne Systeme mit ERP, Warenwirtschaft, Buchhaltung, PIM und CMS, damit Daten ohne Handarbeit fließen." },
     id: "schnittstellen", name: "Schnittstellen", brands: ["SAP", "DATEV", "auto"], nav: L2("Schnittstellen", "Интеграции"),
     title: L2("Schnittstellen und Integrationen", "Интеграции и связки систем"),
     lead: L2("Wir verbinden Website, Shop und Systeme mit ERP, Warenwirtschaft, Buchhaltung, PIM und CMS", "Связываем сайт, магазин и системы с ERP, складом, бухгалтерией, PIM и CMS"),
@@ -351,6 +371,7 @@ export const techs: Tech[] = [
     services: ["automatisierung", "online-shops", "systeme-und-portale"],
   },
   {
+    seo: { title: "KI-Agenten, Assistenten und Automatisierung", description: "Claude, ChatGPT, Cursor und GitHub Copilot im Arbeitsalltag: Agenten, Assistenten und automatische Abläufe mit Make und n8n." },
     id: "ki", name: "KI", brands: ["Claude", "ChatGPT", "Cursor", "Copilot"], nav: L2("KI-Tools", "ИИ-инструменты"),
     title: L2("KI-Tools, Agenten und Automatisierung", "ИИ-инструменты, агенты и автоматизация"),
     lead: L2("Wir arbeiten täglich mit Claude, ChatGPT, Cursor und GitHub Copilot und bauen Agenten, Assistenten und Automatisierungen mit Make und n8n", "Мы каждый день работаем с Claude, ChatGPT, Cursor и GitHub Copilot и строим агентов, ассистентов и автоматизацию на Make и n8n"),

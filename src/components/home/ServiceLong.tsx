@@ -51,9 +51,9 @@ function SymptomWall({ items, label }: { items: string[]; label: string }) {
 function HeroStagePinned({
   lang, sv, page,
 }: { lang: Lang; sv: Service; page: ServicePageContent }) {
-  const steps = home[lang].hero.progress;
+  const steps = page.promise.steps;
   return (
-    <div className={s.svcPin} data-svc-pin data-step="1">
+    <div className={s.svcPin} data-svc-pin data-step="1" data-hero={page.heroLayout}>
       <div className={s.pinScreen}>
         <div className={s.heroLayer}>
           <div className={s.svcHeroCopy}>
@@ -77,6 +77,9 @@ function HeroStagePinned({
         </div>
 
         <div className={s.stepsLayer}>
+          {/* The name of the step here, the sentence that explains it in
+              the tinted card below. On a phone the card row is hidden and
+              the sentence shows under the name instead. */}
           <ol className={s.progress} aria-label="So arbeiten wir">
             {steps.map((p, n) => (
               <li key={p.title} style={i(n)}>
@@ -89,13 +92,9 @@ function HeroStagePinned({
         </div>
 
         <div className={s.promiseLayer}>
-          <h2 className={s.h3}>{page.promise.title}</h2>
-          <ol className={s.promiseSteps}>
-            {page.promise.steps.map((txt, n) => (
-              <li key={txt.slice(0, 20)}>
-                <span className={s.promiseNum}>{n + 1}</span>
-                <span>{txt}</span>
-              </li>
+          <ol className={s.promiseSteps} aria-hidden>
+            {steps.map((p, n) => (
+              <li key={p.title} style={i(n)}>{p.text}</li>
             ))}
           </ol>
           <a href="#anfrage" className={`${s.pill} ${s.pillDark}`}>
@@ -121,7 +120,7 @@ export function ServicePageLong({ lang, sv, page }: { lang: Lang; sv: Service; p
     <>
       <HeroStagePinned lang={lang} sv={sv} page={page} />
 
-      <section className={s.ipSection}>
+      <section className={`${s.ipSection} ${s.introSection}`}>
         {/* Word by word, so the opening paragraph reads as it appears */}
         <p className={s.intro} data-reveal>
           {page.intro.split(" ").map((w, n) => (
@@ -130,16 +129,53 @@ export function ServicePageLong({ lang, sv, page }: { lang: Lang; sv: Service; p
             </Fragment>
           ))}
         </p>
+        {/* A reader who already knows the platform, or who has an idea
+            rather than a website, leaves here instead of reading on */}
+        <ul className={`${s.exits} ${page.blockStyle === "plain" ? s.exitsPlain : ""}`}>
+          {page.exits.map((e) => (
+            <li key={e.href}>
+              <span>{e.question}</span>
+              <Link href={href(lang, e.href)}>
+                {e.label}
+                <span className={s.doorArrow} aria-hidden>→</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
       </section>
 
-      <section className={s.deepBand} aria-labelledby="deep-title">
+      {page.decision && (
+        <section className={`${s.ipSection} ${s.splitSection}`} aria-labelledby="dec-title">
+          <div className={s.deepHead} data-reveal>
+            <h2 id="dec-title" className={s.h2}>{page.decision.title}</h2>
+            <p className={s.lead}>{page.decision.intro}</p>
+          </div>
+          {/* Two columns against each other: the page's core question is a
+              yes or no, and the layout should show that, not hide it in prose */}
+          <div className={s.split}>
+            {([page.decision.standard, page.decision.custom] as const).map((c, n) => (
+              <article key={c.title} className={s.splitCol} data-kind={n === 1 ? "on" : "off"} data-reveal style={i(n)}>
+                <h3>{c.title}</h3>
+                <p className={s.splitLead}>{c.lead}</p>
+                <ul>
+                  {c.items.map((it) => <li key={it}>{it}</li>)}
+                </ul>
+              </article>
+            ))}
+          </div>
+          <p className={s.splitNote} data-reveal>{page.decision.note}</p>
+        </section>
+      )}
+
+      {page.deepDive && (
+      <section className={`${s.ipSection} ${s.deepSection}`} aria-labelledby="deep-title">
         <div className={s.deepHead} data-reveal>
           <h2 id="deep-title" className={s.h2}>{page.deepDive.title}</h2>
           <p className={s.lead}>{page.deepDive.intro}</p>
         </div>
         <div className={s.deepBlocks}>
           {page.deepDive.blocks.map((b, n) => (
-            <article key={b.heading} className={s.deepBlock} data-reveal style={i(n % 3)}>
+            <article key={b.heading} className={s.deepBlock} style={i(n)}>
               <span className={s.deepNum} aria-hidden>{String(n + 1).padStart(2, "0")}</span>
               <h3>{b.heading}</h3>
               <div>
@@ -155,6 +191,7 @@ export function ServicePageLong({ lang, sv, page }: { lang: Lang; sv: Service; p
           ))}
         </div>
       </section>
+      )}
 
       <section className={s.ipSection} aria-labelledby="what-title">
         <h2 id="what-title" className={s.h2} data-reveal>{t(pc.whatWeDo, lang)}</h2>
@@ -167,6 +204,8 @@ export function ServicePageLong({ lang, sv, page }: { lang: Lang; sv: Service; p
           </a>
         </div>
       </section>
+
+      <TechCards lang={lang} ids={sv.tech} title={t(pc.onTech, lang)} />
 
       {projects.length > 0 && (
         <section className={s.ipSection} aria-labelledby="proj-title">
@@ -206,18 +245,13 @@ export function ServicePageLong({ lang, sv, page }: { lang: Lang; sv: Service; p
           <h2 id="scope-title" className={s.h2}>{page.scope.title}</h2>
           <p className={s.lead}>{page.scope.lead}</p>
         </div>
-        <ul className={s.scopeDeck} data-scope-deck>
+        <ul className={`${s.scopeDeck} ${page.blockStyle === "plain" ? s.scopePlain : ""}`} data-scope-deck>
           <li className={`${s.scopeCol} ${s.scopeIn}`} style={i(0)}>
             <h3>{page.scope.included.title}</h3>
             <p className={s.scopeNote}>{page.scope.included.text}</p>
             <ul className={s.scopeItems}>{page.scope.included.items.map((x) => <li key={x}>{x}</li>)}</ul>
           </li>
-          <li className={s.scopeCol} style={i(1)}>
-            <h3>{page.scope.addon.title}</h3>
-            <p className={s.scopeNote}>{page.scope.addon.text}</p>
-            <ul className={s.scopeItems}>{page.scope.addon.items.map((x) => <li key={x}>{x}</li>)}</ul>
-          </li>
-          <li className={`${s.scopeCol} ${s.scopeOut}`} style={i(2)}>
+          <li className={`${s.scopeCol} ${s.scopeOut}`} style={i(1)}>
             <h3>{page.scope.outOfScope.title}</h3>
             <p className={s.scopeNote}>{page.scope.outOfScope.text}</p>
             <ul className={s.scopeItems}>
@@ -238,7 +272,9 @@ export function ServicePageLong({ lang, sv, page }: { lang: Lang; sv: Service; p
           <h2 id="proc-title" className={s.h2}>{page.process.title}</h2>
           <p className={s.lead}>{page.process.lead}</p>
         </div>
-        <ol className={s.phases}>
+        {/* Two layouts: the zigzag, and a single line with a visible point
+            at which the client decides whether the build starts at all */}
+        <ol className={page.process.layout === "timeline" ? s.timeline : s.phases}>
           {page.process.phases.map((p, n) => (
             <li key={p.title} data-reveal style={i(n)}>
               <span className={s.phaseNum} aria-hidden>{n + 1}</span>
@@ -246,27 +282,26 @@ export function ServicePageLong({ lang, sv, page }: { lang: Lang; sv: Service; p
                 <h3>{p.title}</h3>
                 <p>{p.text}</p>
                 {p.note && <small>{p.note}</small>}
+                {/* The point at which the client decides whether the build
+                    starts, marked on the phase it follows */}
+                {page.process.decideAfter === n + 1 && (
+                  <span className={s.decideInline}>
+                    <span className={s.decideMark} aria-hidden>◆</span>
+                    {page.process.decideLabel}
+                  </span>
+                )}
               </div>
             </li>
           ))}
         </ol>
       </section>
 
-      <section className={s.ipSection} aria-labelledby="chg-title">
-        <div className={s.deepHead} data-reveal>
-          <h2 id="chg-title" className={s.h2}>{page.change.title}</h2>
-          <p className={s.lead}>{page.change.lead}</p>
-        </div>
-        <ul className={s.baList}>
-          {page.change.rows.map((r, n) => (
-            <li key={r.before} data-reveal style={i(n % 3)}>
-              <span className={s.baBefore}>{r.before}</span>
-              <span className={s.baArrow} aria-hidden>→</span>
-              <span className={s.baAfter}>{r.after}</span>
-            </li>
-          ))}
-        </ul>
-      </section>
+      {page.trust && (
+        <section className={s.trustStrip} aria-labelledby="trust-title" data-reveal>
+          <h2 id="trust-title">{page.trust.title}</h2>
+          <p>{page.trust.text}</p>
+        </section>
+      )}
 
       <section className={s.fmtBand} aria-labelledby="fmt-title">
         <h2 id="fmt-title" className={s.h2} data-reveal>{t(formats.title, lang)}</h2>
@@ -297,7 +332,6 @@ export function ServicePageLong({ lang, sv, page }: { lang: Lang; sv: Service; p
         <p className={s.priceNote} data-reveal>{page.price.note}</p>
       </section>
 
-      <TechCards lang={lang} ids={sv.tech} title={t(pc.onTech, lang)} />
 
       <section className={s.ipSection} aria-labelledby="faq-title">
         <h2 id="faq-title" className={s.h2} data-reveal>{page.faq.title}</h2>

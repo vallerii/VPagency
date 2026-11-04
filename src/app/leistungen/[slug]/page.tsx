@@ -19,8 +19,8 @@ export async function generateMetadata({ params, searchParams }: P): Promise<Met
   if (!sv) return { title: "Leistung" };
   const { lang } = await searchParams;
   return {
-    title: sv.nav.de,
-    description: sv.lead.de,
+    title: sv.seo.title,
+    description: sv.seo.description,
     alternates: { canonical: `/leistungen/${sv.id}` },
     ...(lang === "ru" ? { robots: { index: false, follow: false } } : {}),
   };
