@@ -1053,6 +1053,9 @@
      holds a position: fixed child inside its box. */
   .caseShot { clip-path: inset(0 round calc(var(--radius) + 4px)); }
   .caseShot img { position: fixed; inset: 0; width: 100vw; height: 100vh; object-position: center; }
+  /* Mirrored columns, so the picture gets the same width on both sides:
+     with one template the flipped row put the photo in the narrow column. */
+  .caseRowFlip { grid-template-columns: minmax(0, 6fr) minmax(0, 7fr); }
   .caseRowFlip .caseShot { grid-column: 2; grid-row: 1; }
   .caseRowFlip .caseBody { grid-column: 1; grid-row: 1; }
 }
@@ -1118,6 +1121,18 @@
 .promiseSteps .progressDot { margin-bottom: 0; }
 .promiseSteps li { display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: start; font-size: clamp(15px, 1.02vw, 18px); line-height: 1.5; }
 .intro { margin: clamp(32px, 3.4vw, 64px) 0 0; max-width: 46em; font-size: clamp(17px, 1.3vw, 25px); line-height: 1.5; letter-spacing: -0.012em; }
+/* The paragraph itself does not fade as a block; its words come in one
+   after another once it scrolls into view. */
+.root [data-reveal][data-pending].intro { opacity: 1; transform: none; }
+.intro span { display: inline-block; opacity: 0; transform: translateY(.45em); }
+.intro:not([data-pending]) span {
+  animation: wordIn .55s cubic-bezier(.2,.7,.2,1) forwards;
+  animation-delay: calc(var(--w, 0) * 16ms);
+}
+@keyframes wordIn { to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .intro span { opacity: 1; transform: none; animation: none; }
+}
 
 /* Kennen Sie das? */
 .symptoms { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: var(--gap); }
@@ -1186,7 +1201,19 @@
 .baArrow { width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; background: var(--ink); color: #fff; font-size: 14px; flex: none; }
 
 /* What drives the price */
-.priceGrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: var(--gap); }
+/* Fixed steps instead of auto-fit: with five cards auto-fit produced a row
+   of four and a lonely fifth. Now it is three and two, then two, then one.
+   The two in the last row stretch to fill the width. */
+.priceGrid { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--gap); }
+@media (min-width: 620px) { .priceGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1080px) {
+  .priceGrid { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .priceCard { grid-column: span 2; }
+  /* Exactly five: the last two take half the row each */
+  .priceGrid:has(> :nth-child(5):last-child) .priceCard:nth-child(n + 4) { grid-column: span 3; }
+  /* Exactly four: two and two */
+  .priceGrid:has(> :nth-child(4):last-child) .priceCard { grid-column: span 3; }
+}
 .priceCard { padding: clamp(22px, 2.2vw, 40px); border-radius: calc(var(--radius) + 4px); background: var(--warm); }
 .priceCard h3 { margin: 0 0 10px; font-family: var(--display); font-weight: 400; font-size: clamp(19px, 1.5vw, 28px); line-height: 1.1; letter-spacing: -0.03em; }
 .priceCard p { margin: 0; color: var(--muted); font-size: clamp(14px, .99vw, 17px); line-height: 1.55; }
@@ -1232,7 +1259,14 @@
   gap: clamp(28px, 4vw, 92px); align-items: center;
 }
 .svcHeroCopy { display: grid; gap: clamp(18px, 1.6vw, 30px); justify-items: start; }
-.symWall { --gap: clamp(10px, .9vw, 16px); --ease: cubic-bezier(.22, .8, .2, 1); position: relative; overflow: hidden; height: clamp(320px, 50svh, 600px); }
+/* The track runs almost the whole screen: starting just under the site
+   header and ending a little above the fold, instead of a short strip
+   squeezed into the middle. */
+.symWall {
+  --gap: clamp(10px, .9vw, 16px); --ease: cubic-bezier(.22, .8, .2, 1);
+  position: relative; overflow: hidden;
+  margin-top: 0; height: calc(100svh - 88px - var(--padTop) - 28px);
+}
 .symWall .col { height: 100%; }
 .symWall .colTrack { animation-duration: 48s; }
 .symWall:hover .colTrack { animation-play-state: paused; }
@@ -1251,7 +1285,7 @@
 }
 @media (max-width: 1023px) {
   .svcHero { grid-template-columns: minmax(0, 1fr); gap: clamp(28px, 4vw, 48px); }
-  .symWall { height: clamp(260px, 38svh, 380px); }
+  .symWall { margin-top: 0; height: clamp(260px, 38svh, 380px); }
 }
 
 /* ── Pinned service hero ─────────────────────────────────────────────
@@ -1264,16 +1298,21 @@
    Only opacity, transform, top and right move. ServiceStage sets the
    attributes; the motion is CSS. ────────────────────────────────────── */
 .svcPin { --ease: cubic-bezier(.22, .8, .2, 1); position: relative; height: 180svh; }
-.pinScreen { position: sticky; top: 0; height: 100svh; overflow: hidden; }
+/* Sticks under the fixed site header, not at the very top of the window,
+   and is exactly as tall as what is left of the screen. That way the hero
+   looks the same before the first scroll as it does once it is pinned. */
+.pinScreen { position: sticky; top: 88px; height: calc(100svh - 88px); overflow: hidden; }
 
 .heroLayer {
-  position: absolute; inset: 0; padding: clamp(76px, 8vh, 132px) var(--gutter) 0;
+  --padTop: clamp(10px, 1.4vh, 22px);
+  position: absolute; inset: 0; padding: var(--padTop) var(--gutter) 0;
   display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
   gap: clamp(28px, 4vw, 92px); align-content: start;
   transition: opacity .55s ease, transform .8s var(--ease);
 }
 .svcPin[data-settled] .heroLayer { opacity: 0; transform: translateY(-5vh); pointer-events: none; }
 .svcHeroCopy { display: grid; gap: clamp(16px, 1.5vw, 28px); align-content: start; justify-items: start; }
+.svcHeroCopy .crumbs { margin-bottom: clamp(2px, .6vw, 10px); }
 
 /* The steps sit in their own layer from the start, so moving and growing
    them later is a transition and not a re-layout. */
@@ -1328,7 +1367,7 @@
   /* No pinning on a phone: the hero is a normal section and the second
      block simply follows it. */
   .svcPin { height: auto; }
-  .pinScreen { position: static; height: auto; overflow: visible; padding: clamp(28px, 5vh, 56px) 0 clamp(40px, 6vw, 72px); display: grid; gap: clamp(28px, 5vw, 48px); }
+  .pinScreen { position: static; top: auto; height: auto; overflow: visible; padding: clamp(28px, 5vh, 56px) 0 clamp(40px, 6vw, 72px); display: grid; gap: clamp(28px, 5vw, 48px); }
   .heroLayer { position: static; inset: auto; padding: 0 var(--gutter); grid-template-columns: minmax(0, 1fr); }
   .stepsLayer { position: static; left: auto; right: auto; top: auto; transform: none; padding: 0 var(--gutter); }
   .svcPin[data-settled] .stepsLayer { top: auto; right: auto; transform: none; }
@@ -1346,15 +1385,10 @@
 /* An ordinary section heading: no background band and no pinning, so
    nothing shows through above the cards while the page scrolls. */
 .scopeHead {
-  margin: 0 0 clamp(18px, 1.8vw, 32px);
-  display: grid; gap: clamp(8px, 1vw, 16px);
+  margin: 0 0 clamp(26px, 2.8vw, 52px);
+  display: grid; gap: clamp(10px, 1vw, 18px);
 }
 @media (min-width: 1024px) {
-  .scopeHead {
-    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
-    gap: clamp(20px, 3vw, 64px); align-items: end;
-  }
-  .scopeHead .h2 { font-size: clamp(28px, 2.4vw, 46px); }
 }
 /* The stack needs a window tall enough to hold it: two 104px strips and
    a whole card below the site header. Under 700px of viewport height
@@ -1415,3 +1449,70 @@
   font-size: clamp(90px, 16vw, 280px); color: var(--line-strong);
   display: block; margin-bottom: clamp(-10px, -0.6vw, 0px);
 }
+
+/* ── Service page: giving neighbouring blocks different shapes ────────
+   Two tables in a row, or two grids of cards in a row, read as one long
+   block. Each section here takes a form its neighbours do not have, and
+   the colour comes from the pastels the rest of the site uses. */
+
+/* "What a website has to do": a warm band with coloured numerals, next to
+   the plain catalogue table that follows it */
+.deepBand {
+  margin: clamp(40px, 5vw, 110px) var(--gutter) 0;
+  padding: clamp(40px, 4.6vw, 100px) clamp(24px, 3.4vw, 80px);
+  border-radius: calc(var(--radius) * 1.6); background: var(--warm);
+}
+.deepBand .deepBlock { border-top: 1px solid var(--line-strong); align-items: start; }
+.deepBand .deepBlock:first-child { border-top: 0; padding-top: 0; }
+.deepBand .deepNum {
+  width: clamp(38px, 3vw, 52px); height: clamp(38px, 3vw, 52px); border-radius: 50%;
+  display: grid; place-items: center; padding: 0;
+  font-size: clamp(13px, 1vw, 17px); color: var(--ink);
+}
+.deepBand .deepBlock:nth-child(1) .deepNum { background: var(--mist); }
+.deepBand .deepBlock:nth-child(2) .deepNum { background: var(--sage); }
+.deepBand .deepBlock:nth-child(3) .deepNum { background: var(--sand); }
+.deepBand .deepBlock:nth-child(4) .deepNum { background: var(--clay); }
+.deepBand .deepBlock:nth-child(5) .deepNum { background: #fff; }
+
+/* "How a project runs": a staircase of tinted cards, left and right */
+.phases { column-gap: clamp(24px, 4vw, 90px); row-gap: clamp(14px, 1.6vw, 28px); }
+.phases li { border-top: 0; border-radius: calc(var(--radius) + 4px); padding: clamp(22px, 2.2vw, 42px); }
+.phases li:nth-child(1) { background: var(--mist); }
+.phases li:nth-child(2) { background: var(--sage); }
+.phases li:nth-child(3) { background: var(--sand); }
+.phases li:nth-child(4) { background: var(--clay); }
+.phases li:nth-child(5) { background: var(--warm); }
+.phases small { background: rgba(255,255,255,.72); }
+@media (min-width: 1024px) {
+  .phases { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .phases li { grid-column: 1; }
+  .phases li:nth-child(even) { grid-column: 2; }
+  .phases li:nth-child(1) { grid-row: 1; }
+  .phases li:nth-child(2) { grid-row: 2; }
+  .phases li:nth-child(3) { grid-row: 3; }
+  .phases li:nth-child(4) { grid-row: 4; }
+  .phases li:nth-child(5) { grid-row: 5; }
+  .phases li:nth-child(6) { grid-row: 6; }
+}
+
+/* "How we can work together": a dark band, so the pastel price cards that
+   follow it cannot be mistaken for the same block */
+.fmtBand {
+  margin: clamp(40px, 5vw, 110px) var(--gutter) 0;
+  padding: clamp(44px, 5vw, 110px) clamp(24px, 4.6vw, 100px);
+  border-radius: calc(var(--radius) * 1.6); background: var(--ink); color: #fff;
+}
+.fmtBand .h2 { margin: 0 0 clamp(26px, 2.8vw, 52px); }
+.fmtList { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: clamp(24px, 3vw, 64px); }
+.fmtList li { display: grid; gap: 8px; align-content: start; padding-top: clamp(16px, 1.4vw, 26px); border-top: 1px solid rgba(255,255,255,.2); }
+.fmtNum { font-family: var(--display); font-size: clamp(12px, .9vw, 15px); color: #b9afa5; letter-spacing: .06em; }
+.fmtList b { font-family: var(--display); font-weight: 400; font-size: clamp(24px, 2vw, 40px); letter-spacing: -0.035em; line-height: 1.05; }
+.fmtList li > span:not(.fmtNum) { color: #e9e3dc; font-size: clamp(15px, 1.02vw, 18px); line-height: 1.55; }
+
+/* The price drivers rotate through the pastels instead of one flat tint */
+.priceCard:nth-child(5n+1) { background: var(--mist); }
+.priceCard:nth-child(5n+2) { background: var(--sage); }
+.priceCard:nth-child(5n+3) { background: var(--sand); }
+.priceCard:nth-child(5n+4) { background: var(--clay); }
+.priceCard:nth-child(5n+5) { background: var(--warm); }

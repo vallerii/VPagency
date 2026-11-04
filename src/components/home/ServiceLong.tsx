@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { CSSProperties } from "react";
+import { Fragment, type CSSProperties } from "react";
 import { home, type Lang } from "@/content/home";
 import { pageCopy as pc, formats, href, t, type Service } from "@/content/catalog";
 import { cases } from "@/content/cases";
@@ -57,6 +57,16 @@ function HeroStagePinned({
       <div className={s.pinScreen}>
         <div className={s.heroLayer}>
           <div className={s.svcHeroCopy}>
+            {/* Inside the hero, not above it: anything stacked above the
+                pinned screen pushes the moving track down the page until
+                the screen sticks. */}
+            <nav className={s.crumbs} aria-label="Breadcrumb">
+              <Link href={href(lang, "")}>{t(pc.home, lang)}</Link>
+              <span aria-hidden> / </span>
+              <Link href={href(lang, "/leistungen")}>{t(pc.servicesHub.title, lang)}</Link>
+              <span aria-hidden> / </span>
+              <span aria-current="page">{t(sv.nav, lang)}</span>
+            </nav>
             <h1 className={s.ipH1}>{t(sv.title, lang)}</h1>
             <p className={s.lead}>{t(sv.lead, lang)}</p>
             <div className={s.btns}>
@@ -109,21 +119,20 @@ export function ServicePageLong({ lang, sv, page }: { lang: Lang; sv: Service; p
   const projects = cases.filter((c) => c.service === sv.id).slice(0, 3);
   return (
     <>
-      <nav className={`${s.crumbs} ${s.crumbsBar}`} aria-label="Breadcrumb">
-        <Link href={href(lang, "")}>{t(pc.home, lang)}</Link>
-        <span aria-hidden> / </span>
-        <Link href={href(lang, "/leistungen")}>{t(pc.servicesHub.title, lang)}</Link>
-        <span aria-hidden> / </span>
-        <span aria-current="page">{t(sv.nav, lang)}</span>
-      </nav>
-
       <HeroStagePinned lang={lang} sv={sv} page={page} />
 
       <section className={s.ipSection}>
-        <p className={s.intro} data-reveal>{page.intro}</p>
+        {/* Word by word, so the opening paragraph reads as it appears */}
+        <p className={s.intro} data-reveal>
+          {page.intro.split(" ").map((w, n) => (
+            <Fragment key={`${n}-${w}`}>
+              <span style={{ "--w": n } as CSSProperties}>{w}</span>{" "}
+            </Fragment>
+          ))}
+        </p>
       </section>
 
-      <section className={`${s.ipSection} ${s.deep}`} aria-labelledby="deep-title">
+      <section className={s.deepBand} aria-labelledby="deep-title">
         <div className={s.deepHead} data-reveal>
           <h2 id="deep-title" className={s.h2}>{page.deepDive.title}</h2>
           <p className={s.lead}>{page.deepDive.intro}</p>
@@ -158,6 +167,38 @@ export function ServicePageLong({ lang, sv, page }: { lang: Lang; sv: Service; p
           </a>
         </div>
       </section>
+
+      {projects.length > 0 && (
+        <section className={s.ipSection} aria-labelledby="proj-title">
+          <h2 id="proj-title" className={s.h2} data-reveal>Passende Projekte</h2>
+          {/* The same chessboard rows as on the projects page, one per
+              line and with the same parallax window, only in a smaller
+              format. A three-up card grid is not a pattern this site uses
+              for projects. */}
+          <ul className={`${s.caseList} ${s.caseListSm}`}>
+            {projects.map((c, n) => (
+              <li key={c.slug} className={`${s.caseRow} ${n % 2 === 1 ? s.caseRowFlip : ""}`}>
+                <Link href={`/projekte/${c.slug}`} className={s.caseShot} aria-label={c.name}>
+                  <img src={c.image} alt={`${c.name}: ${c.tag}`} loading="lazy" />
+                </Link>
+                <div className={s.caseBody} data-reveal style={i(0)}>
+                  <span className={s.caseMeta}>
+                    <span>{c.tag}</span>
+                    <span aria-hidden>·</span>
+                    <span>{c.year}</span>
+                  </span>
+                  <h3 className={s.caseName}>{c.name}</h3>
+                  <p className={s.caseLead}>{c.lead}</p>
+                  <Link href={`/projekte/${c.slug}`} className={s.doorMore}>
+                    Projekt ansehen
+                    <span className={s.doorArrow} aria-hidden>→</span>
+                  </Link>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
 
       <section className={s.ipSection} aria-labelledby="scope-title">
         <div className={s.scopeStage} data-scope-stage>
@@ -199,7 +240,7 @@ export function ServicePageLong({ lang, sv, page }: { lang: Lang; sv: Service; p
         </div>
         <ol className={s.phases}>
           {page.process.phases.map((p, n) => (
-            <li key={p.title} data-reveal style={i(n % 3)}>
+            <li key={p.title} data-reveal style={i(n)}>
               <span className={s.phaseNum} aria-hidden>{n + 1}</span>
               <div>
                 <h3>{p.title}</h3>
@@ -227,15 +268,14 @@ export function ServicePageLong({ lang, sv, page }: { lang: Lang; sv: Service; p
         </ul>
       </section>
 
-      <section className={s.ipSection} aria-labelledby="fmt-title">
+      <section className={s.fmtBand} aria-labelledby="fmt-title">
         <h2 id="fmt-title" className={s.h2} data-reveal>{t(formats.title, lang)}</h2>
-        <ul className={s.linkCards}>
+        <ul className={s.fmtList}>
           {formats.items.map((f, n) => (
             <li key={f.title.de} data-reveal style={i(n)}>
-              <div className={s.linkCard}>
-                <b>{t(f.title, lang)}</b>
-                <span>{t(f.text, lang)}</span>
-              </div>
+              <span className={s.fmtNum} aria-hidden>{String(n + 1).padStart(2, "0")}</span>
+              <b>{t(f.title, lang)}</b>
+              <span>{t(f.text, lang)}</span>
             </li>
           ))}
         </ul>
@@ -256,38 +296,6 @@ export function ServicePageLong({ lang, sv, page }: { lang: Lang; sv: Service; p
         </div>
         <p className={s.priceNote} data-reveal>{page.price.note}</p>
       </section>
-
-      {projects.length > 0 && (
-        <section className={s.ipSection} aria-labelledby="proj-title">
-          <h2 id="proj-title" className={s.h2} data-reveal>Passende Projekte</h2>
-          {/* The same chessboard rows as on the projects page, one per
-              line and with the same parallax window, only in a smaller
-              format. A three-up card grid is not a pattern this site uses
-              for projects. */}
-          <ul className={`${s.caseList} ${s.caseListSm}`}>
-            {projects.map((c, n) => (
-              <li key={c.slug} className={`${s.caseRow} ${n % 2 === 1 ? s.caseRowFlip : ""}`}>
-                <Link href={`/projekte/${c.slug}`} className={s.caseShot} aria-label={c.name}>
-                  <img src={c.image} alt={`${c.name}: ${c.tag}`} loading="lazy" />
-                </Link>
-                <div className={s.caseBody} data-reveal style={i(0)}>
-                  <span className={s.caseMeta}>
-                    <span>{c.tag}</span>
-                    <span aria-hidden>·</span>
-                    <span>{c.year}</span>
-                  </span>
-                  <h3 className={s.caseName}>{c.name}</h3>
-                  <p className={s.caseLead}>{c.lead}</p>
-                  <Link href={`/projekte/${c.slug}`} className={s.doorMore}>
-                    Projekt ansehen
-                    <span className={s.doorArrow} aria-hidden>→</span>
-                  </Link>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
 
       <TechCards lang={lang} ids={sv.tech} title={t(pc.onTech, lang)} />
 
