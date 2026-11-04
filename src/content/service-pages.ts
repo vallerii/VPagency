@@ -22,7 +22,7 @@ export type ServicePageContent = {
   /** "band" lays the hero out in one column with the situations running
       horizontally across the bottom, instead of the column on the right.
       The three steps and their scroll animation stay the same everywhere */
-  heroLayout?: "band";
+  heroLayout?: "band" | "pairs";
   /** "plain" drops the card look from the two routing links and from the
       scope columns: hairlines and type instead of tinted boxes */
   blockStyle?: "plain";
@@ -31,7 +31,10 @@ export type ServicePageContent = {
       says the same thing in weaker words, and its third step promises an
       implementation that only begins after a quote. */
   promise: { steps: { title: string; text: string }[]; cta: string };
-  symptoms: { title: string; items: string[] };
+  /** items ride the track in the hero. pairs is the "pairs" hero: two
+      tracks drifting against each other, by hand on one side and done by
+      itself on the other */
+  symptoms: { title: string; items: string[]; pairs?: { from: string; to: string }[] };
   /** For the two readers this page is not written for: the one who already
       knows the platform, and the one who has an idea rather than a site */
   exits: { question: string; label: string; href: string }[];
@@ -48,6 +51,17 @@ export type ServicePageContent = {
   };
   /** A single statement, set apart, where one promise carries the page */
   trust?: { title: string; text: string };
+  /** A worked example, shown as rows that add up. For a page whose whole
+      argument is arithmetic */
+  ledger?: {
+    title: string;
+    lead: string;
+    head: [string, string, string, string];
+    rows: [string, string, string, string][];
+    total: string;
+    totalNote: string;
+    note: string;
+  };
   scope: {
     title: string;
     lead: string;
@@ -58,9 +72,11 @@ export type ServicePageContent = {
     title: string;
     lead: string;
     phases: Phase[];
-    /** "timeline" draws one vertical line with a visible decision point,
-        instead of the zigzag. Set decideAfter to the phase it follows */
-    layout?: "timeline";
+    /** "timeline" lays the phases out as cards, three across. "rail" runs
+        them along one horizontal line, which suits a short sequence.
+        Both replace the zigzag. decideAfter marks the phase after which
+        the client decides whether the build starts */
+    layout?: "timeline" | "rail";
     decideAfter?: number;
     decideLabel?: string;
   };
@@ -447,6 +463,172 @@ export const servicePages: Record<string, ServicePageContent> = {
         {
           q: "Wie lange dauert so ein Projekt?",
           a: "Das hängt am Ausschnitt, mit dem wir anfangen. Deshalb nennen wir keine Pauschale, sondern einen Termin für den ersten Ausschnitt, nachdem wir den Ablauf gesehen haben. Alles danach planen wir mit dem, was im echten Betrieb gelernt wurde",
+        },
+      ],
+    },
+  },
+
+  automatisierung: {
+    heroLayout: "pairs",
+    intro:
+      "Automatisierung ist der billigste Schritt, den ein Unternehmen gehen kann, und meistens der erste. Sie braucht keine neue Software und kein Projekt über Monate: Die Programme, mit denen Ihr Team heute arbeitet, bekommen eine Verbindung, und die Handgriffe dazwischen fallen weg. Wir fangen dort an, wo sich die Zeit am schnellsten zurückholen lässt, und rechnen vorher aus, ob sich der Aufwand überhaupt trägt",
+
+    promise: {
+      steps: [
+        { title: "Anfrage", text: "Sie beschreiben, welche Handgriffe sich bei Ihnen jeden Tag wiederholen" },
+        { title: "Zeitrechnung", text: "Wir rechnen durch, wie viele Stunden im Jahr daran hängen" },
+        { title: "Vorschlag", text: "Sie bekommen eine Liste, sortiert danach, was sich zuerst rechnet" },
+      ],
+      cta: "Projekt besprechen",
+    },
+
+    exits: [
+      { question: "Die Abläufe sollen in ein eigenes System, nicht nur verbunden werden?", label: "Systeme und Portale", href: "/leistungen/systeme-und-portale" },
+      { question: "Es geht um Texte, Dokumente und Antworten statt um Datenübergabe?", label: "KI-Lösungen", href: "/leistungen/ki" },
+    ],
+
+    symptoms: {
+      title: "Was sich ändert",
+      items: [
+        "Bestellungen von Hand ins ERP tippen",
+        "Angebote jedes Mal neu zusammenbauen",
+        "Montags den Bericht zusammensuchen",
+        "Hinterhertelefonieren, ob etwas erledigt ist",
+        "Rechnungen zweimal erfassen",
+        "Anfragen aus vier Postfächern sammeln",
+      ],
+      pairs: [
+        { from: "Bestellungen von Hand ins ERP tippen", to: "kommen automatisch an" },
+        { from: "Angebote jedes Mal neu zusammenbauen", to: "entstehen aus einer Vorlage" },
+        { from: "Montags den Bericht zusammensuchen", to: "liegt montags im Postfach" },
+        { from: "Hinterhertelefonieren, ob etwas erledigt ist", to: "meldet sich von selbst" },
+        { from: "Rechnungen zweimal erfassen", to: "laufen einmal durch" },
+        { from: "Anfragen aus vier Postfächern sammeln", to: "landen an einer Stelle" },
+      ],
+    },
+
+    ledger: {
+      title: "So rechnen wir, bevor wir etwas bauen",
+      lead:
+        "Ob sich eine Automatisierung lohnt, entscheidet eine einzige Rechnung: wie oft ein Handgriff vorkommt, wie lange er dauert und wie viele Menschen ihn machen. Ein Beispiel, wie das aussieht",
+      head: ["Handgriff", "Wie oft", "Dauer", "Im Jahr"],
+      rows: [
+        ["Bestellung aus der Mail ins ERP übertragen", "40 mal pro Woche", "4 Minuten", "138 Stunden"],
+        ["Angebot aus Textbausteinen zusammenstellen", "15 mal pro Woche", "12 Minuten", "156 Stunden"],
+        ["Wochenbericht aus drei Programmen zusammensuchen", "1 mal pro Woche", "90 Minuten", "78 Stunden"],
+      ],
+      total: "372 Stunden",
+      totalNote: "gut neun Arbeitswochen, jedes Jahr",
+      note:
+        "Die Zahlen sind ein Beispiel und kein Versprechen. Im ersten Gespräch setzen wir Ihre eigenen ein. Steht am Ende eine Zahl, die den Aufwand nicht trägt, sagen wir Ihnen das, statt die Automatisierung trotzdem zu verkaufen",
+    },
+
+    scope: {
+      title: "Was im Projekt enthalten ist",
+      lead: "Der Umfang wird vor dem Start schriftlich festgehalten, zusammen mit dem, was ausdrücklich nicht dazugehört",
+      included: {
+        title: "Immer dabei",
+        text: "In jeder Automatisierung enthalten, ohne Aufpreis",
+        items: [
+          "Aufnahme des Ablaufs und die Rechnung, ob er sich lohnt",
+          "Festlegung, was der Normalfall ist und welche Ausnahmen es gibt",
+          "Verbindung der beteiligten Programme",
+          "Eine Phase, in der die Automatisierung neben der Handarbeit mitläuft",
+          "Meldung an einen benannten Zuständigen, wenn etwas nicht durchgeht",
+          "Protokoll, in dem nachvollziehbar steht, was wann gelaufen ist",
+          "Kurze schriftliche Beschreibung des Ablaufs für Ihr Team",
+          "Übergabe der Zugänge und der Automatisierung selbst",
+        ],
+      },
+      outOfScope: {
+        title: "Dafür gibt es eigene Leistungen",
+        text: "Gehört nicht in dieses Projekt, sondern in eine Leistung mit eigener Seite",
+        items: [
+          { text: "Ein eigenes System, in dem der Ablauf stattfindet", href: "/leistungen/systeme-und-portale", label: "Systeme und Portale" },
+          { text: "Texte schreiben, Dokumente lesen, Fragen beantworten", href: "/leistungen/ki", label: "KI-Lösungen" },
+          { text: "Formulare und Anfragen auf Ihrer Website", href: "/leistungen/websites", label: "Websites" },
+          { text: "Betrieb und Weiterentwicklung über das Projekt hinaus", href: "/leistungen/betreuung", label: "Betreuung" },
+        ],
+      },
+    },
+
+    process: {
+      title: "So läuft eine Automatisierung",
+      lead: "Drei Phasen statt fünf. Eine Automatisierung ist kein Projekt über Monate, und sie soll es auch nicht werden",
+      layout: "rail",
+      phases: [
+        {
+          title: "Aufnehmen und rechnen",
+          text: "Wir sehen uns an, welche Handgriffe sich wiederholen, wie oft und wie lange sie dauern. Dabei kommt regelmäßig heraus, dass ein Ablauf nicht automatisiert, sondern abgeschafft gehört, weil ihn niemand mehr braucht",
+          note: "Ergebnis: Liste der Handgriffe mit Stunden im Jahr",
+        },
+        {
+          title: "Bauen und mitlaufen lassen",
+          text: "Die Automatisierung läuft zuerst eine Zeit lang neben der Handarbeit, damit Sie vergleichen können, ob sie dasselbe tut. Erst wenn die Ergebnisse übereinstimmen, hört die Handarbeit auf",
+          note: "Ergebnis: Ablauf läuft, Ergebnisse stimmen überein",
+        },
+        {
+          title: "Überwachen",
+          text: "Jede Automatisierung kann ausfallen, weil sich ein anderes Programm ändert. Gefährlich ist nicht der Ausfall, sondern dass ihn wochenlang niemand merkt. Deshalb meldet sie sich, wenn etwas nicht durchgeht, und zwar bei einer benannten Person",
+          note: "Ergebnis: Meldung bei Fehlern, Zuständigkeit geklärt",
+        },
+      ],
+    },
+
+    price: {
+      title: "Wovon der Preis abhängt",
+      lead: "Automatisierung ist der günstigste Posten in diesem Katalog. Was sie kostet, hängt an wenigen Dingen, und die sind nach einem Gespräch klar",
+      drivers: [
+        {
+          title: "Wie viele Abläufe",
+          text: "Jeder Ablauf ist ein eigener kleiner Posten. Deshalb fangen wir mit dem an, der die meisten Stunden bindet, statt alles auf einmal anzufassen",
+        },
+        {
+          title: "Ob die Programme eine Schnittstelle haben",
+          text: "Moderne Programme bringen eine mit, und dann ist die Verbindung Routine. Bei älteren muss der Weg anders gebaut werden, und das ist der größte Unterschied im Aufwand",
+        },
+        {
+          title: "Wie viele Ausnahmen es gibt",
+          text: "Der Normalfall ist schnell gebaut. Die Zeit geht in die Fälle, die Ihr Team heute aus dem Kopf löst, ohne dass sie irgendwo aufgeschrieben wären",
+        },
+        {
+          title: "Ob fertige Bausteine reichen",
+          text: "Vieles lässt sich mit fertigen Werkzeugen verbinden, und das ist der schnelle Weg. Erst wenn die an ihre Grenze kommen, lohnt sich eigene Entwicklung",
+        },
+        {
+          title: "Wie genau überwacht werden muss",
+          text: "Eine Erinnerung darf einmal ausfallen. Eine Bestellung, die nicht im ERP ankommt, nicht. Je kritischer der Ablauf, desto mehr Prüfung gehört dazu",
+        },
+      ],
+      note: "Nach dem ersten Gespräch erhalten Sie eine Liste der Abläufe, sortiert danach, was sich zuerst rechnet",
+    },
+
+    faq: {
+      title: "Häufige Fragen",
+      items: [
+        {
+          q: "Was passiert, wenn die Automatisierung ausfällt?",
+          a: "Sie meldet sich. Das ist der wichtigste Teil der Arbeit und nicht der Zusatz: Gefährlich ist nicht der Ausfall, sondern dass ihn wochenlang niemand bemerkt und am Ende Bestellungen fehlen. Deshalb gehört zu jedem Ablauf eine Meldung an eine benannte Person und ein Protokoll, in dem steht, was wann gelaufen ist",
+        },
+        {
+          q: "Unsere Programme sind ziemlich alt, geht das überhaupt?",
+          a: "Meistens ja, nur anders. Moderne Programme bringen eine Schnittstelle mit. Bei älteren arbeiten wir mit Exporten, Dateien oder der Datenbank, und das ist aufwendiger, aber selten unmöglich. Ob es geht, sehen wir, sobald wir wissen, um welche Programme es sich handelt",
+        },
+        {
+          q: "Lohnt sich das bei uns überhaupt, wir sind ein kleines Team?",
+          a: "Das entscheidet die Rechnung, nicht die Größe. Vier Minuten, die vierzig mal pro Woche anfallen, sind im Jahr über drei Arbeitswochen, egal wie groß das Unternehmen ist. Wenn die Zahl den Aufwand nicht trägt, sagen wir das",
+        },
+        {
+          q: "Automatisieren wir damit nicht einfach ein schlechtes Verfahren?",
+          a: "Diese Gefahr ist real, und deshalb steht die Aufnahme vor dem Bauen. Regelmäßig stellt sich heraus, dass ein Schritt nur noch existiert, weil ihn früher jemand gebraucht hat. Dann schaffen wir ihn ab, statt ihn schneller zu machen",
+        },
+        {
+          q: "Was passiert, wenn sich unser Ablauf später ändert?",
+          a: "Dann wird die Automatisierung angepasst. Deshalb bauen wir sie so einfach wie möglich und schreiben auf, was sie tut. Je weniger Sonderfälle eingebaut sind, desto günstiger ist jede spätere Änderung",
+        },
+        {
+          q: "Können wir das später selbst anpassen oder jemand anderes übernehmen?",
+          a: "Ja. Sie bekommen die Zugänge, die Automatisierung selbst und eine Beschreibung des Ablaufs. Wo es möglich ist, arbeiten wir mit Werkzeugen, die auch ohne uns bedienbar sind, statt alles in Code zu verstecken",
         },
       ],
     },

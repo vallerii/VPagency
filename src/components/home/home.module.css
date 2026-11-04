@@ -1697,3 +1697,71 @@
    and not above the hairline */
 .scopePlain .scopeIn .scopeItems > li::before { top: 11px; }
 .scopePlain .scopeOut .scopeItems > li::before { top: calc(11px + .55em); }
+
+/* ---- Hero variant "pairs": two tracks drifting against each other, by
+   hand on one side and done by itself on the other ---- */
+.svcPin[data-hero="pairs"] .symWall { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--gap); }
+.svcPin[data-hero="pairs"] .colTrack { animation-duration: 58s; }
+.svcPin[data-hero="pairs"] .col:last-of-type .colTrack { animation-direction: reverse; animation-duration: 64s; }
+.svcPin[data-hero="pairs"] .symTile { min-height: clamp(76px, 6vw, 112px); font-size: clamp(14px, .98vw, 19px); }
+.tHand { background: var(--warm); color: var(--muted); }
+.tAuto { background: var(--sage); }
+.svcPin[data-hero="pairs"] .tAuto::before { content: "\2192"; margin-right: .4em; opacity: .45; }
+
+/* ---- Ledger: the rows a page of arithmetic is built on ---- */
+.ledger { margin-top: clamp(26px, 3vw, 52px); border-top: 1px solid var(--line); }
+.ledRow {
+  display: grid; gap: 4px clamp(16px, 2vw, 40px);
+  padding: clamp(14px, 1.4vw, 22px) 0; border-bottom: 1px solid var(--line);
+  font-size: clamp(14px, 1vw, 17px); line-height: 1.45;
+}
+@media (min-width: 820px) {
+  .ledRow { grid-template-columns: minmax(0, 6fr) minmax(0, 3fr) minmax(0, 2fr) minmax(0, 2.4fr); align-items: baseline; }
+  .ledRow > span:not(:first-child) { text-align: right; }
+}
+.ledRow[data-head] {
+  padding-bottom: 10px; color: var(--muted);
+  font-size: clamp(12px, .8vw, 13px); letter-spacing: .06em; text-transform: uppercase;
+}
+@media (max-width: 819px) {
+  .ledRow[data-head] { display: none; }
+  .ledRow > span[data-col="0"] { font-weight: 600; }
+  .ledRow > span:not([data-col="0"]) { color: var(--muted); font-size: clamp(13px, .9vw, 15px); }
+}
+.ledRow > span:last-child { font-weight: 600; font-variant-numeric: tabular-nums; }
+.ledRow[data-head] > span:last-child { font-weight: inherit; }
+.ledTotal {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px clamp(12px, 1.4vw, 24px);
+  padding: clamp(18px, 1.8vw, 28px) 0 0;
+}
+.ledTotal b {
+  font-family: var(--display); font-weight: 400; letter-spacing: -.03em; line-height: 1;
+  font-size: clamp(34px, 4.4vw, 76px); font-variant-numeric: tabular-nums;
+}
+.ledTotal span { color: var(--muted); font-size: clamp(14px, 1.05vw, 19px); }
+
+/* ---- Rail: the phases along one horizontal line. For a sequence short
+   enough to fit in a row, where the point is that it is short ---- */
+.rail { list-style: none; margin: clamp(30px, 3.4vw, 60px) 0 0; padding: 0; display: grid; gap: clamp(26px, 3vw, 44px); position: relative; }
+.rail > li { display: grid; gap: clamp(10px, 1vw, 16px); align-content: start; }
+.rail h3 { margin: 0; font-size: clamp(19px, 1.5vw, 28px); line-height: 1.18; letter-spacing: -.01em; }
+.rail p { margin: 0; color: var(--muted); font-size: clamp(14px, .98vw, 17px); line-height: 1.55; }
+.rail small {
+  justify-self: start; padding: 7px 14px; border-radius: 999px;
+  background: var(--warm); font-size: clamp(12px, .82vw, 13px); color: var(--ink);
+}
+.rail .phaseNum { position: relative; z-index: 1; }
+@media (min-width: 900px) {
+  .rail { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: clamp(28px, 3.4vw, 72px); }
+  /* One line through the row, at the middle of the numbers. The numbers
+     are opaque, so they sit on it rather than under it */
+  .rail::before {
+    content: ""; position: absolute; left: 0; right: 0;
+    top: calc(clamp(34px, 2.8vw, 46px) / 2); height: 1px; background: var(--line-strong);
+  }
+}
+/* The result pill sits at the bottom of every column, so the three line
+   up even when the texts run to different lengths */
+.rail > li { grid-template-rows: auto minmax(0, 1fr); align-content: stretch; height: 100%; }
+.rail > li > div { display: flex; flex-direction: column; gap: clamp(8px, .8vw, 14px); height: 100%; }
+.rail > li > div > small { margin-top: auto; align-self: flex-start; }

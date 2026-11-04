@@ -17,19 +17,34 @@ const i = (n: number) => ({ "--i": n }) as CSSProperties;
    discussed yet. */
 const PASTEL = [s.mist, s.sage, s.sand, s.clay, s.warm];
 
-function SymptomWall({ items, label }: { items: string[]; label: string }) {
-  const tiles = items.map((text, n) => (
-    <span key={text.slice(0, 20)} className={`${s.symTile} ${PASTEL[n % PASTEL.length]}`}>{text}</span>
+function Track({ texts, tint }: { texts: string[]; tint?: (n: number) => string }) {
+  const tiles = texts.map((text, n) => (
+    <span key={text.slice(0, 20)} className={`${s.symTile} ${tint ? tint(n) : PASTEL[n % PASTEL.length]}`}>{text}</span>
   ));
   return (
-    <div className={s.symWall} role="region" aria-label={label}>
-      <div className={s.col}>
-        <div className={s.colTrack}>
-          {[...tiles, ...tiles].map((tile, n) => (
-            <div key={n} aria-hidden={n >= items.length || undefined}>{tile}</div>
-          ))}
-        </div>
+    <div className={s.col}>
+      <div className={s.colTrack}>
+        {[...tiles, ...tiles].map((tile, n) => (
+          <div key={n} aria-hidden={n >= texts.length || undefined}>{tile}</div>
+        ))}
       </div>
+    </div>
+  );
+}
+
+function SymptomWall({ items, pairs, label }: { items: string[]; pairs?: { from: string; to: string }[]; label: string }) {
+  return (
+    <div className={s.symWall} role="region" aria-label={label}>
+      {/* Two tracks drifting against each other: by hand on one side,
+          done by itself on the other. Otherwise a single track */}
+      {pairs ? (
+        <>
+          <Track texts={pairs.map((p) => p.from)} tint={() => s.tHand} />
+          <Track texts={pairs.map((p) => `${p.to}`)} tint={() => s.tAuto} />
+        </>
+      ) : (
+        <Track texts={items} />
+      )}
       <span className={`${s.fade} ${s.fadeTop}`} aria-hidden />
       <span className={`${s.fade} ${s.fadeBottom}`} aria-hidden />
     </div>
@@ -73,7 +88,7 @@ function HeroStagePinned({
               <a href="#anfrage" className={`${s.pill} ${s.pillDark}`}>{t(pc.cta, lang)}</a>
             </div>
           </div>
-          <SymptomWall items={page.symptoms.items} label={page.symptoms.title} />
+          <SymptomWall items={page.symptoms.items} pairs={page.symptoms.pairs} label={page.symptoms.title} />
         </div>
 
         <div className={s.stepsLayer}>
@@ -143,6 +158,32 @@ export function ServicePageLong({ lang, sv, page }: { lang: Lang; sv: Service; p
           ))}
         </ul>
       </section>
+
+      {page.ledger && (
+        <section className={s.ipSection} aria-labelledby="led-title">
+          <div className={s.deepHead} data-reveal>
+            <h2 id="led-title" className={s.h2}>{page.ledger.title}</h2>
+            <p className={s.lead}>{page.ledger.lead}</p>
+          </div>
+          {/* The page's whole argument is one piece of arithmetic, so it
+              is shown as rows that add up rather than described in prose */}
+          <div className={s.ledger} data-reveal>
+            <div className={s.ledRow} data-head>
+              {page.ledger.head.map((h) => <span key={h}>{h}</span>)}
+            </div>
+            {page.ledger.rows.map((r) => (
+              <div key={r[0]} className={s.ledRow}>
+                {r.map((cell, n) => <span key={cell} data-col={n}>{cell}</span>)}
+              </div>
+            ))}
+            <div className={s.ledTotal}>
+              <b>{page.ledger.total}</b>
+              <span>{page.ledger.totalNote}</span>
+            </div>
+          </div>
+          <p className={s.splitNote} data-reveal>{page.ledger.note}</p>
+        </section>
+      )}
 
       {page.decision && (
         <section className={`${s.ipSection} ${s.splitSection}`} aria-labelledby="dec-title">
@@ -274,7 +315,7 @@ export function ServicePageLong({ lang, sv, page }: { lang: Lang; sv: Service; p
         </div>
         {/* Two layouts: the zigzag, and a single line with a visible point
             at which the client decides whether the build starts at all */}
-        <ol className={page.process.layout === "timeline" ? s.timeline : s.phases}>
+        <ol className={page.process.layout === "rail" ? s.rail : page.process.layout === "timeline" ? s.timeline : s.phases}>
           {page.process.phases.map((p, n) => (
             <li key={p.title} data-reveal style={i(n)}>
               <span className={s.phaseNum} aria-hidden>{n + 1}</span>
