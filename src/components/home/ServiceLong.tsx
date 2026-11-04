@@ -88,7 +88,17 @@ function HeroStagePinned({
               <a href="#anfrage" className={`${s.pill} ${s.pillDark}`}>{t(pc.cta, lang)}</a>
             </div>
           </div>
-          <SymptomWall items={page.symptoms.items} pairs={page.symptoms.pairs} label={page.symptoms.title} />
+          {/* "quiet": no moving track. A page about reliability should not
+              open with something that keeps moving */}
+          {page.heroLayout === "quiet" ? (
+            <ul className={s.symQuiet} aria-label={page.symptoms.title}>
+              {page.symptoms.items.map((it, n) => (
+                <li key={it} data-reveal style={i(n)}>{it}</li>
+              ))}
+            </ul>
+          ) : (
+            <SymptomWall items={page.symptoms.items} pairs={page.symptoms.pairs} label={page.symptoms.title} />
+          )}
         </div>
 
         <div className={s.stepsLayer}>
@@ -146,7 +156,7 @@ export function ServicePageLong({ lang, sv, page }: { lang: Lang; sv: Service; p
         </p>
         {/* A reader who already knows the platform, or who has an idea
             rather than a website, leaves here instead of reading on */}
-        <ul className={`${s.exits} ${page.blockStyle === "plain" ? s.exitsPlain : ""}`}>
+        <ul className={`${s.exits} ${page.exitsStyle === "plain" ? s.exitsPlain : ""}`}>
           {page.exits.map((e) => (
             <li key={e.href}>
               <span>{e.question}</span>
@@ -158,6 +168,71 @@ export function ServicePageLong({ lang, sv, page }: { lang: Lang; sv: Service; p
           ))}
         </ul>
       </section>
+
+      {page.tiers && (
+        <section className={s.ipSection} aria-labelledby="tier-title">
+          <div className={s.deepHead} data-reveal>
+            <h2 id="tier-title" className={s.h2}>{page.tiers.title}</h2>
+            <p className={s.lead}>{page.tiers.intro}</p>
+          </div>
+          {/* Three bands: how far the thing may act on its own */}
+          <ol className={s.tiers}>
+            {page.tiers.levels.map((l, n) => (
+              <li key={l.label} data-tier={n} data-reveal style={i(n)}>
+                <div className={s.tierHead}>
+                  <b>{l.label}</b>
+                  <span>{l.rule}</span>
+                </div>
+                <ul>
+                  {l.items.map((it) => <li key={it}>{it}</li>)}
+                </ul>
+              </li>
+            ))}
+          </ol>
+          <p className={s.splitNote} data-reveal>{page.tiers.note}</p>
+        </section>
+      )}
+
+      {page.omit && (
+        <section className={s.ipSection} aria-labelledby="omit-title">
+          <div className={s.deepHead} data-reveal>
+            <h2 id="omit-title" className={s.h2}>{page.omit.title}</h2>
+            <p className={s.lead}>{page.omit.intro}</p>
+          </div>
+          {/* The advice of the page is to build less, so the list is of
+              things crossed out rather than things promised */}
+          <ul className={s.omit}>
+            {page.omit.items.map((o, n) => (
+              <li key={o.label} data-reveal style={i(n)}>
+                <b><s>{o.label}</s></b>
+                <p>{o.text}</p>
+              </li>
+            ))}
+          </ul>
+          <p className={s.splitNote} data-reveal>{page.omit.note}</p>
+        </section>
+      )}
+
+      {page.funnel && (
+        <section className={s.ipSection} aria-labelledby="fun-title">
+          <div className={s.deepHead} data-reveal>
+            <h2 id="fun-title" className={s.h2}>{page.funnel.title}</h2>
+            <p className={s.lead}>{page.funnel.intro}</p>
+          </div>
+          {/* Each step narrows, so the shape itself says what the text says */}
+          <ol className={s.funnel}>
+            {page.funnel.steps.map((f, n) => (
+              <li key={f.label} data-reveal style={i(n)}>
+                <span className={s.funBar} style={{ "--n": n } as CSSProperties} aria-hidden>
+                  <b>{f.label}</b>
+                </span>
+                <p>{f.text}</p>
+              </li>
+            ))}
+          </ol>
+          <p className={s.splitNote} data-reveal>{page.funnel.note}</p>
+        </section>
+      )}
 
       {page.ledger && (
         <section className={s.ipSection} aria-labelledby="led-title">
@@ -286,7 +361,7 @@ export function ServicePageLong({ lang, sv, page }: { lang: Lang; sv: Service; p
           <h2 id="scope-title" className={s.h2}>{page.scope.title}</h2>
           <p className={s.lead}>{page.scope.lead}</p>
         </div>
-        <ul className={`${s.scopeDeck} ${page.blockStyle === "plain" ? s.scopePlain : ""}`} data-scope-deck>
+        <ul className={`${s.scopeDeck} ${page.scopeStyle === "plain" ? s.scopePlain : ""}`} data-scope-deck>
           <li className={`${s.scopeCol} ${s.scopeIn}`} style={i(0)}>
             <h3>{page.scope.included.title}</h3>
             <p className={s.scopeNote}>{page.scope.included.text}</p>
@@ -315,7 +390,7 @@ export function ServicePageLong({ lang, sv, page }: { lang: Lang; sv: Service; p
         </div>
         {/* Two layouts: the zigzag, and a single line with a visible point
             at which the client decides whether the build starts at all */}
-        <ol className={page.process.layout === "rail" ? s.rail : page.process.layout === "timeline" ? s.timeline : s.phases}>
+        <ol className={page.process.layout === "rail" ? s.rail : page.process.layout === "timeline" ? s.timeline : page.process.layout === "steps" ? s.steps : s.phases}>
           {page.process.phases.map((p, n) => (
             <li key={p.title} data-reveal style={i(n)}>
               <span className={s.phaseNum} aria-hidden>{n + 1}</span>
