@@ -2068,3 +2068,103 @@
 @media (max-width: 1023px) { .techHero .ipH1 { font-size: clamp(38px, 9vw, 64px); } }
 @media (max-width: 420px) { .mcheckBar { display: none; } }
 @media (max-width: 600px) { .techHero { padding-left: 20px; padding-right: 20px; } .techHero .ipH1 { font-size: clamp(26px, 7.4vw, 44px); letter-spacing: -.04em; } }
+
+/* ── WordPress page ───────────────────────────────────────────────────────
+   Hero: a full-bleed field in a pale WordPress blue (the Shopify page uses
+   an inset rounded panel; this one runs edge to edge). Headline left, lead
+   and actions right, the live editor across the bottom. */
+.wpHero {
+  --field: #e2ecf3;
+  margin-top: clamp(12px, 1.2vw, 20px);
+  background: var(--field);
+  padding: clamp(32px, 4.5vh, 64px) var(--gutter) clamp(28px, 4vh, 56px);
+  min-height: calc(100svh - 88px - clamp(32px, 2.6vw, 48px) - clamp(12px, 1.2vw, 20px));
+  display: grid; grid-template-rows: auto 1fr; gap: clamp(24px, 4vh, 56px);
+}
+.wpHeroHead { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 96px); align-items: end; }
+.wpHero .ipH1 { font-size: clamp(40px, 4.6vw, 112px); line-height: .96; letter-spacing: -.05em; max-width: 11em; }
+.wpHeroSide { display: grid; gap: clamp(16px, 1.6vw, 26px); justify-items: start; }
+.wpHero .lead { color: var(--ink); opacity: .78; }
+.wpHero .pillLine { box-shadow: inset 0 0 0 1px rgba(22,19,16,.28); }
+
+/* The live editor: a real piece of interface, so it keeps its own borders */
+.wpDemo { margin: 0; align-self: end; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(12px, 1.2vw, 20px); }
+.wpDemo figcaption { grid-column: 1 / -1; font-size: 14px; color: var(--ink); opacity: .7; }
+.wpEditor { background: #fff; border-radius: calc(var(--radius) + 2px); padding: clamp(16px, 1.4vw, 24px); display: grid; gap: 12px; align-content: start; }
+.wpEditorBar { display: flex; justify-content: space-between; align-items: center; font-weight: 600; font-size: 14px; padding-bottom: 4px; }
+.wpEditorBar small { color: var(--muted); font-weight: 500; }
+.wpEditor label { display: grid; gap: 6px; }
+.wpEditor label > span { font-size: 12px; font-weight: 600; color: var(--muted); }
+.wpEditor input, .wpEditor textarea {
+  font: 500 15px/1.4 var(--text); color: var(--ink); background: var(--warm);
+  border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; resize: none; width: 100%;
+  transition: border-color .2s ease, background-color .2s ease;
+}
+.wpEditor input:focus, .wpEditor textarea:focus { outline: none; border-color: #21759b; background: #fff; }
+.wpSwitch { display: inline-flex; gap: 4px; padding: 4px; border-radius: 99px; background: var(--warm); justify-self: start; }
+.wpSwitch button { border: 0; background: none; padding: 8px 14px; border-radius: 99px; font: 500 13px/1 var(--text); color: var(--muted); cursor: pointer; }
+.wpSwitch button[aria-pressed="true"] { background: var(--ink); color: #fff; }
+.wpPreview { background: #fff; border-radius: calc(var(--radius) + 2px); overflow: hidden; display: grid; grid-template-rows: auto 1fr; transition: background-color .35s ease, color .35s ease; }
+.wpPreview[data-dark] { background: #17222b; color: #fff; }
+.wpPreviewBar { display: flex; align-items: center; gap: 6px; padding: 12px 16px; border-bottom: 1px solid var(--line); font-size: 12px; color: var(--muted); }
+.wpPreview[data-dark] .wpPreviewBar { border-color: rgba(255,255,255,.12); color: rgba(255,255,255,.6); }
+.wpPreviewBar i { width: 9px; height: 9px; border-radius: 50%; background: var(--line-strong); }
+.wpPreviewBar span { margin-left: 10px; }
+.wpPreviewBody { padding: clamp(22px, 3vw, 56px); display: grid; gap: 14px; align-content: center; justify-items: start; }
+.wpPreviewBody strong { font-family: var(--display); font-weight: 400; font-size: clamp(26px, 2.6vw, 52px); line-height: 1; letter-spacing: -.04em; overflow-wrap: anywhere; }
+.wpPreviewBody p { margin: 0; max-width: 32em; font-size: clamp(14px, 1vw, 17px); line-height: 1.5; opacity: .72; overflow-wrap: anywhere; }
+.wpPreviewBtn { display: inline-block; padding: 12px 20px; border-radius: 99px; background: #21759b; color: #fff; font-weight: 600; font-size: 14px; overflow-wrap: anywhere; }
+@media (max-width: 1023px) {
+  .wpHero { min-height: 0; }
+  .wpHeroHead, .wpDemo { grid-template-columns: minmax(0, 1fr); }
+  .wpHero .ipH1 { font-size: clamp(32px, 8.4vw, 64px); }
+}
+
+.wpIntro { padding-top: clamp(56px, 6vw, 130px); }
+
+/* Situations with a verdict: rows in tone steps, verdict on the right */
+.fitRows { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.fitRows li {
+  display: flex; align-items: center; justify-content: space-between; gap: 20px;
+  padding: clamp(16px, 1.5vw, 26px) clamp(18px, 1.8vw, 32px); border-radius: var(--radius);
+  background: var(--warm); font-size: clamp(16px, 1.15vw, 21px); line-height: 1.4;
+}
+.fitRows li[data-kind="yes"] { background: #e2ecf3; }
+.fitVerdict { flex: none; padding: 9px 16px; border-radius: 99px; font-size: 14px; font-weight: 600; background: #fff; white-space: nowrap; }
+.fitRows li[data-kind="yes"] .fitVerdict { background: #21759b; color: #fff; }
+a.fitVerdict { transition: background-color .2s ease, color .2s ease; }
+a.fitVerdict:hover { background: var(--ink); color: #fff; }
+@media (max-width: 700px) { .fitRows li { flex-direction: column; align-items: flex-start; } .fitVerdict { white-space: normal; } }
+
+/* Sites in trouble: the one dark band of the page */
+.rescue { background: var(--ink); color: #fff; }
+.rescue .lead { color: rgba(255,255,255,.7); }
+.rescueList { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(28px, 3.4vw, 64px) clamp(28px, 4vw, 96px); }
+.rescueList article { display: grid; gap: 10px; align-content: start; }
+.rescueList h3 { margin: 0; font-family: var(--display); font-weight: 400; font-size: clamp(24px, 2.2vw, 42px); line-height: 1.05; letter-spacing: -.03em; }
+.rescueList p { margin: 0; font-size: clamp(15px, 1.05vw, 19px); line-height: 1.55; color: rgba(255,255,255,.86); }
+.rescueList .rescueCause { color: #8cc7e3; }
+.rescueNote { margin: clamp(32px, 3.6vw, 64px) 0 0; max-width: 40em; font-size: clamp(16px, 1.15vw, 21px); line-height: 1.5; }
+@media (max-width: 760px) { .rescueList { grid-template-columns: minmax(0, 1fr); } }
+
+/* What we build: three editorial columns of text, no boxes */
+.wpCols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(36px, 4vw, 72px) clamp(28px, 3.4vw, 72px); }
+.wpCols article { display: grid; gap: 12px; align-content: start; }
+.wpCols h3 { margin: 0; font-size: clamp(20px, 1.6vw, 30px); line-height: 1.15; letter-spacing: -.015em; }
+.wpCols p { margin: 0; font-size: clamp(15px, 1.05vw, 19px); line-height: 1.6; }
+.wpCols .deepTerm { color: var(--ink); }
+@media (max-width: 1023px) { .wpCols { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .wpCols { grid-template-columns: minmax(0, 1fr); } }
+
+.wpCatalog { background: var(--warm); }
+/* Short desktop screens (720 to 820px tall): the editor tightens so the
+   whole hero, caption included, still fits the first screen */
+@media (min-width: 1024px) and (max-height: 820px) {
+  .wpHero { padding-top: 24px; padding-bottom: 20px; gap: 20px; }
+  .wpHero .ipH1 { font-size: clamp(36px, 3.8vw, 80px); }
+  .wpEditorBar { padding-bottom: 0; }
+  .wpEditor { gap: 8px; padding: 14px 16px; }
+  .wpEditor input, .wpEditor textarea { padding: 7px 10px; font-size: 14px; }
+  .wpEditor textarea { height: 56px; line-height: 1.35; }
+  .wpDemo { gap: 10px 16px; }
+}

@@ -4,6 +4,8 @@ import { InnerShell, langOf } from "@/components/home/InnerShell";
 import { TechPage } from "@/components/home/Inner";
 import { TechPageLong } from "@/components/home/TechLong";
 import { getTechPage } from "@/content/tech-pages";
+import { WordpressPageLong } from "@/components/home/WordpressLong";
+import { wordpressPage } from "@/content/tech-wordpress";
 import { techs, getTech, items } from "@/content/catalog";
 import { JsonLd } from "@/components/JsonLd";
 import { breadcrumbSchema, serviceSchema, faqSchema } from "@/lib/schema";
@@ -32,6 +34,8 @@ export default async function Page({ params, searchParams }: P) {
   const lang = langOf((await searchParams).lang);
   // Technologies whose long-form content exists get the full page
   const page = getTechPage(x.id);
+  const wp = x.id === "wordpress" ? wordpressPage : undefined;
+  const faq = page?.faq ?? wp?.faq;
   const ld = lang === "de" && [
     { ...serviceSchema({ name: x.title.de, description: x.lead.de, path: `/technologien/${x.id}` }),
       serviceType: x.name,
@@ -40,11 +44,11 @@ export default async function Page({ params, searchParams }: P) {
         itemListElement: g.ids.filter((id) => items[id]).map((id) => ({ "@type": "Offer", itemOffered: { "@type": "Service", name: items[id].de, description: items[id].dde } })),
       })) } },
     breadcrumbSchema([{ name: "Startseite", href: "/" }, { name: "Technologien", href: "/technologien" }, { name: x.nav.de }]),
-    ...(page ? [faqSchema(page.faq.items.map((f) => ({ question: f.q, answer: f.a })))] : []),
+    ...(faq ? [faqSchema(faq.items.map((f) => ({ question: f.q, answer: f.a })))] : []),
   ];
   return (
     <InnerShell lang={lang}>
-      {page ? <TechPageLong lang={lang} x={x} page={page} /> : <TechPage lang={lang} x={x} />}
+      {wp ? <WordpressPageLong lang={lang} x={x} page={wp} /> : page ? <TechPageLong lang={lang} x={x} page={page} /> : <TechPage lang={lang} x={x} />}
       {ld && ld.map((d, n) => <JsonLd key={n} data={d} />)}
     </InnerShell>
   );
