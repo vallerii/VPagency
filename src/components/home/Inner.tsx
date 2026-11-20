@@ -24,7 +24,7 @@ function Marks({ brands, size = 30 }: { brands: string[]; size?: number }) {
   );
 }
 
-function Crumbs({ lang, trail }: { lang: Lang; trail: { label: string; path?: string }[] }) {
+export function Crumbs({ lang, trail }: { lang: Lang; trail: { label: string; path?: string }[] }) {
   return (
     <nav className={`${s.crumbs} ${s.crumbsBar}`} aria-label="Breadcrumb">
       <Link href={href(lang, "")}>{t(pc.home, lang)}</Link>
@@ -151,7 +151,6 @@ export function TechPage({ lang, x }: { lang: Lang; x: Tech }) {
       <Crumbs lang={lang} trail={[{ label: t(pc.techHub.title, lang), path: "/technologien" }, { label: t(x.nav, lang) }]} />
       <section className={`${s.ipHero} ${s.ipHeroCenter} ${s.techMarks} ${tone(x.id)}`}>
         <div className={s.ipHeroCopy}>
-          <Marks brands={x.brands} size={34} />
           <h1 className={s.ipH1}>{t(x.title, lang)}</h1>
           <p className={s.lead}>{t(x.lead, lang)}</p>
           <div className={s.btns}>

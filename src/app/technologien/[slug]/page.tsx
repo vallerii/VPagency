@@ -2,9 +2,11 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { InnerShell, langOf } from "@/components/home/InnerShell";
 import { TechPage } from "@/components/home/Inner";
+import { TechPageLong } from "@/components/home/TechLong";
+import { getTechPage } from "@/content/tech-pages";
 import { techs, getTech, items } from "@/content/catalog";
 import { JsonLd } from "@/components/JsonLd";
-import { breadcrumbSchema, serviceSchema } from "@/lib/schema";
+import { breadcrumbSchema, serviceSchema, faqSchema } from "@/lib/schema";
 
 export function generateStaticParams() {
   return techs.map((x) => ({ slug: x.id }));
@@ -28,6 +30,8 @@ export default async function Page({ params, searchParams }: P) {
   const x = getTech((await params).slug);
   if (!x) notFound();
   const lang = langOf((await searchParams).lang);
+  // Technologies whose long-form content exists get the full page
+  const page = getTechPage(x.id);
   const ld = lang === "de" && [
     { ...serviceSchema({ name: x.title.de, description: x.lead.de, path: `/technologien/${x.id}` }),
       serviceType: x.name,
@@ -36,10 +40,11 @@ export default async function Page({ params, searchParams }: P) {
         itemListElement: g.ids.filter((id) => items[id]).map((id) => ({ "@type": "Offer", itemOffered: { "@type": "Service", name: items[id].de, description: items[id].dde } })),
       })) } },
     breadcrumbSchema([{ name: "Startseite", href: "/" }, { name: "Technologien", href: "/technologien" }, { name: x.nav.de }]),
+    ...(page ? [faqSchema(page.faq.items.map((f) => ({ question: f.q, answer: f.a })))] : []),
   ];
   return (
     <InnerShell lang={lang}>
-      <TechPage lang={lang} x={x} />
+      {page ? <TechPageLong lang={lang} x={x} page={page} /> : <TechPage lang={lang} x={x} />}
       {ld && ld.map((d, n) => <JsonLd key={n} data={d} />)}
     </InnerShell>
   );
