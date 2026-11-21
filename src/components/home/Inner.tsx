@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { CSSProperties } from "react";
 import { home, type Lang } from "@/content/home";
 import {
-  services, techs, pageCopy as pc, href, t, itemName, itemText,
+  services, techs, pageCopy as pc, formats, href, t, itemName, itemText,
   getTech, getService, type Service, type Tech,
 } from "@/content/catalog";
 import { BrandLogo, hasLogo } from "./BrandLogo";
@@ -250,9 +250,10 @@ export function TechHub({ lang }: { lang: Lang }) {
         </div>
       </section>
       <section className={s.ipSection} aria-label={t(pc.techHub.title, lang)}>
-        <ul className={s.linkCards}>
+        {/* Four platforms side by side, KI across the full width below them */}
+        <ul className={`${s.linkCards} ${s.techHubGrid}`}>
           {techs.map((x, n) => (
-            <li key={x.id} data-reveal style={i(n % 3)}>
+            <li key={x.id} data-reveal style={i(n % 4)} className={x.id === "ki" ? s.techHubWide : undefined}>
               <Link href={href(lang, `/technologien/${x.id}`)} className={`${s.linkCard} ${s.techTint} ${tone(x.id)}`}>
                 <Marks brands={x.id === "schnittstellen" ? ["SAP", "DATEV"] : x.brands} size={26} />
                 <b>{t(x.title, lang)}</b>
@@ -267,3 +268,22 @@ export function TechHub({ lang }: { lang: Lang }) {
   );
 }
 
+
+/* Ways to work with us: three alternatives to choose from, not steps.
+   So no numbers and no rules: a large name, who it is for, what it is */
+export function FormatsBand({ lang }: { lang: Lang }) {
+  return (
+    <section className={s.fmtBand} aria-labelledby="fmt-title">
+      <h2 id="fmt-title" className={s.h2} data-reveal>{t(formats.title, lang)}</h2>
+      <ul className={s.fmtList}>
+        {formats.items.map((f, n) => (
+          <li key={f.title.de} data-reveal style={i(n)}>
+            <b>{t(f.title, lang)}</b>
+            <em>{t(f.who, lang)}</em>
+            <span>{t(f.text, lang)}</span>
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
+}

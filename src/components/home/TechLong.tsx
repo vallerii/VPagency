@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { Fragment, type CSSProperties } from "react";
 import type { Lang } from "@/content/home";
-import { pageCopy as pc, formats, href, t, type Tech } from "@/content/catalog";
+import { pageCopy as pc, href, t, type Tech } from "@/content/catalog";
 import type { TechPageContent } from "@/content/tech-pages";
-import { Groups, Crumbs } from "./Inner";
+import { Groups, Crumbs, FormatsBand } from "./Inner";
 import { StepsBand } from "./StepsBand";
 import { MigrationCheck } from "./MigrationCheck";
 import { MigrationTabs } from "./MigrationTabs";
@@ -122,20 +122,7 @@ export function TechPageLong({ lang, x, page }: { lang: Lang; x: Tech; page: Tec
         </div>
       </section>
 
-      {/* 6 · The full catalogue, for whoever looks for one specific item */}
-      <section className={s.ipSection} aria-labelledby="what-title">
-        <h2 id="what-title" className={s.h2} data-reveal>{page.catalogTitle}</h2>
-        <Groups lang={lang} groups={x.groups} id={x.id} />
-        <div className={s.notListed} data-reveal>
-          <span>{t(pc.notListed, lang)}</span>
-          <a href="#anfrage" className={`${s.pill} ${s.pillDark}`}>
-            {t(pc.cta, lang)}
-            <span className={s.arr} aria-hidden>→</span>
-          </a>
-        </div>
-      </section>
-
-      {/* 7 · Process on one line; the numbers light up in turn as it scrolls in */}
+      {/* 6 · Process on one line; the numbers light up in turn as it scrolls in */}
       <section className={s.ipSection} aria-labelledby="proc-title">
         <div className={s.deepHead} data-reveal>
           <h2 id="proc-title" className={s.h2}>{page.process.title}</h2>
@@ -161,21 +148,26 @@ export function TechPageLong({ lang, x, page }: { lang: Lang; x: Tech; page: Tec
         </ol>
       </section>
 
-      {/* 8 · How to work with us */}
-      <section className={s.fmtBand} aria-labelledby="fmt-title">
-        <h2 id="fmt-title" className={s.h2} data-reveal>{t(formats.title, lang)}</h2>
-        <ul className={s.fmtList}>
-          {formats.items.map((f, n) => (
-            <li key={f.title.de} data-reveal style={i(n)}>
-              <span className={s.fmtNum} aria-hidden>{String(n + 1).padStart(2, "0")}</span>
-              <b>{t(f.title, lang)}</b>
-              <span>{t(f.text, lang)}</span>
-            </li>
-          ))}
-        </ul>
+      {/* 7 · The full catalogue, for whoever looks for one specific item */}
+      <section className={s.ipSection} aria-labelledby="what-title">
+        <h2 id="what-title" className={s.h2} data-reveal>{page.catalogTitle}</h2>
+        <Groups lang={lang} groups={x.groups} id={x.id} />
+        <div className={s.notListed} data-reveal>
+          <span>{t(pc.notListed, lang)}</span>
+          <a href="#anfrage" className={`${s.pill} ${s.pillDark}`}>
+            {t(pc.cta, lang)}
+            <span className={s.arr} aria-hidden>→</span>
+          </a>
+        </div>
       </section>
 
-      {/* 9 · FAQ */}
+      {/* 8 · How to work with us */}
+      <FormatsBand lang={lang} />
+
+      {/* 9 · The first step: the three steps light up one by one on scroll */}
+      <StepsBand title={page.promise.title} steps={page.promise.steps} cta={page.promise.cta} />
+
+      {/* 10 · FAQ, the last doubts before the request form */}
       <section className={s.ipSection} aria-labelledby="faq-title">
         <h2 id="faq-title" className={s.h2} data-reveal>{page.faq.title}</h2>
         <div className={s.faqList}>
@@ -190,9 +182,6 @@ export function TechPageLong({ lang, x, page }: { lang: Lang; x: Tech; page: Tec
           ))}
         </div>
       </section>
-
-      {/* 10 · The first step, right above the request form: the three steps light up one by one on scroll */}
-      <StepsBand title={page.promise.title} steps={page.promise.steps} cta={page.promise.cta} />
     </>
   );
 }

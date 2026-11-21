@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { Fragment, type CSSProperties } from "react";
 import { home, type Lang } from "@/content/home";
-import { pageCopy as pc, formats, href, t, type Service } from "@/content/catalog";
+import { pageCopy as pc, href, t, type Service } from "@/content/catalog";
 import { cases } from "@/content/cases";
 import type { ServicePageContent } from "@/content/service-pages";
-import { Groups, TechCards } from "./Inner";
+import { Groups, TechCards, FormatsBand } from "./Inner";
 import { ServiceStage } from "./ServiceStage";
 import s from "./home.module.css";
 
@@ -419,18 +419,7 @@ export function ServicePageLong({ lang, sv, page }: { lang: Lang; sv: Service; p
         </section>
       )}
 
-      <section className={s.fmtBand} aria-labelledby="fmt-title">
-        <h2 id="fmt-title" className={s.h2} data-reveal>{t(formats.title, lang)}</h2>
-        <ul className={s.fmtList}>
-          {formats.items.map((f, n) => (
-            <li key={f.title.de} data-reveal style={i(n)}>
-              <span className={s.fmtNum} aria-hidden>{String(n + 1).padStart(2, "0")}</span>
-              <b>{t(f.title, lang)}</b>
-              <span>{t(f.text, lang)}</span>
-            </li>
-          ))}
-        </ul>
-      </section>
+      <FormatsBand lang={lang} />
 
       <section className={s.ipSection} aria-labelledby="price-title">
         <div className={s.deepHead} data-reveal>

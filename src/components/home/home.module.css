@@ -2168,3 +2168,480 @@ a.fitVerdict:hover { background: var(--ink); color: #fff; }
   .wpEditor textarea { height: 56px; line-height: 1.35; }
   .wpDemo { gap: 10px 16px; }
 }
+
+/* ── WordPress hero, v2: no widget. Headline on the pale field, the four
+   promises in a solid WordPress-blue column running to the right edge.
+   Replaces the editor layout above (.wpHeroHead, .wpDemo stay unused). */
+.wpHero {
+  display: grid; grid-template-rows: none;
+  grid-template-columns: minmax(0, 1.45fr) minmax(340px, 1fr);
+  gap: 0; padding: 0; align-items: stretch;
+  min-height: calc(100svh - 88px - clamp(32px, 2.6vw, 48px) - clamp(12px, 1.2vw, 20px));
+}
+.wpHeroCopy {
+  display: grid; align-content: center; justify-items: start; gap: clamp(20px, 2vw, 34px);
+  padding: clamp(40px, 6vh, 96px) clamp(32px, 5vw, 110px) clamp(40px, 6vh, 96px) var(--gutter);
+}
+.wpHero .ipH1 { font-size: clamp(44px, 5.4vw, 128px); line-height: .95; letter-spacing: -.05em; max-width: 9.5em; }
+.wpHero .lead { opacity: 1; color: var(--ink); max-width: 28em; }
+.wpPoints {
+  list-style: none; margin: 0; background: #21759b; color: #fff;
+  padding: clamp(40px, 6vh, 96px) var(--gutter) clamp(40px, 6vh, 96px) clamp(32px, 3.6vw, 72px);
+  display: grid; align-content: center; gap: clamp(22px, 3.4vh, 44px);
+}
+.wpPoints li { display: grid; gap: 6px; }
+.wpPoints b { font-family: var(--display); font-weight: 400; font-size: clamp(22px, 1.9vw, 38px); line-height: 1.08; letter-spacing: -.025em; }
+.wpPoints span { font-size: clamp(15px, 1.05vw, 19px); line-height: 1.45; color: rgba(255,255,255,.86); }
+@media (max-width: 1023px) {
+  .wpHero { grid-template-columns: minmax(0, 1fr); min-height: 0; }
+  .wpHeroCopy { padding: clamp(36px, 7vw, 64px) var(--gutter); }
+  .wpPoints { padding: clamp(32px, 7vw, 56px) var(--gutter); }
+  .wpHero .ipH1 { font-size: clamp(34px, 8.6vw, 64px); }
+}
+@media (min-width: 1024px) and (max-height: 820px) {
+  .wpHero { padding: 0; gap: 0; }
+  .wpHero .ipH1 { font-size: clamp(40px, 4.6vw, 96px); }
+}
+/* Two lines at every width: sized from the copy column, no measure cap */
+.wpHero .ipH1 { max-width: none; font-size: clamp(38px, 3.7vw, 100px); }
+@media (min-width: 1024px) and (max-height: 820px) { .wpHero .ipH1 { font-size: clamp(36px, 3.5vw, 90px); } }
+@media (max-width: 1023px) { .wpHero .ipH1 { font-size: clamp(27px, 7vw, 56px); } }
+
+/* ── WordPress first screen: both colour fields from the top of the
+   window. The wrapper slides up under the sticky header; the split sits
+   exactly where the hero's two columns meet (1.45fr : 1fr = 59.18%). */
+.wpTop {
+  margin-top: -88px; padding-top: 88px;
+  background: linear-gradient(90deg, #e2ecf3 0 59.18%, #21759b 59.18% 100%);
+}
+.wpTop .wpHero { background: none; margin-top: 0; min-height: calc(100svh - 88px - clamp(32px, 2.6vw, 48px)); }
+.wpTop .wpPoints { background: none; }
+.wpTop .crumbsBar { padding-bottom: 0; }
+/* The header, while the page is at the top: no fill, so it lies on the fields */
+.header[data-over] { background: transparent; -webkit-backdrop-filter: none; backdrop-filter: none; transition: background-color .25s ease; }
+.header { transition: background-color .25s ease; }
+/* Its action sits on the blue field: white with dark text */
+.header[data-over] .headRight .pillDark { background: #fff; color: var(--ink) !important; }
+.header[data-over] .headRight .pillDark:hover { background: var(--ground); }
+@media (max-width: 1023px) {
+  /* Stacked on a phone: the whole top is the pale field, the promises keep their own blue band */
+  .wpTop { background: #e2ecf3; }
+  .wpTop .wpPoints { background: #21759b; }
+  .header[data-over] .headRight .pillDark { background: var(--ink); color: #fff !important; }
+}
+
+/* Four phases: one column on a phone, two on a tablet, all four in one row on desktop */
+.timeline.timelineFour { grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 700px) { .timeline.timelineFour { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1100px) { .timeline.timelineFour { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+
+/* What we build (WordPress): sticky heading left, a column of items right */
+.wpBuild { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(32px, 6vw, 140px); align-items: start; }
+.wpBuildHead { position: sticky; top: calc(88px + clamp(24px, 4vh, 56px)); display: grid; gap: clamp(12px, 1.2vw, 20px); }
+.wpBuildList { display: grid; gap: clamp(40px, 5vw, 88px); }
+.wpBuildList article { display: grid; gap: clamp(10px, 1vw, 16px); justify-items: start; }
+.wpBuildList h3 { margin: 0; font-family: var(--display); font-weight: 400; font-size: clamp(28px, 2.6vw, 52px); line-height: 1.04; letter-spacing: -.035em; }
+.wpBuildList h3::before { content: ""; display: block; width: 44px; height: 6px; border-radius: 6px; background: #21759b; margin-bottom: clamp(14px, 1.4vw, 22px); }
+.wpBuildList p { margin: 0; max-width: 34em; font-size: clamp(16px, 1.15vw, 21px); line-height: 1.58; }
+.wpBuildList .deepTerm { color: var(--ink); }
+@media (max-width: 1023px) {
+  .wpBuild { grid-template-columns: minmax(0, 1fr); }
+  .wpBuildHead { position: static; }
+}
+
+/* ── Laravel page ─────────────────────────────────────────────────────────
+   Hero: a dark full-width field under the breadcrumbs, Laravel red as the
+   one accent. Right: the tools of today, quiet, folding into one red block */
+.lvHero {
+  --lv: #ff2d20;
+  margin-top: clamp(12px, 1.2vw, 20px);
+  background: var(--ink); color: #fff;
+  min-height: calc(100svh - 88px - clamp(32px, 2.6vw, 48px) - clamp(12px, 1.2vw, 20px));
+  display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(320px, 1fr);
+  gap: clamp(32px, 5vw, 120px); align-items: center;
+  padding: clamp(40px, 6vh, 96px) var(--gutter);
+}
+.lvHeroCopy { display: grid; gap: clamp(20px, 2vw, 34px); justify-items: start; }
+.lvHero .ipH1 { font-size: clamp(38px, 4vw, 104px); line-height: .96; letter-spacing: -.05em; color: #fff; max-width: none; }
+.lvHero .lead { color: rgba(255,255,255,.82); max-width: 30em; }
+.lvPillRed { background: var(--lv); color: #fff !important; }
+.lvPillRed:hover { background: #e0241a; transform: translateY(-1px); }
+.lvPillLine { box-shadow: inset 0 0 0 1px rgba(255,255,255,.35); color: #fff; font-weight: 500; }
+.lvPillLine:hover { box-shadow: inset 0 0 0 1px #fff; }
+.lvFlow { margin: 0; display: grid; justify-items: start; gap: clamp(14px, 2vh, 22px); }
+.lvBefore { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.lvBefore li { padding: 11px 16px; border-radius: 99px; background: rgba(255,255,255,.08); color: rgba(255,255,255,.72); font-size: clamp(14px, 1vw, 17px); }
+.lvArrow { font-size: clamp(26px, 2.2vw, 40px); line-height: 1; color: var(--lv); padding-left: 6px; }
+.lvAfter { width: 100%; display: grid; gap: 8px; padding: clamp(22px, 2.2vw, 40px); border-radius: calc(var(--radius) + 6px); background: var(--lv); }
+.lvAfter b { font-family: var(--display); font-weight: 400; font-size: clamp(32px, 3vw, 64px); line-height: 1; letter-spacing: -.04em; }
+.lvAfter span { font-size: clamp(15px, 1.05vw, 19px); line-height: 1.45; }
+@media (max-width: 1023px) {
+  .lvHero { grid-template-columns: minmax(0, 1fr); min-height: 0; }
+  .lvHero .ipH1 { font-size: clamp(28px, 7.4vw, 60px); }
+}
+
+/* Buy, connect or build: three steps rising like a staircase, the colour
+   deepening toward own development */
+.lvLadder { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(10px, 1vw, 18px); align-items: end; }
+.lvLadder li { display: grid; gap: 12px; align-content: start; padding: clamp(22px, 2vw, 36px); border-radius: calc(var(--radius) + 4px); }
+.lvLadder li:nth-child(1) { background: var(--warm); min-height: clamp(240px, 22vw, 340px); }
+.lvLadder li:nth-child(2) { background: var(--clay); min-height: clamp(300px, 27vw, 420px); }
+.lvLadder li:nth-child(3) { background: #ff2d20; color: #fff; min-height: clamp(360px, 32vw, 500px); }
+.lvLadder h3 { margin: 0; font-family: var(--display); font-weight: 400; font-size: clamp(26px, 2.3vw, 46px); line-height: 1.02; letter-spacing: -.035em; }
+.lvLadder p { margin: 0; font-size: clamp(15px, 1.05vw, 19px); line-height: 1.5; }
+.lvLadder b { font-size: clamp(15px, 1.05vw, 19px); line-height: 1.45; font-weight: 600; }
+@media (max-width: 860px) {
+  .lvLadder { grid-template-columns: minmax(0, 1fr); }
+  .lvLadder li { min-height: 0 !important; }
+}
+
+/* What we build: large rows, name / what it does / who it is for */
+.lvRows { list-style: none; margin: 0; padding: 0; display: grid; }
+.lvRows li {
+  display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 5fr) minmax(0, 3fr);
+  gap: clamp(16px, 3vw, 64px); align-items: baseline;
+  padding: clamp(26px, 2.6vw, 44px) 0; border-top: 1px solid var(--line);
+}
+.lvRows li:last-child { border-bottom: 1px solid var(--line); }
+.lvRows h3 { margin: 0; font-family: var(--display); font-weight: 400; font-size: clamp(28px, 2.8vw, 56px); line-height: 1; letter-spacing: -.04em; }
+.lvRows p { margin: 0; font-size: clamp(16px, 1.15vw, 20px); line-height: 1.55; }
+.lvRows small { font-size: clamp(14px, .98vw, 17px); line-height: 1.45; color: var(--muted); }
+.lvRows li:hover h3 { color: #d8241a; }
+@media (max-width: 900px) { .lvRows li { grid-template-columns: minmax(0, 1fr); gap: 10px; } }
+
+/* An application that already exists: warm clay band, heading left */
+.lvExisting { background: var(--clay); display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(32px, 6vw, 140px); align-items: start; }
+.lvExistingHead { display: grid; gap: clamp(12px, 1.2vw, 20px); }
+.lvExistingList { display: grid; gap: clamp(10px, 1vw, 16px); }
+.lvExistingList article { display: grid; gap: 8px; padding: clamp(22px, 2vw, 34px); border-radius: calc(var(--radius) + 2px); background: rgba(255,255,255,.66); }
+.lvExistingList h3 { margin: 0; font-size: clamp(20px, 1.6vw, 30px); line-height: 1.15; letter-spacing: -.015em; }
+.lvExistingList p { margin: 0; font-size: clamp(15px, 1.05vw, 19px); line-height: 1.55; }
+@media (max-width: 1023px) { .lvExisting { grid-template-columns: minmax(0, 1fr); } }
+
+/* One promise, set very large */
+.lvTrust { padding: clamp(72px, 9vw, 200px) var(--gutter); display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(24px, 6vw, 140px); align-items: start; }
+.lvTrust h2 { margin: 0; font-family: var(--display); font-weight: 400; font-size: clamp(36px, 4vw, 88px); line-height: 1; letter-spacing: -.045em; }
+.lvTrust p { margin: 0; font-size: clamp(19px, 1.6vw, 30px); line-height: 1.4; letter-spacing: -.01em; max-width: 26em; }
+@media (max-width: 1023px) { .lvTrust { grid-template-columns: minmax(0, 1fr); } }
+/* Laravel red for surfaces that carry white text: a step darker than the
+   brand #ff2d20, so small white text reaches 4.5:1 */
+.lvHero { --lv: #d0281c; }
+.lvPillRed:hover { background: #b5211a; }
+.lvArrow { color: #ff5a4f; }
+.lvLadder li:nth-child(3) { background: #d0281c; }
+.lvTrust { padding: clamp(56px, 6vw, 140px) var(--gutter); }
+
+/* Laravel hero, light: a pale field in the Laravel red's tint, dark type,
+   white tool chips; the red "one system" block stays the single accent */
+.lvHero { background: #f9e8e4; color: var(--ink); }
+.lvHero .ipH1 { color: var(--ink); }
+.lvHero .lead { color: var(--ink); opacity: .8; }
+.lvPillLine { box-shadow: inset 0 0 0 1px rgba(22,19,16,.28); color: var(--ink); }
+.lvPillLine:hover { box-shadow: inset 0 0 0 1px var(--ink); }
+.lvBefore li { background: #fff; color: var(--ink); opacity: .72; }
+.lvArrow { color: #d0281c; }
+.lvHero .lvAfter { color: #fff; }
+
+/* Hero panels (Shopify, Laravel): rounded, almost the full window width,
+   a small edge on both sides; the content inside starts on the page's own
+   left line, the same as the logo and the breadcrumbs */
+.techHero, .lvHero {
+  --edge: clamp(10px, 1.1vw, 20px);
+  margin-left: var(--edge); margin-right: var(--edge);
+  padding-left: calc(var(--gutter) - var(--edge)); padding-right: calc(var(--gutter) - var(--edge));
+  border-radius: calc(var(--radius) + 10px);
+}
+@media (max-width: 1023px) {
+  .techHero, .lvHero { --edge: 8px; border-radius: calc(var(--radius) + 4px); }
+}
+@media (max-width: 600px) {
+  .techHero { padding-left: calc(var(--gutter) - var(--edge)); padding-right: calc(var(--gutter) - var(--edge)); }
+}
+@media (max-width: 1023px) { .techRoute { margin-top: 0; padding-top: 0; } .techHero { row-gap: 20px; } }
+
+/* ── Schnittstellen page ──────────────────────────────────────────────────
+   Hero: the same rounded panel as Shopify and Laravel, in a pale amber.
+   Headline row on top, a log of data flowing between systems below it. */
+.srOnly { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.scHero {
+  --edge: clamp(10px, 1.1vw, 20px);
+  margin: clamp(12px, 1.2vw, 20px) var(--edge) 0;
+  padding: clamp(32px, 5vh, 72px) calc(var(--gutter) - var(--edge)) clamp(24px, 4vh, 48px);
+  border-radius: calc(var(--radius) + 10px);
+  background: #fbeedb;
+  min-height: calc(100svh - 88px - clamp(32px, 2.6vw, 48px) - clamp(12px, 1.2vw, 20px) - clamp(16px, 2vw, 32px));
+  display: grid; grid-template-rows: auto 1fr; gap: clamp(24px, 4vh, 56px);
+}
+.scHeroHead { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 96px); align-items: end; }
+.scHero .ipH1 { font-size: clamp(38px, 4.2vw, 104px); line-height: .96; letter-spacing: -.05em; max-width: none; }
+.scHeroSide { display: grid; gap: clamp(16px, 1.6vw, 26px); justify-items: start; }
+.scHero .lead { color: var(--ink); opacity: .8; }
+.scHero .pillLine { box-shadow: inset 0 0 0 1px rgba(22,19,16,.28); }
+.scFlows { margin: 0; align-self: end; display: grid; gap: 12px; }
+.scFlows ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.scFlows li {
+  display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 5fr) auto; gap: clamp(12px, 2vw, 40px); align-items: center;
+  padding: clamp(12px, 1.3vh, 18px) clamp(18px, 1.6vw, 28px); border-radius: 14px; background: #fff;
+  font-size: clamp(15px, 1.05vw, 19px);
+}
+.scFlows b { font-weight: 600; }
+.scRoute { color: var(--ink); }
+.scRoute > span[aria-hidden] { color: #b46405; font-weight: 600; }
+.scWhen { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; color: var(--muted); white-space: nowrap; }
+.scWhen i { width: 8px; height: 8px; border-radius: 50%; background: #3f9b52; }
+.scFlows figcaption { font-size: 14px; color: var(--ink); opacity: .7; }
+@media (max-width: 1023px) {
+  .scHero { --edge: 8px; min-height: 0; border-radius: calc(var(--radius) + 4px); }
+  .scHeroHead { grid-template-columns: minmax(0, 1fr); }
+  .scHero .ipH1 { font-size: clamp(28px, 7.4vw, 60px); }
+  .scFlows li { grid-template-columns: minmax(0, 1fr) auto; }
+  .scRoute { grid-column: 1 / -1; grid-row: 2; font-size: 14px; color: var(--muted); }
+}
+@media (min-width: 1024px) and (max-height: 820px) {
+  .scHero .ipH1 { font-size: clamp(36px, 3.6vw, 90px); }
+  .scFlows li { padding-top: 9px; padding-bottom: 9px; }
+}
+
+/* Systems by kind: four columns of names, no boxes */
+.scWall { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(28px, 3vw, 64px); }
+.scWall h3 { margin: 0 0 clamp(14px, 1.4vw, 22px); font-size: clamp(15px, 1vw, 18px); font-weight: 600; color: var(--muted); }
+.scWall ul { list-style: none; margin: 0; padding: 0; display: grid; gap: clamp(10px, 1vw, 16px); }
+.scWall li { display: flex; align-items: center; gap: 10px; font-family: var(--display); font-size: clamp(20px, 1.7vw, 32px); line-height: 1.1; letter-spacing: -.02em; }
+@media (max-width: 1023px) { .scWall { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 520px) { .scWall { grid-template-columns: minmax(0, 1fr); } }
+
+/* A failure, start to finish: one chain on an amber band */
+.scFail { background: #fbeedb; }
+.scChain { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(10px, 1vw, 16px); }
+.scChain li { position: relative; display: grid; gap: 8px; align-content: start; padding: clamp(20px, 1.8vw, 32px); border-radius: calc(var(--radius) + 2px); background: #fff; }
+.scChain li:not(:last-child)::after {
+  content: "→"; position: absolute; right: calc(-1 * clamp(10px, 1vw, 16px) / 2); top: 50%;
+  transform: translate(50%, -50%); width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center;
+  background: #b46405; color: #fff; font-size: 14px; z-index: 1;
+}
+.scChain li:first-child { background: var(--ink); color: #fff; }
+.scChain li:first-child span { color: rgba(255,255,255,.78); }
+.scChain b { font-family: var(--display); font-weight: 400; font-size: clamp(22px, 1.8vw, 34px); line-height: 1.05; letter-spacing: -.03em; }
+.scChain span { font-size: clamp(15px, 1.05vw, 19px); line-height: 1.5; color: var(--ink); }
+@media (max-width: 900px) {
+  .scChain { grid-template-columns: minmax(0, 1fr); }
+  .scChain li:not(:last-child)::after { content: "↓"; right: 50%; top: auto; bottom: calc(-1 * clamp(10px, 1vw, 16px) / 2); transform: translate(50%, 50%); }
+}
+/* Systems by kind, v2: one row per kind, the names flowing large on the
+   right, so a kind with nine systems and a kind with one stay in balance */
+.scWall { grid-template-columns: minmax(0, 1fr); gap: 0; }
+.scWall > div { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 9fr); gap: clamp(16px, 3vw, 64px); align-items: baseline; padding: clamp(22px, 2.4vw, 40px) 0; border-top: 1px solid var(--line); }
+.scWall > div:last-child { border-bottom: 1px solid var(--line); }
+.scWall h3 { margin: 0; }
+.scWall ul { display: flex; flex-wrap: wrap; gap: clamp(10px, 1vw, 16px) clamp(22px, 2.4vw, 44px); }
+@media (max-width: 760px) { .scWall > div { grid-template-columns: minmax(0, 1fr); gap: 12px; } }
+
+/* Schnittstellen hero, v2: copy left, three connections right */
+.scHero { grid-template-rows: none; grid-template-columns: minmax(0, 1.15fr) minmax(320px, 1fr); align-items: center; gap: clamp(32px, 5vw, 120px); padding-top: clamp(40px, 6vh, 96px); padding-bottom: clamp(40px, 6vh, 96px); }
+.scHeroCopy { display: grid; gap: clamp(20px, 2vw, 34px); justify-items: start; }
+.scHero .lead { opacity: 1; max-width: 26em; }
+.scLinks { list-style: none; margin: 0; padding: 0; display: grid; gap: clamp(10px, 1vw, 16px); }
+.scLinks li { display: grid; gap: 10px; padding: clamp(20px, 2vw, 32px) clamp(22px, 2.2vw, 36px); border-radius: calc(var(--radius) + 4px); background: #fff; }
+.scPair { display: grid; grid-template-columns: auto minmax(32px, 1fr) auto; align-items: center; gap: clamp(12px, 1.2vw, 20px); }
+.scPair b { font-family: var(--display); font-weight: 400; font-size: clamp(22px, 2vw, 40px); line-height: 1; letter-spacing: -.035em; }
+.scBridge { position: relative; height: 4px; border-radius: 4px; background: #e8890c; }
+.scBridge::before, .scBridge::after { content: ""; position: absolute; top: 50%; width: 12px; height: 12px; border-radius: 50%; background: #e8890c; transform: translateY(-50%); }
+.scBridge::before { left: -2px; }
+.scBridge::after { right: -2px; }
+.scLinks li > span { font-size: clamp(15px, 1.05vw, 18px); line-height: 1.45; color: var(--ink); opacity: .75; }
+@media (max-width: 1023px) {
+  .scHero { grid-template-columns: minmax(0, 1fr); }
+}
+@media (min-width: 1024px) and (max-height: 820px) {
+  .scLinks li { padding-top: 16px; padding-bottom: 16px; }
+}
+
+/* ── KI-Tools page ────────────────────────────────────────────────────────
+   First screen: two fields from the top of the window, like WordPress,
+   pale lavender and a deep violet (white text on it is 7:1). */
+.kiTop {
+  margin-top: -88px; padding-top: 88px;
+  background: linear-gradient(90deg, #eeebfb 0 59.18%, #4b36b8 59.18% 100%);
+}
+.kiHero {
+  display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(340px, 1fr);
+  min-height: calc(100svh - 88px - clamp(32px, 2.6vw, 48px));
+}
+.kiHeroCopy { display: grid; align-content: center; justify-items: start; gap: clamp(20px, 2vw, 34px); padding: clamp(40px, 6vh, 96px) clamp(32px, 5vw, 110px) clamp(40px, 6vh, 96px) var(--gutter); }
+.kiHero .ipH1 { font-size: clamp(38px, 3.7vw, 100px); line-height: .95; letter-spacing: -.05em; max-width: none; }
+.kiHero .lead { color: var(--ink); max-width: 28em; }
+.kiExample { margin: 0; color: #fff; padding: clamp(40px, 6vh, 96px) var(--gutter) clamp(40px, 6vh, 96px) clamp(32px, 3.6vw, 72px); display: grid; align-content: center; gap: clamp(18px, 2.4vh, 30px); }
+.kiExample figcaption { font-size: clamp(15px, 1.05vw, 18px); font-weight: 600; color: rgba(255,255,255,.8); }
+.kiExample ol { list-style: none; margin: 0; padding: 0; display: grid; gap: clamp(8px, 1.2vh, 14px); }
+.kiExample li { position: relative; display: grid; gap: 6px; padding: clamp(16px, 1.6vw, 26px) clamp(18px, 1.8vw, 30px); border-radius: calc(var(--radius) + 2px); background: rgba(255,255,255,.1); }
+.kiExample li:not(:last-child)::after { content: "↓"; position: absolute; left: clamp(18px, 1.8vw, 30px); bottom: calc(-1 * clamp(8px, 1.2vh, 14px)); transform: translateY(50%); z-index: 1; font-size: 15px; line-height: 1; color: #fff; }
+.kiExample small { font-size: 13px; font-weight: 600; color: rgba(255,255,255,.7); }
+.kiExample li span { font-family: var(--display); font-size: clamp(19px, 1.55vw, 30px); line-height: 1.15; letter-spacing: -.02em; }
+.kiExample li[data-human] { background: #fff; color: var(--ink); }
+.kiExample li[data-human] small { color: #4b36b8; }
+@media (max-width: 1023px) {
+  .kiTop { background: #eeebfb; }
+  .kiHero { grid-template-columns: minmax(0, 1fr); min-height: 0; }
+  .kiHeroCopy { padding: clamp(36px, 7vw, 64px) var(--gutter); }
+  .kiExample { background: #4b36b8; padding: clamp(32px, 7vw, 56px) var(--gutter); }
+  .kiHero .ipH1 { font-size: clamp(27px, 7vw, 56px); }
+}
+
+/* Tools: three columns, the name set large, one line on what it is for */
+.kiTools { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(36px, 4vw, 80px) clamp(28px, 3.4vw, 72px); }
+.kiTools li { display: grid; gap: 10px; align-content: start; }
+.kiTools b { font-family: var(--display); font-weight: 400; font-size: clamp(32px, 3vw, 60px); line-height: 1; letter-spacing: -.04em; color: #4b36b8; }
+.kiTools span { font-size: clamp(16px, 1.1vw, 20px); line-height: 1.55; }
+@media (max-width: 1023px) { .kiTools { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 600px) { .kiTools { grid-template-columns: minmax(0, 1fr); } }
+
+/* Where the data stays: violet band, four statements in a row */
+.kiData { background: #4b36b8; color: #fff; }
+.kiData .lead { color: rgba(255,255,255,.8); }
+.kiDataList { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(24px, 3vw, 56px); }
+.kiDataList article { display: grid; gap: 10px; align-content: start; }
+.kiDataList h3 { margin: 0; font-family: var(--display); font-weight: 400; font-size: clamp(22px, 1.9vw, 36px); line-height: 1.08; letter-spacing: -.03em; }
+.kiDataList p { margin: 0; font-size: clamp(15px, 1.05vw, 19px); line-height: 1.55; color: rgba(255,255,255,.88); }
+.kiDataNote { margin: clamp(32px, 3.6vw, 64px) 0 0; max-width: 46em; font-size: clamp(15px, 1.05vw, 18px); color: rgba(255,255,255,.75); }
+@media (max-width: 1023px) { .kiDataList { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 600px) { .kiDataList { grid-template-columns: minmax(0, 1fr); } }
+
+/* Who does what: a real table */
+.kiTable { width: 100%; border-collapse: collapse; font-size: clamp(15px, 1.05vw, 19px); line-height: 1.5; }
+.kiTable thead th { text-align: left; font-size: 14px; font-weight: 600; color: var(--muted); padding: 0 clamp(12px, 2vw, 32px) 14px 0; }
+.kiTable tbody th, .kiTable td { text-align: left; vertical-align: top; padding: clamp(20px, 2vw, 32px) clamp(12px, 2vw, 32px) clamp(20px, 2vw, 32px) 0; border-top: 1px solid var(--line); }
+.kiTable tbody th { font-family: var(--display); font-weight: 400; font-size: clamp(22px, 1.9vw, 36px); line-height: 1.08; letter-spacing: -.03em; width: 30%; }
+.kiTable td:nth-child(2) { width: 42%; }
+.kiHuman { display: inline-block; padding: 8px 14px; border-radius: 99px; background: #eeebfb; color: #3a2a91; font-size: 15px; font-weight: 600; }
+@media (max-width: 760px) {
+  .kiTable thead { display: none; }
+  .kiTable tr { display: grid; gap: 8px; padding: 20px 0; border-top: 1px solid var(--line); }
+  .kiTable tbody th, .kiTable td { border: 0; padding: 0; width: auto; }
+}
+/* Agent steps: a wider gap with the arrow centred in it, clear of both cards */
+.kiExample ol { gap: 28px; }
+.kiExample li:not(:last-child)::after { bottom: -14px; transform: translateY(50%); font-size: 18px; color: rgba(255,255,255,.85); }
+@media (min-width: 1024px) and (max-height: 820px) { .kiExample ol { gap: 22px; } .kiExample li:not(:last-child)::after { bottom: -11px; } }
+
+/* Tools: the mark sits in a soft violet tile in front of the name */
+.kiTools b { display: flex; align-items: center; gap: clamp(14px, 1.2vw, 20px); }
+.kiToolMark { flex: none; width: clamp(48px, 3.6vw, 64px); height: clamp(48px, 3.6vw, 64px); border-radius: 16px; background: #eeebfb; color: #4b36b8; display: grid; place-items: center; }
+.kiToolMark svg { width: 55%; height: auto; }
+
+/* Technology pages: more air. Every block gets more room above and below
+   (about 140px on a wide screen instead of 94), so a white block meeting a
+   coloured band no longer looks glued to it, and the heading of a block
+   stands further from its content. Service pages keep their own rhythm. */
+:is(.kiTop, .wpTop, .techHero, .lvHero, .scHero) ~ :is(.ipSection, .lvTrust) {
+  padding-top: clamp(72px, 7.5vw, 160px);
+  padding-bottom: clamp(72px, 7.5vw, 160px);
+}
+:is(.kiTop, .wpTop, .techHero, .lvHero, .scHero) ~ .ipSection .deepHead { margin-bottom: clamp(36px, 4vw, 80px); }
+:is(.kiTop, .wpTop, .techHero, .lvHero, .scHero) ~ .ipSection > .h2 { margin-bottom: clamp(32px, 3.4vw, 64px); }
+:is(.kiTop, .wpTop, .techHero, .lvHero, .scHero) ~ .introSection { padding-top: clamp(80px, 8vw, 170px); }
+.kiTools { row-gap: clamp(48px, 5vw, 104px); }
+
+/* Schnittstellen: the failure chain without boxes, so it no longer
+   follows the two cards of the block above with four more cards. Large
+   type on the amber band, round arrows between the steps. */
+.scChain li { background: none; padding: 0 clamp(18px, 2vw, 40px) 0 0; }
+.scChain li:first-child { background: none; color: var(--ink); }
+.scChain li:first-child span { color: var(--ink); }
+.scChain li:not(:last-child)::after { right: clamp(-6px, -.2vw, 0px); top: clamp(14px, 1.2vw, 20px); transform: none; }
+.scChain b { font-size: clamp(26px, 2.3vw, 46px); }
+.scChain li:first-child b { color: #a3540a; }
+@media (max-width: 900px) {
+  .scChain { gap: 36px; }
+  .scChain li { padding: 0; }
+  .scChain li:not(:last-child)::after { right: auto; left: 0; top: auto; bottom: -32px; }
+}
+
+/* ── Hero entrance on all technology pages ───────────────────────────────
+   On load, the copy rises in turn: headline, sentence, buttons. Then the
+   hero's own picture: the quiz and the route (Shopify), the promises
+   (WordPress), the tools folding into one system (Laravel), the bridges
+   drawing themselves (Schnittstellen), the agent's steps one after another
+   (KI). Transform and opacity only; nothing moves with reduced motion. */
+@keyframes heroRise { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
+@keyframes heroDraw { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes heroDrop { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: no-preference) {
+  :is(.techHero, .wpHeroCopy, .lvHeroCopy, .scHeroCopy, .kiHeroCopy, .svcHeroCopy) > :is(h1, .lead, .btns) {
+    animation: heroRise .8s cubic-bezier(.2,.7,.2,1) both;
+  }
+  :is(.techHero, .wpHeroCopy, .lvHeroCopy, .scHeroCopy, .kiHeroCopy) .lead { animation-delay: .12s; }
+  :is(.techHero, .wpHeroCopy, .lvHeroCopy, .scHeroCopy, .kiHeroCopy) .btns { animation-delay: .24s; }
+
+  .techHero .mcheck { animation: heroRise .8s .35s cubic-bezier(.2,.7,.2,1) both; }
+  .techRoute li { animation: heroRise .6s cubic-bezier(.2,.7,.2,1) both; }
+  .techRoute li:nth-child(1) { animation-delay: .55s; } .techRoute li:nth-child(2) { animation-delay: .65s; }
+  .techRoute li:nth-child(3) { animation-delay: .75s; } .techRoute li:nth-child(4) { animation-delay: .85s; }
+  .techRoute li:nth-child(5) { animation-delay: 1s; }
+
+  .wpPoints li { animation: heroRise .7s cubic-bezier(.2,.7,.2,1) both; }
+  .wpPoints li:nth-child(1) { animation-delay: .35s; } .wpPoints li:nth-child(2) { animation-delay: .47s; }
+  .wpPoints li:nth-child(3) { animation-delay: .59s; } .wpPoints li:nth-child(4) { animation-delay: .71s; }
+
+  .lvBefore li { animation: heroRise .55s cubic-bezier(.2,.7,.2,1) both; animation-delay: calc(.3s + var(--i, 0) * .08s); }
+  .lvArrow { animation: heroDrop .5s .8s ease-out both; }
+  .lvAfter { animation: heroRise .8s .95s cubic-bezier(.2,.7,.2,1) both; }
+
+  .scLinks li { animation: heroRise .7s cubic-bezier(.2,.7,.2,1) both; }
+  .scLinks li:nth-child(1) { animation-delay: .3s; } .scLinks li:nth-child(2) { animation-delay: .45s; } .scLinks li:nth-child(3) { animation-delay: .6s; }
+  .scBridge { transform-origin: left center; animation: heroDraw .7s cubic-bezier(.6,0,.2,1) both; }
+  .scLinks li:nth-child(1) .scBridge { animation-delay: .7s; } .scLinks li:nth-child(2) .scBridge { animation-delay: .85s; } .scLinks li:nth-child(3) .scBridge { animation-delay: 1s; }
+
+  .kiExample figcaption { animation: heroRise .6s .3s ease-out both; }
+  .kiExample li { animation: heroRise .7s cubic-bezier(.2,.7,.2,1) both; }
+  .kiExample li:nth-child(1) { animation-delay: .45s; } .kiExample li:nth-child(2) { animation-delay: .85s; } .kiExample li:nth-child(3) { animation-delay: 1.25s; }
+}
+
+/* KI: the tools as one compact strip under the hero, six across */
+.kiToolsStrip { padding: clamp(40px, 4.4vw, 88px) var(--gutter) 0; }
+.kiToolsStrip ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: clamp(20px, 2vw, 40px); }
+.kiToolsStrip li { display: grid; gap: 8px; align-content: start; }
+.kiToolsStrip .kiToolMark { width: 44px; height: 44px; border-radius: 12px; margin-bottom: 6px; }
+.kiToolsStrip b { font-family: var(--display); font-weight: 400; font-size: clamp(20px, 1.5vw, 28px); line-height: 1.05; letter-spacing: -.025em; }
+.kiToolsStrip li > span:last-child { font-size: clamp(13px, .9vw, 15px); line-height: 1.45; color: var(--muted); }
+@media (max-width: 1200px) { .kiToolsStrip ul { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 36px; } }
+@media (max-width: 600px) { .kiToolsStrip ul { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (prefers-reduced-motion: no-preference) {
+  .kiToolsStrip li { animation: heroRise .7s cubic-bezier(.2,.7,.2,1) both; animation-delay: calc(.9s + var(--i, 0) * .07s); }
+}
+.kiToolsStrip + .introSection { padding-top: clamp(72px, 7.5vw, 160px); }
+/* WordPress and KI: the left side of the hero (headline, sentence,
+   buttons) is there at once; only the right column animates */
+.wpHeroCopy > *, .kiHeroCopy > * { animation: none !important; }
+
+/* ── Ways to work with us: alternatives, not steps ──────────────────────
+   No numbers, no rules over the columns. Large name, a line in a warm
+   tone on who it fits, then what it is. Columns are separated by air. */
+.fmtList { gap: clamp(32px, 4vw, 96px); }
+.fmtList li { border-top: 0; padding-top: 0; gap: clamp(10px, 1vw, 16px); }
+.fmtList b { font-size: clamp(30px, 2.6vw, 52px); }
+.fmtList em { font-style: normal; font-size: clamp(16px, 1.15vw, 21px); line-height: 1.4; color: #f1c98f; }
+.fmtList li > span { color: #e9e3dc; font-size: clamp(15px, 1.02vw, 18px); line-height: 1.55; }
+
+/* ── The 1 · 2 · 3 steps in the pinned service hero, in the same style as
+   the steps band on the technology pages: large circles, a solid line
+   that draws itself between lit steps. The home page keeps its own. */
+.stepsLayer .progress li:not(:last-child)::after {
+  top: 22px; left: 60px; right: calc(-1 * clamp(10px, 1.3vw, 28px) + 4px);
+  background: var(--ink);
+}
+.stepsLayer .progress .progressDot,
+.stepsLayer .progress li:first-child .progressDot { width: 44px; height: 44px; font-size: 15px; margin-bottom: 12px; }
+.stepsLayer .progress b { font-size: clamp(24px, 2.2vw, 44px); line-height: 1.04; letter-spacing: -.03em; }
+@media (max-width: 1023px) {
+  .stepsLayer .progress li:not(:last-child)::after { display: none; }
+}
+/* The line ends just short of the next circle, whatever the gap */
+.stepsLayer .progress { --g: 16px; gap: var(--g); }
+.svcPin[data-settled] .stepsLayer .progress { --g: clamp(20px, 2.6vw, 56px); }
+.stepsLayer .progress li:not(:last-child)::after { right: calc(-1 * var(--g) + 10px); }
+
+/* Technik hub: one column, then two, then four; KI always full width */
+.linkCards.techHubGrid { grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 700px) { .linkCards.techHubGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1200px) { .linkCards.techHubGrid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.linkCards.techHubGrid > .techHubWide { grid-column: 1 / -1; }

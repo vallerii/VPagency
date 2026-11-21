@@ -389,9 +389,9 @@ export const techs: Tech[] = [
 export const formats = {
   title: L2("So können Sie mit uns arbeiten", "Как с нами можно работать"),
   items: [
-    { title: L2("Audit", "Аудит"), text: L2("Eine einmalige Prüfung: Wir sehen uns an, was es gibt, und geben Ihnen eine Liste, was zu tun ist", "Разовая проверка: смотрим, что есть, и даём список того, что делать") },
-    { title: L2("Projekt", "Проект"), text: L2("Eine konkrete Aufgabe mit Anfang und Ende und einer Person, die für das Ergebnis verantwortlich ist", "Конкретная задача с началом и концом, один ответственный за результат") },
-    { title: L2("Retainer", "Абонемент"), text: L2("Feste Stunden im Monat für Betreuung und Weiterentwicklung, mit Prioritäten und regelmäßigem Bericht", "Фиксированные часы в месяц на поддержку и развитие, приоритеты и регулярный отчёт") },
+    { title: L2("Audit", "Аудит"), who: L2("Wenn Sie wissen wollen, wo Sie stehen, bevor Sie investieren", "Если нужно понять, где вы сейчас, до вложений"), text: L2("Eine einmalige Prüfung: Wir sehen uns an, was es gibt, und geben Ihnen eine Liste, was zu tun ist", "Разовая проверка: смотрим, что есть, и даём список того, что делать") },
+    { title: L2("Projekt", "Проект"), who: L2("Wenn eine konkrete Aufgabe erledigt werden soll", "Если нужно сделать конкретную задачу"), text: L2("Eine konkrete Aufgabe mit Anfang und Ende und einer Person, die für das Ergebnis verantwortlich ist", "Конкретная задача с началом и концом, один ответственный за результат") },
+    { title: L2("Retainer", "Абонемент"), who: L2("Wenn etwas läuft und sich weiterentwickeln soll", "Если что-то уже работает и должно развиваться"), text: L2("Feste Stunden im Monat für Betreuung und Weiterentwicklung, mit Prioritäten und regelmäßigem Bericht", "Фиксированные часы в месяц на поддержку и развитие, приоритеты и регулярный отчёт") },
   ],
 };
 

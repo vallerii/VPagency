@@ -1,38 +1,49 @@
 import Link from "next/link";
 import { Fragment, type CSSProperties } from "react";
 import type { Lang } from "@/content/home";
-import { pageCopy as pc, formats, href, t, type Tech } from "@/content/catalog";
+import { pageCopy as pc, href, t, type Tech } from "@/content/catalog";
 import type { WordpressPage } from "@/content/tech-wordpress";
-import { Groups, Crumbs } from "./Inner";
+import { Groups, Crumbs, FormatsBand } from "./Inner";
 import { StepsBand } from "./StepsBand";
-import { WpEditorDemo } from "./WpEditorDemo";
+import { HeaderOverHero } from "./HeaderOverHero";
 import s from "./home.module.css";
 
 const i = (n: number) => ({ "--i": n }) as CSSProperties;
 
 /* The WordPress page. Its own story and its own layouts, so it never reads
-   as the Shopify page with other words: a full-bleed blue hero with a live
-   editor, a list of situations with a verdict each, a dark band for sites
+   as the Shopify page with other words: a full-bleed hero with a solid blue
+   column of promises, a list of situations with a verdict each, a dark band for sites
    in trouble, editorial columns, a timeline. */
 export function WordpressPageLong({ lang, x, page }: { lang: Lang; x: Tech; page: WordpressPage }) {
   return (
     <>
+      {/* The two colour fields start at the top of the window, under the
+          header and the breadcrumbs, so the first screen is one picture */}
+      <div className={s.wpTop}>
+      <HeaderOverHero />
       <Crumbs lang={lang} trail={[{ label: t(pc.techHub.title, lang), path: "/technologien" }, { label: t(x.nav, lang) }]} />
 
-      {/* 1 · Hero: full-bleed field, headline over the live editor */}
+      {/* 1 · Hero: headline on the pale field, the four promises in a
+          column of solid WordPress blue that runs to the right edge */}
       <section className={s.wpHero}>
-        <div className={s.wpHeroHead}>
+        <div className={s.wpHeroCopy}>
           <h1 className={s.ipH1}>{page.h1}</h1>
-          <div className={s.wpHeroSide}>
-            <p className={s.lead}>{page.lead}</p>
-            <div className={s.btns}>
-              <a href="#anfrage" className={`${s.pill} ${s.pillDark}`}>{page.cta}</a>
-              <a href="#anfrage" className={`${s.pill} ${s.pillLine}`}>{t(pc.specCta, lang)}</a>
-            </div>
+          <p className={s.lead}>{page.lead}</p>
+          <div className={s.btns}>
+            <a href="#anfrage" className={`${s.pill} ${s.pillDark}`}>{page.cta}</a>
+            <a href="#anfrage" className={`${s.pill} ${s.pillLine}`}>{t(pc.specCta, lang)}</a>
           </div>
         </div>
-        <WpEditorDemo {...page.demo} />
+        <ul className={s.wpPoints}>
+          {page.points.map((p) => (
+            <li key={p.title}>
+              <b>{p.title}</b>
+              <span>{p.text}</span>
+            </li>
+          ))}
+        </ul>
       </section>
+      </div>
 
       {/* 2 · Intro */}
       <section className={`${s.ipSection} ${s.introSection} ${s.wpIntro}`}>
@@ -89,15 +100,17 @@ export function WordpressPageLong({ lang, x, page }: { lang: Lang; x: Tech; page
         <p className={s.rescueNote} data-reveal>{page.rescue.note}</p>
       </section>
 
-      {/* 5 · What we build: editorial columns */}
-      <section className={s.ipSection} aria-labelledby="build-title">
-        <div className={s.deepHead} data-reveal>
+      {/* 5 · What we build: the heading holds on the left while the six
+          items pass by on the right, one large title each. Deliberately
+          not a grid, so it never echoes the dark 2 x 2 band above */}
+      <section className={`${s.ipSection} ${s.wpBuild}`} aria-labelledby="build-title">
+        <div className={s.wpBuildHead}>
           <h2 id="build-title" className={s.h2}>{page.build.title}</h2>
           <p className={s.lead}>{page.build.intro}</p>
         </div>
-        <div className={s.wpCols}>
+        <div className={s.wpBuildList}>
           {page.build.columns.map((c, n) => (
-            <article key={c.heading} data-reveal style={i(n % 3)}>
+            <article key={c.heading} data-reveal style={i(n % 2)}>
               <h3>{c.heading}</h3>
               <p>{c.text}</p>
               {c.termSlug && <Link href={`/glossar/${c.termSlug}`} className={s.deepTerm}>{c.termLabel}<span aria-hidden>→</span></Link>}
@@ -106,19 +119,13 @@ export function WordpressPageLong({ lang, x, page }: { lang: Lang; x: Tech; page
         </div>
       </section>
 
-      {/* 6 · Full catalogue */}
-      <section className={`${s.ipSection} ${s.wpCatalog}`} aria-labelledby="what-title">
-        <h2 id="what-title" className={s.h2} data-reveal>{page.catalogTitle}</h2>
-        <Groups lang={lang} groups={x.groups} id={x.id} />
-      </section>
-
-      {/* 7 · Process as a timeline */}
+      {/* 6 · Process as a timeline */}
       <section className={s.ipSection} aria-labelledby="proc-title">
         <div className={s.deepHead} data-reveal>
           <h2 id="proc-title" className={s.h2}>{page.process.title}</h2>
           <p className={s.lead}>{page.process.lead}</p>
         </div>
-        <ol className={s.timeline}>
+        <ol className={`${s.timeline} ${s.timelineFour}`}>
           {page.process.phases.map((p, n) => (
             <li key={p.title} data-reveal style={i(n * 2)}>
               <span className={s.phaseNum} aria-hidden>{n + 1}</span>
@@ -132,21 +139,19 @@ export function WordpressPageLong({ lang, x, page }: { lang: Lang; x: Tech; page
         </ol>
       </section>
 
-      {/* 8 · How to work with us */}
-      <section className={s.fmtBand} aria-labelledby="fmt-title">
-        <h2 id="fmt-title" className={s.h2} data-reveal>{t(formats.title, lang)}</h2>
-        <ul className={s.fmtList}>
-          {formats.items.map((f, n) => (
-            <li key={f.title.de} data-reveal style={i(n)}>
-              <span className={s.fmtNum} aria-hidden>{String(n + 1).padStart(2, "0")}</span>
-              <b>{t(f.title, lang)}</b>
-              <span>{t(f.text, lang)}</span>
-            </li>
-          ))}
-        </ul>
+      {/* 7 · Full catalogue */}
+      <section className={`${s.ipSection} ${s.wpCatalog}`} aria-labelledby="what-title">
+        <h2 id="what-title" className={s.h2} data-reveal>{page.catalogTitle}</h2>
+        <Groups lang={lang} groups={x.groups} id={x.id} />
       </section>
 
-      {/* 9 · FAQ */}
+      {/* 8 · How to work with us */}
+      <FormatsBand lang={lang} />
+
+      {/* 9 · First step, lit 1 · 2 · 3 on scroll */}
+      <StepsBand title={page.start.title} steps={page.start.steps} cta={page.start.cta} />
+
+      {/* 10 · FAQ, the last doubts before the request form */}
       <section className={s.ipSection} aria-labelledby="faq-title">
         <h2 id="faq-title" className={s.h2} data-reveal>{page.faq.title}</h2>
         <div className={s.faqList}>
@@ -158,9 +163,6 @@ export function WordpressPageLong({ lang, x, page }: { lang: Lang; x: Tech; page
           ))}
         </div>
       </section>
-
-      {/* 10 · First step, lit 1 · 2 · 3 on scroll, right above the form */}
-      <StepsBand title={page.start.title} steps={page.start.steps} cta={page.start.cta} />
     </>
   );
 }

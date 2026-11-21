@@ -12,7 +12,7 @@ export type WordpressPage = {
   h1: string;
   lead: string;
   cta: string;
-  demo: { caption: string; title: string; text: string; button: string };
+  points: { title: string; text: string }[];
   intro: string;
   exits: { question: string; label: string; href: string }[];
   fit: {
@@ -36,15 +36,15 @@ export type WordpressPage = {
 export const wordpressPage: WordpressPage = {
   h1: "WordPress-Websites, die Ihr Team selbst pflegt",
   lead:
-    "Unternehmenswebsites, Produktkataloge und WooCommerce-Shops auf WordPress. Mit eigenem Theme statt Baukasten, wenigen gepflegten Plugins und Anbindung an CRM und ERP",
+    "Unternehmenswebsites, Produktkataloge und WooCommerce-Shops auf WordPress, gebaut für Industrie und B2B",
   cta: "Website besprechen",
 
-  demo: {
-    caption: "Probieren Sie es aus: So ändert Ihr Team Inhalte, ohne Code und ohne uns",
-    title: "Präzision für Ihre Fertigung",
-    text: "Messsysteme für Produktion und Labor, geprüft und kalibriert in Siegen",
-    button: "Katalog ansehen",
-  },
+  points: [
+    { title: "Eigenes Theme", text: "Gebaut für Ihre Inhalte, nicht aus dem Baukasten" },
+    { title: "Pflege ohne Entwickler", text: "Ihr Team ändert Texte, Bilder und Seiten selbst" },
+    { title: "Wenige, gepflegte Plugins", text: "Updates ohne Angst, dass danach etwas fehlt" },
+    { title: "Anbindung an CRM und ERP", text: "Anfragen landen dort, wo sie bearbeitet werden" },
+  ],
 
   intro:
     "Eine WordPress-Website ist so gut wie das, was unter der Oberfläche steckt. Viele Seiten bestehen aus einem gekauften Theme, einem Page-Builder und dreißig Plugins, von denen niemand mehr weiß, wofür sie da sind. Das läuft, bis ein Update kommt. Wir bauen WordPress anders: ein eigenes Theme aus Blöcken, die genau zu Ihren Inhalten passen, so wenige Plugins wie möglich und eine Pflege, die Ihr Team ohne Entwickler schafft. Und wir übernehmen bestehende Seiten, die aus dem Ruder gelaufen sind",
