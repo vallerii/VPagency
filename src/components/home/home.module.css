@@ -2645,3 +2645,28 @@ a.fitVerdict:hover { background: var(--ink); color: #fff; }
 @media (min-width: 700px) { .linkCards.techHubGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (min-width: 1200px) { .linkCards.techHubGrid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
 .linkCards.techHubGrid > .techHubWide { grid-column: 1 / -1; }
+/* Laravel: the promise sits between two coloured bands, so it gets more
+   room above and below than an ordinary block (about 200px on wide screens) */
+:is(.kiTop, .wpTop, .techHero, .lvHero, .scHero) ~ .lvTrust {
+  padding-top: clamp(96px, 11vw, 240px);
+  padding-bottom: clamp(96px, 11vw, 240px);
+}
+
+/* Ways to work with us, on technology pages: the same air above and below.
+   Below it always comes a coloured band, so it keeps the full block gap.
+   Above it, a white block already brings its own bottom padding, so the
+   band adds nothing; after a coloured block it adds the full gap. */
+:is(.kiTop, .wpTop, .techHero, .lvHero, .scHero) ~ .fmtBand {
+  margin-top: 0;
+  margin-bottom: clamp(72px, 7.5vw, 160px);
+}
+:is(.kiTop, .wpTop, .techHero, .lvHero, .scHero) ~ .wpCatalog + .fmtBand { margin-top: clamp(72px, 7.5vw, 160px); }
+/* After a white block, the band gets a larger gap below than above: the
+   white block above reads as extra air, so the bottom needs more to balance */
+:is(.kiTop, .wpTop, .techHero, .lvHero, .scHero) ~ .fmtBand { margin-bottom: clamp(104px, 11vw, 240px); }
+:is(.kiTop, .wpTop, .techHero, .lvHero, .scHero) ~ .wpCatalog + .fmtBand { margin-bottom: clamp(72px, 7.5vw, 160px); }
+/* Laravel promise: taller still, it is the pause between two coloured bands */
+:is(.kiTop, .wpTop, .techHero, .lvHero, .scHero) ~ .lvTrust {
+  padding-top: clamp(120px, 15vw, 320px);
+  padding-bottom: clamp(120px, 15vw, 320px);
+}
